@@ -1,0 +1,1174 @@
+[INFO] 2025-05-01 18:41:52,766 autoreload 5758 8609427968 Watching for file changes with StatReloader
+[INFO] 2025-05-01 18:42:42,006 autoreload 6111 8676114944 Watching for file changes with StatReloader
+[INFO] 2025-05-01 18:50:38,518 autoreload 7684 8594637312 Watching for file changes with StatReloader
+[INFO] 2025-05-01 18:53:40,573 autoreload 8718 8640672256 Watching for file changes with StatReloader
+[INFO] 2025-05-01 18:55:38,788 autoreload 9359 8629494272 Watching for file changes with StatReloader
+[INFO] 2025-05-01 18:57:16,803 autoreload 9828 8607080960 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:04:44,789 autoreload 11570 8666132992 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:07:53,394 autoreload 11570 8666132992 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:07:54,944 autoreload 12056 8674558464 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:08:03,141 autoreload 12193 8668525056 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:09:53,373 autoreload 12193 8668525056 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:09:54,900 autoreload 12447 8661148160 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:10:01,100 autoreload 12447 8661148160 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:10:01,550 autoreload 12483 8606478848 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:10:04,708 autoreload 12483 8606478848 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:10:05,155 autoreload 12506 8666751488 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:11:42,107 autoreload 12506 8666751488 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:11:42,983 autoreload 12737 8664642048 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:11:52,224 autoreload 12737 8664642048 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:11:54,862 autoreload 12900 8594326016 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:12:49,981 autoreload 12900 8594326016 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:12:50,665 autoreload 13036 8607621632 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:15:00,061 autoreload 13036 8607621632 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:15:00,737 autoreload 13337 8637129216 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:15:03,906 autoreload 13337 8637129216 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:15:04,329 autoreload 13359 8593072640 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:15:39,046 autoreload 13359 8593072640 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:15:39,712 autoreload 13445 8669680128 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:17:42,166 autoreload 13445 8669680128 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:17:42,836 autoreload 13702 8670872064 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:17:47,025 autoreload 13702 8670872064 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:17:47,498 autoreload 13728 8641597952 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:17:58,851 autoreload 13728 8641597952 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:17:59,453 autoreload 13782 8637551104 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:19:04,700 autoreload 13782 8637551104 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:19:05,392 autoreload 13954 8633422336 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:19:12,588 autoreload 13954 8633422336 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:19:13,156 autoreload 13983 8596513280 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:19:18,354 autoreload 13983 8596513280 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:19:18,868 autoreload 14014 8607781376 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:19:28,136 autoreload 14014 8607781376 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:19:28,666 autoreload 14041 8665195008 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:19:39,531 autoreload 14191 8671023616 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:19:48,768 autoreload 14191 8671023616 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:19:49,267 autoreload 14227 8637383168 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:20:40,605 autoreload 14465 8626868736 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:20:51,814 autoreload 14611 8627483136 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:21:54,212 autoreload 14859 8677851648 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:22:49,961 autoreload 15135 8671838720 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:23:30,068 autoreload 15468 8596013568 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:23:49,242 autoreload 15649 8674341376 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:24:45,702 autoreload 15897 8672084480 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:26:18,634 autoreload 15897 8672084480 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/portalcomercial/settings.py changed, reloading.
+[INFO] 2025-05-01 19:26:19,411 autoreload 16109 8642871808 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:26:22,579 autoreload 16109 8642871808 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/portalcomercial/settings.py changed, reloading.
+[INFO] 2025-05-01 19:26:22,872 autoreload 16142 8667853312 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:26:29,787 autoreload 16278 8597365248 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:30:28,090 autoreload 16278 8597365248 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/portalcomercial/settings.py changed, reloading.
+[INFO] 2025-05-01 19:30:28,747 autoreload 16791 8674447872 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:30:36,056 autoreload 16791 8674447872 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/portalcomercial/settings.py changed, reloading.
+[INFO] 2025-05-01 19:30:36,677 autoreload 16842 8666059264 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:30:42,966 autoreload 16842 8666059264 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/portalcomercial/settings.py changed, reloading.
+[INFO] 2025-05-01 19:30:50,592 autoreload 17005 8673804800 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:31:30,322 autoreload 17005 8673804800 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/portalcomercial/settings.py changed, reloading.
+[INFO] 2025-05-01 19:31:30,939 autoreload 17093 8632455680 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:33:29,278 autoreload 17093 8632455680 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:33:30,806 autoreload 17396 8664449536 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:33:34,999 autoreload 17396 8664449536 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:33:35,630 autoreload 17424 8668221952 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:33:41,879 autoreload 17424 8668221952 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:33:42,362 autoreload 17461 8666751488 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:33:59,801 autoreload 17461 8666751488 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:34:00,401 autoreload 17507 8598704640 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:34:38,229 autoreload 17507 8598704640 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-01 19:34:38,834 autoreload 17608 8642654720 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:02,454 autoreload 17608 8642654720 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:03,321 autoreload 17710 8663818752 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:09,535 autoreload 17710 8663818752 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:10,143 autoreload 17743 8636740096 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:21,469 autoreload 17743 8636740096 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:22,084 autoreload 17781 8604754432 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:23,228 autoreload 17781 8604754432 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:23,689 autoreload 17791 8605524480 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:44,190 autoreload 17791 8605524480 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:44,847 autoreload 17856 8627208704 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:48,031 autoreload 17856 8627208704 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:48,497 autoreload 17878 8628707840 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:35:55,770 autoreload 17878 8628707840 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:35:56,275 autoreload 17914 8592605696 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:36:55,547 autoreload 17914 8592605696 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:36:56,252 autoreload 18059 8663122432 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:37:27,972 autoreload 18059 8663122432 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:37:28,644 autoreload 18148 8636207616 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:37:35,842 autoreload 18148 8636207616 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 19:37:36,443 autoreload 18175 8630612480 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:37:43,441 autoreload 18310 8666825216 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:41:26,770 autoreload 18310 8666825216 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/core/models.py changed, reloading.
+[INFO] 2025-05-01 19:41:27,414 autoreload 18905 8605495808 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:41:54,892 autoreload 18905 8605495808 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/core/forms.py changed, reloading.
+[INFO] 2025-05-01 19:41:55,330 autoreload 18996 8664011264 Watching for file changes with StatReloader
+[INFO] 2025-05-01 19:45:10,984 autoreload 20103 8659190272 Watching for file changes with StatReloader
+[INFO] 2025-05-01 20:12:59,817 autoreload 25484 8669180416 Watching for file changes with StatReloader
+[INFO] 2025-05-01 20:17:09,014 autoreload 26149 8636908032 Watching for file changes with StatReloader
+[INFO] 2025-05-01 20:32:56,962 autoreload 26723 8665637376 Watching for file changes with StatReloader
+[INFO] 2025-05-01 20:33:49,744 basehttp 26723 13085913088 "GET /gestor/ HTTP/1.1" 200 37
+[WARNING] 2025-05-01 20:33:49,914 log 26723 13085913088 Not Found: /favicon.ico
+[WARNING] 2025-05-01 20:33:49,915 basehttp 26723 13085913088 "GET /favicon.ico HTTP/1.1" 404 3185
+[INFO] 2025-05-01 20:33:53,774 basehttp 26723 13102702592 "GET / HTTP/1.1" 200 3743
+[WARNING] 2025-05-01 20:33:53,816 basehttp 26723 13102702592 "GET /static/img/logo-portal-comercial.png HTTP/1.1" 404 1901
+[INFO] 2025-05-01 20:33:53,819 basehttp 26723 13119492096 "GET /static/css/style.css HTTP/1.1" 200 9872
+[INFO] 2025-05-01 20:33:54,050 basehttp 26723 13119492096 "GET /static/img/background.webp HTTP/1.1" 200 51050
+[INFO] 2025-05-01 20:33:54,072 basehttp 26723 13119492096 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-05-01 20:33:54,073 basehttp 26723 13085913088 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-05-01 20:33:54,078 basehttp 26723 13119492096 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 200 1609
+[INFO] 2025-05-01 20:33:54,079 basehttp 26723 13085913088 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 200 36056
+[INFO] 2025-05-01 20:34:06,751 basehttp 26723 13102702592 "GET / HTTP/1.1" 200 3743
+[WARNING] 2025-05-01 20:34:06,771 basehttp 26723 13102702592 "GET /static/img/logo-portal-comercial.png HTTP/1.1" 404 1901
+[INFO] 2025-05-01 20:34:07,460 basehttp 26723 13136281600 "GET / HTTP/1.1" 200 3743
+[WARNING] 2025-05-01 20:34:07,486 basehttp 26723 13136281600 "GET /static/img/logo-portal-comercial.png HTTP/1.1" 404 1901
+[INFO] 2025-05-01 20:34:08,571 basehttp 26723 13153071104 "GET /login/ HTTP/1.1" 200 5317
+[WARNING] 2025-05-01 20:34:08,595 basehttp 26723 13153071104 "GET /static/img/logo-portal-comercial.png HTTP/1.1" 404 1901
+[INFO] 2025-05-01 20:34:19,397 basehttp 26723 13085913088 "GET / HTTP/1.1" 200 3743
+[WARNING] 2025-05-01 20:34:19,422 basehttp 26723 13085913088 "GET /static/img/logo-portal-comercial.png HTTP/1.1" 404 1901
+[INFO] 2025-05-01 20:46:35,204 autoreload 28753 8593748480 Watching for file changes with StatReloader
+[INFO] 2025-05-01 20:47:26,695 autoreload 29096 8664588800 Watching for file changes with StatReloader
+[INFO] 2025-05-01 20:49:21,458 autoreload 29906 8667959808 Watching for file changes with StatReloader
+[INFO] 2025-05-01 21:01:38,732 autoreload 31879 8596984320 Watching for file changes with StatReloader
+[INFO] 2025-05-01 21:03:59,063 autoreload 31879 8596984320 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 21:03:59,491 autoreload 32305 8637968896 Watching for file changes with StatReloader
+[INFO] 2025-05-01 21:04:00,611 autoreload 32305 8637968896 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/urls.py changed, reloading.
+[INFO] 2025-05-01 21:04:00,891 autoreload 32316 8662684160 Watching for file changes with StatReloader
+[INFO] 2025-05-01 21:04:06,942 basehttp 32316 13080735744 "GET / HTTP/1.1" 200 3727
+[INFO] 2025-05-01 21:04:06,958 basehttp 32316 13080735744 "GET /static/img/bluna.png HTTP/1.1" 200 131188
+[INFO] 2025-05-01 21:04:29,939 basehttp 32316 13080735744 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-05-01 21:04:29,946 basehttp 32316 13080735744 "GET /login/?next=/gestor/ HTTP/1.1" 200 5317
+[WARNING] 2025-05-01 21:04:29,992 basehttp 32316 13080735744 "GET /static/img/logo-portal-comercial.png HTTP/1.1" 404 1901
+[INFO] 2025-05-01 21:06:17,075 basehttp 32316 13097525248 "GET /login/?next=/gestor/ HTTP/1.1" 200 5301
+[INFO] 2025-05-01 21:06:17,112 basehttp 32316 13097525248 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-01 21:06:22,985 basehttp 32316 13097525248 "GET / HTTP/1.1" 200 3727
+[INFO] 2025-05-01 21:06:26,165 basehttp 32316 13097525248 "GET /login/ HTTP/1.1" 200 5301
+[INFO] 2025-05-01 21:07:04,084 autoreload 32999 8595431936 Watching for file changes with StatReloader
+[INFO] 2025-05-01 21:07:08,737 basehttp 32999 12944289792 "GET /login/ HTTP/1.1" 200 5301
+[INFO] 2025-05-01 21:07:08,762 basehttp 32999 12944289792 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-01 21:07:13,314 basehttp 32999 12944289792 "GET /login/ HTTP/1.1" 200 5301
+[INFO] 2025-05-01 21:07:14,390 basehttp 32999 12961079296 "GET /login/ HTTP/1.1" 200 5301
+[INFO] 2025-05-01 21:07:22,990 basehttp 32999 12977868800 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-01 21:07:23,108 basehttp 32999 12977868800 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-01 21:07:27,519 basehttp 32999 12994658304 "GET /perfil/ HTTP/1.1" 200 9177
+[INFO] 2025-05-01 21:07:43,515 basehttp 32999 12944289792 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-01 21:07:44,277 basehttp 32999 12944289792 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-01 21:07:45,025 basehttp 32999 12944289792 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-01 21:17:36,852 autoreload 35877 8638329344 Watching for file changes with StatReloader
+[INFO] 2025-05-01 21:18:06,529 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-01 21:18:06,544 basehttp 35877 13028077568 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[WARNING] 2025-05-01 21:18:06,950 log 35877 13028077568 Not Found: /favicon.ico
+[WARNING] 2025-05-01 21:18:06,950 basehttp 35877 13028077568 "GET /favicon.ico HTTP/1.1" 404 3185
+[INFO] 2025-05-01 21:18:16,883 basehttp 35877 13028077568 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-01 21:18:17,056 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 4225
+[INFO] 2025-05-01 21:18:18,949 basehttp 35877 13028077568 "GET /login/ HTTP/1.1" 200 5301
+[INFO] 2025-05-01 23:14:17,523 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 3727
+[INFO] 2025-05-01 23:14:17,554 basehttp 35877 13044867072 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:17,555 basehttp 35877 13028077568 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:17,570 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:17,571 basehttp 35877 13028077568 "GET /static/img/background.webp HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:17,575 basehttp 35877 13028077568 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:17,576 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:17,577 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-05-01 23:14:19,786 basehttp 35877 13044867072 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-01 23:14:19,826 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 200 1614
+[INFO] 2025-05-01 23:14:19,829 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 200 1613
+[INFO] 2025-05-01 23:14:42,013 basehttp 35877 13028077568 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-01 23:14:42,132 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-01 23:14:46,074 basehttp 35877 13028077568 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-01 23:14:46,207 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 4225
+[INFO] 2025-05-01 23:14:47,873 basehttp 35877 13028077568 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-01 23:14:57,811 basehttp 35877 13044867072 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-01 23:15:01,827 basehttp 35877 13061656576 "GET / HTTP/1.1" 200 3727
+[INFO] 2025-05-01 23:15:04,213 basehttp 35877 13061656576 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-01 23:16:49,349 basehttp 35877 13078446080 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-01 23:17:29,204 basehttp 35877 13095235584 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-01 23:18:13,204 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 3727
+[INFO] 2025-05-01 23:18:15,018 basehttp 35877 13028077568 "GET /login/ HTTP/1.1" 200 6828
+[INFO] 2025-05-02 06:13:25,441 basehttp 35877 13044867072 "GET /login/ HTTP/1.1" 200 4713
+[INFO] 2025-05-02 06:13:25,499 basehttp 35877 13061656576 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,499 basehttp 35877 13044867072 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,508 basehttp 35877 13044867072 "GET /static/img/background.webp HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,524 basehttp 35877 13061656576 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,525 basehttp 35877 13078446080 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,525 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,538 basehttp 35877 13078446080 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,539 basehttp 35877 13044867072 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:25,541 basehttp 35877 13061656576 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:13:39,933 basehttp 35877 13061656576 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 06:13:40,123 basehttp 35877 13061656576 "GET / HTTP/1.1" 200 4647
+[INFO] 2025-05-02 06:13:43,616 basehttp 35877 13061656576 "GET /perfil/ HTTP/1.1" 200 9177
+[INFO] 2025-05-02 06:13:58,032 basehttp 35877 13061656576 "POST /perfil/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 06:13:58,218 basehttp 35877 13061656576 "GET / HTTP/1.1" 200 5139
+[INFO] 2025-05-02 06:14:02,451 basehttp 35877 13061656576 "GET /perfil/ HTTP/1.1" 200 9190
+[ERROR] 2025-05-02 06:14:37,161 log 35877 13061656576 Internal Server Error: /perfil/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney/django/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney/django/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney/django/venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/core/views.py", line 50, in perfil
+    print(f"URL do arquivo após salvar: {perfil.foto.url if perfil.foto else 'Nenhuma URL'}")
+                                         ^^^^^^^^^^^^^^^
+AttributeError: 'TemporaryUploadedFile' object has no attribute 'url'
+[ERROR] 2025-05-02 06:14:37,171 basehttp 35877 13061656576 "POST /perfil/ HTTP/1.1" 500 77306
+[INFO] 2025-05-02 06:18:21,279 basehttp 35877 13061656576 "GET /perfil/ HTTP/1.1" 200 9039
+[INFO] 2025-05-02 06:18:30,274 basehttp 35877 13061656576 "POST /perfil/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 06:18:30,461 basehttp 35877 13061656576 "GET / HTTP/1.1" 200 5139
+[INFO] 2025-05-02 06:18:34,340 basehttp 35877 13061656576 "GET /perfil/ HTTP/1.1" 200 9047
+[INFO] 2025-05-02 06:18:49,139 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 4646
+[INFO] 2025-05-02 06:26:51,625 basehttp 35877 13044867072 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 06:26:51,687 basehttp 35877 13044867072 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-05-02 06:57:25,168 basehttp 35877 13061656576 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 06:57:25,211 basehttp 35877 13061656576 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 06:57:29,320 basehttp 35877 13078446080 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 06:57:29,461 basehttp 35877 13078446080 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 06:57:30,948 basehttp 35877 13078446080 "GET /login/ HTTP/1.1" 200 4713
+[INFO] 2025-05-02 06:57:42,561 basehttp 35877 13028077568 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 06:57:42,671 basehttp 35877 13028077568 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:00:51,555 autoreload 60278 8663323136 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:00:56,305 basehttp 60278 13081866240 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:00:56,360 basehttp 60278 13081866240 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 07:00:59,949 basehttp 60278 13080752128 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:01:00,088 basehttp 60278 13080752128 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 07:01:01,376 basehttp 60278 13080752128 "GET /login/ HTTP/1.1" 200 4713
+[INFO] 2025-05-02 07:01:09,649 basehttp 60278 13097541632 "POST /login/ HTTP/1.1" 200 4895
+[INFO] 2025-05-02 07:01:30,106 basehttp 60278 13080752128 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:01:30,225 basehttp 60278 13080752128 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:01:37,090 basehttp 60278 13114331136 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:01:37,216 basehttp 60278 13114331136 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 07:01:38,986 basehttp 60278 13131120640 "GET /login/ HTTP/1.1" 200 4713
+[INFO] 2025-05-02 07:02:25,290 basehttp 60278 13147910144 "GET /login/ HTTP/1.1" 200 4713
+[INFO] 2025-05-02 07:02:34,049 basehttp 60278 13164699648 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:02:34,154 basehttp 60278 13164699648 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:02:38,004 basehttp 60278 13080752128 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:02:38,144 basehttp 60278 13080752128 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 07:02:39,521 basehttp 60278 13080752128 "GET /login/ HTTP/1.1" 200 4713
+[INFO] 2025-05-02 07:03:19,596 basehttp 60278 13114331136 "GET /login/ HTTP/1.1" 200 4712
+[INFO] 2025-05-02 07:03:37,428 basehttp 60278 13131120640 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:03:37,537 basehttp 60278 13131120640 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:03:40,469 basehttp 60278 13131120640 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:03:41,491 basehttp 60278 13131120640 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:11:14,892 basehttp 60278 13147910144 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:11:14,939 basehttp 60278 13147910144 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 07:11:14,946 basehttp 60278 13147910144 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 07:11:17,450 basehttp 60278 13147910144 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:32:41,791 autoreload 62346 8637477376 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:32:46,819 basehttp 62346 13030748160 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:32:46,869 basehttp 62346 13030748160 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 07:32:50,182 basehttp 62346 13030748160 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:32:50,314 basehttp 62346 13030748160 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 07:32:51,615 basehttp 62346 13030748160 "GET /login/ HTTP/1.1" 200 5228
+[INFO] 2025-05-02 07:33:07,443 basehttp 62346 13047537664 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:33:07,552 basehttp 62346 13047537664 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:33:17,926 basehttp 62346 13030748160 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:33:18,066 basehttp 62346 13030748160 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 07:33:20,247 basehttp 62346 13030748160 "GET /login/ HTTP/1.1" 200 5228
+[INFO] 2025-05-02 07:34:42,837 basehttp 62346 13047537664 "GET /login/ HTTP/1.1" 200 5228
+[INFO] 2025-05-02 07:34:50,714 basehttp 62346 13064327168 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:34:50,827 basehttp 62346 13064327168 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:34:55,673 basehttp 62346 13081116672 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:34:56,697 basehttp 62346 13081116672 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:37:50,916 autoreload 62346 8637477376 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:37:52,296 autoreload 62670 8599716352 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:38:06,621 autoreload 62670 8599716352 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:38:07,012 autoreload 62708 8592843264 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:38:20,323 autoreload 62708 8592843264 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:38:20,706 autoreload 62731 8626778624 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:38:25,895 autoreload 62731 8626778624 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:38:26,198 autoreload 62742 8673718784 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:38:28,326 autoreload 62742 8673718784 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:38:28,641 autoreload 62752 8609153536 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:38:29,773 autoreload 62752 8609153536 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:38:30,050 autoreload 62755 8676823552 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:38:35,395 basehttp 62755 13105901568 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:39:04,331 basehttp 62755 13105901568 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:42:33,195 autoreload 62755 8676823552 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:42:33,719 autoreload 63001 8604135936 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:42:39,880 autoreload 63001 8604135936 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:42:40,260 autoreload 63028 8643895808 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:42:44,399 autoreload 63028 8643895808 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/gestor/views.py changed, reloading.
+[INFO] 2025-05-02 07:42:44,694 autoreload 63040 8639009280 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:43:38,680 autoreload 63040 8639009280 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/core/views.py changed, reloading.
+[INFO] 2025-05-02 07:43:39,121 autoreload 63122 8678334976 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:43:40,270 autoreload 63122 8678334976 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/core/views.py changed, reloading.
+[INFO] 2025-05-02 07:43:40,550 autoreload 63127 8668508672 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:43:42,676 autoreload 63127 8668508672 /Users/joseantoniopaiva/pythonprojects/bluney/django/portalcomercial/core/views.py changed, reloading.
+[INFO] 2025-05-02 07:43:42,962 autoreload 63132 8668856832 Watching for file changes with StatReloader
+[INFO] 2025-05-02 07:48:17,465 basehttp 63132 13092188160 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:48:17,526 basehttp 63132 13092188160 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 07:48:20,706 basehttp 63132 13092188160 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:48:20,836 basehttp 63132 13092188160 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 07:48:22,598 basehttp 63132 13092188160 "GET /login/ HTTP/1.1" 200 4911
+[INFO] 2025-05-02 07:48:33,201 basehttp 63132 13108977664 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 07:48:33,313 basehttp 63132 13108977664 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:53:22,706 basehttp 63132 13092188160 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 07:55:28,372 basehttp 63132 13108977664 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 08:49:16,369 autoreload 70591 8635359744 Watching for file changes with StatReloader
+[INFO] 2025-05-02 08:49:44,893 autoreload 70733 8591864320 Watching for file changes with StatReloader
+[INFO] 2025-05-02 08:59:49,046 autoreload 72442 8602116608 Watching for file changes with StatReloader
+[INFO] 2025-05-02 08:59:55,475 basehttp 72442 12959199232 "GET / HTTP/1.1" 200 3726
+[INFO] 2025-05-02 08:59:55,510 basehttp 72442 12959199232 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 08:59:55,524 basehttp 72442 12959199232 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 08:59:57,981 basehttp 72442 12959199232 "GET /login/ HTTP/1.1" 200 4911
+[INFO] 2025-05-02 08:59:58,004 basehttp 72442 12959199232 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 08:59:58,024 basehttp 72442 12959199232 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 09:00:05,365 basehttp 72442 12959199232 "POST /login/ HTTP/1.1" 200 5093
+[INFO] 2025-05-02 09:00:12,208 basehttp 72442 12959199232 "POST /login/ HTTP/1.1" 200 5093
+[INFO] 2025-05-02 09:00:17,584 basehttp 72442 12959199232 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 09:00:17,696 basehttp 72442 12959199232 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:03:22,829 autoreload 73019 8638157312 Watching for file changes with StatReloader
+[INFO] 2025-05-02 09:03:38,638 basehttp 73019 13029339136 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:11:51,614 basehttp 73019 13029339136 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:15:15,872 autoreload 75285 8632644096 Watching for file changes with StatReloader
+[INFO] 2025-05-02 09:15:29,266 basehttp 75285 13017788416 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:15:29,344 basehttp 75285 13017788416 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 09:28:37,878 basehttp 75285 13017788416 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:29:18,129 basehttp 75285 13034577920 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:29:23,186 basehttp 75285 13051367424 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 09:29:23,331 basehttp 75285 13051367424 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 09:29:25,358 basehttp 75285 13051367424 "GET /login/ HTTP/1.1" 200 4911
+[INFO] 2025-05-02 09:29:33,955 basehttp 75285 13017788416 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 09:29:34,068 basehttp 75285 13017788416 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:29:43,610 autoreload 76244 8599044608 Watching for file changes with StatReloader
+[INFO] 2025-05-02 09:29:48,921 basehttp 76244 12953792512 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:30:32,208 basehttp 76244 12953792512 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:32:00,018 basehttp 76244 12970582016 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 09:32:13,120 autoreload 76510 8629441024 Watching for file changes with StatReloader
+[INFO] 2025-05-02 09:32:22,124 basehttp 76510 13013233664 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:28:12,653 basehttp 76510 13013233664 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:28:12,695 basehttp 76510 13013233664 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 10:28:12,705 basehttp 76510 13013233664 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 10:32:26,165 basehttp 76510 13030023168 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:32:33,893 autoreload 78679 8640836096 Watching for file changes with StatReloader
+[INFO] 2025-05-02 10:32:39,065 basehttp 78679 13034631168 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:32:45,419 basehttp 78679 13034074112 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 10:32:45,563 basehttp 78679 13034074112 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 10:32:47,296 basehttp 78679 13034074112 "GET /login/ HTTP/1.1" 200 5135
+[INFO] 2025-05-02 10:32:56,371 basehttp 78679 13050863616 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 10:32:56,476 basehttp 78679 13050863616 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:32:59,582 basehttp 78679 13050863616 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:33:00,701 basehttp 78679 13034074112 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 10:33:02,008 basehttp 78679 13034074112 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 11:29:31,985 autoreload 86172 8596357632 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:08:47,291 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:09:52,298 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:09:52,717 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:09:59,955 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:10:00,295 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:10:06,507 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:10:06,859 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:10:08,001 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:10:08,312 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:11:15,043 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:11:54,800 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:34:18,926 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:34:20,236 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:34:47,147 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:34:47,604 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:36:01,061 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:38:15,455 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:38:59,240 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:40:03,544 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:40:43,827 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:40:45,090 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:43:03,516 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:43:10,151 "GET / HTTP/1.1" 200 3726
+[INFO] 2025-05-02 13:43:10,394 "GET /static/css/style.css HTTP/1.1" 200 9872
+[INFO] 2025-05-02 13:43:10,407 "GET /static/img/bluna.png HTTP/1.1" 200 131188
+[INFO] 2025-05-02 13:43:10,426 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-05-02 13:43:10,489 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-05-02 13:43:10,489 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-05-02 13:43:10,579 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 200 1609
+[INFO] 2025-05-02 13:43:10,582 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 200 36056
+[INFO] 2025-05-02 13:43:15,266 "GET /login/ HTTP/1.1" 200 5135
+[INFO] 2025-05-02 13:43:15,300 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 200 1614
+[INFO] 2025-05-02 13:43:15,317 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 200 1613
+[ERROR] 2025-05-02 13:43:27,719 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/middleware.py", line 14, in __call__
+    from projetos.models import Mensagem
+ModuleNotFoundError: No module named 'projetos'
+[ERROR] 2025-05-02 13:43:27,724 "POST /login/ HTTP/1.1" 500 66313
+[INFO] 2025-05-02 13:46:25,256 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/middleware.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:46:26,565 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:46:32,159 "GET / HTTP/1.1" 200 3726
+[INFO] 2025-05-02 13:46:34,880 "GET /login/ HTTP/1.1" 200 5135
+[INFO] 2025-05-02 13:46:42,161 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 13:46:42,275 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 13:46:44,545 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 13:46:47,300 "GET /perfil/ HTTP/1.1" 200 9324
+[INFO] 2025-05-02 13:46:54,031 "GET /perfil/ HTTP/1.1" 200 9324
+[INFO] 2025-05-02 13:46:56,229 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 13:46:57,797 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 13:46:57,935 "GET / HTTP/1.1" 200 4224
+[INFO] 2025-05-02 13:46:59,135 "GET /login/ HTTP/1.1" 200 5135
+[INFO] 2025-05-02 13:47:05,888 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 13:47:06,003 "GET / HTTP/1.1" 200 4645
+[INFO] 2025-05-02 13:47:07,797 "GET / HTTP/1.1" 200 4645
+[ERROR] 2025-05-02 13:53:48,802 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 71, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'projetista'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 84, in home_view
+    return render(request, 'home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 82, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'projetista' is not a registered namespace
+[ERROR] 2025-05-02 13:53:48,811 "GET / HTTP/1.1" 500 158169
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:56:10,822 Watching for file changes with StatReloader
+[ERROR] 2025-05-02 13:56:16,234 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 84, in home_view
+    return render(request, 'home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+[ERROR] 2025-05-02 13:56:16,239 "GET / HTTP/1.1" 500 154823
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 13:57:24,356 Watching for file changes with StatReloader
+[INFO] 2025-05-02 13:57:28,184 "GET / HTTP/1.1" 200 5901
+[INFO] 2025-05-02 13:57:28,252 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-02 13:57:28,257 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 13:57:28,282 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 13:57:28,284 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 13:57:28,299 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 13:57:28,301 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[ERROR] 2025-05-02 13:57:32,925 Internal Server Error: /gestor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 236, in home
+    return render(request, 'gestor/home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'empresa_list' not found. 'empresa_list' is not a valid view function or pattern name.
+[ERROR] 2025-05-02 13:57:32,930 "GET /gestor/ HTTP/1.1" 500 192650
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 14:00:31,850 Watching for file changes with StatReloader
+[INFO] 2025-05-02 14:00:37,133 "GET /gestor/ HTTP/1.1" 200 6279
+[INFO] 2025-05-02 14:00:39,397 "GET /gestor/dashboard/ HTTP/1.1" 200 13994
+[ERROR] 2025-05-02 14:01:12,615 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 14:01:12,621 "GET /gestor/usuarios/ HTTP/1.1" 500 75003
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 18:41:10,871 Watching for file changes with StatReloader
+[INFO] 2025-05-02 18:41:47,689 "GET / HTTP/1.1" 200 5884
+[INFO] 2025-05-02 18:41:47,707 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:41:47,708 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:41:47,729 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:41:47,736 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:41:47,737 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:41:47,741 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:41:47,741 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:42:05,023 "GET /gestor/ HTTP/1.1" 200 6279
+[INFO] 2025-05-02 18:42:06,842 "GET /gestor/dashboard/ HTTP/1.1" 200 13994
+[ERROR] 2025-05-02 18:42:28,901 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 18:42:28,907 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[ERROR] 2025-05-02 18:42:35,948 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 18:42:35,949 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[INFO] 2025-05-02 18:43:18,890 "GET /gestor/ HTTP/1.1" 200 6279
+[INFO] 2025-05-02 18:46:54,494 "GET /gestor/ HTTP/1.1" 200 6278
+[INFO] 2025-05-02 18:47:41,529 "GET /gestor/ HTTP/1.1" 200 6230
+[INFO] 2025-05-02 18:47:53,181 "GET /gestor/dashboard/ HTTP/1.1" 200 13503
+[INFO] 2025-05-02 18:48:06,110 "GET /gestor/clientes/ HTTP/1.1" 200 7632
+[ERROR] 2025-05-02 18:48:15,456 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 18:48:15,462 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[INFO] 2025-05-02 18:49:51,465 "GET /gestor/dashboard/ HTTP/1.1" 200 11681
+[INFO] 2025-05-02 18:50:19,265 "GET /gestor/dashboard/ HTTP/1.1" 200 10496
+[INFO] 2025-05-02 18:51:37,237 "GET /gestor/dashboard/ HTTP/1.1" 200 10479
+[INFO] 2025-05-02 18:52:25,017 "GET /gestor/dashboard/ HTTP/1.1" 200 10473
+[ERROR] 2025-05-02 18:52:28,174 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 18:52:28,178 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[INFO] 2025-05-02 18:52:38,160 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 18:52:38,313 "GET /gestor/login/ HTTP/1.1" 200 5383
+[INFO] 2025-05-02 18:52:38,352 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 18:52:38,358 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[ERROR] 2025-05-02 18:52:53,869 Internal Server Error: /gestor/login/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 117, in form_valid
+    return super().form_valid(form)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 109, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 120, in get_success_url
+    print("Redirecionando para:", reverse_lazy('gestor:dashboard'))
+                                  ^^^^^^^^^^^^
+NameError: name 'reverse_lazy' is not defined
+[ERROR] 2025-05-02 18:52:53,871 "POST /gestor/login/ HTTP/1.1" 500 138987
+[INFO] 2025-05-02 18:53:02,647 "GET /gestor/login/ HTTP/1.1" 200 4885
+[INFO] 2025-05-02 18:53:19,656 "GET /login/ HTTP/1.1" 200 4909
+[INFO] 2025-05-02 18:53:21,088 "GET /login/ HTTP/1.1" 200 4909
+[INFO] 2025-05-02 18:53:23,916 "GET /gestor/login/ HTTP/1.1" 200 4885
+[INFO] 2025-05-02 18:53:29,715 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 18:53:29,855 "GET /gestor/login/ HTTP/1.1" 200 5383
+[INFO] 2025-05-02 18:53:32,696 "GET /login/ HTTP/1.1" 200 4909
+[INFO] 2025-05-02 18:53:43,883 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 18:53:43,969 "GET / HTTP/1.1" 200 5866
+[INFO] 2025-05-02 18:53:55,699 "GET / HTTP/1.1" 200 5866
+[INFO] 2025-05-02 18:54:05,414 "GET /login/ HTTP/1.1" 200 5828
+[INFO] 2025-05-02 18:54:10,082 "GET /perfil/ HTTP/1.1" 200 9260
+[INFO] 2025-05-02 18:54:18,246 "GET /gestor/dashboard/ HTTP/1.1" 200 10473
+[ERROR] 2025-05-02 18:54:22,637 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 18:54:22,639 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[INFO] 2025-05-02 18:54:49,715 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 18:54:49,856 "GET /gestor/login/ HTTP/1.1" 200 5383
+[INFO] 2025-05-02 18:55:02,322 "GET / HTTP/1.1" 200 4947
+[INFO] 2025-05-02 18:56:43,770 "GET / HTTP/1.1" 200 4947
+[ERROR] 2025-05-02 18:59:43,959 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 71, in reverse
+    extra, resolver = resolver.namespace_dict[ns]
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^
+KeyError: 'Vendedor'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 87, in home_view
+    return render(request, 'home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 82, in reverse
+    raise NoReverseMatch("%s is not a registered namespace" % key)
+django.urls.exceptions.NoReverseMatch: 'Vendedor' is not a registered namespace
+[ERROR] 2025-05-02 18:59:43,967 "GET / HTTP/1.1" 500 157115
+[INFO] 2025-05-02 19:00:09,325 "GET / HTTP/1.1" 200 5398
+[INFO] 2025-05-02 19:02:07,076 "GET / HTTP/1.1" 200 5385
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 19:04:33,009 Watching for file changes with StatReloader
+[INFO] 2025-05-02 19:04:43,911 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:11:19,510 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:11:40,795 "GET /gestor/ HTTP/1.1" 200 4737
+[INFO] 2025-05-02 19:12:56,679 "GET / HTTP/1.1" 200 5383
+[INFO] 2025-05-02 19:13:54,264 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:14:15,879 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:15:46,379 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:16:24,725 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:16:24,764 "GET /static/img/bluna.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:16:24,764 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:16:24,769 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:16:40,990 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:16:53,853 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:17:04,854 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:17:20,870 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:19:30,296 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:20:07,254 "GET / HTTP/1.1" 200 5385
+[INFO] 2025-05-02 19:20:45,597 "GET / HTTP/1.1" 200 5385
+[ERROR] 2025-05-02 19:22:53,331 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 87, in home_view
+    return render(request, 'home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+[ERROR] 2025-05-02 19:22:53,342 "GET / HTTP/1.1" 500 157827
+[ERROR] 2025-05-02 19:23:01,131 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 87, in home_view
+    return render(request, 'home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+[ERROR] 2025-05-02 19:23:01,134 "GET / HTTP/1.1" 500 157827
+[ERROR] 2025-05-02 19:23:06,027 Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 87, in home_view
+    return render(request, 'home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+[ERROR] 2025-05-02 19:23:06,030 "GET / HTTP/1.1" 500 157827
+[INFO] 2025-05-02 19:23:41,131 "GET / HTTP/1.1" 200 6185
+[WARNING] 2025-05-02 19:23:41,194 "GET /static/img/vendedor-icon.png HTTP/1.1" 404 1877
+[WARNING] 2025-05-02 19:23:41,195 "GET /static/img/bluney_logo.png HTTP/1.1" 404 1871
+[WARNING] 2025-05-02 19:23:41,195 "GET /static/img/gestor-icon.png HTTP/1.1" 404 1871
+[INFO] 2025-05-02 19:25:27,828 "GET / HTTP/1.1" 200 5558
+[INFO] 2025-05-02 19:25:27,900 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:25:27,900 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:25:27,905 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:25:27,905 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:26:13,734 "GET / HTTP/1.1" 200 5558
+[INFO] 2025-05-02 19:26:43,762 "GET / HTTP/1.1" 200 5544
+[INFO] 2025-05-02 19:31:53,181 "GET / HTTP/1.1" 200 5544
+[INFO] 2025-05-02 19:31:55,750 "GET / HTTP/1.1" 200 5544
+[INFO] 2025-05-02 19:33:43,324 "GET / HTTP/1.1" 200 5546
+[INFO] 2025-05-02 19:33:43,390 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-05-02 19:33:53,290 "GET /gestor/ HTTP/1.1" 200 4739
+[INFO] 2025-05-02 19:34:06,286 "GET /gestor/login/ HTTP/1.1" 200 4886
+[INFO] 2025-05-02 19:34:06,306 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:34:06,319 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:34:06,338 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[ERROR] 2025-05-02 19:34:15,079 Internal Server Error: /gestor/login/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/views/generic/edit.py", line 151, in post
+    return self.form_valid(form)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 117, in form_valid
+    return super().form_valid(form)
+           ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/views.py", line 109, in form_valid
+    return HttpResponseRedirect(self.get_success_url())
+                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 120, in get_success_url
+    print("Redirecionando para:", reverse_lazy('gestor:dashboard'))
+                                  ^^^^^^^^^^^^
+NameError: name 'reverse_lazy' is not defined
+[ERROR] 2025-05-02 19:34:15,084 "POST /gestor/login/ HTTP/1.1" 500 138987
+[INFO] 2025-05-02 19:34:17,457 "GET /gestor/login/ HTTP/1.1" 200 4886
+[INFO] 2025-05-02 19:35:15,625 "GET /gestor/login/ HTTP/1.1" 200 4885
+[INFO] 2025-05-02 19:35:15,653 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:35:18,381 "GET /login/ HTTP/1.1" 200 4910
+[INFO] 2025-05-02 19:35:27,757 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 19:35:27,841 "GET / HTTP/1.1" 200 6465
+[INFO] 2025-05-02 19:35:29,374 "GET /gestor/ HTTP/1.1" 200 6209
+[INFO] 2025-05-02 19:35:31,222 "GET /gestor/dashboard/ HTTP/1.1" 200 10474
+[ERROR] 2025-05-02 19:35:39,246 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 19:35:39,248 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[ERROR] 2025-05-02 19:36:16,945 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 134, in usuario_list
+    usuarios_list = Usuario.objects.all().order_by('username')
+                    ^^^^^^^
+NameError: name 'Usuario' is not defined
+[ERROR] 2025-05-02 19:36:16,947 "GET /gestor/usuarios/ HTTP/1.1" 500 75987
+[INFO] 2025-05-02 19:41:07,190 "GET /gestor/dashboard/ HTTP/1.1" 200 10314
+[INFO] 2025-05-02 19:41:07,230 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-05-02 19:41:40,044 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-05-02 19:41:40,189 "GET /gestor/login/ HTTP/1.1" 200 5383
+[INFO] 2025-05-02 19:41:54,212 "GET / HTTP/1.1" 200 5546
+[INFO] 2025-05-02 19:41:58,712 "GET /gestor/ HTTP/1.1" 200 4739
+[INFO] 2025-05-02 19:42:00,635 "GET /gestor/login/ HTTP/1.1" 200 4885

@@ -1,0 +1,102 @@
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}{% if contato %}Editar{% else %}Novo{% endif %} Contato | {{ cliente.nome }} | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas {% if contato %}fa-edit{% else %}fa-plus-circle{% endif %} me-2"></i>
+      {% if contato %}Editar{% else %}Novo{% endif %} Contato
+    </h5>
+    <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+            <p class="mb-0">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div class="alert alert-info">
+        <p class="mb-0">
+          <i class="fas fa-info-circle me-2"></i>
+          Adicionando contato para o cliente: <strong>{{ cliente.nome }}</strong>
+        </p>
+      </div>
+      
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="{{ form.nome.id_for_label }}" class="form-label">Nome</label>
+          {{ form.nome }}
+          {% if form.nome.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.nome.errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+          <label for="{{ form.whatsapp.id_for_label }}" class="form-label">WhatsApp*</label>
+          {{ form.whatsapp }}
+          {% if form.whatsapp.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.whatsapp.errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+          <label for="{{ form.cargo.id_for_label }}" class="form-label">Cargo</label>
+          {{ form.cargo }}
+          {% if form.cargo.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.cargo.errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form-check form-switch mt-4">
+            {{ form.principal }}
+            <label class="form-check-label" for="{{ form.principal.id_for_label }}">
+              Contato Principal
+            </label>
+          </div>
+          <div class="form-text">
+            Se marcado, este será o contato principal do cliente.
+          </div>
+        </div>
+        
+        <div class="col-12">
+          <div class="form-check form-switch mt-2">
+            {{ form.ativo }}
+            <label class="form-check-label" for="{{ form.ativo.id_for_label }}">
+              Contato Ativo
+            </label>
+          </div>
+          {% if form.ativo.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.ativo.errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="d-flex justify-content-end mt-4">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save me-1"></i> Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
