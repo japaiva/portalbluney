@@ -56,8 +56,133 @@
               {% endif %}
             </div>
             
-            <div class="col-12">
-              <label for="{{ form.endereco.id_for_label }}" class="form-label">Endereço</label>
+            <div class="col-md-6">
+              <label for="{{ form.codigo_master.id_for_label }}" class="form-label">Código Master</label>
+              <div class="input-group">
+                {{ form.codigo_master }}
+                <button type="button" class="btn btn-outline-secondary" id="buscarMaster">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              {% if form.codigo_master.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.codigo_master.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+              <div class="form-text small text-muted">
+                Deixe em branco se este for um cliente principal.
+              </div>
+              <div id="nomeClienteMaster" class="form-text fw-bold text-primary mt-1"></div>
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.nome_fantasia.id_for_label }}" class="form-label">Nome Fantasia</label>
+              {{ form.nome_fantasia }}
+              {% if form.nome_fantasia.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.nome_fantasia.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco de Dados Fiscais -->
+      <div class="card shadow mt-4">
+        <div class="card-header bg-light">
+          <h5 class="card-title mb-0">
+            <i class="fas fa-file-invoice me-2"></i>
+            Dados Fiscais
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label for="{{ form.tipo_documento.id_for_label }}" class="form-label">Tipo de Documento</label>
+              {{ form.tipo_documento }}
+              {% if form.tipo_documento.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.tipo_documento.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.cpf_cnpj.id_for_label }}" class="form-label">CPF/CNPJ</label>
+              {{ form.cpf_cnpj }}
+              {% if form.cpf_cnpj.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.cpf_cnpj.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-5">
+              <label for="{{ form.nome_razao_social.id_for_label }}" class="form-label">Razão Social</label>
+              {{ form.nome_razao_social }}
+              {% if form.nome_razao_social.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.nome_razao_social.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.inscricao_estadual.id_for_label }}" class="form-label">Inscrição Estadual/RG</label>
+              {{ form.inscricao_estadual }}
+              {% if form.inscricao_estadual.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.inscricao_estadual.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.inscricao_municipal.id_for_label }}" class="form-label">Inscrição Municipal</label>
+              {{ form.inscricao_municipal }}
+              {% if form.inscricao_municipal.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.inscricao_municipal.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.situacao_cadastral.id_for_label }}" class="form-label">Situação Cadastral</label>
+              {{ form.situacao_cadastral }}
+              {% if form.situacao_cadastral.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.situacao_cadastral.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco de Endereço -->
+      <div class="card shadow mt-4">
+        <div class="card-header bg-light">
+          <h5 class="card-title mb-0">
+            <i class="fas fa-map-marker-alt me-2"></i>
+            Endereço
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-2">
+              <label for="{{ form.tipo_logradouro.id_for_label }}" class="form-label">Tipo</label>
+              {{ form.tipo_logradouro }}
+              {% if form.tipo_logradouro.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.tipo_logradouro.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.endereco.id_for_label }}" class="form-label">Logradouro</label>
               {{ form.endereco }}
               {% if form.endereco.errors %}
                 <div class="text-danger small mt-1">
@@ -66,7 +191,37 @@
               {% endif %}
             </div>
             
-            <div class="col-md-5">
+            <div class="col-md-2">
+              <label for="{{ form.numero.id_for_label }}" class="form-label">Número</label>
+              {{ form.numero }}
+              {% if form.numero.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.numero.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-2">
+              <label for="{{ form.complemento.id_for_label }}" class="form-label">Complemento</label>
+              {{ form.complemento }}
+              {% if form.complemento.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.complemento.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.bairro.id_for_label }}" class="form-label">Bairro</label>
+              {{ form.bairro }}
+              {% if form.bairro.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.bairro.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
               <label for="{{ form.cidade.id_for_label }}" class="form-label">Cidade</label>
               {{ form.cidade }}
               {% if form.cidade.errors %}
@@ -76,7 +231,7 @@
               {% endif %}
             </div>
             
-            <div class="col-md-3">
+            <div class="col-md-2">
               <label for="{{ form.estado.id_for_label }}" class="form-label">UF</label>
               {{ form.estado }}
               {% if form.estado.errors %}
@@ -86,12 +241,175 @@
               {% endif %}
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-2">
               <label for="{{ form.cep.id_for_label }}" class="form-label">CEP</label>
               {{ form.cep }}
               {% if form.cep.errors %}
                 <div class="text-danger small mt-1">
                   {% for error in form.cep.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco de Informações da Receita Federal -->
+      <div class="card shadow mt-4">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">
+            <i class="fas fa-landmark me-2"></i>
+            Informações da Receita Federal
+          </h5>
+          <button type="button" class="btn btn-sm btn-primary" id="consultarReceita">
+            <i class="fas fa-sync-alt me-1"></i> Consultar Receita
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="{{ form.cnae_principal.id_for_label }}" class="form-label">CNAE Principal</label>
+              {{ form.cnae_principal }}
+              {% if form.cnae_principal.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.cnae_principal.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.cnae_descricao.id_for_label }}" class="form-label">Descrição CNAE</label>
+              {{ form.cnae_descricao }}
+              {% if form.cnae_descricao.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.cnae_descricao.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.porte_empresa.id_for_label }}" class="form-label">Porte da Empresa</label>
+              {{ form.porte_empresa }}
+              {% if form.porte_empresa.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.porte_empresa.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.natureza_juridica.id_for_label }}" class="form-label">Natureza Jurídica</label>
+              {{ form.natureza_juridica }}
+              {% if form.natureza_juridica.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.natureza_juridica.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.data_abertura.id_for_label }}" class="form-label">Data de Abertura</label>
+              {{ form.data_abertura }}
+              {% if form.data_abertura.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.data_abertura.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.data_ultima_verificacao.id_for_label }}" class="form-label">Data da Consulta</label>
+              {{ form.data_ultima_verificacao }}
+              {% if form.data_ultima_verificacao.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.data_ultima_verificacao.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <div class="form-check form-switch mt-4">
+                {{ form.opcao_pelo_simples }}
+                <label class="form-check-label" for="{{ form.opcao_pelo_simples.id_for_label }}">Optante pelo Simples</label>
+              </div>
+              {% if form.opcao_pelo_simples.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.opcao_pelo_simples.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <div class="form-check form-switch mt-4">
+                {{ form.opcao_pelo_mei }}
+                <label class="form-check-label" for="{{ form.opcao_pelo_mei.id_for_label }}">Optante pelo MEI</label>
+              </div>
+              {% if form.opcao_pelo_mei.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.opcao_pelo_mei.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloco de Informações Comerciais -->
+      <div class="card shadow mt-4">
+        <div class="card-header bg-light">
+          <h5 class="card-title mb-0">
+            <i class="fas fa-shopping-cart me-2"></i>
+            Informações Comerciais
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-3">
+              <label for="{{ form.codigo_loja.id_for_label }}" class="form-label">Código da Loja</label>
+              {{ form.codigo_loja }}
+              {% if form.codigo_loja.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.codigo_loja.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-3">
+              <label for="{{ form.codigo_vendedor.id_for_label }}" class="form-label">Código do Vendedor</label>
+              {{ form.codigo_vendedor }}
+              {% if form.codigo_vendedor.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.codigo_vendedor.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.nome_vendedor.id_for_label }}" class="form-label">Nome do Vendedor</label>
+              {{ form.nome_vendedor }}
+              {% if form.nome_vendedor.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.nome_vendedor.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.data_cadastro.id_for_label }}" class="form-label">Data de Cadastro</label>
+              {{ form.data_cadastro }}
+              {% if form.data_cadastro.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.data_cadastro.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.data_ultima_compra.id_for_label }}" class="form-label">Data da Última Compra</label>
+              {{ form.data_ultima_compra }}
+              {% if form.data_ultima_compra.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.data_ultima_compra.errors %}{{ error }}{% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -163,4 +481,156 @@
     </form>
   </div>
 </div>
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Script para buscar cliente master pelo código
+    const btnBuscarMaster = document.getElementById('buscarMaster');
+    const codigoMasterInput = document.getElementById('{{ form.codigo_master.id_for_label }}');
+    const nomeClienteMaster = document.getElementById('nomeClienteMaster');
+    
+    if (btnBuscarMaster && codigoMasterInput) {
+      btnBuscarMaster.addEventListener('click', function() {
+        const codigoMaster = codigoMasterInput.value.trim();
+        if (codigoMaster) {
+          fetch(`/gestor/api/cliente-por-codigo/${codigoMaster}/`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                nomeClienteMaster.textContent = data.nome;
+              } else {
+                nomeClienteMaster.textContent = 'Cliente master não encontrado';
+              }
+            })
+            .catch(error => {
+              console.error('Erro ao buscar cliente master:', error);
+              nomeClienteMaster.textContent = 'Erro ao buscar cliente master';
+            });
+        } else {
+          nomeClienteMaster.textContent = '';
+        }
+      });
+    }
+    
+    // Script para consultar dados na Receita Federal
+    const btnConsultarReceita = document.getElementById('consultarReceita');
+    const cpfCnpjInput = document.getElementById('{{ form.cpf_cnpj.id_for_label }}');
+    
+    if (btnConsultarReceita && cpfCnpjInput) {
+      btnConsultarReceita.addEventListener('click', function() {
+        const cpfCnpj = cpfCnpjInput.value.trim().replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+        
+        if (cpfCnpj) {
+          // Mostrar loading
+          btnConsultarReceita.disabled = true;
+          btnConsultarReceita.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Consultando...';
+          
+          // Fazer requisição para API de consulta da Receita
+          fetch(`/gestor/api/consultar-receita/${cpfCnpj}/`)
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                // Preencher campos com os dados retornados
+                if (data.razaoSocial) document.getElementById('{{ form.nome_razao_social.id_for_label }}').value = data.razaoSocial;
+                if (data.nomeFantasia) document.getElementById('{{ form.nome_fantasia.id_for_label }}').value = data.nomeFantasia;
+                if (data.situacaoCadastral) document.getElementById('{{ form.situacao_cadastral.id_for_label }}').value = data.situacaoCadastral;
+                if (data.cnae) document.getElementById('{{ form.cnae_principal.id_for_label }}').value = data.cnae;
+                if (data.cnaeDescricao) document.getElementById('{{ form.cnae_descricao.id_for_label }}').value = data.cnaeDescricao;
+                if (data.naturezaJuridica) document.getElementById('{{ form.natureza_juridica.id_for_label }}').value = data.naturezaJuridica;
+                if (data.porteEmpresa) document.getElementById('{{ form.porte_empresa.id_for_label }}').value = data.porteEmpresa;
+                if (data.dataAbertura) document.getElementById('{{ form.data_abertura.id_for_label }}').value = data.dataAbertura;
+                
+                // Atualizar data da consulta
+                document.getElementById('{{ form.data_ultima_verificacao.id_for_label }}').value = new Date().toISOString().split('T')[0];
+                
+                // Preencher endereço se disponível
+                if (data.endereco) {
+                  if (data.tipoLogradouro) document.getElementById('{{ form.tipo_logradouro.id_for_label }}').value = data.tipoLogradouro;
+                  if (data.logradouro) document.getElementById('{{ form.endereco.id_for_label }}').value = data.logradouro;
+                  if (data.numero) document.getElementById('{{ form.numero.id_for_label }}').value = data.numero;
+                  if (data.complemento) document.getElementById('{{ form.complemento.id_for_label }}').value = data.complemento;
+                  if (data.bairro) document.getElementById('{{ form.bairro.id_for_label }}').value = data.bairro;
+                  if (data.municipio) document.getElementById('{{ form.cidade.id_for_label }}').value = data.municipio;
+                  if (data.uf) document.getElementById('{{ form.estado.id_for_label }}').value = data.uf;
+                  if (data.cep) document.getElementById('{{ form.cep.id_for_label }}').value = data.cep;
+                }
+                
+                // Atualizar opções tributárias
+                if (data.optanteSimples !== undefined) document.getElementById('{{ form.opcao_pelo_simples.id_for_label }}').checked = data.optanteSimples;
+                if (data.optanteMei !== undefined) document.getElementById('{{ form.opcao_pelo_mei.id_for_label }}').checked = data.optanteMei;
+                
+                alert('Dados atualizados com sucesso!');
+              } else {
+                alert(data.message || 'Erro ao consultar dados na Receita Federal');
+              }
+            })
+            .catch(error => {
+              console.error('Erro na consulta:', error);
+              alert('Erro ao realizar a consulta. Verifique o console para mais detalhes.');
+            })
+            .finally(() => {
+              // Restaurar botão
+              btnConsultarReceita.disabled = false;
+              btnConsultarReceita.innerHTML = '<i class="fas fa-sync-alt me-1"></i> Consultar Receita';
+            });
+        } else {
+          alert('Informe um CPF/CNPJ válido para consulta');
+        }
+      });
+    }
+    
+    // Máscaras para campos
+    if (typeof IMask !== 'undefined') {
+      // CPF/CNPJ dinâmico
+      const cpfCnpjMask = IMask(document.getElementById('{{ form.cpf_cnpj.id_for_label }}'), {
+        mask: [
+          { mask: '000.000.000-00', maxLength: 11 },
+          { mask: '00.000.000/0000-00', maxLength: 14 }
+        ],
+        dispatch: function (appended, dynamicMasked) {
+          const number = (dynamicMasked.value + appended).replace(/\D/g, '');
+          return dynamicMasked.compiledMasks.find(m => number.length <= m.maxLength);
+        }
+      });
+      
+      // CEP
+      const cepInputs = document.querySelectorAll('input[name$="cep"]');
+      cepInputs.forEach(input => {
+        IMask(input, {
+          mask: '00000-000'
+        });
+      });
+      
+      // Telefone
+      const telefoneInputs = document.querySelectorAll('input[name$="telefone"]');
+      telefoneInputs.forEach(input => {
+        IMask(input, {
+          mask: [
+            { mask: '(00) 0000-0000' },
+            { mask: '(00) 00000-0000' }
+          ],
+          dispatch: function (appended, dynamicMasked) {
+            const number = (dynamicMasked.value + appended).replace(/\D/g, '');
+            return number.length <= 10
+              ? dynamicMasked.compiledMasks[0]
+              : dynamicMasked.compiledMasks[1];
+          }
+        });
+      });
+      
+      // Data
+      const dataInputs = document.querySelectorAll('input[type="date"]');
+      dataInputs.forEach(input => {
+        if (!input.value && input.name === '{{ form.data_cadastro.html_name }}') {
+          // Preencher data de cadastro com a data atual se for um novo registro
+          if (!document.querySelector('input[name="id"]').value) {
+            input.value = new Date().toISOString().split('T')[0];
+          }
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}
 {% endblock %}

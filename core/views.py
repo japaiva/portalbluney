@@ -7,6 +7,10 @@ from .models import PerfilUsuario, Usuario
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404
+from .forms import UsuarioForm
+
+
 
 @login_required
 def perfil(request):

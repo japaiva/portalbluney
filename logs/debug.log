@@ -1431,3 +1431,213 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-05-02 21:35:46,620 Watching for file changes with StatReloader
 [INFO] 2025-05-02 21:35:50,223 "GET /gestor/clientes/1/ HTTP/1.1" 200 11525
 [INFO] 2025-05-02 21:35:53,644 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-02 21:43:57,616 Watching for file changes with StatReloader
+[INFO] 2025-05-02 21:44:04,030 "GET /gestor/clientes/1/ HTTP/1.1" 200 11525
+[INFO] 2025-05-02 21:44:07,230 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 10:56:31,887 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 10:56:33,313 Watching for file changes with StatReloader
+[INFO] 2025-05-03 10:57:12,508 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 10:57:13,079 Watching for file changes with StatReloader
+[INFO] 2025-05-03 10:57:14,303 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 10:57:14,592 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:23:02,341 Watching for file changes with StatReloader
+[INFO] 2025-05-03 11:24:38,299 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:24:38,753 Watching for file changes with StatReloader
+[INFO] 2025-05-03 11:24:42,958 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:24:43,311 Watching for file changes with StatReloader
+[INFO] 2025-05-03 11:24:47,562 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:24:47,897 Watching for file changes with StatReloader
+[INFO] 2025-05-03 11:24:53,191 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:24:53,498 Watching for file changes with StatReloader
+[INFO] 2025-05-03 11:25:48,987 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:25:49,443 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 11:26:52,298 Watching for file changes with StatReloader
+[INFO] 2025-05-03 11:26:59,041 "GET / HTTP/1.1" 200 6465
+[INFO] 2025-05-03 11:26:59,074 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:26:59,076 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:26:59,099 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:26:59,101 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:26:59,102 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:26:59,105 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:26:59,106 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-03 11:27:02,762 "GET /gestor/ HTTP/1.1" 200 6209
+[INFO] 2025-05-03 11:27:04,326 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-05-03 11:27:06,749 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:27:08,829 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 11:27:23,044 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:27:27,692 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 11310
+[INFO] 2025-05-03 11:27:37,408 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:27:46,385 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 11:27:51,467 "GET /gestor/contatos/1/editar/ HTTP/1.1" 200 8061
+[INFO] 2025-05-03 11:27:55,231 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 11:28:01,533 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:28:03,621 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 11310
+[INFO] 2025-05-03 11:28:14,354 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:31:06,072 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-05-03 11:31:10,675 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:31:15,943 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 11:31:33,743 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 11:31:35,517 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-05-03 12:48:04,608 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 12:48:07,020 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 11310
+[INFO] 2025-05-03 12:48:32,295 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 12:48:36,911 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 12:48:40,377 "GET /gestor/contatos/1/editar/ HTTP/1.1" 200 8061
+[INFO] 2025-05-03 12:48:51,262 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 12:49:07,439 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 12:49:12,477 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 11310
+[INFO] 2025-05-03 13:02:19,041 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 13:02:21,465 "GET /gestor/clientes/1/ HTTP/1.1" 200 10141
+[INFO] 2025-05-03 13:02:34,451 "GET /gestor/clientes/ HTTP/1.1" 200 8504
+[INFO] 2025-05-03 13:02:34,480 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-05-03 13:02:38,115 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 11310
+[INFO] 2025-05-03 13:02:44,906 "POST /gestor/clientes/1/editar/ HTTP/1.1" 302 0
+[INFO] 2025-05-03 13:02:45,152 "GET /gestor/clientes/ HTTP/1.1" 200 9033
+[INFO] 2025-05-03 13:02:48,731 "GET /gestor/clientes/1/ HTTP/1.1" 200 10142
+[INFO] 2025-05-03 13:02:51,401 "GET /gestor/contatos/1/editar/ HTTP/1.1" 200 8061
+[INFO] 2025-05-03 13:03:02,139 - Broken pipe from ('127.0.0.1', 57870)
+[INFO] 2025-05-03 13:03:02,487 "POST /gestor/contatos/1/editar/ HTTP/1.1" 302 0
+[INFO] 2025-05-03 13:03:02,746 "GET /gestor/clientes/1/ HTTP/1.1" 200 11121
+[INFO] 2025-05-03 13:05:44,562 "GET /gestor/clientes/ HTTP/1.1" 200 8505
+[INFO] 2025-05-03 13:05:46,544 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 11311
+[INFO] 2025-05-03 13:15:01,237 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 13:15:02,596 Watching for file changes with StatReloader
+[INFO] 2025-05-03 13:15:04,864 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 13:15:05,197 Watching for file changes with StatReloader
+[INFO] 2025-05-03 13:17:16,458 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 13:17:17,006 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:12:51,508 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:14:02,440 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:14:03,017 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:14:48,318 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:14:48,783 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:14:58,175 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:14:58,586 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:09,068 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:09,483 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:17,852 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:18,254 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:23,552 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:23,970 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:31,315 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:31,725 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:37,020 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:37,454 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:46,853 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:47,261 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:52,567 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:52,920 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:57,246 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:57,554 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:15:58,754 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:15:59,049 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:16:05,392 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:16:05,697 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:16:15,042 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:16:15,355 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:16:21,685 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:16:22,012 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:17:26,180 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:18:18,773 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:18:20,267 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:23:00,121 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:23:07,958 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 34838
+[INFO] 2025-05-03 14:23:08,019 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-05-03 14:23:08,030 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-05-03 14:23:08,046 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-03 14:23:08,050 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-05-03 14:23:08,056 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-05-03 14:23:08,058 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-05-03 14:23:18,322 "GET / HTTP/1.1" 200 6465
+[INFO] 2025-05-03 14:23:20,058 "GET /gestor/ HTTP/1.1" 200 6209
+[INFO] 2025-05-03 14:23:21,437 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-05-03 14:23:23,942 "GET /gestor/clientes/ HTTP/1.1" 200 8514
+[INFO] 2025-05-03 14:23:26,540 "GET /gestor/clientes/1/ HTTP/1.1" 200 20383
+[INFO] 2025-05-03 14:23:41,329 "GET /gestor/clientes/novo/?codigo_master=1 HTTP/1.1" 200 34679
+[INFO] 2025-05-03 14:23:44,692 "GET /gestor/api/cliente-por-codigo/1/ HTTP/1.1" 200 77
+[INFO] 2025-05-03 14:23:45,025 "GET /gestor/api/cliente-por-codigo/1/ HTTP/1.1" 200 77
+[INFO] 2025-05-03 14:23:45,840 "GET /gestor/api/cliente-por-codigo/1/ HTTP/1.1" 200 77
+[INFO] 2025-05-03 14:23:46,025 "GET /gestor/api/cliente-por-codigo/1/ HTTP/1.1" 200 77
+[INFO] 2025-05-03 14:23:49,648 "GET /gestor/clientes/ HTTP/1.1" 200 8514
+[INFO] 2025-05-03 14:23:51,648 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-05-03 14:23:57,959 "GET /gestor/clientes/ HTTP/1.1" 200 8514
+[INFO] 2025-05-03 14:24:01,562 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 34838
+[INFO] 2025-05-03 14:24:08,025 "GET /gestor/api/cliente-por-codigo/1/ HTTP/1.1" 200 77
+[INFO] 2025-05-03 14:24:08,387 "GET /gestor/api/cliente-por-codigo/1/ HTTP/1.1" 200 77
+[INFO] 2025-05-03 14:24:45,976 "GET /gestor/clientes/ HTTP/1.1" 200 8514
+[INFO] 2025-05-03 14:24:48,921 "GET /gestor/clientes/1/ HTTP/1.1" 200 20383
+[INFO] 2025-05-03 14:24:51,008 "GET /gestor/clientes/1/bi/ HTTP/1.1" 302 0
+[INFO] 2025-05-03 14:24:51,307 "GET /gestor/clientes/1/ HTTP/1.1" 200 20904
+[INFO] 2025-05-03 14:24:59,122 "GET /gestor/clientes/1/bi/ HTTP/1.1" 302 0
+[INFO] 2025-05-03 14:24:59,439 "GET /gestor/clientes/1/ HTTP/1.1" 200 20904
+[INFO] 2025-05-03 14:25:05,437 "GET /gestor/clientes/ HTTP/1.1" 200 8514
+[INFO] 2025-05-03 14:25:53,285 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:25:53,764 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:25:59,074 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:25:59,461 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:00,622 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:00,956 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:02,163 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:02,447 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:13,878 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:14,319 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:21,715 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:22,316 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:33,793 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:34,213 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:42,630 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:43,053 Watching for file changes with StatReloader
+[INFO] 2025-05-03 14:26:45,340 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-03 14:26:45,672 Watching for file changes with StatReloader

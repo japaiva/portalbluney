@@ -1,0 +1,460 @@
+{% extends 'gestor/base_gestor.html' %}
+{% load static %}
+
+{% block title %}Consulta BI - {{ cliente.nome }} | Portal Comercial{% endblock %}
+
+{% block extra_css %}
+<!-- Chart.js -->
+<link href="{% static 'vendor/chart.js/Chart.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-chart-bar me-2"></i> Consulta BI - {{ cliente.nome }}
+    </h5>
+    <div>
+      <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar para Detalhes do Cliente
+      </a>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <!-- Filtros -->
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">Filtros</h6>
+          </div>
+          <div class="card-body">
+            <form method="get" id="formFiltros" class="row g-3">
+              <div class="col-md-3">
+                <label for="selectPeriodo" class="form-label">Período</label>
+                <select id="selectPeriodo" name="periodo" class="form-select">
+                  <option value="30" {% if filtro_periodo == '30' %}selected{% endif %}>Últimos 30 dias</option>
+                  <option value="90" {% if filtro_periodo == '90' %}selected{% endif %}>Últimos 90 dias</option>
+                  <option value="180" {% if filtro_periodo == '180' %}selected{% endif %}>Últimos 6 meses</option>
+                  <option value="365" {% if filtro_periodo == '365' %}selected{% endif %}>Último ano</option>
+                  <option value="custom" {% if filtro_periodo == 'custom' %}selected{% endif %}>Personalizado</option>
+                </select>
+              </div>
+              
+              <div id="divDataCustom" class="row g-3 mt-1 {% if filtro_periodo != 'custom' %}d-none{% endif %}">
+                <div class="col-md-3">
+                  <label for="inputDataInicio" class="form-label">Data Início</label>
+                  <input type="date" class="form-control" id="inputDataInicio" name="data_inicio" 
+                         value="{{ data_inicio|date:'Y-m-d' }}">
+                </div>
+                
+                <div class="col-md-3">
+                  <label for="inputDataFim" class="form-label">Data Fim</label>
+                  <input type="date" class="form-control" id="inputDataFim" name="data_fim" 
+                         value="{{ data_fim|date:'Y-m-d' }}">
+                </div>
+              </div>
+              
+              <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                  <i class="fas fa-filter me-1"></i> Filtrar
+                </button>
+                
+                <a href="{% url 'gestor:consultar_bi' cliente.codigo %}?format=json" class="btn btn-outline-secondary" target="_blank">
+                  <i class="fas fa-code me-1"></i> Visualizar JSON
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Resumo -->
+    <div class="row mb-4">
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                  Total de Vendas</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">R$ {{ total_valor|floatformat:2 }}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                  Total de Itens</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_quantidade|floatformat:0 }}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-boxes fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                  Período</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  {{ data_inicio|date:'d/m/Y' }} a {{ data_fim|date:'d/m/Y' }}
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                  Ticket Médio</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  R$ {% if vendas.count > 0 %}{{ total_valor|div:vendas.count|floatformat:2 }}{% else %}0.00{% endif %}
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-receipt fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Gráficos -->
+    <div class="row mb-4">
+      <div class="col-lg-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Vendas por Mês</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="myAreaChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Vendas por Produto</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-pie">
+              <canvas id="myPieChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dados de Vendas -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Histórico de Vendas</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          {% if vendas %}
+            <table class="table table-bordered table-hover" id="tabelaVendas" width="100%" cellspacing="0">
+              <thead class="table-light">
+                <tr>
+                  <th>Data</th>
+                  <th>Produto</th>
+                  <th>Loja</th>
+                  <th>Vendedor</th>
+                  <th class="text-end">Quantidade</th>
+                  <th class="text-end">Valor Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for venda in vendas %}
+                  <tr>
+                    <td>{{ venda.data_venda|date:"d/m/Y" }}</td>
+                    <td>{{ venda.produto.codigo }} - {{ venda.produto.descricao }}</td>
+                    <td>{{ venda.loja.codigo }} - {{ venda.loja.nome }}</td>
+                    <td>{{ venda.vendedor.codigo }} - {{ venda.vendedor.nome }}</td>
+                    <td class="text-end">{{ venda.quantidade|floatformat:2 }}</td>
+                    <td class="text-end">R$ {{ venda.valor_total|floatformat:2 }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+              <tfoot class="table-light">
+                <tr>
+                  <th colspan="4">Total</th>
+                  <th class="text-end">{{ total_quantidade|floatformat:2 }}</th>
+                  <th class="text-end">R$ {{ total_valor|floatformat:2 }}</th>
+                </tr>
+              </tfoot>
+            </table>
+          {% else %}
+            <div class="text-center py-5 text-muted">
+              <i class="fas fa-info-circle fa-3x mb-3"></i>
+              <p class="mb-0">Nenhum registro encontrado para o período selecionado.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Chart.js -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mostrar/esconder datas personalizadas
+    const selectPeriodo = document.getElementById('selectPeriodo');
+    const divDataCustom = document.getElementById('divDataCustom');
+    
+    if (selectPeriodo && divDataCustom) {
+      selectPeriodo.addEventListener('change', function() {
+        if (this.value === 'custom') {
+          divDataCustom.classList.remove('d-none');
+        } else {
+          divDataCustom.classList.add('d-none');
+        }
+      });
+    }
+    
+    // Inicializar DataTable
+    if (typeof $.fn.dataTable !== 'undefined' && document.getElementById('tabelaVendas')) {
+      $('#tabelaVendas').DataTable({
+        language: {
+          url: "//cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json"
+        },
+        order: [[0, 'desc']],
+        pageLength: 25
+      });
+    }
+    
+    // Preparar dados para gráficos
+    {% if vendas %}
+      // Dados para gráfico de área (vendas por mês)
+      const vendasPorMes = {};
+      {% for venda in vendas %}
+        const mesAno = "{{ venda.data_venda|date:'m/Y' }}";
+        if (!vendasPorMes[mesAno]) {
+          vendasPorMes[mesAno] = 0;
+        }
+        vendasPorMes[mesAno] += {{ venda.valor_total }};
+      {% endfor %}
+      
+      // Ordenar por mês/ano
+      const mesesOrdenados = Object.keys(vendasPorMes).sort((a, b) => {
+        const [mesA, anoA] = a.split('/');
+        const [mesB, anoB] = b.split('/');
+        return new Date(anoA, mesA - 1) - new Date(anoB, mesB - 1);
+      });
+      
+      const labelsArea = mesesOrdenados;
+      const dataArea = mesesOrdenados.map(mes => vendasPorMes[mes]);
+      
+      // Dados para gráfico de pizza (vendas por produto)
+      const vendasPorProduto = {};
+      {% for venda in vendas %}
+        const produto = "{{ venda.produto.descricao }}";
+        if (!vendasPorProduto[produto]) {
+          vendasPorProduto[produto] = 0;
+        }
+        vendasPorProduto[produto] += {{ venda.valor_total }};
+      {% endfor %}
+      
+      // Pegar os top 5 produtos
+      const produtosOrdenados = Object.keys(vendasPorProduto).sort((a, b) => {
+        return vendasPorProduto[b] - vendasPorProduto[a];
+      }).slice(0, 5);
+      
+      // Calcular outros
+      let totalOutros = 0;
+      Object.keys(vendasPorProduto).forEach(produto => {
+        if (!produtosOrdenados.includes(produto)) {
+          totalOutros += vendasPorProduto[produto];
+        }
+      });
+      
+      // Adicionar "Outros" se houver
+      if (totalOutros > 0) {
+        produtosOrdenados.push("Outros");
+      }
+      
+      const labelsPie = produtosOrdenados;
+      const dataPie = produtosOrdenados.map(produto => {
+        return produto === "Outros" ? totalOutros : vendasPorProduto[produto];
+      });
+      
+      // Cores para gráfico de pizza
+      const backgroundColors = [
+        '#4e73df', '#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b', '#858796'
+      ];
+      
+      // Gráfico de Área - Vendas por Mês
+      if (document.getElementById('myAreaChart')) {
+        const ctx = document.getElementById('myAreaChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labelsArea,
+            datasets: [{
+              label: "Vendas",
+              lineTension: 0.3,
+              backgroundColor: "rgba(78, 115, 223, 0.05)",
+              borderColor: "rgba(78, 115, 223, 1)",
+              pointRadius: 3,
+              pointBackgroundColor: "rgba(78, 115, 223, 1)",
+              pointBorderColor: "rgba(78, 115, 223, 1)",
+              pointHoverRadius: 3,
+              pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+              pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+              pointHitRadius: 10,
+              pointBorderWidth: 2,
+              data: dataArea,
+            }],
+          },
+          options: {
+            maintainAspectRatio: false,
+            layout: {
+              padding: {
+                left: 10,
+                right: 25,
+                top: 25,
+                bottom: 0
+              }
+            },
+            scales: {
+              xAxes: [{
+                time: {
+                  unit: 'date'
+                },
+                gridLines: {
+                  display: false,
+                  drawBorder: false
+                },
+                ticks: {
+                  maxTicksLimit: 7
+                }
+              }],
+              yAxes: [{
+                ticks: {
+                  maxTicksLimit: 5,
+                  padding: 10,
+                  callback: function(value, index, values) {
+                    return 'R$ ' + value.toLocaleString('pt-BR');
+                  }
+                },
+                gridLines: {
+                  color: "rgb(234, 236, 244)",
+                  zeroLineColor: "rgb(234, 236, 244)",
+                  drawBorder: false,
+                  borderDash: [2],
+                  zeroLineBorderDash: [2]
+                }
+              }],
+            },
+            legend: {
+              display: false
+            },
+            tooltips: {
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              titleMarginBottom: 10,
+              titleFontColor: '#6e707e',
+              titleFontSize: 14,
+              borderColor: '#dddfeb',
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: false,
+              intersect: false,
+              mode: 'index',
+              caretPadding: 10,
+              callbacks: {
+                label: function(tooltipItem, chart) {
+                  var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                  return datasetLabel + ': R$ ' + tooltipItem.yLabel.toLocaleString('pt-BR');
+                }
+              }
+            }
+          }
+        });
+      }
+      
+      // Gráfico de Pizza - Vendas por Produto
+      if (document.getElementById('myPieChart')) {
+        const ctx = document.getElementById('myPieChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: labelsPie,
+            datasets: [{
+              data: dataPie,
+              backgroundColor: backgroundColors.slice(0, labelsPie.length),
+              hoverBackgroundColor: backgroundColors.slice(0, labelsPie.length).map(color => {
+                return color.replace(')', ', 0.8)').replace('rgb', 'rgba');
+              }),
+              hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+          },
+          options: {
+            maintainAspectRatio: false,
+            tooltips: {
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              borderColor: '#dddfeb',
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: false,
+              caretPadding: 10,
+              callbacks: {
+                label: function(tooltipItem, data) {
+                  const value = data.datasets[0].data[tooltipItem.index];
+                  const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+                  const percentual = ((value / total) * 100).toFixed(2);
+                  return data.labels[tooltipItem.index] + ': R$ ' + value.toLocaleString('pt-BR') + ' (' + percentual + '%)';
+                }
+              }
+            },
+            legend: {
+              display: true,
+              position: 'bottom'
+            },
+            cutoutPercentage: 70,
+          },
+        });
+      }
+    {% endif %}
+  });
+</script>
+{% endblock %}
+{% endblock %}

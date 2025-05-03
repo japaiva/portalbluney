@@ -10,13 +10,23 @@
       <i class="fas fa-user me-2"></i> {{ cliente.nome }}
     </h5>
     <div>
+      {% if perms.core.change_cliente %}
       <a href="{% url 'gestor:cliente_update' cliente.id %}" class="btn btn-outline-primary btn-sm me-1">
         <i class="fas fa-edit me-1"></i> Editar
       </a>
+      {% endif %}
+      
+      {% if perms.core.change_cliente %}
       <a href="{% url 'gestor:cliente_toggle_status' cliente.id %}" class="btn btn-sm {% if cliente.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
         <i class="fas {% if cliente.ativo %}fa-ban{% else %}fa-check-circle{% endif %} me-1"></i>
         {% if cliente.ativo %}Desativar{% else %}Ativar{% endif %}
       </a>
+      {% endif %}
+      
+      <a href="{% url 'gestor:consultar_bi' cliente.codigo %}" class="btn btn-outline-info btn-sm me-1">
+        <i class="fas fa-chart-bar me-1"></i> Consultar BI
+      </a>
+      
       <a href="{% url 'gestor:cliente_list' %}" class="btn btn-outline-secondary btn-sm me-2">
         <i class="fas fa-arrow-left me-1"></i> Voltar
       </a>
@@ -25,8 +35,9 @@
 
   <div class="card-body">
     <div class="row">
-      <!-- COLUNA 1 - Informações do cliente -->
+      <!-- COLUNA 1 - Informações básicas, fiscais e endereço -->
       <div class="col-md-6">
+        <!-- Informações Gerais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">Informações Gerais</h6>
@@ -35,127 +46,178 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><strong>Código:</strong> {{ cliente.codigo }}</li>
               <li class="list-group-item"><strong>Nome:</strong> {{ cliente.nome }}</li>
-              <li class="list-group-item"><strong>Endereço:</strong> {{ cliente.endereco|default:"-" }}</li>
-              <li class="list-group-item"><strong>Cidade/UF:</strong> 
-                {% if cliente.cidade %}{{ cliente.cidade }}{% if cliente.estado %}/{{ cliente.estado }}{% endif %}
-                {% else %}-{% endif %}
+              {% if cliente.nome_fantasia %}
+              <li class="list-group-item"><strong>Nome Fantasia:</strong> {{ cliente.nome_fantasia }}</li>
+              {% endif %}
+              {% if cliente.codigo_master %}
+              <li class="list-group-item">
+                <strong>Cliente Master:</strong> 
+                <a href="{% url 'gestor:cliente_detail_by_codigo' cliente.codigo_master %}">
+                  {{ cliente.codigo_master }} {% if cliente_master %}- {{ cliente_master.nome }}{% endif %}
+                </a>
               </li>
-              <li class="list-group-item"><strong>CEP:</strong> {{ cliente.cep|default:"-" }}</li>
-              <li class="list-group-item"><strong>Telefone:</strong> {{ cliente.telefone|default:"-" }}</li>
-              <li class="list-group-item"><strong>Email:</strong> {{ cliente.email|default:"-" }}</li>
+              {% endif %}
               <li class="list-group-item"><strong>Data Cadastro:</strong> {{ cliente.data_cadastro|date:"d/m/Y H:i" }}</li>
+              {% if cliente.data_ultima_compra %}
+              <li class="list-group-item"><strong>Última Compra:</strong> {{ cliente.data_ultima_compra|date:"d/m/Y" }}</li>
+              {% endif %}
               <li class="list-group-item">
                 <strong>Status:</strong>
                 <span class="badge {% if cliente.ativo %}bg-success{% else %}bg-danger{% endif %}">
                   {% if cliente.ativo %}Ativo{% else %}Inativo{% endif %}
                 </span>
               </li>
-              {% if cliente.observacoes %}
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Dados Fiscais -->
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">Dados Fiscais</h6>
+          </div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+              {% if cliente.cpf_cnpj %}
+              <li class="list-group-item"><strong>{{ cliente.get_tipo_documento_display|default:"CPF/CNPJ" }}:</strong> {{ cliente.cpf_cnpj }}</li>
+              {% endif %}
+              {% if cliente.nome_razao_social %}
+              <li class="list-group-item"><strong>Razão Social:</strong> {{ cliente.nome_razao_social }}</li>
+              {% endif %}
+              {% if cliente.inscricao_estadual %}
+              <li class="list-group-item"><strong>Inscrição Estadual:</strong> {{ cliente.inscricao_estadual }}</li>
+              {% endif %}
+              {% if cliente.inscricao_municipal %}
+              <li class="list-group-item"><strong>Inscrição Municipal:</strong> {{ cliente.inscricao_municipal }}</li>
+              {% endif %}
+              {% if cliente.situacao_cadastral %}
+              <li class="list-group-item"><strong>Situação Cadastral:</strong> {{ cliente.situacao_cadastral }}</li>
+              {% endif %}
+              {% if cliente.cnae_principal %}
+              <li class="list-group-item"><strong>CNAE:</strong> {{ cliente.cnae_principal }} {% if cliente.cnae_descricao %}- {{ cliente.cnae_descricao }}{% endif %}</li>
+              {% endif %}
+              {% if cliente.porte_empresa %}
+              <li class="list-group-item"><strong>Porte:</strong> {{ cliente.porte_empresa }}</li>
+              {% endif %}
+              {% if cliente.natureza_juridica %}
+              <li class="list-group-item"><strong>Natureza Jurídica:</strong> {{ cliente.natureza_juridica }}</li>
+              {% endif %}
+              {% if cliente.data_abertura %}
+              <li class="list-group-item"><strong>Data de Abertura:</strong> {{ cliente.data_abertura|date:"d/m/Y" }}</li>
+              {% endif %}
               <li class="list-group-item">
-                <strong>Observações:</strong><br>
-                {{ cliente.observacoes|linebreaksbr }}
+                <strong>Regime Tributário:</strong>
+                {% if cliente.opcao_pelo_simples %}Simples Nacional{% elif cliente.opcao_pelo_mei %}MEI{% else %}Normal{% endif %}
               </li>
+              {% if cliente.data_ultima_verificacao %}
+              <li class="list-group-item"><strong>Última Verificação:</strong> {{ cliente.data_ultima_verificacao|date:"d/m/Y H:i" }}</li>
               {% endif %}
             </ul>
           </div>
         </div>
-      </div>
-
-      <!-- COLUNA 2 - Contatos -->
-      <div class="col-md-6">
+        
+        <!-- Endereço -->
         <div class="card mb-3">
-          <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h6 class="card-title mb-0">Contatos</h6>
-            <a href="{% url 'gestor:cliente_contato_create' cliente.id %}" class="btn btn-primary btn-sm">
-              <i class="fas fa-plus me-1"></i> Novo Contato
-            </a>
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">Endereço</h6>
           </div>
           <div class="card-body p-0">
-            {% if contatos %}
-              <div class="table-responsive">
-                <table class="table table-hover mb-0">
-                  <thead class="table-light">
-                    <tr>
-                      <th>Nome</th>
-                      <th>WhatsApp</th>
-                      <th>Cargo</th>
-                      <th class="text-center">Principal</th>
-                      <th class="text-end">Ações</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for contato in contatos %}
-                      <tr>
-                        <td>{{ contato.nome|default:"Não informado" }}</td>
-                        <td>{{ contato.whatsapp }}</td>
-                        <td>{{ contato.cargo|default:"-" }}</td>
-                        <td class="text-center">
-                          {% if contato.principal %}
-                            <span class="badge bg-primary"><i class="fas fa-check"></i></span>
-                          {% endif %}
-                        </td>
-                        <td class="text-end">
-                          <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary me-1">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </div>
-            {% else %}
-              <div class="text-center py-3 text-muted">
-                <p class="mb-0">Nenhum contato cadastrado.</p>
-              </div>
-            {% endif %}
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Endereço Completo:</strong><br>
+                {% if cliente.tipo_logradouro %}{{ cliente.tipo_logradouro }} {% endif %}
+                {{ cliente.endereco|default:"-" }}
+                {% if cliente.numero %}, {{ cliente.numero }}{% endif %}
+                {% if cliente.complemento %} - {{ cliente.complemento }}{% endif %}<br>
+                {% if cliente.bairro %}Bairro: {{ cliente.bairro }}<br>{% endif %}
+                {% if cliente.cidade %}{{ cliente.cidade }}{% if cliente.estado %}/{{ cliente.estado }}{% endif %}{% else %}-{% endif %}
+                {% if cliente.cep %} - CEP: {{ cliente.cep }}{% endif %}
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Dados Comerciais -->
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">Dados Comerciais</h6>
+          </div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+              {% if cliente.codigo_loja %}
+              <li class="list-group-item"><strong>Loja:</strong> {{ cliente.codigo_loja }}</li>
+              {% endif %}
+              {% if cliente.codigo_vendedor %}
+              <li class="list-group-item"><strong>Vendedor:</strong> {{ cliente.codigo_vendedor }} {% if cliente.nome_vendedor %}- {{ cliente.nome_vendedor }}{% endif %}</li>
+              {% endif %}
+              {% if cliente.telefone %}
+              <li class="list-group-item"><strong>Telefone:</strong> {{ cliente.telefone }}</li>
+              {% endif %}
+              {% if cliente.email %}
+              <li class="list-group-item"><strong>Email:</strong> {{ cliente.email }}</li>
+              {% endif %}
+            </ul>
           </div>
         </div>
 
-        <!-- Itens do Cliente (CPF/CNPJ) -->
+        {% if cliente.observacoes %}
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">Observações</h6>
+          </div>
+          <div class="card-body">
+            {{ cliente.observacoes|linebreaksbr }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- COLUNA 2 - Sub-clientes e contatos -->
+      <div class="col-md-6">
+        <!-- Clientes Associados -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h6 class="card-title mb-0">CPF/CNPJ</h6>
-            <a href="{% url 'gestor:cliente_item_create' cliente.id %}" class="btn btn-primary btn-sm">
-              <i class="fas fa-plus me-1"></i> Novo CPF/CNPJ
+            <h6 class="card-title mb-0">Clientes Associados</h6>
+            {% if perms.core.add_cliente %}
+            <a href="{% url 'gestor:cliente_create' %}?codigo_master={{ cliente.codigo }}" class="btn btn-primary btn-sm">
+              <i class="fas fa-plus me-1"></i> Novo Sub-Cliente
             </a>
+            {% endif %}
           </div>
           <div class="card-body p-0">
-            {% if itens %}
+            {% if clientes_associados %}
               <div class="table-responsive">
                 <table class="table table-hover mb-0">
                   <thead class="table-light">
                     <tr>
                       <th>Código</th>
-                      <th>Tipo</th>
-                      <th>CPF/CNPJ</th>
-                      <th>Nome/Razão Social</th>
+                      <th>Nome</th>
                       <th class="text-center">Status</th>
                       <th class="text-end">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for item in itens %}
+                    {% for cliente_associado in clientes_associados %}
                       <tr>
-                        <td>{{ item.codigo }}</td>
-                        <td>{{ item.get_tipo_display }}</td>
-                        <td>{{ item.cpf_cnpj }}</td>
-                        <td>{{ item.nome_razao|default:"-" }}</td>
+                        <td>{{ cliente_associado.codigo }}</td>
+                        <td>{{ cliente_associado.nome }}</td>
                         <td class="text-center">
-                          <span class="badge {% if item.ativo %}bg-success{% else %}bg-danger{% endif %}">
-                            {% if item.ativo %}Ativo{% else %}Inativo{% endif %}
+                          <span class="badge {% if cliente_associado.ativo %}bg-success{% else %}bg-danger{% endif %}">
+                            {% if cliente_associado.ativo %}Ativo{% else %}Inativo{% endif %}
                           </span>
                         </td>
                         <td class="text-end">
-                          <a href="{% url 'gestor:cliente_item_update' item.id %}" class="btn btn-sm btn-outline-primary me-1">
+                          <a href="{% url 'gestor:cliente_detail' cliente_associado.id %}" class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="fas fa-eye"></i>
+                          </a>
+                          {% if perms.core.change_cliente %}
+                          <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary me-1">
                             <i class="fas fa-edit"></i>
                           </a>
-                          <a href="{% url 'gestor:cliente_item_delete' item.id %}" class="btn btn-sm btn-outline-danger">
-                            <i class="fas fa-trash"></i>
+                          <a href="{% url 'gestor:cliente_toggle_status' cliente_associado.id %}" class="btn btn-sm {% if cliente_associado.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
+                            <i class="fas {% if cliente_associado.ativo %}fa-ban{% else %}fa-check-circle{% endif %}"></i>
                           </a>
+                          {% endif %}
                         </td>
                       </tr>
                     {% endfor %}
@@ -164,13 +226,308 @@
               </div>
             {% else %}
               <div class="text-center py-3 text-muted">
-                <p class="mb-0">Nenhum CPF/CNPJ cadastrado.</p>
+                <p class="mb-0">Nenhum cliente associado.</p>
               </div>
             {% endif %}
           </div>
         </div>
+        
+        <!-- Todos os Contatos (incluindo contatos dos sub-clientes) -->
+        <div class="card mb-3">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h6 class="card-title mb-0">Contatos</h6>
+            {% if perms.core.add_clientecontato %}
+            <a href="{% url 'gestor:cliente_contato_create' cliente.id %}" class="btn btn-primary btn-sm">
+              <i class="fas fa-plus me-1"></i> Novo Contato
+            </a>
+            {% endif %}
+          </div>
+          <div class="card-body p-0">
+            <ul class="nav nav-tabs" id="contatosTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="todos-contatos-tab" data-bs-toggle="tab" 
+                        data-bs-target="#todos-contatos" type="button" role="tab" 
+                        aria-controls="todos-contatos" aria-selected="true">Todos</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="principal-contatos-tab" data-bs-toggle="tab" 
+                        data-bs-target="#principal-contatos" type="button" role="tab" 
+                        aria-controls="principal-contatos" aria-selected="false">Principal</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="sub-contatos-tab" data-bs-toggle="tab" 
+                        data-bs-target="#sub-contatos" type="button" role="tab" 
+                        aria-controls="sub-contatos" aria-selected="false">Sub-clientes</button>
+              </li>
+            </ul>
+            <div class="tab-content" id="contatosTabContent">
+              <!-- Tab Todos os Contatos -->
+              <div class="tab-pane fade show active" id="todos-contatos" role="tabpanel" aria-labelledby="todos-contatos-tab">
+                {% if todos_contatos %}
+                  <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Nome</th>
+                          <th>WhatsApp</th>
+                          <th>Cargo</th>
+                          <th>Cliente</th>
+                          <th class="text-center">Principal</th>
+                          <th class="text-end">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for contato in todos_contatos %}
+                          <tr{% if contato.cliente.id != cliente.id %} class="table-light"{% endif %}>
+                            <td>{{ contato.nome|default:"Não informado" }}</td>
+                            <td>{{ contato.whatsapp }}</td>
+                            <td>{{ contato.cargo|default:"-" }}</td>
+                            <td>
+                              {% if contato.cliente.id != cliente.id %}
+                                <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}">
+                                  {{ contato.cliente.nome }}
+                                </a>
+                              {% else %}
+                                <span class="badge bg-primary">Principal</span>
+                              {% endif %}
+                            </td>
+                            <td class="text-center">
+                              {% if contato.principal %}
+                                <span class="badge bg-success"><i class="fas fa-check"></i></span>
+                              {% endif %}
+                            </td>
+                            <td class="text-end">
+                              {% if contato.cliente.id == cliente.id and perms.core.change_clientecontato %}
+                                <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary me-1">
+                                  <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
+                                  <i class="fas fa-trash"></i>
+                                </a>
+                              {% endif %}
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                {% else %}
+                  <div class="text-center py-3 text-muted">
+                    <p class="mb-0">Nenhum contato cadastrado.</p>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <!-- Tab Contatos do Cliente Principal -->
+              <div class="tab-pane fade" id="principal-contatos" role="tabpanel" aria-labelledby="principal-contatos-tab">
+                {% if contatos %}
+                  <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Nome</th>
+                          <th>WhatsApp</th>
+                          <th>Cargo</th>
+                          <th class="text-center">Principal</th>
+                          <th class="text-end">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for contato in contatos %}
+                          <tr>
+                            <td>{{ contato.nome|default:"Não informado" }}</td>
+                            <td>{{ contato.whatsapp }}</td>
+                            <td>{{ contato.cargo|default:"-" }}</td>
+                            <td class="text-center">
+                              {% if contato.principal %}
+                                <span class="badge bg-success"><i class="fas fa-check"></i></span>
+                              {% endif %}
+                            </td>
+                            <td class="text-end">
+                              {% if perms.core.change_clientecontato %}
+                                <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary me-1">
+                                  <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
+                                  <i class="fas fa-trash"></i>
+                                </a>
+                              {% endif %}
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                {% else %}
+                  <div class="text-center py-3 text-muted">
+                    <p class="mb-0">Nenhum contato cadastrado para este cliente.</p>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <!-- Tab Contatos dos Sub-clientes -->
+              <div class="tab-pane fade" id="sub-contatos" role="tabpanel" aria-labelledby="sub-contatos-tab">
+                {% if contatos_sub_clientes %}
+                  <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Nome</th>
+                          <th>WhatsApp</th>
+                          <th>Cargo</th>
+                          <th>Cliente</th>
+                          <th class="text-center">Principal</th>
+                          <th class="text-end">Ações</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for contato in contatos_sub_clientes %}
+                          <tr>
+                            <td>{{ contato.nome|default:"Não informado" }}</td>
+                            <td>{{ contato.whatsapp }}</td>
+                            <td>{{ contato.cargo|default:"-" }}</td>
+                            <td>
+                              <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}">
+                                {{ contato.cliente.nome }}
+                              </a>
+                            </td>
+                            <td class="text-center">
+                              {% if contato.principal %}
+                                <span class="badge bg-success"><i class="fas fa-check"></i></span>
+                              {% endif %}
+                            </td>
+                            <td class="text-end">
+                              <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-eye"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                {% else %}
+                  <div class="text-center py-3 text-muted">
+                    <p class="mb-0">Nenhum contato cadastrado para os sub-clientes.</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Histórico de Vendas (BI) -->
+        <div class="card mb-3">
+          <div class="card-header bg-light d-flex justify-content-between align-items-center">
+            <h6 class="card-title mb-0">Histórico de Vendas</h6>
+            <a href="{% url 'gestor:consultar_bi' cliente.codigo %}" class="btn btn-outline-info btn-sm">
+              <i class="fas fa-chart-bar me-1"></i> Ver Completo
+            </a>
+          </div>
+          <div class="card-body">
+            {% if vendas_recentes %}
+              <div class="table-responsive">
+                <table class="table table-sm table-hover">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Data</th>
+                      <th>Produto</th>
+                      <th class="text-end">Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for venda in vendas_recentes %}
+                      <tr>
+                        <td>{{ venda.data_venda|date:"d/m/Y" }}</td>
+                        <td>{{ venda.produto.descricao }}</td>
+                        <td class="text-end">R$ {{ venda.valor_total|floatformat:2 }}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr class="table-light">
+                      <td colspan="2" class="fw-bold">Total últimos 90 dias</td>
+                      <td class="text-end fw-bold">R$ {{ total_vendas_recentes|floatformat:2 }}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            {% else %}
+              <div class="text-center py-3 text-muted">
+                <p class="mb-0">Nenhum registro de venda nos últimos 90 dias.</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal de Consulta BI -->
+<div class="modal fade" id="modalConsultaBI" tabindex="-1" aria-labelledby="modalConsultaBILabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalConsultaBILabel">Consulta BI - {{ cliente.nome }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Carregando...</span>
+          </div>
+        </div>
+        <div id="conteudoBI" class="mt-3"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Script para consulta de BI via modal
+    const btnConsultarBI = document.querySelectorAll('.btn-consultar-bi');
+    const modalConsultaBI = document.getElementById('modalConsultaBI');
+    const conteudoBI = document.getElementById('conteudoBI');
+    
+    if (btnConsultarBI.length > 0 && modalConsultaBI) {
+      btnConsultarBI.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const url = this.getAttribute('href');
+          const modal = new bootstrap.Modal(modalConsultaBI);
+          
+          modal.show();
+          
+          // Limpar conteúdo anterior e mostrar loading
+          conteudoBI.innerHTML = '';
+          const loading = document.querySelector('.modal-body .spinner-border').parentNode;
+          loading.style.display = 'flex';
+          
+          // Fazer requisição AJAX
+          fetch(url + '?format=html')
+            .then(response => response.text())
+            .then(html => {
+              // Esconder loading e mostrar conteúdo
+              loading.style.display = 'none';
+              conteudoBI.innerHTML = html;
+            })
+            .catch(error => {
+              console.error('Erro na consulta BI:', error);
+              loading.style.display = 'none';
+              conteudoBI.innerHTML = '<div class="alert alert-danger">Erro ao carregar dados do BI. Tente novamente mais tarde.</div>';
+            });
+        });
+      });
+    }
+  });
+</script>
+{% endblock %}
 {% endblock %}

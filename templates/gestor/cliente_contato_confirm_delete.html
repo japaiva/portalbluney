@@ -1,13 +1,12 @@
 {% extends 'gestor/base_gestor.html' %}
 
-{% block title %}Excluir Contato | {{ cliente.nome }} | Portal Comercial{% endblock %}
+{% block title %}Excluir Contato | Portal Comercial{% endblock %}
 
 {% block content %}
 <div class="card shadow">
   <div class="card-header bg-light d-flex justify-content-between align-items-center">
     <h5 class="card-title mb-0">
-      <i class="fas fa-trash me-2"></i>
-      Excluir Contato
+      <i class="fas fa-trash-alt me-2"></i> Excluir Contato
     </h5>
     <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-outline-secondary btn-sm">
       <i class="fas fa-arrow-left me-1"></i> Voltar
@@ -16,48 +15,18 @@
   
   <div class="card-body">
     <div class="alert alert-danger">
-      <p class="mb-0">
-        <i class="fas fa-exclamation-triangle me-2"></i>
-        Você tem certeza que deseja excluir o contato <strong>{{ contato.nome|default:contato.whatsapp }}</strong>?
-      </p>
-      <p class="mb-0 mt-2">Esta ação não poderá ser desfeita.</p>
+      <h5><i class="fas fa-exclamation-triangle me-2"></i> Confirmação de Exclusão</h5>
+      <p>Você tem certeza que deseja excluir o contato <strong>{{ contato.nome|default:"Sem nome" }}</strong> 
+      ({{ contato.whatsapp }}) do cliente <strong>{{ cliente.nome }}</strong>?</p>
+      <p class="mb-0"><strong>Atenção:</strong> Esta ação não poderá ser desfeita.</p>
     </div>
     
-    <div class="card mt-3">
-      <div class="card-body">
-        <dl class="row mb-0">
-          <dt class="col-sm-3">Nome:</dt>
-          <dd class="col-sm-9">{{ contato.nome|default:"Não informado" }}</dd>
-          
-          <dt class="col-sm-3">WhatsApp:</dt>
-          <dd class="col-sm-9">{{ contato.whatsapp }}</dd>
-          
-          <dt class="col-sm-3">Cargo:</dt>
-          <dd class="col-sm-9">{{ contato.cargo|default:"Não informado" }}</dd>
-          
-          <dt class="col-sm-3">Principal:</dt>
-          <dd class="col-sm-9">{% if contato.principal %}Sim{% else %}Não{% endif %}</dd>
-          
-          <dt class="col-sm-3">Status:</dt>
-          <dd class="col-sm-9">
-            {% if contato.ativo %}
-              <span class="badge bg-success">Ativo</span>
-            {% else %}
-              <span class="badge bg-danger">Inativo</span>
-            {% endif %}
-          </dd>
-        </dl>
-      </div>
-    </div>
-    
-    <form method="post" class="mt-4">
+    <form method="post">
       {% csrf_token %}
-      <div class="d-flex justify-content-end">
-        <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-secondary me-2">
-          <i class="fas fa-times me-1"></i> Cancelar
-        </a>
+      <div class="d-flex justify-content-end mt-3">
+        <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-outline-secondary me-2">Cancelar</a>
         <button type="submit" class="btn btn-danger">
-          <i class="fas fa-trash me-1"></i> Confirmar Exclusão
+          <i class="fas fa-trash-alt me-1"></i> Excluir Contato
         </button>
       </div>
     </form>
