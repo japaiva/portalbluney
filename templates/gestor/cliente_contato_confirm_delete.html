@@ -1,13 +1,13 @@
 {% extends 'gestor/base_gestor.html' %}
 
-{% block title %}Excluir CPF/CNPJ | {{ cliente.nome }} | Portal Comercial{% endblock %}
+{% block title %}Excluir Contato | {{ cliente.nome }} | Portal Comercial{% endblock %}
 
 {% block content %}
 <div class="card shadow">
   <div class="card-header bg-light d-flex justify-content-between align-items-center">
     <h5 class="card-title mb-0">
       <i class="fas fa-trash me-2"></i>
-      Excluir CPF/CNPJ
+      Excluir Contato
     </h5>
     <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-outline-secondary btn-sm">
       <i class="fas fa-arrow-left me-1"></i> Voltar
@@ -18,7 +18,7 @@
     <div class="alert alert-danger">
       <p class="mb-0">
         <i class="fas fa-exclamation-triangle me-2"></i>
-        Você tem certeza que deseja excluir o CPF/CNPJ <strong>{{ item.cpf_cnpj }}</strong>?
+        Você tem certeza que deseja excluir o contato <strong>{{ contato.nome|default:contato.whatsapp }}</strong>?
       </p>
       <p class="mb-0 mt-2">Esta ação não poderá ser desfeita.</p>
     </div>
@@ -26,21 +26,21 @@
     <div class="card mt-3">
       <div class="card-body">
         <dl class="row mb-0">
-          <dt class="col-sm-3">Código:</dt>
-          <dd class="col-sm-9">{{ item.codigo }}</dd>
+          <dt class="col-sm-3">Nome:</dt>
+          <dd class="col-sm-9">{{ contato.nome|default:"Não informado" }}</dd>
           
-          <dt class="col-sm-3">Tipo:</dt>
-          <dd class="col-sm-9">{{ item.get_tipo_display }}</dd>
+          <dt class="col-sm-3">WhatsApp:</dt>
+          <dd class="col-sm-9">{{ contato.whatsapp }}</dd>
           
-          <dt class="col-sm-3">CPF/CNPJ:</dt>
-          <dd class="col-sm-9">{{ item.cpf_cnpj }}</dd>
+          <dt class="col-sm-3">Cargo:</dt>
+          <dd class="col-sm-9">{{ contato.cargo|default:"Não informado" }}</dd>
           
-          <dt class="col-sm-3">Nome/Razão Social:</dt>
-          <dd class="col-sm-9">{{ item.nome_razao|default:"Não informado" }}</dd>
+          <dt class="col-sm-3">Principal:</dt>
+          <dd class="col-sm-9">{% if contato.principal %}Sim{% else %}Não{% endif %}</dd>
           
           <dt class="col-sm-3">Status:</dt>
           <dd class="col-sm-9">
-            {% if item.ativo %}
+            {% if contato.ativo %}
               <span class="badge bg-success">Ativo</span>
             {% else %}
               <span class="badge bg-danger">Inativo</span>

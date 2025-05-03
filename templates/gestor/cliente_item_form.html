@@ -35,6 +35,16 @@
       
       <div class="row g-3">
         <div class="col-md-6">
+          <label for="{{ form.codigo.id_for_label }}" class="form-label">Código*</label>
+          {{ form.codigo }}
+          {% if form.codigo.errors %}
+            <div class="text-danger small mt-1">
+              {% for error in form.codigo.errors %}{{ error }}{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
           <label for="{{ form.tipo.id_for_label }}" class="form-label">Tipo*</label>
           {{ form.tipo }}
           {% if form.tipo.errors %}
@@ -64,8 +74,8 @@
           {% endif %}
         </div>
         
-        <div class="col-md-6">
-          <div class="form-check form-switch mt-4">
+        <div class="col-12">
+          <div class="form-check form-switch mt-2">
             {{ form.ativo }}
             <label class="form-check-label" for="{{ form.ativo.id_for_label }}">
               Ativo

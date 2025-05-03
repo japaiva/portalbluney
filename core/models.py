@@ -58,7 +58,7 @@ class PerfilUsuario(models.Model):
     
     def __str__(self):
         return f"{self.usuario.username} - {self.get_nivel_display()}"
-
+# Modelo Cliente (permanece basicamente o mesmo)
 class Cliente(models.Model):
     codigo = models.CharField(max_length=20, unique=True, verbose_name="Código")
     nome = models.CharField(max_length=100, verbose_name="Nome")
@@ -81,8 +81,10 @@ class Cliente(models.Model):
         verbose_name_plural = "Clientes"
         ordering = ["nome"]
 
-class Contato(models.Model):
+# Modelo Contato renomeado para ClienteContato
+class ClienteContato(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='contatos', verbose_name="Cliente")
+    codigo_master = models.CharField(max_length=20, verbose_name="Código Master")
     whatsapp = models.CharField(max_length=20, verbose_name="WhatsApp")
     nome = models.CharField(max_length=100, blank=True, null=True, verbose_name="Nome do Contato")
     cargo = models.CharField(max_length=100, blank=True, null=True, verbose_name="Cargo")
@@ -93,13 +95,16 @@ class Contato(models.Model):
         return f"{self.nome or 'Sem nome'} - {self.whatsapp}"
     
     class Meta:
-        db_table = 'contatos'
-        verbose_name = "Contato"
-        verbose_name_plural = "Contatos"
+        db_table = 'cliente_contatos'
+        verbose_name = "Contato do Cliente"
+        verbose_name_plural = "Contatos dos Clientes"
         ordering = ["-principal", "nome"]
 
+# Modelo ClienteItem com adição do campo código_master
 class ClienteItem(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='itens', verbose_name="Cliente")
+    codigo_master = models.CharField(max_length=20, verbose_name="Código Master")
+    codigo = models.CharField(max_length=20, verbose_name="Código")
     cpf_cnpj = models.CharField(max_length=20, verbose_name="CPF/CNPJ")
     nome_razao = models.CharField(max_length=200, blank=True, null=True, verbose_name="Nome/Razão Social")
     tipo = models.CharField(
@@ -111,10 +116,10 @@ class ClienteItem(models.Model):
     ativo = models.BooleanField(default=True, verbose_name="Ativo")
     
     def __str__(self):
-        return f"{self.cpf_cnpj} - {self.nome_razao or 'Sem nome'}"
+        return f"{self.codigo} - {self.cpf_cnpj} - {self.nome_razao or 'Sem nome'}"
     
     class Meta:
         db_table = 'cliente_itens'
         verbose_name = "Item do Cliente"
         verbose_name_plural = "Itens dos Clientes"
-        ordering = ["cpf_cnpj"]
+        ordering = ["codigo"]

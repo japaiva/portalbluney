@@ -1,6 +1,6 @@
 # core/forms.py (adicionar ao arquivo existente)
 from django import forms
-from core.models import Cliente, Contato, ClienteItem, Usuario
+from core.models import Cliente, ClienteContato, ClienteItem, Usuario
 from django.contrib.auth.hashers import make_password
 
 class UsuarioForm(forms.ModelForm):
@@ -79,23 +79,13 @@ class ClienteForm(forms.ModelForm):
             'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
-class ContatoForm(forms.ModelForm):
-    class Meta:
-        model = Contato
-        fields = ['nome', 'whatsapp', 'cargo', 'principal', 'ativo']
-        widgets = {
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'whatsapp': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
-            'cargo': forms.TextInput(attrs={'class': 'form-control'}),
-            'principal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
-
+# Formulário para ClienteItem (atualizado com campo código)
 class ClienteItemForm(forms.ModelForm):
     class Meta:
         model = ClienteItem
-        fields = ['cpf_cnpj', 'nome_razao', 'tipo', 'ativo']
+        fields = ['codigo', 'cpf_cnpj', 'nome_razao', 'tipo', 'ativo']
         widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'form-control'}),
             'cpf_cnpj': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '000.000.000-00'}),
             'nome_razao': forms.TextInput(attrs={'class': 'form-control'}),
             'tipo': forms.Select(attrs={'class': 'form-select'}),
@@ -106,3 +96,16 @@ class ClienteItemForm(forms.ModelForm):
         cpf_cnpj = self.cleaned_data['cpf_cnpj']
         # Remove caracteres não numéricos
         return ''.join(filter(str.isdigit, cpf_cnpj))
+
+# Formulário para ClienteContato (renomeado de ContatoForm)
+class ClienteContatoForm(forms.ModelForm):
+    class Meta:
+        model = ClienteContato
+        fields = ['nome', 'whatsapp', 'cargo', 'principal', 'ativo']
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'whatsapp': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
+            'cargo': forms.TextInput(attrs={'class': 'form-control'}),
+            'principal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }

@@ -3,8 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
-from .models import PerfilUsuario
+from .models import PerfilUsuario, Usuario
+from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def perfil(request):
