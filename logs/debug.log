@@ -1641,3 +1641,249 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-05-03 14:26:45,340 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
 Teste de inicialização de log - debug.log
 [INFO] 2025-05-03 14:26:45,672 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-05-31 18:56:18,939 Watching for file changes with StatReloader
+[INFO] 2025-05-31 18:56:26,193 "GET / HTTP/1.1" 200 5546
+[INFO] 2025-05-31 18:56:26,226 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-05-31 18:56:26,243 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[WARNING] 2025-05-31 18:56:26,697 Not Found: /favicon.ico
+[WARNING] 2025-05-31 18:56:26,698 "GET /favicon.ico HTTP/1.1" 404 3484
+[INFO] 2025-05-31 18:56:30,601 - Broken pipe from ('127.0.0.1', 50011)
+[INFO] 2025-05-31 18:56:30,865 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-05-31 18:56:30,945 "GET /login/?next=/gestor/ HTTP/1.1" 200 4910
+[INFO] 2025-05-31 18:56:38,429 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-05-31 18:56:38,591 "GET /gestor/ HTTP/1.1" 200 6209
+[INFO] 2025-05-31 18:56:40,149 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-05-31 18:56:42,194 "GET /gestor/clientes/ HTTP/1.1" 200 8513
+[INFO] 2025-05-31 18:56:45,025 "GET /gestor/clientes/1/ HTTP/1.1" 200 20478
+[INFO] 2025-05-31 18:56:47,139 "GET /gestor/clientes/ HTTP/1.1" 200 8513
+[INFO] 2025-05-31 18:56:54,492 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 34857
+[INFO] 2025-05-31 18:57:04,288 "GET /gestor/clientes/ HTTP/1.1" 200 8513
+[INFO] 2025-05-31 19:14:04,217 "GET /gestor/clientes/1/editar/ HTTP/1.1" 200 34857
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 10:07:02,099 Watching for file changes with StatReloader
+[INFO] 2025-06-01 10:07:18,934 "GET / HTTP/1.1" 200 6465
+[INFO] 2025-06-01 10:07:21,427 "GET /gestor/ HTTP/1.1" 200 6209
+[INFO] 2025-06-01 10:07:22,987 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 10:07:26,476 "GET /gestor/clientes/ HTTP/1.1" 200 21968
+[INFO] 2025-06-01 10:07:36,611 "GET /gestor/clientes/341/editar/ HTTP/1.1" 200 34920
+[INFO] 2025-06-01 10:07:55,738 "GET /gestor/clientes/ HTTP/1.1" 200 21968
+[INFO] 2025-06-01 10:08:04,806 "GET /gestor/clientes/?q=Jose+Antonio HTTP/1.1" 200 11736
+[INFO] 2025-06-01 10:08:44,438 "GET /gestor/clientes/1129/editar/ HTTP/1.1" 200 34907
+[INFO] 2025-06-01 10:08:46,432 "GET /gestor/clientes/ HTTP/1.1" 200 21968
+[INFO] 2025-06-01 10:08:50,172 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 10:08:53,437 "GET /gestor/clientes/ HTTP/1.1" 200 21968
+[INFO] 2025-06-01 10:09:00,935 "GET /gestor/clientes/?page=2 HTTP/1.1" 200 22240
+[INFO] 2025-06-01 10:09:07,396 "GET /gestor/clientes/694/editar/ HTTP/1.1" 200 34933
+[INFO] 2025-06-01 10:09:27,517 "GET /gestor/clientes/ HTTP/1.1" 200 21968
+[INFO] 2025-06-01 10:18:14,045 "GET /gestor/clientes/14/editar/ HTTP/1.1" 200 34979
+[INFO] 2025-06-01 10:18:24,353 "GET /gestor/clientes/ HTTP/1.1" 200 21968
+[INFO] 2025-06-01 10:18:29,445 "GET /gestor/clientes/341/editar/ HTTP/1.1" 200 34920
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 11:10:34,544 Watching for file changes with StatReloader
+[INFO] 2025-06-01 11:10:40,562 "GET /gestor/clientes/ HTTP/1.1" 200 22175
+[INFO] 2025-06-01 11:10:46,565 "GET /gestor/clientes/7168/editar/ HTTP/1.1" 200 34979
+[INFO] 2025-06-01 11:10:57,204 "GET /gestor/api/consultar-receita/38372086000156/ HTTP/1.1" 200 607
+[INFO] 2025-06-01 11:10:57,505 "GET /gestor/api/consultar-receita/38372086000156/ HTTP/1.1" 200 607
+[INFO] 2025-06-01 11:11:32,669 "GET /gestor/clientes/ HTTP/1.1" 200 22175
+[INFO] 2025-06-01 11:12:36,972 "GET /gestor/clientes/8089/editar/ HTTP/1.1" 200 34940
+[INFO] 2025-06-01 11:12:51,155 "GET /gestor/api/consultar-receita/57926914000103/ HTTP/1.1" 200 607
+[INFO] 2025-06-01 11:12:51,465 "GET /gestor/api/consultar-receita/57926914000103/ HTTP/1.1" 200 607
+[INFO] 2025-06-01 11:13:37,603 "GET /gestor/clientes/ HTTP/1.1" 200 22175
+[INFO] 2025-06-01 11:13:42,521 "GET /gestor/clientes/?q=93278 HTTP/1.1" 200 7621
+[INFO] 2025-06-01 11:13:44,928 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 11:13:47,565 "GET /gestor/clientes/ HTTP/1.1" 200 22175
+[INFO] 2025-06-01 11:14:04,721 "GET /gestor/clientes/?q=VIANA+ HTTP/1.1" 200 9568
+[INFO] 2025-06-01 11:14:11,501 "GET /gestor/clientes/?q=VIANA++E+CORREA HTTP/1.1" 200 7631
+[INFO] 2025-06-01 11:16:31,048 "GET /gestor/clientes/?q=VIANA+ HTTP/1.1" 200 9568
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 11:24:27,952 Watching for file changes with StatReloader
+[INFO] 2025-06-01 11:24:39,791 "GET /gestor/clientes/?q=88641 HTTP/1.1" 200 7621
+[INFO] 2025-06-01 11:25:23,442 "GET /gestor/clientes/?q=88641 HTTP/1.1" 200 7621
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 11:34:51,252 Watching for file changes with StatReloader
+[INFO] 2025-06-01 11:34:55,850 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 11:34:55,878 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-06-01 11:34:55,893 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-06-01 11:34:55,893 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-06-01 11:34:55,916 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-06-01 11:34:55,917 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-06-01 11:34:58,499 "GET /gestor/clientes/ HTTP/1.1" 200 22221
+[INFO] 2025-06-01 11:35:21,986 "GET /gestor/clientes/?q=88641 HTTP/1.1" 200 8512
+[INFO] 2025-06-01 11:35:26,797 "GET /gestor/clientes/10011/ HTTP/1.1" 200 19548
+[INFO] 2025-06-01 11:36:04,053 "GET /gestor/clientes/10011/editar/ HTTP/1.1" 200 34916
+[INFO] 2025-06-01 11:36:17,186 "GET /gestor/clientes/ HTTP/1.1" 200 22221
+[INFO] 2025-06-01 11:36:23,504 "GET /gestor/clientes/?q=88641 HTTP/1.1" 200 8512
+[INFO] 2025-06-01 11:36:29,608 "GET /gestor/clientes/10011/ HTTP/1.1" 200 19548
+[INFO] 2025-06-01 11:36:36,266 "GET /gestor/clientes/8885/ HTTP/1.1" 200 18568
+[INFO] 2025-06-01 11:36:55,874 "GET /gestor/clientes/ HTTP/1.1" 200 22221
+[INFO] 2025-06-01 11:37:00,969 "GET /gestor/clientes/?q=93278 HTTP/1.1" 200 7621
+[INFO] 2025-06-01 11:37:03,310 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 11:37:05,916 "GET /gestor/clientes/ HTTP/1.1" 200 22221
+[INFO] 2025-06-01 11:37:21,118 "GET /gestor/clientes/8679/ HTTP/1.1" 200 18280
+[INFO] 2025-06-01 11:37:27,566 "GET /gestor/clientes/ HTTP/1.1" 200 22221
+[INFO] 2025-06-01 11:37:32,634 "GET /gestor/clientes/?q=93278 HTTP/1.1" 200 7621
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 11:50:55,027 Watching for file changes with StatReloader
+[INFO] 2025-06-01 11:51:06,871 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 11:51:09,280 "GET /gestor/clientes/ HTTP/1.1" 200 22197
+[INFO] 2025-06-01 11:51:26,684 "GET /gestor/clientes/11111/editar/ HTTP/1.1" 200 35052
+[INFO] 2025-06-01 11:51:34,670 "GET /gestor/clientes/ HTTP/1.1" 200 22197
+[INFO] 2025-06-01 11:51:37,901 "GET /gestor/clientes/11111/editar/ HTTP/1.1" 200 35052
+[INFO] 2025-06-01 11:51:52,707 "POST /gestor/clientes/11111/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-01 11:51:53,025 "GET /gestor/clientes/11111/ HTTP/1.1" 200 18682
+[INFO] 2025-06-01 11:51:58,185 "GET /gestor/clientes/ HTTP/1.1" 200 22183
+[INFO] 2025-06-01 11:52:13,097 "GET /gestor/clientes/11363/ HTTP/1.1" 200 17906
+[INFO] 2025-06-01 11:52:20,467 "GET /gestor/clientes/11363/editar/ HTTP/1.1" 200 34940
+[INFO] 2025-06-01 11:52:48,747 "GET /gestor/clientes/ HTTP/1.1" 200 22183
+[INFO] 2025-06-01 11:53:06,885 "GET /gestor/clientes/11363/editar/ HTTP/1.1" 200 34940
+[INFO] 2025-06-01 11:53:14,315 "GET /gestor/clientes/ HTTP/1.1" 200 22183
+[INFO] 2025-06-01 13:50:48,354 "GET /gestor/clientes/10549/editar/ HTTP/1.1" 200 35019
+[INFO] 2025-06-01 13:51:05,713 "GET /gestor/clientes/ HTTP/1.1" 200 22183
+[INFO] 2025-06-01 13:51:08,327 "GET /gestor/clientes/?status=ativo HTTP/1.1" 200 21932
+[INFO] 2025-06-01 13:51:14,562 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 13:51:17,395 "GET /gestor/clientes/ HTTP/1.1" 200 22183
+[INFO] 2025-06-01 13:51:38,090 "GET /gestor/clientes/10187/editar/ HTTP/1.1" 200 35078
+[INFO] 2025-06-01 13:51:50,109 "GET /gestor/api/consultar-receita/53076766000116/ HTTP/1.1" 200 607
+[INFO] 2025-06-01 13:51:50,419 "GET /gestor/api/consultar-receita/53076766000116/ HTTP/1.1" 200 607
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 15:20:08,199 Watching for file changes with StatReloader
+[WARNING] 2025-06-01 15:20:22,384 Not Found: /gestor/clientes/10187/editar/
+[WARNING] 2025-06-01 15:20:22,386 "GET /gestor/clientes/10187/editar/ HTTP/1.1" 404 5007
+[WARNING] 2025-06-01 15:20:28,018 Not Found: /gestor/clientes/10549/editar/
+[WARNING] 2025-06-01 15:20:28,021 "GET /gestor/clientes/10549/editar/ HTTP/1.1" 404 5007
+[INFO] 2025-06-01 15:20:34,566 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 15:20:37,416 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:20:40,204 "GET /gestor/clientes/12622/editar/ HTTP/1.1" 200 36911
+[INFO] 2025-06-01 15:21:15,038 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:21:19,927 "GET /gestor/clientes/12060/editar/ HTTP/1.1" 200 36878
+[INFO] 2025-06-01 15:21:46,703 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:22:01,501 "GET /gestor/clientes/?status=todos&tipo=principal&q= HTTP/1.1" 200 42106
+[INFO] 2025-06-01 15:22:04,635 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:22:19,276 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 15:22:21,898 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:23:05,483 "GET /gestor/clientes/?status=ativo&tipo=todos&q= HTTP/1.1" 200 41862
+[INFO] 2025-06-01 15:23:13,198 "GET /gestor/clientes/?status=ativo&tipo=coligados&q= HTTP/1.1" 200 40781
+[INFO] 2025-06-01 15:23:23,852 "GET /gestor/clientes/11770/ HTTP/1.1" 200 17143
+[INFO] 2025-06-01 15:23:32,233 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:23:33,914 "GET /gestor/dashboard/ HTTP/1.1" 200 5975
+[INFO] 2025-06-01 15:24:49,008 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+[INFO] 2025-06-01 15:49:55,129 "GET /gestor/clientes/12622/ HTTP/1.1" 200 16638
+[INFO] 2025-06-01 15:50:26,537 "GET /gestor/clientes/ HTTP/1.1" 200 42052
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+2025-06-01 16:16:53,660 - root - DEBUG - Teste de escrita em debug.log.
+2025-06-01 16:16:53,662 - root - INFO - Teste de escrita em diagnostic.log.
+Teste de inicialização de log - debug.log
+2025-06-01 16:16:53,897 - django.setup - INFO - Teste de log durante inicialização do Django
+2025-06-01 16:16:54,497 - __main__ - INFO - Iniciando script de importação de clientes.
+2025-06-01 16:16:55,270 - __main__ - INFO - Base de dados zerada com sucesso (apenas para ambiente de desenvolvimento/teste).
+2025-06-01 16:16:55,290 - __main__ - CRITICAL - Erro fatal: Arquivo não encontrado: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/importar_clientes.py", line 177, in run_import
+    receita_df = pd.read_csv('receita.xlsx - Planilha1.csv', dtype=str, keep_default_na=False)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+2025-06-01 16:16:55,297 - __main__ - INFO - Script de importação de clientes finalizado.
+2025-06-01 16:17:26,971 - root - DEBUG - Teste de escrita em debug.log.
+2025-06-01 16:17:26,972 - root - INFO - Teste de escrita em diagnostic.log.
+Teste de inicialização de log - debug.log
+2025-06-01 16:17:27,201 - django.setup - INFO - Teste de log durante inicialização do Django
+2025-06-01 16:17:27,801 - __main__ - INFO - Iniciando script de importação de clientes.
+2025-06-01 16:17:28,122 - __main__ - INFO - Base de dados zerada com sucesso (apenas para ambiente de desenvolvimento/teste).
+2025-06-01 16:17:28,136 - __main__ - CRITICAL - Erro fatal: Arquivo não encontrado: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/importar_clientes.py", line 177, in run_import
+    receita_df = pd.read_csv('receita.xlsx - Planilha1.csv', dtype=str, keep_default_na=False)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+2025-06-01 16:17:28,140 - __main__ - INFO - Script de importação de clientes finalizado.
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-01 16:39:23,070 Watching for file changes with StatReloader
+[INFO] 2025-06-01 16:39:30,687 "GET /gestor/clientes/ HTTP/1.1" 200 42048
+[INFO] 2025-06-01 16:39:30,789 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-06-01 16:39:30,803 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[INFO] 2025-06-01 16:39:32,814 "GET /gestor/clientes/14367/editar/ HTTP/1.1" 200 39119
+[INFO] 2025-06-01 16:40:15,038 "GET /gestor/clientes/ HTTP/1.1" 200 42048
+[INFO] 2025-06-01 16:40:19,066 "GET /gestor/clientes/14937/editar/ HTTP/1.1" 200 36832
+[INFO] 2025-06-01 16:40:29,445 "GET /gestor/clientes/ HTTP/1.1" 200 42048
+[INFO] 2025-06-01 16:40:32,837 "GET /gestor/clientes/13534/editar/ HTTP/1.1" 200 39161
+[INFO] 2025-06-01 16:48:18,121 "GET /gestor/clientes/ HTTP/1.1" 200 42048
+[INFO] 2025-06-01 16:48:24,558 "GET /gestor/clientes/?status=todos&tipo=todos&q=96950 HTTP/1.1" 200 15162
+[INFO] 2025-06-01 16:48:35,956 "GET /gestor/clientes/13432/editar/ HTTP/1.1" 200 41182
+[INFO] 2025-06-01 16:48:57,503 "GET /gestor/clientes/ HTTP/1.1" 200 42048
+[INFO] 2025-06-01 16:49:28,361 "GET /gestor/clientes/14532/editar/ HTTP/1.1" 200 36746
+[INFO] 2025-06-01 16:49:36,429 "GET /gestor/clientes/ HTTP/1.1" 200 42048

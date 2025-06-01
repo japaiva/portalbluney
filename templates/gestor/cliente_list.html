@@ -19,28 +19,44 @@
   </div>
   
   <div class="card-header bg-white">
-    <div class="row">
-      <div class="col-md-8">
-        <form method="get" class="row g-2 align-items-center">
-          <div class="col-auto">
-            <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
-              <option value="">Todos os Clientes</option>
-              <option value="ativo" {% if status_filtro == 'ativo' %}selected{% endif %}>Ativos</option>
-              <option value="inativo" {% if status_filtro == 'inativo' %}selected{% endif %}>Inativos</option>
-            </select>
-          </div>
-        </form>
+    <form method="get" class="row g-3 align-items-end">
+      <!-- Filtros múltiplos -->
+      <div class="col-md-2">
+        <label for="status" class="form-label small">Status</label>
+        <select name="status" id="status" class="form-select form-select-sm">
+          <option value="todos" {% if status_filtro == 'todos' %}selected{% endif %}>Todos</option>
+          <option value="ativo" {% if status_filtro == 'ativo' %}selected{% endif %}>Ativos</option>
+          <option value="inativo" {% if status_filtro == 'inativo' %}selected{% endif %}>Inativos</option>
+        </select>
       </div>
+      
+      <div class="col-md-2">
+        <label for="tipo" class="form-label small">Tipo</label>
+        <select name="tipo" id="tipo" class="form-select form-select-sm">
+          <option value="todos" {% if tipo_filtro == 'todos' %}selected{% endif %}>Todos</option>
+          <option value="principal" {% if tipo_filtro == 'principal' %}selected{% endif %}>Principais</option>
+          <option value="coligados" {% if tipo_filtro == 'coligados' %}selected{% endif %}>Coligados</option>
+        </select>
+      </div>
+      
       <div class="col-md-4">
-        <form method="get" class="d-flex">
-          <input type="text" name="q" class="form-control form-control-sm me-2" 
-                 placeholder="Buscar por nome ou código" value="{{ query|default:'' }}">
-          <button type="submit" class="btn btn-sm btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
-        </form>
+        <label for="q" class="form-label small">Buscar</label>
+        <input type="text" name="q" id="q" class="form-control form-control-sm" 
+               placeholder="Nome, código, CPF/CNPJ..." value="{{ query|default:'' }}">
       </div>
-    </div>
+      
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-sm btn-primary w-100">
+          <i class="fas fa-search me-1"></i> Filtrar
+        </button>
+      </div>
+      
+      <div class="col-md-2">
+        <a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-secondary w-100">
+          <i class="fas fa-eraser me-1"></i> Limpar
+        </a>
+      </div>
+    </form>
   </div>
   
   <div class="card-body">
@@ -48,27 +64,56 @@
       <table class="table table-hover align-middle">
         <thead class="table-light">
           <tr>
-            <th>Código</th>
-            <th>Nome</th>
-            <th>Contato</th>
-            <th>Email</th>
-            <th>Cidade/UF</th>
-            <th class="text-center">Status</th>
-            <th class="text-end">Ações</th>
+            <th style="width: 80px;">Código</th>
+            <th style="width: 200px;">Nome</th>
+            <th style="width: 120px;">CPF/CNPJ</th>
+            <th style="width: 80px;">Loja</th>
+            <th style="width: 80px;">Vend</th>
+            <th style="width: 150px;">Cidade/UF</th>
+            <th style="width: 80px;" class="text-center">Status</th>
+            <th style="width: 100px;" class="text-center">Tipo</th>
+            <th style="width: 120px;" class="text-end">Ações</th>
           </tr>
         </thead>
         <tbody>
           {% for cliente in clientes %}
             <tr>
-              <td>{{ cliente.codigo }}</td>
-              <td>{{ cliente.nome }}</td>
-              <td>{{ cliente.telefone|default:"-" }}</td>
-              <td>{{ cliente.email|default:"-" }}</td>
+              <td><code>{{ cliente.codigo }}</code></td>
+              <td>
+                <div class="fw-semibold">{{ cliente.nome }}</div>
+                {% if cliente.nome_fantasia and cliente.nome_fantasia != cliente.nome %}
+                  <small class="text-muted">{{ cliente.nome_fantasia|truncatechars:30 }}</small>
+                {% endif %}
+              </td>
+              <td>
+                {% if cliente.cpf_cnpj %}
+                  <span class="badge bg-light text-dark">{{ cliente.cpf_cnpj }}</span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if cliente.codigo_loja %}
+                  <span class="badge bg-info text-dark">{{ cliente.codigo_loja }}</span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if cliente.codigo_vendedor %}
+                  <span class="badge bg-success">{{ cliente.codigo_vendedor }}</span>
+                  {% if cliente.nome_vendedor %}
+                    <br><small class="text-muted">{{ cliente.nome_vendedor|truncatechars:15 }}</small>
+                  {% endif %}
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
               <td>
                 {% if cliente.cidade %}
-                  {{ cliente.cidade }}{% if cliente.estado %}/{{ cliente.estado }}{% endif %}
+                  {{ cliente.cidade|truncatechars:15 }}{% if cliente.estado %}/{{ cliente.estado }}{% endif %}
                 {% else %}
-                  -
+                  <span class="text-muted">-</span>
                 {% endif %}
               </td>
               <td class="text-center">
@@ -76,28 +121,69 @@
                   {% if cliente.ativo %}Ativo{% else %}Inativo{% endif %}
                 </span>
               </td>
+              <td class="text-center">
+                {% if cliente.codigo_master %}
+                  <span class="badge bg-secondary" title="Sub-cliente de {{ cliente.codigo_master }}">
+                    <i class="fas fa-link"></i> Coligado
+                  </span>
+                {% else %}
+                  <span class="badge bg-primary">
+                    <i class="fas fa-crown"></i> Principal
+                  </span>
+                {% endif %}
+              </td>
               <td class="text-end">
-                <a href="{% url 'gestor:cliente_detail' cliente.id %}" class="btn btn-sm btn-outline-secondary me-1" title="Detalhes">
-                  <i class="fas fa-eye"></i>
-                </a>
-                <a href="{% url 'gestor:cliente_update' cliente.id %}" class="btn btn-sm btn-outline-primary me-1" title="Editar">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <a href="{% url 'gestor:cliente_toggle_status' cliente.id %}" class="btn btn-sm {% if cliente.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}" 
-                   title="{% if cliente.ativo %}Desativar{% else %}Ativar{% endif %}">
-                  <i class="fas {% if cliente.ativo %}fa-ban{% else %}fa-check-circle{% endif %}"></i>
-                </a>
+                <div class="btn-group" role="group">
+                  <a href="{% url 'gestor:cliente_detail' cliente.id %}" 
+                     class="btn btn-sm btn-outline-secondary" 
+                     title="Detalhes">
+                    <i class="fas fa-eye"></i>
+                  </a>
+                  <a href="{% url 'gestor:cliente_update' cliente.id %}" 
+                     class="btn btn-sm btn-outline-primary" 
+                     title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="{% url 'gestor:cliente_toggle_status' cliente.id %}" 
+                     class="btn btn-sm {% if cliente.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}" 
+                     title="{% if cliente.ativo %}Desativar{% else %}Ativar{% endif %}">
+                    <i class="fas {% if cliente.ativo %}fa-ban{% else %}fa-check-circle{% endif %}"></i>
+                  </a>
+                </div>
               </td>
             </tr>
           {% empty %}
             <tr>
-              <td colspan="7" class="text-center py-3 text-muted">
-                Nenhum cliente cadastrado.
+              <td colspan="9" class="text-center py-4 text-muted">
+                <i class="fas fa-users fa-2x mb-2 d-block"></i>
+                {% if query or status_filtro != 'todos' or tipo_filtro != 'todos' %}
+                  Nenhum cliente encontrado com os filtros aplicados.
+                  <br><a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-primary mt-2">
+                    <i class="fas fa-eraser me-1"></i> Limpar filtros
+                  </a>
+                {% else %}
+                  Nenhum cliente cadastrado.
+                  <br><a href="{% url 'gestor:cliente_create' %}" class="btn btn-sm btn-primary mt-2">
+                    <i class="fas fa-plus me-1"></i> Cadastrar primeiro cliente
+                  </a>
+                {% endif %}
               </td>
             </tr>
           {% endfor %}
         </tbody>
       </table>
+    </div>
+    
+    <!-- Resumo dos resultados -->
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <small class="text-muted">
+          Mostrando {{ clientes.start_index }} a {{ clientes.end_index }} de {{ clientes.paginator.count }} cliente{{ clientes.paginator.count|pluralize }}
+          {% if query or status_filtro != 'todos' or tipo_filtro != 'todos' %}
+            (filtrado{{ clientes.paginator.count|pluralize }})
+          {% endif %}
+        </small>
+      </div>
     </div>
   </div>
   
@@ -107,12 +193,12 @@
       <ul class="pagination pagination-sm justify-content-center mb-0">
         {% if clientes.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page=1{% if status_filtro %}&status={{ status_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Primeiro">
+            <a class="page-link" href="?page=1{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Primeiro">
               <span aria-hidden="true">&laquo;&laquo;</span>
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="?page={{ clientes.previous_page_number }}{% if status_filtro %}&status={{ status_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
+            <a class="page-link" href="?page={{ clientes.previous_page_number }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
@@ -129,18 +215,20 @@
           {% if clientes.number == i %}
             <li class="page-item active"><span class="page-link">{{ i }}</span></li>
           {% elif i > clientes.number|add:'-3' and i < clientes.number|add:'3' %}
-            <li class="page-item"><a class="page-link" href="?page={{ i }}{% if status_filtro %}&status={{ status_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a></li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{ i }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a>
+            </li>
           {% endif %}
         {% endfor %}
         
         {% if clientes.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ clientes.next_page_number }}{% if status_filtro %}&status={{ status_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Próximo">
+            <a class="page-link" href="?page={{ clientes.next_page_number }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Próximo">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="?page={{ clientes.paginator.num_pages }}{% if status_filtro %}&status={{ status_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Último">
+            <a class="page-link" href="?page={{ clientes.paginator.num_pages }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Último">
               <span aria-hidden="true">&raquo;&raquo;</span>
             </a>
           </li>
@@ -157,4 +245,25 @@
   </div>
   {% endif %}
 </div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-submit ao mudar filtros
+    const filtros = document.querySelectorAll('#status, #tipo');
+    filtros.forEach(filtro => {
+        filtro.addEventListener('change', function() {
+            this.form.submit();
+        });
+    });
+    
+    // Enter no campo de busca
+    document.getElementById('q').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            this.form.submit();
+        }
+    });
+});
+</script>
+{% endblock %}
 {% endblock %}

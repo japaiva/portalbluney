@@ -1,0 +1,56 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environment
+venv/
+env/
+ENV/
+.env
+.venv/
+
+# Local development settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+static/
+
+# Temporary files
+.DS_Store
+Thumbs.db
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+LICENSE
+docs/
+
+# Test files
+pytest.ini
+tests/
+
+# Node.js (se usado para frontend)
+node_modules/
+npm-debug.log

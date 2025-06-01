@@ -1,8 +1,9 @@
 # core/forms.py
 from django import forms
-from core.models import (Cliente, ClienteContato, Usuario, 
+from core.models import (Cliente, ClienteContato, ClienteCnaeSecundario, Usuario, 
                         Loja, Vendedor, Produto, ClasseProduto, RegistroBI, LogSincronizacao)
 from django.contrib.auth.hashers import make_password
+from django.utils import timezone
 from datetime import datetime
 import calendar
 
@@ -76,55 +77,51 @@ class UsuarioForm(forms.ModelForm):
         
         return user
 
-
-from django import forms
-from core.models import Cliente
-from django.utils import timezone
-
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = [
-            # Campos de identificação
+            # ===== INFORMAÇÕES PRINCIPAIS =====
             'codigo', 'codigo_master', 'nome', 'nome_fantasia',
             
-            # Campos de endereço
-            'tipo_logradouro', 'endereco', 'numero', 'complemento', 'bairro', 
-            'cidade', 'estado', 'cep',
+            # ===== DADOS FISCAIS =====
+            'tipo_documento', 'cpf_cnpj', 'nome_razao_social',
+            'inscricao_estadual', 'inscricao_municipal', 'situacao_cadastral',
             
-            # Campos de contato
-            'telefone', 'email',
+            # ===== ENDEREÇO COMPLETO =====
+            'tipo_logradouro', 'endereco', 'numero', 'complemento', 
+            'bairro', 'cidade', 'estado', 'cep',
             
-            # Dados fiscais
-            'cpf_cnpj', 'tipo_documento', 'nome_razao_social',
-            'inscricao_estadual', 'inscricao_municipal',
-            
-            # Informações da Receita
-            'situacao_cadastral', 'data_situacao_cadastral',
+            # ===== RECEITA FEDERAL - INFORMAÇÕES =====
             'cnae_principal', 'cnae_descricao', 'porte_empresa',
             'natureza_juridica', 'data_abertura', 'data_ultima_verificacao',
             'opcao_pelo_simples', 'opcao_pelo_mei',
             
-            # Dados comerciais
+            # ===== INFORMAÇÕES COMERCIAIS =====
             'codigo_loja', 'codigo_vendedor', 'nome_vendedor',
             'data_cadastro', 'data_ultima_compra',
             
-            # Outros
-            'observacoes', 'ativo'
+            # ===== CONTATO =====
+            'telefone', 'email', 'observacoes', 'ativo'
         ]
+        
         widgets = {
-            # Campos de identificação
+            # ===== INFORMAÇÕES PRINCIPAIS =====
             'codigo': forms.TextInput(attrs={'class': 'form-control'}),
             'codigo_master': forms.TextInput(attrs={'class': 'form-control'}),
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
             'nome_fantasia': forms.TextInput(attrs={'class': 'form-control'}),
             
-            # Campos de endereço
-            'tipo_logradouro': forms.Select(attrs={'class': 'form-select'}, 
-                               choices=[('', '---')] + [(t, t) for t in [
-                                   'Rua', 'Avenida', 'Alameda', 'Estrada', 'Rodovia', 
-                                   'Praça', 'Travessa', 'Quadra', 'Condomínio', 'Outros'
-                               ]]),
+            # ===== DADOS FISCAIS =====
+            'tipo_documento': forms.Select(attrs={'class': 'form-select'}),
+            'cpf_cnpj': forms.TextInput(attrs={'class': 'form-control'}),
+            'nome_razao_social': forms.TextInput(attrs={'class': 'form-control'}),
+            'inscricao_estadual': forms.TextInput(attrs={'class': 'form-control'}),
+            'inscricao_municipal': forms.TextInput(attrs={'class': 'form-control'}),
+            'situacao_cadastral': forms.TextInput(attrs={'class': 'form-control'}),
+            
+            # ===== ENDEREÇO =====
+            'tipo_logradouro': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Rua, Avenida, etc.'}),
             'endereco': forms.TextInput(attrs={'class': 'form-control'}),
             'numero': forms.TextInput(attrs={'class': 'form-control'}),
             'complemento': forms.TextInput(attrs={'class': 'form-control'}),
@@ -138,37 +135,26 @@ class ClienteForm(forms.ModelForm):
                                ]]),
             'cep': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '00000-000'}),
             
-            # Campos de contato
-            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            
-            # Dados fiscais
-            'cpf_cnpj': forms.TextInput(attrs={'class': 'form-control'}),
-            'tipo_documento': forms.Select(attrs={'class': 'form-select'}),
-            'nome_razao_social': forms.TextInput(attrs={'class': 'form-control'}),
-            'inscricao_estadual': forms.TextInput(attrs={'class': 'form-control'}),
-            'inscricao_municipal': forms.TextInput(attrs={'class': 'form-control'}),
-            
-            # Informações da Receita
-            'situacao_cadastral': forms.TextInput(attrs={'class': 'form-control'}),
-            'data_situacao_cadastral': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            # ===== RECEITA FEDERAL =====
             'cnae_principal': forms.TextInput(attrs={'class': 'form-control'}),
             'cnae_descricao': forms.TextInput(attrs={'class': 'form-control'}),
             'porte_empresa': forms.TextInput(attrs={'class': 'form-control'}),
             'natureza_juridica': forms.TextInput(attrs={'class': 'form-control'}),
             'data_abertura': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'data_ultima_verificacao': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'data_ultima_verificacao': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'opcao_pelo_simples': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'opcao_pelo_mei': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             
-            # Dados comerciais
+            # ===== INFORMAÇÕES COMERCIAIS =====
             'codigo_loja': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
             'codigo_vendedor': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
             'nome_vendedor': forms.TextInput(attrs={'class': 'form-control'}),
-            'data_cadastro': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'data_cadastro': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'data_ultima_compra': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             
-            # Outros
+            # ===== CONTATO =====
+            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'observacoes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
@@ -182,7 +168,7 @@ class ClienteForm(forms.ModelForm):
         
         # Se for uma nova instância (sem ID), preencher data de cadastro
         if not self.instance.pk and not self.data.get('data_cadastro'):
-            self.initial['data_cadastro'] = timezone.now().date()
+            self.initial['data_cadastro'] = timezone.now().strftime('%Y-%m-%dT%H:%M')
     
     def clean(self):
         cleaned_data = super().clean()
@@ -218,6 +204,7 @@ class ClienteForm(forms.ModelForm):
                 self.add_error('codigo_master', "Código master não existe no cadastro de clientes.")
         
         return cleaned_data
+
 class ClienteContatoForm(forms.ModelForm):
     class Meta:
         model = ClienteContato
@@ -236,6 +223,44 @@ class ClienteContatoForm(forms.ModelForm):
         whatsapp = self.cleaned_data['whatsapp']
         # Remove caracteres não numéricos
         return ''.join(filter(str.isdigit, whatsapp))
+
+class ClienteCnaeSecundarioForm(forms.ModelForm):
+    class Meta:
+        model = ClienteCnaeSecundario
+        fields = ['codigo_cnae', 'descricao_cnae', 'ordem']
+        widgets = {
+            'codigo_cnae': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Ex: 4761003',
+                'maxlength': '10'
+            }),
+            'descricao_cnae': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'placeholder': 'Descrição da atividade'
+            }),
+            'ordem': forms.NumberInput(attrs={
+                'class': 'form-control', 
+                'min': '1',
+                'value': '1'
+            }),
+        }
+    
+    def clean_codigo_cnae(self):
+        codigo = self.cleaned_data['codigo_cnae']
+        if not codigo.isdigit():
+            raise forms.ValidationError("Código CNAE deve conter apenas números")
+        return codigo
+
+# FormSet para múltiplos CNAEs (DEVE vir APÓS as classes de formulário)
+ClienteCnaeSecundarioFormSet = forms.inlineformset_factory(
+    Cliente, 
+    ClienteCnaeSecundario,
+    form=ClienteCnaeSecundarioForm,
+    extra=1,  # Quantos formulários vazios mostrar
+    can_delete=True,  # Permitir exclusão
+    min_num=0,  # Mínimo de CNAEs (opcional)
+    max_num=10,  # Máximo de CNAEs secundários
+)
 
 class LojaForm(forms.ModelForm):
     class Meta:

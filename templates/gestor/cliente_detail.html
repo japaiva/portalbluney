@@ -8,6 +8,15 @@
   <div class="card-header bg-light d-flex justify-content-between align-items-center">
     <h5 class="card-title mb-0">
       <i class="fas fa-user me-2"></i> {{ cliente.nome }}
+      {% if cliente.codigo_master %}
+        <small class="badge bg-secondary ms-2">
+          <i class="fas fa-link"></i> Coligado
+        </small>
+      {% else %}
+        <small class="badge bg-primary ms-2">
+          <i class="fas fa-crown"></i> Principal
+        </small>
+      {% endif %}
     </h5>
     <div>
       {% if perms.core.change_cliente %}
@@ -40,11 +49,13 @@
         <!-- Informações Gerais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
-            <h6 class="card-title mb-0">Informações Gerais</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-info-circle me-2"></i>Informações Gerais
+            </h6>
           </div>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Código:</strong> {{ cliente.codigo }}</li>
+              <li class="list-group-item"><strong>Código:</strong> <code>{{ cliente.codigo }}</code></li>
               <li class="list-group-item"><strong>Nome:</strong> {{ cliente.nome }}</li>
               {% if cliente.nome_fantasia %}
               <li class="list-group-item"><strong>Nome Fantasia:</strong> {{ cliente.nome_fantasia }}</li>
@@ -52,8 +63,8 @@
               {% if cliente.codigo_master %}
               <li class="list-group-item">
                 <strong>Cliente Master:</strong> 
-                <a href="{% url 'gestor:cliente_detail_by_codigo' cliente.codigo_master %}">
-                  {{ cliente.codigo_master }} {% if cliente_master %}- {{ cliente_master.nome }}{% endif %}
+                <a href="{% url 'gestor:cliente_detail_by_codigo' cliente.codigo_master %}" class="text-decoration-none">
+                  <code>{{ cliente.codigo_master }}</code> {% if cliente_master %}- {{ cliente_master.nome }}{% endif %}
                 </a>
               </li>
               {% endif %}
@@ -74,12 +85,17 @@
         <!-- Dados Fiscais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
-            <h6 class="card-title mb-0">Dados Fiscais</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-file-invoice me-2"></i>Dados Fiscais
+            </h6>
           </div>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush">
               {% if cliente.cpf_cnpj %}
-              <li class="list-group-item"><strong>{{ cliente.get_tipo_documento_display|default:"CPF/CNPJ" }}:</strong> {{ cliente.cpf_cnpj }}</li>
+              <li class="list-group-item">
+                <strong>{{ cliente.get_tipo_documento_display|default:"CPF/CNPJ" }}:</strong> 
+                <span class="badge bg-primary">{{ cliente.cpf_cnpj }}</span>
+              </li>
               {% endif %}
               {% if cliente.nome_razao_social %}
               <li class="list-group-item"><strong>Razão Social:</strong> {{ cliente.nome_razao_social }}</li>
@@ -91,10 +107,18 @@
               <li class="list-group-item"><strong>Inscrição Municipal:</strong> {{ cliente.inscricao_municipal }}</li>
               {% endif %}
               {% if cliente.situacao_cadastral %}
-              <li class="list-group-item"><strong>Situação Cadastral:</strong> {{ cliente.situacao_cadastral }}</li>
-              {% endif %}
-              {% if cliente.cnae_principal %}
-              <li class="list-group-item"><strong>CNAE:</strong> {{ cliente.cnae_principal }} {% if cliente.cnae_descricao %}- {{ cliente.cnae_descricao }}{% endif %}</li>
+              <li class="list-group-item">
+                <strong>Situação Cadastral:</strong> 
+                <span class="badge {% if cliente.situacao_cadastral == 'ATIVA' or cliente.situacao_cadastral == '2' %}bg-success{% else %}bg-warning{% endif %}">
+                  {{ cliente.situacao_cadastral }}
+                </span>
+                {% if cliente.data_situacao_cadastral %}
+                  <br><small class="text-muted">Data: {{ cliente.data_situacao_cadastral|date:"d/m/Y" }}</small>
+                {% endif %}
+                {% if cliente.motivo_situacao_cadastral %}
+                  <br><small class="text-muted">Motivo: {{ cliente.motivo_situacao_cadastral }}</small>
+                {% endif %}
+              </li>
               {% endif %}
               {% if cliente.porte_empresa %}
               <li class="list-group-item"><strong>Porte:</strong> {{ cliente.porte_empresa }}</li>
@@ -107,10 +131,58 @@
               {% endif %}
               <li class="list-group-item">
                 <strong>Regime Tributário:</strong>
-                {% if cliente.opcao_pelo_simples %}Simples Nacional{% elif cliente.opcao_pelo_mei %}MEI{% else %}Normal{% endif %}
+                {% if cliente.opcao_pelo_mei %}
+                  <span class="badge bg-info">MEI</span>
+                {% elif cliente.opcao_pelo_simples %}
+                  <span class="badge bg-success">Simples Nacional</span>
+                {% else %}
+                  <span class="badge bg-secondary">Normal</span>
+                {% endif %}
               </li>
               {% if cliente.data_ultima_verificacao %}
               <li class="list-group-item"><strong>Última Verificação:</strong> {{ cliente.data_ultima_verificacao|date:"d/m/Y H:i" }}</li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- CNAEs -->
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">
+              <i class="fas fa-industry me-2"></i>Atividades Econômicas (CNAEs)
+            </h6>
+          </div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+              {% if cliente.cnae_principal %}
+              <li class="list-group-item">
+                <strong>CNAE Principal:</strong><br>
+                <span class="badge bg-primary me-2">{{ cliente.cnae_principal }}</span>
+                {{ cliente.cnae_descricao|default:"Descrição não disponível" }}
+              </li>
+              {% endif %}
+              
+              {% if cnaes_secundarios %}
+              <li class="list-group-item">
+                <strong>CNAEs Secundários ({{ cnaes_secundarios.count }}):</strong>
+                <div class="mt-2">
+                  {% for cnae in cnaes_secundarios %}
+                    <div class="mb-2">
+                      <span class="badge bg-secondary me-2">{{ cnae.codigo_cnae }}</span>
+                      <small>{{ cnae.descricao_cnae }}</small>
+                    </div>
+                  {% endfor %}
+                </div>
+              </li>
+              {% elif cliente.cnae_principal %}
+              <li class="list-group-item">
+                <small class="text-muted">Nenhum CNAE secundário cadastrado</small>
+              </li>
+              {% else %}
+              <li class="list-group-item">
+                <small class="text-muted">Nenhum CNAE cadastrado</small>
+              </li>
               {% endif %}
             </ul>
           </div>
@@ -119,7 +191,9 @@
         <!-- Endereço -->
         <div class="card mb-3">
           <div class="card-header bg-light">
-            <h6 class="card-title mb-0">Endereço</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-map-marker-alt me-2"></i>Endereço
+            </h6>
           </div>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush">
@@ -140,15 +214,24 @@
         <!-- Dados Comerciais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
-            <h6 class="card-title mb-0">Dados Comerciais</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-shopping-cart me-2"></i>Dados Comerciais
+            </h6>
           </div>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush">
               {% if cliente.codigo_loja %}
-              <li class="list-group-item"><strong>Loja:</strong> {{ cliente.codigo_loja }}</li>
+              <li class="list-group-item">
+                <strong>Loja:</strong> 
+                <span class="badge bg-info">{{ cliente.codigo_loja }}</span>
+              </li>
               {% endif %}
               {% if cliente.codigo_vendedor %}
-              <li class="list-group-item"><strong>Vendedor:</strong> {{ cliente.codigo_vendedor }} {% if cliente.nome_vendedor %}- {{ cliente.nome_vendedor }}{% endif %}</li>
+              <li class="list-group-item">
+                <strong>Vendedor:</strong> 
+                <span class="badge bg-success">{{ cliente.codigo_vendedor }}</span>
+                {% if cliente.nome_vendedor %} - {{ cliente.nome_vendedor }}{% endif %}
+              </li>
               {% endif %}
               {% if cliente.telefone %}
               <li class="list-group-item"><strong>Telefone:</strong> {{ cliente.telefone }}</li>
@@ -163,7 +246,9 @@
         {% if cliente.observacoes %}
         <div class="card mb-3">
           <div class="card-header bg-light">
-            <h6 class="card-title mb-0">Observações</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-sticky-note me-2"></i>Observações
+            </h6>
           </div>
           <div class="card-body">
             {{ cliente.observacoes|linebreaksbr }}
@@ -177,7 +262,9 @@
         <!-- Clientes Associados -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h6 class="card-title mb-0">Clientes Associados</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-sitemap me-2"></i>Clientes Associados
+            </h6>
             {% if perms.core.add_cliente %}
             <a href="{% url 'gestor:cliente_create' %}?codigo_master={{ cliente.codigo }}" class="btn btn-primary btn-sm">
               <i class="fas fa-plus me-1"></i> Novo Sub-Cliente
@@ -199,7 +286,7 @@
                   <tbody>
                     {% for cliente_associado in clientes_associados %}
                       <tr>
-                        <td>{{ cliente_associado.codigo }}</td>
+                        <td><code>{{ cliente_associado.codigo }}</code></td>
                         <td>{{ cliente_associado.nome }}</td>
                         <td class="text-center">
                           <span class="badge {% if cliente_associado.ativo %}bg-success{% else %}bg-danger{% endif %}">
@@ -207,17 +294,19 @@
                           </span>
                         </td>
                         <td class="text-end">
-                          <a href="{% url 'gestor:cliente_detail' cliente_associado.id %}" class="btn btn-sm btn-outline-secondary me-1">
-                            <i class="fas fa-eye"></i>
-                          </a>
-                          {% if perms.core.change_cliente %}
-                          <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary me-1">
-                            <i class="fas fa-edit"></i>
-                          </a>
-                          <a href="{% url 'gestor:cliente_toggle_status' cliente_associado.id %}" class="btn btn-sm {% if cliente_associado.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
-                            <i class="fas {% if cliente_associado.ativo %}fa-ban{% else %}fa-check-circle{% endif %}"></i>
-                          </a>
-                          {% endif %}
+                          <div class="btn-group" role="group">
+                            <a href="{% url 'gestor:cliente_detail' cliente_associado.id %}" class="btn btn-sm btn-outline-secondary">
+                              <i class="fas fa-eye"></i>
+                            </a>
+                            {% if perms.core.change_cliente %}
+                            <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary">
+                              <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'gestor:cliente_toggle_status' cliente_associado.id %}" class="btn btn-sm {% if cliente_associado.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
+                              <i class="fas {% if cliente_associado.ativo %}fa-ban{% else %}fa-check-circle{% endif %}"></i>
+                            </a>
+                            {% endif %}
+                          </div>
                         </td>
                       </tr>
                     {% endfor %}
@@ -226,6 +315,7 @@
               </div>
             {% else %}
               <div class="text-center py-3 text-muted">
+                <i class="fas fa-sitemap fa-2x mb-2 d-block"></i>
                 <p class="mb-0">Nenhum cliente associado.</p>
               </div>
             {% endif %}
@@ -235,7 +325,9 @@
         <!-- Todos os Contatos (incluindo contatos dos sub-clientes) -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h6 class="card-title mb-0">Contatos</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-address-book me-2"></i>Contatos
+            </h6>
             {% if perms.core.add_clientecontato %}
             <a href="{% url 'gestor:cliente_contato_create' cliente.id %}" class="btn btn-primary btn-sm">
               <i class="fas fa-plus me-1"></i> Novo Contato
@@ -247,18 +339,26 @@
               <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="todos-contatos-tab" data-bs-toggle="tab" 
                         data-bs-target="#todos-contatos" type="button" role="tab" 
-                        aria-controls="todos-contatos" aria-selected="true">Todos</button>
+                        aria-controls="todos-contatos" aria-selected="true">
+                  Todos ({{ todos_contatos|length }})
+                </button>
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="principal-contatos-tab" data-bs-toggle="tab" 
                         data-bs-target="#principal-contatos" type="button" role="tab" 
-                        aria-controls="principal-contatos" aria-selected="false">Principal</button>
+                        aria-controls="principal-contatos" aria-selected="false">
+                  Principal ({{ contatos|length }})
+                </button>
               </li>
+              {% if contatos_sub_clientes %}
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="sub-contatos-tab" data-bs-toggle="tab" 
                         data-bs-target="#sub-contatos" type="button" role="tab" 
-                        aria-controls="sub-contatos" aria-selected="false">Sub-clientes</button>
+                        aria-controls="sub-contatos" aria-selected="false">
+                  Sub-clientes ({{ contatos_sub_clientes|length }})
+                </button>
               </li>
+              {% endif %}
             </ul>
             <div class="tab-content" id="contatosTabContent">
               <!-- Tab Todos os Contatos -->
@@ -270,7 +370,6 @@
                         <tr>
                           <th>Nome</th>
                           <th>WhatsApp</th>
-                          <th>Cargo</th>
                           <th>Cliente</th>
                           <th class="text-center">Principal</th>
                           <th class="text-end">Ações</th>
@@ -280,12 +379,15 @@
                         {% for contato in todos_contatos %}
                           <tr{% if contato.cliente.id != cliente.id %} class="table-light"{% endif %}>
                             <td>{{ contato.nome|default:"Não informado" }}</td>
-                            <td>{{ contato.whatsapp }}</td>
-                            <td>{{ contato.cargo|default:"-" }}</td>
+                            <td>
+                              <span class="badge bg-success">
+                                <i class="fab fa-whatsapp me-1"></i>{{ contato.whatsapp }}
+                              </span>
+                            </td>
                             <td>
                               {% if contato.cliente.id != cliente.id %}
-                                <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}">
-                                  {{ contato.cliente.nome }}
+                                <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="text-decoration-none">
+                                  <code>{{ contato.cliente.codigo }}</code> - {{ contato.cliente.nome|truncatechars:20 }}
                                 </a>
                               {% else %}
                                 <span class="badge bg-primary">Principal</span>
@@ -293,17 +395,19 @@
                             </td>
                             <td class="text-center">
                               {% if contato.principal %}
-                                <span class="badge bg-success"><i class="fas fa-check"></i></span>
+                                <span class="badge bg-warning"><i class="fas fa-star"></i></span>
                               {% endif %}
                             </td>
                             <td class="text-end">
                               {% if contato.cliente.id == cliente.id and perms.core.change_clientecontato %}
-                                <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary me-1">
-                                  <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
-                                  <i class="fas fa-trash"></i>
-                                </a>
+                                <div class="btn-group" role="group">
+                                  <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                  </a>
+                                  <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                  </a>
+                                </div>
                               {% endif %}
                             </td>
                           </tr>
@@ -313,6 +417,7 @@
                   </div>
                 {% else %}
                   <div class="text-center py-3 text-muted">
+                    <i class="fas fa-address-book fa-2x mb-2 d-block"></i>
                     <p class="mb-0">Nenhum contato cadastrado.</p>
                   </div>
                 {% endif %}
@@ -336,21 +441,27 @@
                         {% for contato in contatos %}
                           <tr>
                             <td>{{ contato.nome|default:"Não informado" }}</td>
-                            <td>{{ contato.whatsapp }}</td>
+                            <td>
+                              <span class="badge bg-success">
+                                <i class="fab fa-whatsapp me-1"></i>{{ contato.whatsapp }}
+                              </span>
+                            </td>
                             <td>{{ contato.cargo|default:"-" }}</td>
                             <td class="text-center">
                               {% if contato.principal %}
-                                <span class="badge bg-success"><i class="fas fa-check"></i></span>
+                                <span class="badge bg-warning"><i class="fas fa-star"></i></span>
                               {% endif %}
                             </td>
                             <td class="text-end">
                               {% if perms.core.change_clientecontato %}
-                                <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary me-1">
-                                  <i class="fas fa-edit"></i>
-                                </a>
-                                <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
-                                  <i class="fas fa-trash"></i>
-                                </a>
+                                <div class="btn-group" role="group">
+                                  <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                  </a>
+                                  <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                  </a>
+                                </div>
                               {% endif %}
                             </td>
                           </tr>
@@ -360,58 +471,57 @@
                   </div>
                 {% else %}
                   <div class="text-center py-3 text-muted">
+                    <i class="fas fa-address-book fa-2x mb-2 d-block"></i>
                     <p class="mb-0">Nenhum contato cadastrado para este cliente.</p>
                   </div>
                 {% endif %}
               </div>
               
               <!-- Tab Contatos dos Sub-clientes -->
+              {% if contatos_sub_clientes %}
               <div class="tab-pane fade" id="sub-contatos" role="tabpanel" aria-labelledby="sub-contatos-tab">
-                {% if contatos_sub_clientes %}
-                  <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                      <thead class="table-light">
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Nome</th>
+                        <th>WhatsApp</th>
+                        <th>Cliente</th>
+                        <th class="text-center">Principal</th>
+                        <th class="text-end">Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for contato in contatos_sub_clientes %}
                         <tr>
-                          <th>Nome</th>
-                          <th>WhatsApp</th>
-                          <th>Cargo</th>
-                          <th>Cliente</th>
-                          <th class="text-center">Principal</th>
-                          <th class="text-end">Ações</th>
+                          <td>{{ contato.nome|default:"Não informado" }}</td>
+                          <td>
+                            <span class="badge bg-success">
+                              <i class="fab fa-whatsapp me-1"></i>{{ contato.whatsapp }}
+                            </span>
+                          </td>
+                          <td>
+                            <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="text-decoration-none">
+                              <code>{{ contato.cliente.codigo }}</code> - {{ contato.cliente.nome|truncatechars:15 }}
+                            </a>
+                          </td>
+                          <td class="text-center">
+                            {% if contato.principal %}
+                              <span class="badge bg-warning"><i class="fas fa-star"></i></span>
+                            {% endif %}
+                          </td>
+                          <td class="text-end">
+                            <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="btn btn-sm btn-outline-secondary">
+                              <i class="fas fa-eye"></i>
+                            </a>
+                          </td>
                         </tr>
-                      </thead>
-                      <tbody>
-                        {% for contato in contatos_sub_clientes %}
-                          <tr>
-                            <td>{{ contato.nome|default:"Não informado" }}</td>
-                            <td>{{ contato.whatsapp }}</td>
-                            <td>{{ contato.cargo|default:"-" }}</td>
-                            <td>
-                              <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}">
-                                {{ contato.cliente.nome }}
-                              </a>
-                            </td>
-                            <td class="text-center">
-                              {% if contato.principal %}
-                                <span class="badge bg-success"><i class="fas fa-check"></i></span>
-                              {% endif %}
-                            </td>
-                            <td class="text-end">
-                              <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="btn btn-sm btn-outline-secondary">
-                                <i class="fas fa-eye"></i>
-                              </a>
-                            </td>
-                          </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                  </div>
-                {% else %}
-                  <div class="text-center py-3 text-muted">
-                    <p class="mb-0">Nenhum contato cadastrado para os sub-clientes.</p>
-                  </div>
-                {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
               </div>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -419,7 +529,9 @@
         <!-- Histórico de Vendas (BI) -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
-            <h6 class="card-title mb-0">Histórico de Vendas</h6>
+            <h6 class="card-title mb-0">
+              <i class="fas fa-chart-line me-2"></i>Histórico de Vendas
+            </h6>
             <a href="{% url 'gestor:consultar_bi' cliente.codigo %}" class="btn btn-outline-info btn-sm">
               <i class="fas fa-chart-bar me-1"></i> Ver Completo
             </a>
@@ -439,7 +551,7 @@
                     {% for venda in vendas_recentes %}
                       <tr>
                         <td>{{ venda.data_venda|date:"d/m/Y" }}</td>
-                        <td>{{ venda.produto.descricao }}</td>
+                        <td>{{ venda.produto.descricao|truncatechars:30 }}</td>
                         <td class="text-end">R$ {{ venda.valor_total|floatformat:2 }}</td>
                       </tr>
                     {% endfor %}
@@ -454,6 +566,7 @@
               </div>
             {% else %}
               <div class="text-center py-3 text-muted">
+                <i class="fas fa-chart-line fa-2x mb-2 d-block"></i>
                 <p class="mb-0">Nenhum registro de venda nos últimos 90 dias.</p>
               </div>
             {% endif %}
@@ -465,68 +578,14 @@
   </div>
 </div>
 
-<!-- Modal de Consulta BI -->
-<div class="modal fade" id="modalConsultaBI" tabindex="-1" aria-labelledby="modalConsultaBILabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalConsultaBILabel">Consulta BI - {{ cliente.nome }}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Carregando...</span>
-          </div>
-        </div>
-        <div id="conteudoBI" class="mt-3"></div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 {% block extra_js %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Script para consulta de BI via modal
-    const btnConsultarBI = document.querySelectorAll('.btn-consultar-bi');
-    const modalConsultaBI = document.getElementById('modalConsultaBI');
-    const conteudoBI = document.getElementById('conteudoBI');
-    
-    if (btnConsultarBI.length > 0 && modalConsultaBI) {
-      btnConsultarBI.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const url = this.getAttribute('href');
-          const modal = new bootstrap.Modal(modalConsultaBI);
-          
-          modal.show();
-          
-          // Limpar conteúdo anterior e mostrar loading
-          conteudoBI.innerHTML = '';
-          const loading = document.querySelector('.modal-body .spinner-border').parentNode;
-          loading.style.display = 'flex';
-          
-          // Fazer requisição AJAX
-          fetch(url + '?format=html')
-            .then(response => response.text())
-            .then(html => {
-              // Esconder loading e mostrar conteúdo
-              loading.style.display = 'none';
-              conteudoBI.innerHTML = html;
-            })
-            .catch(error => {
-              console.error('Erro na consulta BI:', error);
-              loading.style.display = 'none';
-              conteudoBI.innerHTML = '<div class="alert alert-danger">Erro ao carregar dados do BI. Tente novamente mais tarde.</div>';
-            });
-        });
-      });
-    }
+    // Inicializar tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
   });
 </script>
 {% endblock %}

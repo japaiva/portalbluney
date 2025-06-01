@@ -115,3 +115,110 @@ Teste de inicialização de log - diagnostic.log
 Teste de inicialização de log - diagnostic.log
 Teste de inicialização de log - diagnostic.log
 Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+2025-06-01 16:16:53,662 - root - INFO - Teste de escrita em diagnostic.log.
+Teste de inicialização de log - diagnostic.log
+2025-06-01 16:16:53,897 - django.setup - INFO - Teste de log durante inicialização do Django
+2025-06-01 16:16:54,497 - __main__ - INFO - Iniciando script de importação de clientes.
+2025-06-01 16:16:55,270 - __main__ - INFO - Base de dados zerada com sucesso (apenas para ambiente de desenvolvimento/teste).
+2025-06-01 16:16:55,290 - __main__ - CRITICAL - Erro fatal: Arquivo não encontrado: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/importar_clientes.py", line 177, in run_import
+    receita_df = pd.read_csv('receita.xlsx - Planilha1.csv', dtype=str, keep_default_na=False)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+2025-06-01 16:16:55,297 - __main__ - INFO - Script de importação de clientes finalizado.
+2025-06-01 16:17:26,972 - root - INFO - Teste de escrita em diagnostic.log.
+Teste de inicialização de log - diagnostic.log
+2025-06-01 16:17:27,201 - django.setup - INFO - Teste de log durante inicialização do Django
+2025-06-01 16:17:27,801 - __main__ - INFO - Iniciando script de importação de clientes.
+2025-06-01 16:17:28,122 - __main__ - INFO - Base de dados zerada com sucesso (apenas para ambiente de desenvolvimento/teste).
+2025-06-01 16:17:28,136 - __main__ - CRITICAL - Erro fatal: Arquivo não encontrado: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/importar_clientes.py", line 177, in run_import
+    receita_df = pd.read_csv('receita.xlsx - Planilha1.csv', dtype=str, keep_default_na=False)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: 'receita.xlsx - Planilha1.csv'
+2025-06-01 16:17:28,140 - __main__ - INFO - Script de importação de clientes finalizado.
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log
+Teste de inicialização de log - diagnostic.log

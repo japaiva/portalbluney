@@ -132,10 +132,7 @@ class Produto(models.Model):
         verbose_name_plural = 'Produtos'
         ordering = ['codigo']
 
-
-from django.db import models
-from django.utils import timezone
-
+# ===== MODELO CLIENTE CORRIGIDO =====
 class Cliente(models.Model):
     # Campos de identificação
     codigo = models.CharField(max_length=20, unique=True, verbose_name="Código")
@@ -219,7 +216,7 @@ class Cliente(models.Model):
     ddd_telefone_2 = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefone 2")
     ddd_fax = models.CharField(max_length=20, blank=True, null=True, verbose_name="Fax")
     email_receita = models.EmailField(blank=True, null=True, verbose_name="Email Cadastrado na Receita")
-    
+
     def __str__(self):
         return f"{self.codigo} - {self.nome}"
     
@@ -238,9 +235,52 @@ class Cliente(models.Model):
         if self.is_cliente_principal():
             return Cliente.objects.filter(codigo_master=self.codigo).order_by('nome')
         return Cliente.objects.none()
+    
+    def get_cnaes_secundarios_resumo(self):
+        """Retorna um resumo dos CNAEs secundários para listagens"""
+        cnaes = self.cnaes_secundarios.all()[:3]  # Apenas os 3 primeiros
+        total = self.cnaes_secundarios.count()
+        
+        if not cnaes:
+            return "Nenhum CNAE secundário"
+        
+        resumo = ", ".join([cnae.codigo_cnae for cnae in cnaes])
+        if total > 3:
+            resumo += f" (+{total-3} mais)"
+        
+        return resumo
+    
+    def get_total_cnaes(self):
+        """Retorna total de CNAEs (principal + secundários)"""
+        total = self.cnaes_secundarios.count()
+        if self.cnae_principal:
+            total += 1
+        return total
+    
+    def get_todas_atividades(self):
+        """Retorna lista completa de atividades (CNAE principal + secundários)"""
+        atividades = []
+        
+        # CNAE Principal
+        if self.cnae_principal:
+            atividades.append({
+                'codigo': self.cnae_principal,
+                'descricao': self.cnae_descricao or 'Descrição não disponível',
+                'tipo': 'principal'
+            })
+        
+        # CNAEs Secundários
+        for cnae in self.cnaes_secundarios.all():
+            atividades.append({
+                'codigo': cnae.codigo_cnae,
+                'descricao': cnae.descricao_cnae,
+                'tipo': 'secundario'
+            })
+        
+        return atividades
 
+# ===== OUTROS MODELOS =====
 
-# Modelo ClienteContato atualizado
 class ClienteContato(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='contatos', verbose_name="Cliente")
     codigo = models.CharField(max_length=20, verbose_name="Código")
@@ -279,7 +319,6 @@ class ClienteContato(models.Model):
         verbose_name_plural = "Contatos dos Clientes"
         ordering = ["-principal", "nome"]
 
-# RegistroBI (para armazenar dados do BI)
 class RegistroBI(models.Model):
     # Campos de relacionamento
     loja = models.ForeignKey(Loja, on_delete=models.PROTECT, verbose_name="Loja")
@@ -324,7 +363,6 @@ class RegistroBI(models.Model):
     def __str__(self):
         return f"Venda {self.numero_nf} - {self.data_venda} - {self.cliente.nome}"
 
-# Modelo para registrar sincronizações com sistemas externos
 class LogSincronizacao(models.Model):
     TIPO_CHOICES = [
         ('bi', 'BI SysFat'),
@@ -351,3 +389,70 @@ class LogSincronizacao(models.Model):
         verbose_name = "Log de Sincronização"
         verbose_name_plural = "Logs de Sincronização"
         ordering = ["-data_inicio"]
+
+# ===== MODELO CNAE SECUNDÁRIO =====
+
+class ClienteCnaeSecundario(models.Model):
+    """
+    Modelo para armazenar CNAEs secundários dos clientes da Receita Federal
+    """
+    cliente = models.ForeignKey(
+        Cliente, 
+        on_delete=models.CASCADE, 
+        related_name='cnaes_secundarios', 
+        verbose_name="Cliente"
+    )
+    codigo_cnae = models.CharField(
+        max_length=10, 
+        verbose_name="Código CNAE",
+        help_text="Código CNAE da Receita Federal (ex: 4761003)"
+    )
+    descricao_cnae = models.CharField(
+        max_length=200, 
+        verbose_name="Descrição do CNAE",
+        help_text="Descrição oficial da atividade econômica"
+    )
+    ordem = models.PositiveSmallIntegerField(
+        default=1, 
+        verbose_name="Ordem", 
+        help_text="Ordem do CNAE secundário (1, 2, 3...)"
+    )
+    data_criacao = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name="Data de Criação"
+    )
+    
+    class Meta:
+        db_table = 'cliente_cnaes_secundarios'
+        verbose_name = "CNAE Secundário do Cliente"
+        verbose_name_plural = "CNAEs Secundários dos Clientes"
+        ordering = ['cliente', 'ordem']
+        # Usar constraints mais moderno ao invés de unique_together
+        constraints = [
+            models.UniqueConstraint(
+                fields=['cliente', 'codigo_cnae'], 
+                name='unique_cliente_cnae'
+            )
+        ]
+        indexes = [
+            models.Index(fields=['cliente', 'ordem'], name='idx_cliente_cnae_ordem'),
+            models.Index(fields=['codigo_cnae'], name='idx_cnae_codigo'),
+        ]
+    
+    def __str__(self):
+        return f"{self.cliente.codigo} - {self.codigo_cnae}: {self.descricao_cnae[:50]}"
+    
+    def clean(self):
+        """Validação personalizada"""
+        from django.core.exceptions import ValidationError
+        
+        # Validar formato do CNAE (deve ser numérico)
+        if not self.codigo_cnae.isdigit():
+            raise ValidationError({
+                'codigo_cnae': 'Código CNAE deve conter apenas números'
+            })
+    
+    def save(self, *args, **kwargs):
+        """Override save para limpeza automática"""
+        self.full_clean()  # Chama clean() automaticamente
+        super().save(*args, **kwargs)

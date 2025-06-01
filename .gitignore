@@ -61,6 +61,8 @@ Thumbs.db
 *.zip
 *.tar.gz
 
+docker-compose-yml
+
 # Project-specific ignored files and directories
 # Add any specific paths or files unique to your project here
 .env

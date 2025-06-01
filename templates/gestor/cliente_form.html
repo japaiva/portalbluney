@@ -46,7 +46,7 @@
               {% endif %}
             </div>
             
-            <div class="col-md-9">
+            <div class="col-md-6">
               <label for="{{ form.nome.id_for_label }}" class="form-label">Nome*</label>
               {{ form.nome }}
               {% if form.nome.errors %}
@@ -56,7 +56,7 @@
               {% endif %}
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-3">
               <label for="{{ form.codigo_master.id_for_label }}" class="form-label">Código Master</label>
               <div class="input-group">
                 {{ form.codigo_master }}
@@ -75,7 +75,7 @@
               <div id="nomeClienteMaster" class="form-text fw-bold text-primary mt-1"></div>
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label for="{{ form.nome_fantasia.id_for_label }}" class="form-label">Nome Fantasia</label>
               {{ form.nome_fantasia }}
               {% if form.nome_fantasia.errors %}
@@ -110,7 +110,12 @@
             
             <div class="col-md-4">
               <label for="{{ form.cpf_cnpj.id_for_label }}" class="form-label">CPF/CNPJ</label>
-              {{ form.cpf_cnpj }}
+              <div class="input-group">
+                {{ form.cpf_cnpj }}
+                <button type="button" class="btn btn-outline-primary" id="consultarReceita">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+              </div>
               {% if form.cpf_cnpj.errors %}
                 <div class="text-danger small mt-1">
                   {% for error in form.cpf_cnpj.errors %}{{ error }}{% endfor %}
@@ -256,14 +261,11 @@
 
       <!-- Bloco de Informações da Receita Federal -->
       <div class="card shadow mt-4">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <div class="card-header bg-light">
           <h5 class="card-title mb-0">
             <i class="fas fa-landmark me-2"></i>
             Informações da Receita Federal
           </h5>
-          <button type="button" class="btn btn-sm btn-primary" id="consultarReceita">
-            <i class="fas fa-sync-alt me-1"></i> Consultar Receita
-          </button>
         </div>
         <div class="card-body">
           <div class="row g-3">
@@ -317,8 +319,8 @@
               {% endif %}
             </div>
             
-            <div class="col-md-4">
-              <label for="{{ form.data_ultima_verificacao.id_for_label }}" class="form-label">Data da Consulta</label>
+            <div class="col-md-6">
+              <label for="{{ form.data_ultima_verificacao.id_for_label }}" class="form-label">Data da Última Consulta</label>
               {{ form.data_ultima_verificacao }}
               {% if form.data_ultima_verificacao.errors %}
                 <div class="text-danger small mt-1">
@@ -327,7 +329,7 @@
               {% endif %}
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-check form-switch mt-4">
                 {{ form.opcao_pelo_simples }}
                 <label class="form-check-label" for="{{ form.opcao_pelo_simples.id_for_label }}">Optante pelo Simples</label>
@@ -339,7 +341,7 @@
               {% endif %}
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-check form-switch mt-4">
                 {{ form.opcao_pelo_mei }}
                 <label class="form-check-label" for="{{ form.opcao_pelo_mei.id_for_label }}">Optante pelo MEI</label>
@@ -353,6 +355,124 @@
           </div>
         </div>
       </div>
+
+
+      <!-- Adicionar esta seção APÓS o bloco "Informações da Receita Federal" -->
+
+      <!-- Bloco de CNAEs Secundários -->
+      <div class="card shadow mt-4">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0">
+            <i class="fas fa-industry me-2"></i>
+            CNAEs Secundários
+          </h5>
+          <button type="button" class="btn btn-sm btn-success" id="adicionarCnae">
+            <i class="fas fa-plus me-1"></i> Adicionar CNAE
+          </button>
+        </div>
+        <div class="card-body">
+          <!-- Mostrar CNAE Principal como referência -->
+          <div class="alert alert-info mb-3">
+            <strong>CNAE Principal:</strong> 
+            <span id="cnae-principal-display">
+              {% if form.cnae_principal.value %}
+                {{ form.cnae_principal.value }} - {{ form.cnae_descricao.value|default:"" }}
+              {% else %}
+                Não informado
+              {% endif %}
+            </span>
+          </div>
+
+          <!-- FormSet Management Form (obrigatório para Django FormSets) -->
+          {{ cnaes_formset.management_form }}
+          
+          <!-- Container para CNAEs Secundários -->
+          <div id="cnaes-container">
+            {% for cnae_form in cnaes_formset %}
+              <div class="cnae-item border rounded p-3 mb-3" data-form-index="{{ forloop.counter0 }}">
+                <div class="row g-3">
+                  <div class="col-md-2">
+                    <label class="form-label">Ordem</label>
+                    {{ cnae_form.ordem }}
+                    {% if cnae_form.ordem.errors %}
+                      <div class="text-danger small">{{ cnae_form.ordem.errors.0 }}</div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="col-md-3">
+                    <label class="form-label">Código CNAE*</label>
+                    {{ cnae_form.codigo_cnae }}
+                    {% if cnae_form.codigo_cnae.errors %}
+                      <div class="text-danger small">{{ cnae_form.codigo_cnae.errors.0 }}</div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label class="form-label">Descrição*</label>
+                    {{ cnae_form.descricao_cnae }}
+                    {% if cnae_form.descricao_cnae.errors %}
+                      <div class="text-danger small">{{ cnae_form.descricao_cnae.errors.0 }}</div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="col-md-1 d-flex align-items-end">
+                    {% if cnae_form.instance.pk %}
+                      {{ cnae_form.DELETE }}
+                      <label for="{{ cnae_form.DELETE.id_for_label }}" class="btn btn-outline-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                      </label>
+                    {% else %}
+                      <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    {% endif %}
+                  </div>
+                </div>
+                
+                <!-- Hidden fields para o FormSet -->
+                {% for hidden in cnae_form.hidden_fields %}
+                  {{ hidden }}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+          
+          <!-- Template para novos CNAEs (hidden) -->
+          <div id="cnae-template" class="cnae-item border rounded p-3 mb-3 d-none">
+            <div class="row g-3">
+              <div class="col-md-2">
+                <label class="form-label">Ordem</label>
+                <input type="number" class="form-control" name="__prefix__-ordem" min="1" value="1">
+              </div>
+              
+              <div class="col-md-3">
+                <label class="form-label">Código CNAE*</label>
+                <input type="text" class="form-control" name="__prefix__-codigo_cnae" maxlength="10" placeholder="Ex: 4761003">
+              </div>
+              
+              <div class="col-md-6">
+                <label class="form-label">Descrição*</label>
+                <input type="text" class="form-control" name="__prefix__-descricao_cnae" placeholder="Descrição da atividade">
+              </div>
+              
+              <div class="col-md-1 d-flex align-items-end">
+                <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          {% if not cnaes_formset %}
+            <div class="text-muted text-center py-3">
+              <i class="fas fa-info-circle me-2"></i>
+              Nenhum CNAE secundário cadastrado. Use o botão "Adicionar CNAE" para incluir atividades secundárias.
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+
 
       <!-- Bloco de Informações Comerciais -->
       <div class="card shadow mt-4">
@@ -482,155 +602,331 @@
   </div>
 </div>
 
+{% endblock %}
+
 {% block extra_js %}
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Script para buscar cliente master pelo código
-    const btnBuscarMaster = document.getElementById('buscarMaster');
-    const codigoMasterInput = document.getElementById('{{ form.codigo_master.id_for_label }}');
-    const nomeClienteMaster = document.getElementById('nomeClienteMaster');
+document.addEventListener('DOMContentLoaded', function() {
+  // ===== VARIÁVEIS GLOBAIS =====
+  let formIndex = {{ cnaes_formset.total_form_count|default:0 }};
+  const maxForms = {{ cnaes_formset.max_num|default:10 }};
+  
+  // ===== FUNÇÕES DE GERENCIAMENTO DE CNAEs =====
+  
+  function updateTotalForms() {
+    const totalFormsInput = document.querySelector('input[name="cnaes-TOTAL_FORMS"]');
+    if (totalFormsInput) {
+      totalFormsInput.value = formIndex;
+    }
+  }
+  
+  function reorderCnaes() {
+    const container = document.getElementById('cnaes-container');
+    const forms = container.querySelectorAll('.cnae-item:not(.d-none)');
     
-    if (btnBuscarMaster && codigoMasterInput) {
-      btnBuscarMaster.addEventListener('click', function() {
-        const codigoMaster = codigoMasterInput.value.trim();
-        if (codigoMaster) {
-          fetch(`/gestor/api/cliente-por-codigo/${codigoMaster}/`)
-            .then(response => response.json())
-            .then(data => {
-              if (data.success) {
-                nomeClienteMaster.textContent = data.nome;
-              } else {
-                nomeClienteMaster.textContent = 'Cliente master não encontrado';
-              }
-            })
-            .catch(error => {
-              console.error('Erro ao buscar cliente master:', error);
-              nomeClienteMaster.textContent = 'Erro ao buscar cliente master';
-            });
-        } else {
-          nomeClienteMaster.textContent = '';
-        }
-      });
+    forms.forEach((form, index) => {
+      const ordemInput = form.querySelector('input[name$="-ordem"]');
+      if (ordemInput) {
+        ordemInput.value = index + 1;
+      }
+    });
+  }
+  
+  function removeCnae(formElement) {
+    if (confirm('Deseja remover este CNAE?')) {
+      formElement.remove();
+      formIndex--;
+      updateTotalForms();
+      reorderCnaes();
+    }
+  }
+  
+  function adicionarCnaeSecundario(codigo, descricao, ordem = null) {
+    if (formIndex >= maxForms) {
+      console.warn(`Máximo de ${maxForms} CNAEs atingido`);
+      return false;
     }
     
-    // Script para consultar dados na Receita Federal
-    const btnConsultarReceita = document.getElementById('consultarReceita');
-    const cpfCnpjInput = document.getElementById('{{ form.cpf_cnpj.id_for_label }}');
+    const container = document.getElementById('cnaes-container');
+    const template = document.getElementById('cnae-template');
+    const newForm = template.cloneNode(true);
     
-    if (btnConsultarReceita && cpfCnpjInput) {
-      btnConsultarReceita.addEventListener('click', function() {
-        const cpfCnpj = cpfCnpjInput.value.trim().replace(/[^\d]/g, ''); // Remove caracteres não numéricos
+    // Configurar novo formulário
+    newForm.classList.remove('d-none');
+    newForm.removeAttribute('id');
+    newForm.setAttribute('data-form-index', formIndex);
+    
+    // Atualizar nomes e valores dos campos
+    const inputs = newForm.querySelectorAll('input');
+    inputs.forEach(input => {
+      const name = input.getAttribute('name');
+      if (name) {
+        const newName = name.replace('__prefix__', `cnaes-${formIndex}`);
+        input.setAttribute('name', newName);
+        input.setAttribute('id', `id_cnaes-${formIndex}-${name.split('-')[1]}`);
         
-        if (cpfCnpj) {
-          // Mostrar loading
-          btnConsultarReceita.disabled = true;
-          btnConsultarReceita.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Consultando...';
-          
-          // Fazer requisição para API de consulta da Receita
-          fetch(`/gestor/api/consultar-receita/${cpfCnpj}/`)
-            .then(response => response.json())
-            .then(data => {
-              if (data.success) {
-                // Preencher campos com os dados retornados
-                if (data.razaoSocial) document.getElementById('{{ form.nome_razao_social.id_for_label }}').value = data.razaoSocial;
-                if (data.nomeFantasia) document.getElementById('{{ form.nome_fantasia.id_for_label }}').value = data.nomeFantasia;
-                if (data.situacaoCadastral) document.getElementById('{{ form.situacao_cadastral.id_for_label }}').value = data.situacaoCadastral;
-                if (data.cnae) document.getElementById('{{ form.cnae_principal.id_for_label }}').value = data.cnae;
-                if (data.cnaeDescricao) document.getElementById('{{ form.cnae_descricao.id_for_label }}').value = data.cnaeDescricao;
-                if (data.naturezaJuridica) document.getElementById('{{ form.natureza_juridica.id_for_label }}').value = data.naturezaJuridica;
-                if (data.porteEmpresa) document.getElementById('{{ form.porte_empresa.id_for_label }}').value = data.porteEmpresa;
-                if (data.dataAbertura) document.getElementById('{{ form.data_abertura.id_for_label }}').value = data.dataAbertura;
-                
-                // Atualizar data da consulta
-                document.getElementById('{{ form.data_ultima_verificacao.id_for_label }}').value = new Date().toISOString().split('T')[0];
-                
-                // Preencher endereço se disponível
-                if (data.endereco) {
-                  if (data.tipoLogradouro) document.getElementById('{{ form.tipo_logradouro.id_for_label }}').value = data.tipoLogradouro;
-                  if (data.logradouro) document.getElementById('{{ form.endereco.id_for_label }}').value = data.logradouro;
-                  if (data.numero) document.getElementById('{{ form.numero.id_for_label }}').value = data.numero;
-                  if (data.complemento) document.getElementById('{{ form.complemento.id_for_label }}').value = data.complemento;
-                  if (data.bairro) document.getElementById('{{ form.bairro.id_for_label }}').value = data.bairro;
-                  if (data.municipio) document.getElementById('{{ form.cidade.id_for_label }}').value = data.municipio;
-                  if (data.uf) document.getElementById('{{ form.estado.id_for_label }}').value = data.uf;
-                  if (data.cep) document.getElementById('{{ form.cep.id_for_label }}').value = data.cep;
-                }
-                
-                // Atualizar opções tributárias
-                if (data.optanteSimples !== undefined) document.getElementById('{{ form.opcao_pelo_simples.id_for_label }}').checked = data.optanteSimples;
-                if (data.optanteMei !== undefined) document.getElementById('{{ form.opcao_pelo_mei.id_for_label }}').checked = data.optanteMei;
-                
-                alert('Dados atualizados com sucesso!');
-              } else {
-                alert(data.message || 'Erro ao consultar dados na Receita Federal');
-              }
-            })
-            .catch(error => {
-              console.error('Erro na consulta:', error);
-              alert('Erro ao realizar a consulta. Verifique o console para mais detalhes.');
-            })
-            .finally(() => {
-              // Restaurar botão
-              btnConsultarReceita.disabled = false;
-              btnConsultarReceita.innerHTML = '<i class="fas fa-sync-alt me-1"></i> Consultar Receita';
-            });
-        } else {
-          alert('Informe um CPF/CNPJ válido para consulta');
+        // Preencher valores
+        if (name.includes('-codigo_cnae')) {
+          input.value = codigo;
+        } else if (name.includes('-descricao_cnae')) {
+          input.value = descricao;
+        } else if (name.includes('-ordem')) {
+          input.value = ordem || (formIndex + 1);
+        }
+      }
+    });
+    
+    container.appendChild(newForm);
+    
+    // Adicionar evento de remoção
+    const removeBtn = newForm.querySelector('.remover-cnae');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', function() {
+        removeCnae(newForm);
+      });
+    }
+    
+    formIndex++;
+    updateTotalForms();
+    return true;
+  }
+  
+  function popularCnaesSecundarios(cnaesSecundarios) {
+    // Limpar CNAEs secundários existentes (apenas os não salvos)
+    const container = document.getElementById('cnaes-container');
+    const cnaesExistentes = container.querySelectorAll('.cnae-item:not(.d-none)');
+    
+    // Confirmar se deseja substituir CNAEs existentes
+    if (cnaesExistentes.length > 0) {
+      const confirmar = confirm(
+        `Existem ${cnaesExistentes.length} CNAEs secundários cadastrados. ` +
+        `Deseja substituí-los pelos ${cnaesSecundarios.length} CNAEs da Receita Federal?`
+      );
+      
+      if (!confirmar) {
+        return; // Usuário cancelou
+      }
+      
+      // Remover CNAEs existentes que não estão salvos no banco
+      cnaesExistentes.forEach(cnae => {
+        const hasId = cnae.querySelector('input[name$="-id"]');
+        if (!hasId || !hasId.value) {
+          cnae.remove();
+          formIndex--;
         }
       });
     }
     
-    // Máscaras para campos
-    if (typeof IMask !== 'undefined') {
-      // CPF/CNPJ dinâmico
-      const cpfCnpjMask = IMask(document.getElementById('{{ form.cpf_cnpj.id_for_label }}'), {
-        mask: [
-          { mask: '000.000.000-00', maxLength: 11 },
-          { mask: '00.000.000/0000-00', maxLength: 14 }
-        ],
-        dispatch: function (appended, dynamicMasked) {
-          const number = (dynamicMasked.value + appended).replace(/\D/g, '');
-          return dynamicMasked.compiledMasks.find(m => number.length <= m.maxLength);
-        }
-      });
+    // Adicionar novos CNAEs da Receita
+    let sucessos = 0;
+    cnaesSecundarios.forEach((cnae, index) => {
+      if (adicionarCnaeSecundario(cnae.codigo, cnae.descricao, index + 1)) {
+        sucessos++;
+      }
+    });
+    
+    if (sucessos > 0) {
+      // Mostrar mensagem de sucesso
+      const alertDiv = document.createElement('div');
+      alertDiv.className = 'alert alert-success alert-dismissible fade show';
+      alertDiv.innerHTML = `
+        <strong>CNAEs Adicionados!</strong> ${sucessos} CNAEs secundários da Receita Federal foram adicionados.
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      `;
       
-      // CEP
-      const cepInputs = document.querySelectorAll('input[name$="cep"]');
-      cepInputs.forEach(input => {
-        IMask(input, {
-          mask: '00000-000'
-        });
-      });
+      // Inserir antes do container de CNAEs
+      const cnaesCard = document.querySelector('#cnaes-container').closest('.card');
+      cnaesCard.parentNode.insertBefore(alertDiv, cnaesCard);
       
-      // Telefone
-      const telefoneInputs = document.querySelectorAll('input[name$="telefone"]');
-      telefoneInputs.forEach(input => {
-        IMask(input, {
-          mask: [
-            { mask: '(00) 0000-0000' },
-            { mask: '(00) 00000-0000' }
-          ],
-          dispatch: function (appended, dynamicMasked) {
-            const number = (dynamicMasked.value + appended).replace(/\D/g, '');
-            return number.length <= 10
-              ? dynamicMasked.compiledMasks[0]
-              : dynamicMasked.compiledMasks[1];
-          }
-        });
-      });
-      
-      // Data
-      const dataInputs = document.querySelectorAll('input[type="date"]');
-      dataInputs.forEach(input => {
-        if (!input.value && input.name === '{{ form.data_cadastro.html_name }}') {
-          // Preencher data de cadastro com a data atual se for um novo registro
-          if (!document.querySelector('input[name="id"]').value) {
-            input.value = new Date().toISOString().split('T')[0];
-          }
-        }
+      // Remover alerta após 5 segundos
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 5000);
+    }
+  }
+  
+  function updateCnaeDisplay() {
+    const cnaePrincipalInput = document.getElementById('{{ form.cnae_principal.id_for_label }}');
+    const cnaeDescricaoInput = document.getElementById('{{ form.cnae_descricao.id_for_label }}');
+    const cnaeDisplay = document.getElementById('cnae-principal-display');
+    
+    const codigo = cnaePrincipalInput?.value || '';
+    const descricao = cnaeDescricaoInput?.value || '';
+    
+    if (codigo) {
+      cnaeDisplay.textContent = `${codigo}${descricao ? ' - ' + descricao : ''}`;
+    } else {
+      cnaeDisplay.textContent = 'Não informado';
+    }
+  }
+  
+  // ===== EVENT LISTENERS =====
+  
+  // Botão adicionar CNAE
+  document.getElementById('adicionarCnae')?.addEventListener('click', function() {
+    if (formIndex >= maxForms) {
+      alert(`Máximo de ${maxForms} CNAEs permitidos`);
+      return;
+    }
+    
+    const container = document.getElementById('cnaes-container');
+    const template = document.getElementById('cnae-template');
+    const newForm = template.cloneNode(true);
+    
+    // Remover classe d-none e ID
+    newForm.classList.remove('d-none');
+    newForm.removeAttribute('id');
+    newForm.setAttribute('data-form-index', formIndex);
+    
+    // Atualizar nomes dos campos
+    const inputs = newForm.querySelectorAll('input');
+    inputs.forEach(input => {
+      const name = input.getAttribute('name');
+      if (name) {
+        input.setAttribute('name', name.replace('__prefix__', `cnaes-${formIndex}`));
+        input.setAttribute('id', `id_cnaes-${formIndex}-${name.split('-')[1]}`);
+      }
+    });
+    
+    // Atualizar ordem automaticamente
+    const ordemInput = newForm.querySelector('input[name$="-ordem"]');
+    if (ordemInput) {
+      ordemInput.value = formIndex + 1;
+    }
+    
+    container.appendChild(newForm);
+    
+    // Atualizar total forms
+    formIndex++;
+    updateTotalForms();
+    
+    // Adicionar evento de remoção
+    const removeBtn = newForm.querySelector('.remover-cnae');
+    if (removeBtn) {
+      removeBtn.addEventListener('click', function() {
+        removeCnae(newForm);
       });
     }
   });
+  
+  // Botões de remoção existentes
+  document.querySelectorAll('.remover-cnae').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const formElement = btn.closest('.cnae-item');
+      removeCnae(formElement);
+    });
+  });
+  
+  // Atualizar display do CNAE principal
+  const cnaePrincipalInput = document.getElementById('{{ form.cnae_principal.id_for_label }}');
+  const cnaeDescricaoInput = document.getElementById('{{ form.cnae_descricao.id_for_label }}');
+  
+  if (cnaePrincipalInput) {
+    cnaePrincipalInput.addEventListener('input', updateCnaeDisplay);
+  }
+  
+  if (cnaeDescricaoInput) {
+    cnaeDescricaoInput.addEventListener('input', updateCnaeDisplay);
+  }
+  
+  // ===== CONSULTA RECEITA FEDERAL ATUALIZADA =====
+  
+  const btnConsultarReceita = document.getElementById('consultarReceita');
+  const cpfCnpjInput = document.getElementById('{{ form.cpf_cnpj.id_for_label }}');
+  
+  if (btnConsultarReceita && cpfCnpjInput) {
+    btnConsultarReceita.addEventListener('click', function() {
+      const cpfCnpj = cpfCnpjInput.value.trim().replace(/[^\d]/g, '');
+      
+      if (cpfCnpj) {
+        btnConsultarReceita.disabled = true;
+        btnConsultarReceita.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        
+        fetch(`/gestor/api/consultar-receita/${cpfCnpj}/`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              const dados = data.dados;
+              
+              // Preencher campos básicos
+              if (dados.razaoSocial) document.getElementById('{{ form.nome_razao_social.id_for_label }}').value = dados.razaoSocial;
+              if (dados.nomeFantasia) document.getElementById('{{ form.nome_fantasia.id_for_label }}').value = dados.nomeFantasia;
+              if (dados.situacaoCadastral) document.getElementById('{{ form.situacao_cadastral.id_for_label }}').value = dados.situacaoCadastral;
+              if (dados.naturezaJuridica) document.getElementById('{{ form.natureza_juridica.id_for_label }}').value = dados.naturezaJuridica;
+              if (dados.porteEmpresa) document.getElementById('{{ form.porte_empresa.id_for_label }}').value = dados.porteEmpresa;
+              if (dados.dataAbertura) document.getElementById('{{ form.data_abertura.id_for_label }}').value = dados.dataAbertura;
+              
+              // Preencher CNAE principal
+              if (dados.cnaeFiscal) {
+                document.getElementById('{{ form.cnae_principal.id_for_label }}').value = dados.cnaeFiscal;
+                document.getElementById('{{ form.cnae_descricao.id_for_label }}').value = dados.cnaeFiscalDescricao || '';
+                updateCnaeDisplay();
+              }
+              
+              // Atualizar data da consulta
+              document.getElementById('{{ form.data_ultima_verificacao.id_for_label }}').value = new Date().toISOString().slice(0, 16);
+              
+              // Atualizar opções tributárias
+              if (dados.optanteSimples !== undefined) {
+                document.getElementById('{{ form.opcao_pelo_simples.id_for_label }}').checked = dados.optanteSimples;
+              }
+              if (dados.optanteMei !== undefined) {
+                document.getElementById('{{ form.opcao_pelo_mei.id_for_label }}').checked = dados.optanteMei;
+              }
+              
+              // *** POPULAR CNAEs SECUNDÁRIOS ***
+              if (dados.cnaesSecundarios && dados.cnaesSecundarios.length > 0) {
+                popularCnaesSecundarios(dados.cnaesSecundarios);
+              }
+              
+              alert(`Dados atualizados! CNAE principal + ${dados.cnaesSecundarios?.length || 0} CNAEs secundários`);
+            } else {
+              alert(data.message || 'Erro ao consultar dados na Receita Federal');
+            }
+          })
+          .catch(error => {
+            console.error('Erro na consulta:', error);
+            alert('Erro ao realizar a consulta.');
+          })
+          .finally(() => {
+            btnConsultarReceita.disabled = false;
+            btnConsultarReceita.innerHTML = '<i class="fas fa-sync-alt"></i>';
+          });
+      } else {
+        alert('Informe um CPF/CNPJ válido para consulta');
+      }
+    });
+  }
+  
+  // ===== BUSCAR CLIENTE MASTER =====
+  
+  const btnBuscarMaster = document.getElementById('buscarMaster');
+  const codigoMasterInput = document.getElementById('{{ form.codigo_master.id_for_label }}');
+  const nomeClienteMaster = document.getElementById('nomeClienteMaster');
+  
+  if (btnBuscarMaster && codigoMasterInput) {
+    btnBuscarMaster.addEventListener('click', function() {
+      const codigoMaster = codigoMasterInput.value.trim();
+      if (codigoMaster) {
+        fetch(`/gestor/api/cliente-por-codigo/${codigoMaster}/`)
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              nomeClienteMaster.textContent = data.nome;
+            } else {
+              nomeClienteMaster.textContent = 'Cliente master não encontrado';
+            }
+          })
+          .catch(error => {
+            console.error('Erro ao buscar cliente master:', error);
+            nomeClienteMaster.textContent = 'Erro ao buscar cliente master';
+          });
+      } else {
+        nomeClienteMaster.textContent = '';
+      }
+    });
+  }
+});
 </script>
-{% endblock %}
+
 {% endblock %}

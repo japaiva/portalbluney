@@ -1,22 +1,113 @@
-# gestor/views/cliente.py
+# gestor/views/cliente.py - VERSÃO ATUALIZADA
 
 import logging
 from datetime import datetime, timedelta
 import json
 import requests
+import ast
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Q, Sum
+from django.db.models import Q, Sum, Prefetch
 from django.utils import timezone
+from django.db import transaction
 
-from core.models import Cliente, ClienteContato, RegistroBI
-from core.forms import ClienteForm, ClienteContatoForm
+from core.models import Cliente, ClienteContato, ClienteCnaeSecundario, RegistroBI
+from core.forms import ClienteForm, ClienteContatoForm, ClienteCnaeSecundarioFormSet
 
 logger = logging.getLogger(__name__)
+
+# Função auxiliar para parsear CNAEs secundários
+def parse_cnaes_secundarios(cnaes_string):
+    """
+    Converte string JSON dos CNAEs secundários em lista de dicionários
+    """
+    if not cnaes_string or cnaes_string in ['', 'NULL', 'null', '[]']:
+        return []
+    
+    try:
+        # Método 1: Tentar JSON padrão
+        if cnaes_string.startswith('[') and cnaes_string.endswith(']'):
+            try:
+                # Corrigir aspas simples para aspas duplas
+                cnaes_json = cnaes_string.replace("'", '"')
+                cnaes_list = json.loads(cnaes_json)
+            except json.JSONDecodeError:
+                # Método 2: Usar ast.literal_eval (mais seguro para aspas simples)
+                cnaes_list = ast.literal_eval(cnaes_string)
+        else:
+            return []
+        
+        # Filtrar CNAEs válidos e normalizar
+        cnaes_validos = []
+        for i, cnae in enumerate(cnaes_list):
+            if isinstance(cnae, dict) and cnae.get('codigo') and cnae.get('codigo') != 0:
+                cnaes_validos.append({
+                    'codigo': str(cnae['codigo']).strip(),
+                    'descricao': str(cnae.get('descricao', '')).strip(),
+                    'ordem': i + 1
+                })
+        
+        return cnaes_validos
+        
+    except Exception as e:
+        logger.error(f"Erro ao parsear CNAEs secundários: {cnaes_string[:100]}... - {str(e)}")
+        return []
+
+def salvar_cnaes_secundarios(cliente, cnaes_secundarios_string):
+    """
+    Salva os CNAEs secundários de um cliente
+    """
+    # Limpar CNAEs secundários existentes
+    ClienteCnaeSecundario.objects.filter(cliente=cliente).delete()
+    
+    # Parsear novos CNAEs
+    cnaes_list = parse_cnaes_secundarios(cnaes_secundarios_string)
+    
+    # Salvar cada CNAE secundário
+    cnaes_criados = []
+    for cnae_data in cnaes_list:
+        cnae_secundario = ClienteCnaeSecundario.objects.create(
+            cliente=cliente,
+            codigo_cnae=cnae_data['codigo'],
+            descricao_cnae=cnae_data['descricao'],
+            ordem=cnae_data['ordem']
+        )
+        cnaes_criados.append(cnae_secundario)
+    
+    return cnaes_criados
+
+def processar_cnaes_receita(cliente, dados_receita):
+    """
+    Processa CNAEs vindos da consulta da Receita Federal
+    """
+    try:
+        with transaction.atomic():
+            # Atualizar CNAE principal
+            cliente.cnae_principal = dados_receita.get('cnaeFiscal')
+            cliente.cnae_descricao = dados_receita.get('cnaeFiscalDescricao')
+            cliente.save()
+            
+            # Limpar CNAEs secundários existentes
+            cliente.cnaes_secundarios.all().delete()
+            
+            # Adicionar novos CNAEs secundários
+            cnaes_secundarios = dados_receita.get('cnaesSecundarios', [])
+            for i, cnae_data in enumerate(cnaes_secundarios, 1):
+                ClienteCnaeSecundario.objects.create(
+                    cliente=cliente,
+                    codigo_cnae=cnae_data['codigo'],
+                    descricao_cnae=cnae_data['descricao'],
+                    ordem=i
+                )
+                
+        return True, f"CNAEs atualizados: 1 principal + {len(cnaes_secundarios)} secundários"
+        
+    except Exception as e:
+        return False, f"Erro ao processar CNAEs: {str(e)}"
 
 # Páginas principais
 @login_required
@@ -31,20 +122,31 @@ def dashboard(request):
     """View para o dashboard do gestor"""
     return render(request, 'gestor/dashboard.html')
 
-# CRUD Clientes
+# CRUD Clientes - VERSÃO ATUALIZADA COM FILTROS MÚLTIPLOS
 @login_required
 def cliente_list(request):
-    # Mostrar apenas clientes principais (sem código master)
-    clientes_list = Cliente.objects.filter(
-        Q(codigo_master__isnull=True) | Q(codigo_master='')
-    ).order_by('nome')
+    # Filtros múltiplos
+    
+    # Filtro por tipo de cliente (principal/sub-cliente)
+    tipo_cliente = request.GET.get('tipo', 'todos')
+    if tipo_cliente == 'principal':
+        clientes_list = Cliente.objects.filter(
+            Q(codigo_master__isnull=True) | Q(codigo_master='')
+        )
+    elif tipo_cliente == 'coligados':
+        clientes_list = Cliente.objects.filter(
+            codigo_master__isnull=False
+        ).exclude(codigo_master='')
+    else:  # todos
+        clientes_list = Cliente.objects.all()
     
     # Filtro por status
-    status = request.GET.get('status')
+    status = request.GET.get('status', 'todos')
     if status == 'ativo':
         clientes_list = clientes_list.filter(ativo=True)
     elif status == 'inativo':
         clientes_list = clientes_list.filter(ativo=False)
+    # Se 'todos', não aplica filtro
     
     # Busca por nome, código ou CPF/CNPJ
     query = request.GET.get('q')
@@ -52,11 +154,17 @@ def cliente_list(request):
         clientes_list = clientes_list.filter(
             Q(nome__icontains=query) | 
             Q(codigo__icontains=query) |
-            Q(cpf_cnpj__icontains=query)
+            Q(cpf_cnpj__icontains=query) |
+            Q(nome_razao_social__icontains=query)
         )
     
+    # Prefetch para otimizar CNAEs secundários
+    clientes_list = clientes_list.prefetch_related(
+        Prefetch('cnaes_secundarios', queryset=ClienteCnaeSecundario.objects.order_by('ordem'))
+    ).order_by('nome')
+    
     # Paginação
-    paginator = Paginator(clientes_list, 10)
+    paginator = Paginator(clientes_list, 15)  # Aumentado para 15 por página
     page = request.GET.get('page', 1)
     
     try:
@@ -66,20 +174,51 @@ def cliente_list(request):
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
     
-    return render(request, 'gestor/cliente_list.html', {
+    context = {
         'clientes': clientes, 
         'status_filtro': status,
+        'tipo_filtro': tipo_cliente,
         'query': query
-    })
+    }
+    
+    return render(request, 'gestor/cliente_list.html', context)
 
 @login_required
 def cliente_create(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
-        if form.is_valid():
-            cliente = form.save()
-            messages.success(request, f'Cliente "{cliente.nome}" cadastrado com sucesso.')
-            return redirect('gestor:cliente_detail', pk=cliente.id)
+        cnaes_formset = ClienteCnaeSecundarioFormSet(
+            request.POST, 
+            prefix='cnaes'
+        )
+        
+        if form.is_valid() and cnaes_formset.is_valid():
+            try:
+                with transaction.atomic():
+                    # Salvar cliente
+                    cliente = form.save()
+                    
+                    # Salvar CNAEs secundários
+                    cnaes_formset.instance = cliente
+                    cnaes_formset.save()
+                    
+                    # Contar CNAEs salvos
+                    cnaes_count = cliente.cnaes_secundarios.count()
+                    if cnaes_count > 0:
+                        messages.success(request, 
+                            f'Cliente "{cliente.nome}" cadastrado com sucesso! '
+                            f'CNAE principal + {cnaes_count} CNAEs secundários salvos.'
+                        )
+                    else:
+                        messages.success(request, f'Cliente "{cliente.nome}" cadastrado com sucesso.')
+                    
+                    return redirect('gestor:cliente_detail', pk=cliente.id)
+                    
+            except Exception as e:
+                logger.error(f"Erro ao salvar cliente com CNAEs: {str(e)}")
+                messages.error(request, f"Erro ao salvar: {str(e)}")
+        else:
+            messages.error(request, "Corrija os erros abaixo")
     else:
         # Verificar se é um sub-cliente sendo criado
         codigo_master = request.GET.get('codigo_master', '')
@@ -87,13 +226,17 @@ def cliente_create(request):
         cliente_master = None
         
         if codigo_master:
-            inicial_data = {'codigo_master': codigo_master}
+            initial_data = {'codigo_master': codigo_master}
             cliente_master = Cliente.objects.filter(codigo=codigo_master).first()
         
-        form = ClienteForm(initial=inicial_data)
+        form = ClienteForm(initial=initial_data)
+        cnaes_formset = ClienteCnaeSecundarioFormSet(
+            prefix='cnaes'
+        )
     
     context = {
         'form': form,
+        'cnaes_formset': cnaes_formset,  # ← Adicionado!
         'cliente_master_nome': cliente_master.nome if cliente_master else None
     }
     
@@ -109,21 +252,53 @@ def cliente_update(request, pk):
     
     if request.method == 'POST':
         form = ClienteForm(request.POST, instance=cliente)
-        if form.is_valid():
-            cliente = form.save()
-            messages.success(request, f'Cliente "{cliente.nome}" atualizado com sucesso.')
-            return redirect('gestor:cliente_detail', pk=cliente.id)
+        cnaes_formset = ClienteCnaeSecundarioFormSet(
+            request.POST, 
+            instance=cliente,
+            prefix='cnaes'
+        )
+        
+        if form.is_valid() and cnaes_formset.is_valid():
+            try:
+                with transaction.atomic():
+                    # Salvar cliente
+                    cliente = form.save()
+                    
+                    # Salvar CNAEs secundários
+                    cnaes_formset.save()
+                    
+                    # Contar CNAEs salvos
+                    cnaes_count = cliente.cnaes_secundarios.count()
+                    if cnaes_count > 0:
+                        messages.success(request, 
+                            f'Cliente "{cliente.nome}" atualizado com sucesso! '
+                            f'CNAE principal + {cnaes_count} CNAEs secundários salvos.'
+                        )
+                    else:
+                        messages.success(request, f'Cliente "{cliente.nome}" atualizado com sucesso.')
+                    
+                    return redirect('gestor:cliente_detail', pk=cliente.id)
+                    
+            except Exception as e:
+                logger.error(f"Erro ao atualizar cliente com CNAEs: {str(e)}")
+                messages.error(request, f"Erro ao atualizar: {str(e)}")
+        else:
+            messages.error(request, "Corrija os erros abaixo")
     else:
         form = ClienteForm(instance=cliente)
+        cnaes_formset = ClienteCnaeSecundarioFormSet(
+            instance=cliente,
+            prefix='cnaes'
+        )
     
     context = {
         'form': form, 
+        'cnaes_formset': cnaes_formset,  # ← Adicionado!
         'cliente': cliente,
         'cliente_master_nome': cliente_master.nome if cliente_master else None
     }
     
     return render(request, 'gestor/cliente_form.html', context)
-
 @login_required
 def cliente_toggle_status(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
@@ -141,6 +316,9 @@ def cliente_toggle_status(request, pk):
 def cliente_detail(request, pk):
     cliente = get_object_or_404(Cliente, pk=pk)
     contatos = cliente.contatos.all()
+    
+    # Buscar CNAEs secundários
+    cnaes_secundarios = cliente.cnaes_secundarios.all().order_by('ordem')
     
     # Buscar cliente master (se houver)
     cliente_master = None
@@ -196,6 +374,7 @@ def cliente_detail(request, pk):
         'cliente': cliente,
         'cliente_master': cliente_master,
         'contatos': contatos,
+        'cnaes_secundarios': cnaes_secundarios,
         'clientes_associados': clientes_associados,
         'contatos_sub_clientes': contatos_sub_clientes,
         'todos_contatos': todos_contatos,
@@ -211,7 +390,7 @@ def cliente_detail_by_codigo(request, codigo):
     cliente = get_object_or_404(Cliente, codigo=codigo)
     return redirect('gestor:cliente_detail', pk=cliente.id)
 
-# Gerenciamento de Contatos
+# Gerenciamento de Contatos (mantido igual)
 @login_required
 def cliente_contato_create(request, cliente_id):
     cliente = get_object_or_404(Cliente, pk=cliente_id)
@@ -290,7 +469,7 @@ def cliente_contato_delete(request, pk):
         'cliente': cliente
     })
 
-# API e Consultas Externas
+# API e Consultas Externas - VERSÃO ATUALIZADA
 @login_required
 def api_cliente_por_codigo(request, codigo):
     """API para buscar cliente por código"""
@@ -308,28 +487,22 @@ def api_cliente_por_codigo(request, codigo):
             'success': False,
             'message': 'Cliente não encontrado'
         })
-
+    
 @login_required
 def api_consultar_receita(request, cpf_cnpj):
-    """API para consultar dados na Receita Federal"""
+    """API para consultar dados na Receita Federal com CNAEs múltiplos"""
     # Remover caracteres não numéricos
     cpf_cnpj = ''.join(filter(str.isdigit, cpf_cnpj))
     
     try:
-        # Aqui você implementaria a chamada para o serviço de consulta da Receita
-        # Este é um exemplo simulado
-        
-        # Em ambiente de produção, substituir por chamada real ao serviço
-        # response = requests.get(f"https://api.consulta-receita.com/v1/{cpf_cnpj}", 
-        #                         headers={"Authorization": "Bearer seu_token"})
-        # dados = response.json()
-        
-        # Simulação de resposta para testes
+        # Simulação de resposta com CNAEs secundários
         if len(cpf_cnpj) == 11:  # CPF
             dados = {
                 'tipo': 'PF',
-                'nome': 'NOME DA PESSOA FÍSICA',
-                'situacaoCadastral': 'REGULAR',
+                'razaoSocial': 'NOME DA PESSOA FÍSICA',
+                'situacaoCadastral': 'ATIVA',
+                'dataSituacaoCadastral': '2020-01-01',
+                'motivoSituacaoCadastral': 'SEM MOTIVO',
             }
         else:  # CNPJ
             dados = {
@@ -337,8 +510,10 @@ def api_consultar_receita(request, cpf_cnpj):
                 'razaoSocial': 'EMPRESA DEMONSTRACAO LTDA',
                 'nomeFantasia': 'DEMO EMPRESA',
                 'situacaoCadastral': 'ATIVA',
-                'cnae': '4751-2/01',
-                'cnaeDescricao': 'COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE INFORMÁTICA',
+                'dataSituacaoCadastral': '2020-01-01',
+                'motivoSituacaoCadastral': 'SEM MOTIVO',
+                'cnaeFiscal': '4751201',
+                'cnaeFiscalDescricao': 'COMÉRCIO VAREJISTA ESPECIALIZADO DE EQUIPAMENTOS DE INFORMÁTICA',
                 'naturezaJuridica': '206-2 - SOCIEDADE EMPRESÁRIA LIMITADA',
                 'porteEmpresa': 'ME',
                 'dataAbertura': '2010-01-01',
@@ -353,13 +528,21 @@ def api_consultar_receita(request, cpf_cnpj):
                     'cep': '01310-000'
                 },
                 'optanteSimples': True,
-                'optanteMei': False
+                'optanteMei': False,
+                # CNAEs secundários para testar
+                'cnaesSecundarios': [
+                    {'codigo': '4647801', 'descricao': 'Comércio atacadista de artigos de escritório e de papelaria'},
+                    {'codigo': '4651602', 'descricao': 'Comércio atacadista de suprimentos para informática'},
+                    {'codigo': '8219901', 'descricao': 'Fotocópias'},
+                    {'codigo': '6201501', 'descricao': 'Desenvolvimento de programas de computador sob encomenda'}
+                ]
             }
         
         return JsonResponse({
             'success': True,
-            **dados
+            'dados': dados  # ← Estrutura corrigida para o JavaScript
         })
+        
     except Exception as e:
         logger.error(f"Erro ao consultar dados na Receita: {str(e)}")
         return JsonResponse({
@@ -367,6 +550,7 @@ def api_consultar_receita(request, cpf_cnpj):
             'message': f'Erro ao consultar dados: {str(e)}'
         })
 
+# Função para consultar BI (mantida igual)
 @login_required
 def consultar_bi(request, codigo_cliente):
     """View para consultar BI do cliente"""
