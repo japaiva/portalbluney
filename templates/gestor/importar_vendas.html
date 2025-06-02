@@ -1,0 +1,139 @@
+<!-- ===== IMPORTAR VENDAS - gestor/templates/gestor/importar_vendas.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}{{ title }} | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-upload me-2"></i> {{ title }}
+    </h5>
+    <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+            <p class="mb-0">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div class="row g-3">
+        <div class="col-12">
+          <label for="{{ form.arquivo_csv.id_for_label }}" class="form-label">Arquivo de Dados*</label>
+          {{ form.arquivo_csv }}
+          {% if form.arquivo_csv.errors %}
+            <div class="text-danger small mt-1">{{ form.arquivo_csv.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+          <label for="{{ form.status_cliente_novo.id_for_label }}" class="form-label">Status para Clientes Novos</label>
+          {{ form.status_cliente_novo }}
+          {% if form.status_cliente_novo.errors %}
+            <div class="text-danger small mt-1">{{ form.status_cliente_novo.errors.0 }}</div>
+          {% endif %}
+
+        </div>
+        
+        <div class="col-12">
+          <h6 class="mt-3 mb-3">Opções de Importação</h6>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form-check form-switch">
+            {{ form.criar_dependencias }}
+            <label class="form-check-label" for="{{ form.criar_dependencias.id_for_label }}">
+              <strong>Criar dependências automaticamente</strong>
+            </label>
+          </div>
+          {% if form.criar_dependencias.errors %}
+            <div class="text-danger small mt-1">{{ form.criar_dependencias.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+          <div class="form-check form-switch">
+            {{ form.limpar_registros_anteriores }}
+            <label class="form-check-label" for="{{ form.limpar_registros_anteriores.id_for_label }}">
+              <strong>Limpar registros anteriores</strong>
+            </label>
+          </div>
+          {% if form.limpar_registros_anteriores.errors %}
+            <div class="text-danger small mt-1">{{ form.limpar_registros_anteriores.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+
+      
+      <div class="d-flex justify-content-end mt-4">
+        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary me-2">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
+        <button type="submit" class="btn btn-success" id="btn-importar">
+          <i class="fas fa-upload me-1"></i> Iniciar Importação
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const btnImportar = document.getElementById('btn-importar');
+    const limparCheckbox = document.querySelector('input[name="limpar_registros_anteriores"]');
+    
+    // Alerta ao selecionar "limpar registros anteriores"
+    if (limparCheckbox) {
+        limparCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                if (!confirm('ATENÇÃO: Esta opção irá remover TODOS os registros de vendas existentes. Tem certeza?')) {
+                    this.checked = false;
+                }
+            }
+        });
+    }
+    
+    // Loading no botão de importar
+    form.addEventListener('submit', function() {
+        btnImportar.disabled = true;
+        btnImportar.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Importando...';
+    });
+    
+    // Validação do arquivo
+    const arquivoInput = document.querySelector('input[type="file"]');
+    if (arquivoInput) {
+        arquivoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const extension = file.name.split('.').pop().toLowerCase();
+                const validExtensions = ['csv', 'xlsx', 'xls'];
+                
+                if (!validExtensions.includes(extension)) {
+                    alert('Formato de arquivo não suportado. Use CSV, XLS ou XLSX.');
+                    this.value = '';
+                }
+                
+                // Verificar tamanho (máximo 50MB)
+                const maxSize = 50 * 1024 * 1024; // 50MB
+                if (file.size > maxSize) {
+                    alert('Arquivo muito grande. Máximo: 50MB');
+                    this.value = '';
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

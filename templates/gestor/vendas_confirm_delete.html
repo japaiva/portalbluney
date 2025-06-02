@@ -1,0 +1,42 @@
+<!-- ===== VENDAS DELETE - gestor/templates/gestor/vendas_confirm_delete.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Excluir Venda | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-trash-alt me-2"></i> Excluir Venda
+    </h5>
+    <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <div class="alert alert-danger">
+      <h5><i class="fas fa-exclamation-triangle me-2"></i> Confirmação de Exclusão</h5>
+      <p>Você tem certeza que deseja excluir esta venda?</p>
+      <ul>
+        <li><strong>Data:</strong> {{ venda.data_venda|date:"d/m/Y" }}</li>
+        <li><strong>Cliente:</strong> {{ venda.cliente.nome }}</li>
+        <li><strong>Produto:</strong> {{ venda.produto.descricao }}</li>
+        <li><strong>Valor:</strong> R$ {{ venda.valor_total|floatformat:2 }}</li>
+        {% if venda.numero_nf %}<li><strong>NF:</strong> {{ venda.numero_nf }}</li>{% endif %}
+      </ul>
+      <p class="mb-0"><strong>Atenção:</strong> Esta ação é irreversível.</p>
+    </div>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-end mt-3">
+        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary me-2">Cancelar</a>
+        <button type="submit" class="btn btn-danger">
+          <i class="fas fa-trash-alt me-1"></i> Excluir Venda
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

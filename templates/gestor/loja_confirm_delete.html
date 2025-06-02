@@ -1,0 +1,87 @@
+<!-- ===== LOJA DELETE MELHORADO - gestor/templates/gestor/loja_confirm_delete.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Excluir Loja | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-trash-alt me-2"></i> Excluir Loja
+    </h5>
+    <a href="{% url 'gestor:loja_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <div class="alert alert-danger">
+      <h5><i class="fas fa-exclamation-triangle me-2"></i> Confirmação de Exclusão</h5>
+      <p>Você tem certeza que deseja excluir a loja?</p>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            <li><strong>Código:</strong> <code>{{ loja.codigo }}</code></li>
+            <li><strong>Nome:</strong> {{ loja.nome }}</li>
+            {% if loja.endereco %}
+            <li><strong>Endereço:</strong> {{ loja.endereco }}</li>
+            {% endif %}
+            {% if loja.cidade %}
+            <li><strong>Cidade:</strong> {{ loja.cidade }}{% if loja.estado %} - {{ loja.estado }}{% endif %}</li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            {% if loja.telefone %}
+            <li><strong>Telefone:</strong> {{ loja.telefone }}</li>
+            {% endif %}
+            {% if loja.email %}
+            <li><strong>Email:</strong> {{ loja.email }}</li>
+            {% endif %}
+            <li><strong>Status:</strong> 
+              <span class="badge {% if loja.ativo %}bg-success{% else %}bg-danger{% endif %}">
+                {% if loja.ativo %}Ativa{% else %}Inativa{% endif %}
+              </span>
+            </li>
+            {% if loja.vendedores.count > 0 %}
+            <li><strong>Vendedores:</strong> {{ loja.vendedores.count }} associado{{ loja.vendedores.count|pluralize }}</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      
+      {% if loja.vendedores.count > 0 %}
+      <div class="alert alert-warning mt-3 mb-0">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        <strong>Atenção:</strong> Esta loja possui {{ loja.vendedores.count }} vendedor{{ loja.vendedores.count|pluralize:"es" }} 
+        associado{{ loja.vendedores.count|pluralize }}:
+        <ul class="mb-0 mt-2">
+          {% for vendedor in loja.vendedores.all|slice:":5" %}
+            <li>{{ vendedor.nome }} ({{ vendedor.codigo }})</li>
+          {% endfor %}
+          {% if loja.vendedores.count > 5 %}
+            <li><em>... e mais {{ loja.vendedores.count|add:"-5" }} vendedor{{ loja.vendedores.count|add:"-5"|pluralize:"es" }}</em></li>
+          {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+      
+      <p class="mt-3 mb-0"><strong>Esta ação é irreversível.</strong></p>
+    </div>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-end mt-3">
+        <a href="{% url 'gestor:loja_list' %}" class="btn btn-outline-secondary me-2">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
+        <button type="submit" class="btn btn-danger">
+          <i class="fas fa-trash-alt me-1"></i> Excluir Loja
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

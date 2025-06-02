@@ -1,0 +1,135 @@
+<!-- ===== VENDAS FORM - gestor/templates/gestor/vendas_form.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}{{ title }} | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-chart-line me-2"></i> {{ title }}
+    </h5>
+    <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+            <p class="mb-0">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+      
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label for="{{ form.data_venda.id_for_label }}" class="form-label">Data da Venda*</label>
+          {{ form.data_venda }}
+          {% if form.data_venda.errors %}
+            <div class="text-danger small mt-1">{{ form.data_venda.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-9">
+          <label for="{{ form.cliente.id_for_label }}" class="form-label">Cliente*</label>
+          {{ form.cliente }}
+          {% if form.cliente.errors %}
+            <div class="text-danger small mt-1">{{ form.cliente.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6">
+          <label for="{{ form.produto.id_for_label }}" class="form-label">Produto*</label>
+          {{ form.produto }}
+          {% if form.produto.errors %}
+            <div class="text-danger small mt-1">{{ form.produto.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.grupo_produto.id_for_label }}" class="form-label">Grupo*</label>
+          {{ form.grupo_produto }}
+          {% if form.grupo_produto.errors %}
+            <div class="text-danger small mt-1">{{ form.grupo_produto.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.fabricante.id_for_label }}" class="form-label">Fabricante*</label>
+          {{ form.fabricante }}
+          {% if form.fabricante.errors %}
+            <div class="text-danger small mt-1">{{ form.fabricante.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.loja.id_for_label }}" class="form-label">Loja*</label>
+          {{ form.loja }}
+          {% if form.loja.errors %}
+            <div class="text-danger small mt-1">{{ form.loja.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.vendedor.id_for_label }}" class="form-label">Vendedor*</label>
+          {{ form.vendedor }}
+          {% if form.vendedor.errors %}
+            <div class="text-danger small mt-1">{{ form.vendedor.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.quantidade.id_for_label }}" class="form-label">Quantidade*</label>
+          {{ form.quantidade }}
+          {% if form.quantidade.errors %}
+            <div class="text-danger small mt-1">{{ form.quantidade.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.valor_total.id_for_label }}" class="form-label">Valor Total*</label>
+          {{ form.valor_total }}
+          {% if form.valor_total.errors %}
+            <div class="text-danger small mt-1">{{ form.valor_total.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-3">
+          <label for="{{ form.numero_nf.id_for_label }}" class="form-label">Número NF</label>
+          {{ form.numero_nf }}
+          {% if form.numero_nf.errors %}
+            <div class="text-danger small mt-1">{{ form.numero_nf.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-2">
+          <label for="{{ form.serie_nf.id_for_label }}" class="form-label">Série NF</label>
+          {{ form.serie_nf }}
+          {% if form.serie_nf.errors %}
+            <div class="text-danger small mt-1">{{ form.serie_nf.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-2">
+          <label for="{{ form.estado.id_for_label }}" class="form-label">Estado</label>
+          {{ form.estado }}
+          {% if form.estado.errors %}
+            <div class="text-danger small mt-1">{{ form.estado.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="d-flex justify-content-end mt-4">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save me-1"></i> Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

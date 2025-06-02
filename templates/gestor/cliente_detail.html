@@ -25,10 +25,10 @@
       </a>
       {% endif %}
       
-      {% if perms.core.change_cliente %}
-      <a href="{% url 'gestor:cliente_toggle_status' cliente.id %}" class="btn btn-sm {% if cliente.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
-        <i class="fas {% if cliente.ativo %}fa-ban{% else %}fa-check-circle{% endif %} me-1"></i>
-        {% if cliente.ativo %}Desativar{% else %}Ativar{% endif %}
+      {# Replaced toggle status with delete button #}
+      {% if perms.core.delete_cliente %} {# Assuming a delete permission #}
+      <a href="{% url 'gestor:cliente_delete' cliente.id %}" class="btn btn-sm btn-outline-danger me-1">
+        <i class="fas fa-trash-alt me-1"></i> Excluir
       </a>
       {% endif %}
       
@@ -44,9 +44,7 @@
 
   <div class="card-body">
     <div class="row">
-      <!-- COLUNA 1 - Informações básicas, fiscais e endereço -->
       <div class="col-md-6">
-        <!-- Informações Gerais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">
@@ -82,7 +80,6 @@
           </div>
         </div>
         
-        <!-- Dados Fiscais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">
@@ -146,7 +143,6 @@
           </div>
         </div>
 
-        <!-- CNAEs -->
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">
@@ -188,7 +184,6 @@
           </div>
         </div>
         
-        <!-- Endereço -->
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">
@@ -211,7 +206,6 @@
           </div>
         </div>
         
-        <!-- Dados Comerciais -->
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">
@@ -257,9 +251,7 @@
         {% endif %}
       </div>
 
-      <!-- COLUNA 2 - Sub-clientes e contatos -->
       <div class="col-md-6">
-        <!-- Clientes Associados -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h6 class="card-title mb-0">
@@ -302,9 +294,12 @@
                             <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary">
                               <i class="fas fa-edit"></i>
                             </a>
-                            <a href="{% url 'gestor:cliente_toggle_status' cliente_associado.id %}" class="btn btn-sm {% if cliente_associado.ativo %}btn-outline-danger{% else %}btn-outline-success{% endif %}">
-                              <i class="fas {% if cliente_associado.ativo %}fa-ban{% else %}fa-check-circle{% endif %}"></i>
+                            {# Replaced toggle status with delete button #}
+                            {% if perms.core.delete_cliente %}
+                            <a href="{% url 'gestor:cliente_delete' cliente_associado.id %}" class="btn btn-sm btn-outline-danger">
+                              <i class="fas fa-trash-alt"></i>
                             </a>
+                            {% endif %}
                             {% endif %}
                           </div>
                         </td>
@@ -322,7 +317,6 @@
           </div>
         </div>
         
-        <!-- Todos os Contatos (incluindo contatos dos sub-clientes) -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h6 class="card-title mb-0">
@@ -361,7 +355,6 @@
               {% endif %}
             </ul>
             <div class="tab-content" id="contatosTabContent">
-              <!-- Tab Todos os Contatos -->
               <div class="tab-pane fade show active" id="todos-contatos" role="tabpanel" aria-labelledby="todos-contatos-tab">
                 {% if todos_contatos %}
                   <div class="table-responsive">
@@ -423,7 +416,6 @@
                 {% endif %}
               </div>
               
-              <!-- Tab Contatos do Cliente Principal -->
               <div class="tab-pane fade" id="principal-contatos" role="tabpanel" aria-labelledby="principal-contatos-tab">
                 {% if contatos %}
                   <div class="table-responsive">
@@ -477,7 +469,6 @@
                 {% endif %}
               </div>
               
-              <!-- Tab Contatos dos Sub-clientes -->
               {% if contatos_sub_clientes %}
               <div class="tab-pane fade" id="sub-contatos" role="tabpanel" aria-labelledby="sub-contatos-tab">
                 <div class="table-responsive">
@@ -526,7 +517,6 @@
           </div>
         </div>
 
-        <!-- Histórico de Vendas (BI) -->
         <div class="card mb-3">
           <div class="card-header bg-light d-flex justify-content-between align-items-center">
             <h6 class="card-title mb-0">

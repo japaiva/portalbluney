@@ -64,7 +64,8 @@ class PerfilUsuario(models.Model):
     def __str__(self):
         return f"{self.usuario.username} - {self.get_nivel_display()}"
 
-# Modelos de Cadastro Básico
+# ===== MODELOS DE CADASTRO BÁSICO =====
+
 class Loja(models.Model):
     codigo = models.CharField(max_length=3, primary_key=True)
     nome = models.CharField(max_length=100)
@@ -102,7 +103,21 @@ class Vendedor(models.Model):
         verbose_name_plural = 'Vendedores'
         ordering = ['codigo']
 
-class ClasseProduto(models.Model):
+class Fabricante(models.Model):
+    codigo = models.CharField(max_length=10, primary_key=True)
+    descricao = models.CharField(max_length=100)
+    ativo = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f"{self.codigo} - {self.descricao}"
+    
+    class Meta:
+        db_table = 'fabricantes'
+        verbose_name = 'Fabricante'
+        verbose_name_plural = 'Fabricantes'
+        ordering = ['codigo']
+
+class GrupoProduto(models.Model):
     codigo = models.CharField(max_length=4, primary_key=True)
     descricao = models.CharField(max_length=100)
     ativo = models.BooleanField(default=True)
@@ -111,16 +126,16 @@ class ClasseProduto(models.Model):
         return f"{self.codigo} - {self.descricao}"
     
     class Meta:
-        db_table = 'classes_produto'
-        verbose_name = 'Classe de Produto'
-        verbose_name_plural = 'Classes de Produto'
+        db_table = 'grupos_produto'
+        verbose_name = 'Grupo de Produto'
+        verbose_name_plural = 'Grupos de Produto'
         ordering = ['codigo']
 
 class Produto(models.Model):
     codigo = models.CharField(max_length=6, primary_key=True)
     descricao = models.CharField(max_length=200)
-    classe = models.ForeignKey(ClasseProduto, on_delete=models.PROTECT, related_name='produtos')
-    preco = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    grupo = models.ForeignKey(GrupoProduto, on_delete=models.PROTECT, related_name='produtos')
+    fabricante = models.ForeignKey(Fabricante, on_delete=models.PROTECT, related_name='produtos')
     ativo = models.BooleanField(default=True)
     
     def __str__(self):
@@ -132,14 +147,24 @@ class Produto(models.Model):
         verbose_name_plural = 'Produtos'
         ordering = ['codigo']
 
-# ===== MODELO CLIENTE CORRIGIDO =====
+# ===== MODELO CLIENTE ATUALIZADO =====
+
 class Cliente(models.Model):
+    STATUS_CHOICES = [
+        ('ativo', 'Ativo'),
+        ('inativo', 'Inativo'),
+        ('rascunho', 'Rascunho'),
+    ]
+    
     # Campos de identificação
     codigo = models.CharField(max_length=20, unique=True, verbose_name="Código")
     codigo_master = models.CharField(max_length=20, blank=True, null=True, verbose_name="Código Master",
                                     help_text="Se preenchido, indica que este é um sub-cliente")
     nome = models.CharField(max_length=100, verbose_name="Nome")
     nome_fantasia = models.CharField(max_length=200, blank=True, null=True, verbose_name="Nome Fantasia")
+    
+    # Status atualizado
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ativo', verbose_name="Status")
     
     # Campos de endereço
     tipo_logradouro = models.CharField(max_length=20, blank=True, null=True, verbose_name="Tipo de Logradouro",
@@ -156,8 +181,7 @@ class Cliente(models.Model):
     telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefone")
     email = models.EmailField(blank=True, null=True, verbose_name="Email")
     
-    # Status e datas
-    ativo = models.BooleanField(default=True, verbose_name="Ativo")
+    # Datas
     data_cadastro = models.DateTimeField(default=timezone.now, verbose_name="Data de Cadastro")
     data_ultima_compra = models.DateField(blank=True, null=True, verbose_name="Data da Última Compra")
     observacoes = models.TextField(blank=True, null=True, verbose_name="Observações")
@@ -236,48 +260,10 @@ class Cliente(models.Model):
             return Cliente.objects.filter(codigo_master=self.codigo).order_by('nome')
         return Cliente.objects.none()
     
-    def get_cnaes_secundarios_resumo(self):
-        """Retorna um resumo dos CNAEs secundários para listagens"""
-        cnaes = self.cnaes_secundarios.all()[:3]  # Apenas os 3 primeiros
-        total = self.cnaes_secundarios.count()
-        
-        if not cnaes:
-            return "Nenhum CNAE secundário"
-        
-        resumo = ", ".join([cnae.codigo_cnae for cnae in cnaes])
-        if total > 3:
-            resumo += f" (+{total-3} mais)"
-        
-        return resumo
-    
-    def get_total_cnaes(self):
-        """Retorna total de CNAEs (principal + secundários)"""
-        total = self.cnaes_secundarios.count()
-        if self.cnae_principal:
-            total += 1
-        return total
-    
-    def get_todas_atividades(self):
-        """Retorna lista completa de atividades (CNAE principal + secundários)"""
-        atividades = []
-        
-        # CNAE Principal
-        if self.cnae_principal:
-            atividades.append({
-                'codigo': self.cnae_principal,
-                'descricao': self.cnae_descricao or 'Descrição não disponível',
-                'tipo': 'principal'
-            })
-        
-        # CNAEs Secundários
-        for cnae in self.cnaes_secundarios.all():
-            atividades.append({
-                'codigo': cnae.codigo_cnae,
-                'descricao': cnae.descricao_cnae,
-                'tipo': 'secundario'
-            })
-        
-        return atividades
+    @property
+    def ativo(self):
+        """Propriedade para compatibilidade - retorna True se status for 'ativo'"""
+        return self.status == 'ativo'
 
 # ===== OUTROS MODELOS =====
 
@@ -319,38 +305,50 @@ class ClienteContato(models.Model):
         verbose_name_plural = "Contatos dos Clientes"
         ordering = ["-principal", "nome"]
 
-class RegistroBI(models.Model):
+# ===== MODELO DE VENDAS (antigo RegistroBI) =====
+
+class Vendas(models.Model):
     # Campos de relacionamento
     loja = models.ForeignKey(Loja, on_delete=models.PROTECT, verbose_name="Loja")
     vendedor = models.ForeignKey(Vendedor, on_delete=models.PROTECT, verbose_name="Vendedor")
     produto = models.ForeignKey(Produto, on_delete=models.PROTECT, verbose_name="Produto")
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, related_name='registros_bi', verbose_name="Cliente")
-    classe_produto = models.ForeignKey(ClasseProduto, on_delete=models.PROTECT, related_name='registros_bi', verbose_name="Classe de Produto")
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, related_name='vendas', verbose_name="Cliente")
+    grupo_produto = models.ForeignKey(GrupoProduto, on_delete=models.PROTECT, related_name='vendas', verbose_name="Grupo de Produto")
+    fabricante = models.ForeignKey(Fabricante, on_delete=models.PROTECT, related_name='vendas', verbose_name="Fabricante")
     
-    # Dados da nota fiscal
+    # Dados da venda
     data_venda = models.DateField(verbose_name="Data da Venda")
-    anomes = models.CharField(max_length=4, verbose_name="Ano/Mês", db_index=True,
-                             help_text="Formato: AAMM (Ano e Mês)")
-    ano = models.CharField(max_length=2, verbose_name="Ano", db_index=True)
-    mes = models.CharField(max_length=2, verbose_name="Mês", db_index=True)
-    
-    # Valores
     quantidade = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Quantidade")
     valor_total = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Valor Total")
     
-    # Referências ao Clipper
+    # Dados da nota fiscal
     numero_nf = models.CharField(max_length=20, blank=True, null=True, verbose_name="Número NF")
     serie_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Série NF")
-    origem_sistema = models.CharField(max_length=20, default="Clipper", verbose_name="Sistema de Origem")
+    estado = models.CharField(max_length=2, blank=True, null=True, verbose_name="Estado")
+    
+    # Campos calculados para relatórios
+    anomes = models.CharField(max_length=6, verbose_name="Ano/Mês", db_index=True,
+                             help_text="Formato: YYYYMM")
+    ano = models.CharField(max_length=4, verbose_name="Ano", db_index=True)
+    mes = models.CharField(max_length=2, verbose_name="Mês", db_index=True)
     
     # Metadados
-    data_sincronizacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de Sincronização")
-    ativo = models.BooleanField(default=True, verbose_name="Ativo")
+    data_importacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de Importação")
+    origem_sistema = models.CharField(max_length=20, default="BI", verbose_name="Sistema de Origem")
+    
+    def save(self, *args, **kwargs):
+        # Calcular campos derivados automaticamente
+        if self.data_venda:
+            self.ano = str(self.data_venda.year)
+            self.mes = str(self.data_venda.month).zfill(2)
+            self.anomes = f"{self.ano}{self.mes}"
+        
+        super().save(*args, **kwargs)
     
     class Meta:
-        db_table = 'registros_bi'
-        verbose_name = "Registro de BI"
-        verbose_name_plural = "Registros de BI"
+        db_table = 'vendas'
+        verbose_name = "Venda"
+        verbose_name_plural = "Vendas"
         ordering = ["-data_venda"]
         indexes = [
             models.Index(fields=['loja', 'vendedor', 'produto']),
@@ -361,34 +359,7 @@ class RegistroBI(models.Model):
         ]
     
     def __str__(self):
-        return f"Venda {self.numero_nf} - {self.data_venda} - {self.cliente.nome}"
-
-class LogSincronizacao(models.Model):
-    TIPO_CHOICES = [
-        ('bi', 'BI SysFat'),
-        ('receita', 'Receita Federal'),
-        ('chatwoot', 'ChatWoot'),
-    ]
-    
-    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
-    data_inicio = models.DateTimeField(auto_now_add=True)
-    data_termino = models.DateTimeField(blank=True, null=True)
-    registros_processados = models.IntegerField(default=0)
-    registros_criados = models.IntegerField(default=0)
-    registros_atualizados = models.IntegerField(default=0)
-    registros_com_erro = models.IntegerField(default=0)
-    status = models.CharField(max_length=20, default='iniciado')
-    mensagem = models.TextField(blank=True, null=True)
-    usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True, blank=True)
-    
-    def __str__(self):
-        return f"{self.get_tipo_display()} - {self.data_inicio}"
-    
-    class Meta:
-        db_table = 'log_sincronizacao'
-        verbose_name = "Log de Sincronização"
-        verbose_name_plural = "Logs de Sincronização"
-        ordering = ["-data_inicio"]
+        return f"Venda {self.numero_nf or 'S/N'} - {self.data_venda} - {self.cliente.nome}"
 
 # ===== MODELO CNAE SECUNDÁRIO =====
 
@@ -427,7 +398,6 @@ class ClienteCnaeSecundario(models.Model):
         verbose_name = "CNAE Secundário do Cliente"
         verbose_name_plural = "CNAEs Secundários dos Clientes"
         ordering = ['cliente', 'ordem']
-        # Usar constraints mais moderno ao invés de unique_together
         constraints = [
             models.UniqueConstraint(
                 fields=['cliente', 'codigo_cnae'], 

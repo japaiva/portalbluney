@@ -1,0 +1,153 @@
+<!-- ===== VENDAS LIST COMPLETO - gestor/templates/gestor/vendas_list.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Vendas | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-chart-line me-2"></i> Vendas
+    </h5>
+    <div>
+      <a href="{% url 'gestor:vendas_create' %}" class="btn btn-primary btn-sm">
+        <i class="fas fa-plus me-1"></i> Nova Venda
+      </a>
+      <a href="{% url 'gestor:importar_vendas' %}" class="btn btn-success btn-sm">
+        <i class="fas fa-upload me-1"></i> Importar BI
+      </a>
+      <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar
+      </a>
+    </div>
+  </div>
+  
+  <div class="card-header bg-white">
+    <form method="get" class="row g-3 align-items-end">
+      <div class="col-md-6">
+        <label for="search" class="form-label small">Buscar</label>
+        <input type="text" name="search" id="search" class="form-control form-control-sm" 
+               placeholder="Cliente, produto, NF..." value="{{ search|default:'' }}">
+      </div>
+      
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-sm btn-primary w-100">
+          <i class="fas fa-search me-1"></i> Buscar
+        </button>
+      </div>
+      
+      <div class="col-md-3">
+        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-sm btn-outline-secondary w-100">
+          <i class="fas fa-eraser me-1"></i> Limpar
+        </a>
+      </div>
+    </form>
+  </div>
+  
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 100px;">Data</th>
+            <th style="width: 200px;">Cliente</th>
+            <th>Produto</th>
+            <th style="width: 80px;">Qtd</th>
+            <th style="width: 100px;">Valor</th>
+            <th style="width: 80px;">NF</th>
+            <th style="width: 120px;" class="text-end">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for venda in page_obj %}
+            <tr>
+              <td>{{ venda.data_venda|date:"d/m/Y" }}</td>
+              <td>
+                <div class="fw-semibold">{{ venda.cliente.nome|truncatechars:25 }}</div>
+                <small class="text-muted">{{ venda.cliente.codigo }}</small>
+              </td>
+              <td>
+                <div>{{ venda.produto.descricao|truncatechars:30 }}</div>
+                <small class="text-muted">
+                  <span class="badge bg-info text-dark">{{ venda.grupo_produto.codigo }}</span>
+                  <span class="badge bg-warning text-dark">{{ venda.fabricante.codigo }}</span>
+                </small>
+              </td>
+              <td>{{ venda.quantidade|floatformat:0 }}</td>
+              <td>
+                <strong>R$ {{ venda.valor_total|floatformat:2 }}</strong>
+              </td>
+              <td>
+                {% if venda.numero_nf %}
+                  <span class="badge bg-secondary">{{ venda.numero_nf }}</span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td class="text-end">
+                <div class="btn-group" role="group">
+                  <a href="{% url 'gestor:vendas_edit' venda.pk %}" 
+                     class="btn btn-sm btn-outline-primary" 
+                     title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="{% url 'gestor:vendas_delete' venda.pk %}" 
+                     class="btn btn-sm btn-outline-danger" 
+                     title="Excluir">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="7" class="text-center py-4 text-muted">
+                {% if search %}
+                  Nenhuma venda encontrada com os critérios de busca.
+                  <br><a href="{% url 'gestor:vendas_list' %}" class="btn btn-sm btn-outline-primary mt-2">
+                    <i class="fas fa-eraser me-1"></i> Limpar busca
+                  </a>
+                {% else %}
+                  Nenhuma venda cadastrada.
+                  <br>
+                  <a href="{% url 'gestor:vendas_create' %}" class="btn btn-sm btn-primary mt-2 me-2">
+                    <i class="fas fa-plus me-1"></i> Nova venda
+                  </a>
+                  <a href="{% url 'gestor:importar_vendas' %}" class="btn btn-sm btn-success mt-2">
+                    <i class="fas fa-upload me-1"></i> Importar do BI
+                  </a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Paginação -->
+    {% if page_obj.paginator.num_pages > 1 %}
+    <div class="d-flex justify-content-center mt-3">
+      <nav>
+        <ul class="pagination pagination-sm">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search %}&search={{ search }}{% endif %}">Anterior</a>
+            </li>
+          {% endif %}
+          
+          <li class="page-item active">
+            <span class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+          </li>
+          
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search %}&search={{ search }}{% endif %}">Próximo</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

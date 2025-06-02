@@ -1,11 +1,13 @@
 # core/forms.py
 from django import forms
 from core.models import (Cliente, ClienteContato, ClienteCnaeSecundario, Usuario, 
-                        Loja, Vendedor, Produto, ClasseProduto, RegistroBI, LogSincronizacao)
+                        Loja, Vendedor, Produto, GrupoProduto, Fabricante, Vendas)
 from django.contrib.auth.hashers import make_password
 from django.utils import timezone
 from datetime import datetime
 import calendar
+
+# ===== FORMULÁRIO DE USUÁRIO =====
 
 class UsuarioForm(forms.ModelForm):
     confirm_password = forms.CharField(widget=forms.PasswordInput(), required=False)
@@ -77,12 +79,189 @@ class UsuarioForm(forms.ModelForm):
         
         return user
 
+# ===== FORMULÁRIOS DE CADASTROS BÁSICOS =====
+
+class LojaForm(forms.ModelForm):
+    class Meta:
+        model = Loja
+        fields = ['codigo', 'nome', 'endereco', 'cidade', 'estado', 'cep', 'telefone', 'email', 'ativo']
+        widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'endereco': forms.TextInput(attrs={'class': 'form-control'}),
+            'cidade': forms.TextInput(attrs={'class': 'form-control'}),
+            'estado': forms.Select(attrs={'class': 'form-select'}, choices=[('', '---')] + [(s, s) for s in ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']]),
+            'cep': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '00000-000'}),
+            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+    
+    def clean_codigo(self):
+        codigo = self.cleaned_data['codigo']
+        if len(codigo) != 3 or not codigo.isdigit():
+            raise forms.ValidationError("O código da loja deve ter exatamente 3 dígitos numéricos.")
+        return codigo
+
+class VendedorForm(forms.ModelForm):
+    class Meta:
+        model = Vendedor
+        fields = ['codigo', 'nome', 'email', 'telefone', 'loja', 'ativo']
+        widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
+            'nome': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
+            'loja': forms.Select(attrs={'class': 'form-select'}),
+            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+    
+    def clean_codigo(self):
+        codigo = self.cleaned_data['codigo']
+        if len(codigo) != 3 or not codigo.isdigit():
+            raise forms.ValidationError("O código do vendedor deve ter exatamente 3 dígitos numéricos.")
+        return codigo
+
+class FabricanteForm(forms.ModelForm):
+    class Meta:
+        model = Fabricante
+        fields = ['codigo', 'descricao', 'ativo']
+        widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '10'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
+            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+
+class GrupoProdutoForm(forms.ModelForm):
+    class Meta:
+        model = GrupoProduto
+        fields = ['codigo', 'descricao', 'ativo']
+        widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '4'}),
+            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
+            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+        }
+    
+    def clean_codigo(self):
+        codigo = self.cleaned_data['codigo']
+        if len(codigo) != 4 or not codigo.isdigit():
+            raise forms.ValidationError("O código do grupo de produto deve ter exatamente 4 dígitos numéricos.")
+        return codigo
+
+# Adicione esta versão corrigida do ProdutoForm ao seu core/forms.py
+
+class ProdutoForm(forms.ModelForm):
+    class Meta:
+        model = Produto
+        fields = ['codigo', 'descricao', 'grupo', 'fabricante', 'ativo']
+        widgets = {
+            'codigo': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'maxlength': '6',
+                'placeholder': 'Ex: 123456'
+            }),
+            'descricao': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Descrição completa do produto'
+            }),
+            'grupo': forms.Select(attrs={
+                'class': 'form-select'
+            }),
+            'fabricante': forms.Select(attrs={
+                'class': 'form-select'
+            }),
+            'ativo': forms.CheckboxInput(attrs={
+                'class': 'form-check-input'
+            }),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Tornar campos obrigatórios
+        self.fields['codigo'].required = True
+        self.fields['descricao'].required = True
+        self.fields['grupo'].required = True
+        self.fields['fabricante'].required = True
+        
+        # Adicionar opção vazia para campos de relacionamento
+        self.fields['grupo'].empty_label = "Selecione um grupo"
+        self.fields['fabricante'].empty_label = "Selecione um fabricante"
+        
+        # Se não houver grupos ou fabricantes cadastrados, mostrar mensagem
+        if not self.fields['grupo'].queryset.exists():
+            self.fields['grupo'].empty_label = "Nenhum grupo cadastrado"
+        if not self.fields['fabricante'].queryset.exists():
+            self.fields['fabricante'].empty_label = "Nenhum fabricante cadastrado"
+    
+    def clean_codigo(self):
+        codigo = self.cleaned_data.get('codigo', '').strip()
+        
+        if not codigo:
+            raise forms.ValidationError("Código é obrigatório.")
+        
+        if len(codigo) != 6:
+            raise forms.ValidationError("O código deve ter exatamente 6 dígitos.")
+        
+        if not codigo.isdigit():
+            raise forms.ValidationError("O código deve conter apenas números.")
+        
+        # Verificar se o código já existe (excluindo a instância atual em caso de edição)
+        existing = Produto.objects.filter(codigo=codigo)
+        if self.instance and self.instance.pk:
+            existing = existing.exclude(pk=self.instance.pk)
+        
+        if existing.exists():
+            raise forms.ValidationError(f"Já existe um produto com o código '{codigo}'.")
+        
+        return codigo
+    
+    def clean_descricao(self):
+        descricao = self.cleaned_data.get('descricao', '').strip()
+        
+        if not descricao:
+            raise forms.ValidationError("Descrição é obrigatória.")
+        
+        if len(descricao) < 3:
+            raise forms.ValidationError("Descrição deve ter pelo menos 3 caracteres.")
+        
+        return descricao.title()  # Capitalizar descrição
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        # Validar se grupo e fabricante existem e estão ativos
+        grupo = cleaned_data.get('grupo')
+        fabricante = cleaned_data.get('fabricante')
+        
+        if grupo and not grupo.ativo:
+            self.add_error('grupo', 'O grupo selecionado está inativo.')
+        
+        if fabricante and not fabricante.ativo:
+            self.add_error('fabricante', 'O fabricante selecionado está inativo.')
+        
+        return cleaned_data
+    
+    def save(self, commit=True):
+        produto = super().save(commit=False)
+        
+        # Garantir que o código seja salvo com zeros à esquerda
+        if produto.codigo:
+            produto.codigo = produto.codigo.zfill(6)
+        
+        if commit:
+            produto.save()
+        
+        return produto
+
+# ===== FORMULÁRIO DO CLIENTE ATUALIZADO =====
+
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = [
             # ===== INFORMAÇÕES PRINCIPAIS =====
-            'codigo', 'codigo_master', 'nome', 'nome_fantasia',
+            'codigo', 'codigo_master', 'nome', 'nome_fantasia', 'status',
             
             # ===== DADOS FISCAIS =====
             'tipo_documento', 'cpf_cnpj', 'nome_razao_social',
@@ -102,7 +281,7 @@ class ClienteForm(forms.ModelForm):
             'data_cadastro', 'data_ultima_compra',
             
             # ===== CONTATO =====
-            'telefone', 'email', 'observacoes', 'ativo'
+            'telefone', 'email', 'observacoes'
         ]
         
         widgets = {
@@ -111,6 +290,7 @@ class ClienteForm(forms.ModelForm):
             'codigo_master': forms.TextInput(attrs={'class': 'form-control'}),
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
             'nome_fantasia': forms.TextInput(attrs={'class': 'form-control'}),
+            'status': forms.Select(attrs={'class': 'form-select'}),
             
             # ===== DADOS FISCAIS =====
             'tipo_documento': forms.Select(attrs={'class': 'form-select'}),
@@ -156,7 +336,6 @@ class ClienteForm(forms.ModelForm):
             'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'observacoes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
     
     def __init__(self, *args, **kwargs):
@@ -205,6 +384,8 @@ class ClienteForm(forms.ModelForm):
         
         return cleaned_data
 
+# ===== FORMULÁRIOS RELACIONADOS AO CLIENTE =====
+
 class ClienteContatoForm(forms.ModelForm):
     class Meta:
         model = ClienteContato
@@ -251,7 +432,7 @@ class ClienteCnaeSecundarioForm(forms.ModelForm):
             raise forms.ValidationError("Código CNAE deve conter apenas números")
         return codigo
 
-# FormSet para múltiplos CNAEs (DEVE vir APÓS as classes de formulário)
+# FormSet para múltiplos CNAEs
 ClienteCnaeSecundarioFormSet = forms.inlineformset_factory(
     Cliente, 
     ClienteCnaeSecundario,
@@ -262,307 +443,65 @@ ClienteCnaeSecundarioFormSet = forms.inlineformset_factory(
     max_num=10,  # Máximo de CNAEs secundários
 )
 
-class LojaForm(forms.ModelForm):
-    class Meta:
-        model = Loja
-        fields = ['codigo', 'nome', 'endereco', 'cidade', 'estado', 'cep', 'telefone', 'email', 'ativo']
-        widgets = {
-            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'endereco': forms.TextInput(attrs={'class': 'form-control'}),
-            'cidade': forms.TextInput(attrs={'class': 'form-control'}),
-            'estado': forms.Select(attrs={'class': 'form-select'}, choices=[('', '---')] + [(s, s) for s in ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO']]),
-            'cep': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '00000-000'}),
-            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
-    
-    def clean_codigo(self):
-        codigo = self.cleaned_data['codigo']
-        if len(codigo) != 3 or not codigo.isdigit():
-            raise forms.ValidationError("O código da loja deve ter exatamente 3 dígitos numéricos.")
-        return codigo
+# ===== FORMULÁRIO DE VENDAS =====
 
-class VendedorForm(forms.ModelForm):
+class VendasForm(forms.ModelForm):
     class Meta:
-        model = Vendedor
-        fields = ['codigo', 'nome', 'email', 'telefone', 'loja', 'ativo']
+        model = Vendas
+        fields = [
+            'data_venda', 'cliente', 'produto', 'grupo_produto', 'fabricante',
+            'loja', 'vendedor', 'quantidade', 'valor_total', 
+            'numero_nf', 'serie_nf', 'estado'
+        ]
         widgets = {
-            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
+            'data_venda': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'cliente': forms.Select(attrs={'class': 'form-select'}),
+            'produto': forms.Select(attrs={'class': 'form-select'}),
+            'grupo_produto': forms.Select(attrs={'class': 'form-select'}),
+            'fabricante': forms.Select(attrs={'class': 'form-select'}),
             'loja': forms.Select(attrs={'class': 'form-select'}),
-            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'vendedor': forms.Select(attrs={'class': 'form-select'}),
+            'quantidade': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+            'valor_total': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
+            'numero_nf': forms.TextInput(attrs={'class': 'form-control'}),
+            'serie_nf': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
+            'estado': forms.Select(attrs={'class': 'form-select'}, 
+                                 choices=[('', '---')] + [(s, s) for s in [
+                                     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 
+                                     'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 
+                                     'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
+                                 ]]),
         }
-    
-    def clean_codigo(self):
-        codigo = self.cleaned_data['codigo']
-        if len(codigo) != 3 or not codigo.isdigit():
-            raise forms.ValidationError("O código do vendedor deve ter exatamente 3 dígitos numéricos.")
-        return codigo
 
-class ClasseProdutoForm(forms.ModelForm):
-    class Meta:
-        model = ClasseProduto
-        fields = ['codigo', 'descricao', 'ativo']
-        widgets = {
-            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '4'}),
-            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
-            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
-    
-    def clean_codigo(self):
-        codigo = self.cleaned_data['codigo']
-        if len(codigo) != 4 or not codigo.isdigit():
-            raise forms.ValidationError("O código da classe de produto deve ter exatamente 4 dígitos numéricos.")
-        return codigo
+# ===== FORMULÁRIO PARA IMPORTAÇÃO DE VENDAS =====
 
-class ProdutoForm(forms.ModelForm):
-    class Meta:
-        model = Produto
-        fields = ['codigo', 'descricao', 'classe', 'preco', 'ativo']
-        widgets = {
-            'codigo': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '6'}),
-            'descricao': forms.TextInput(attrs={'class': 'form-control'}),
-            'classe': forms.Select(attrs={'class': 'form-select'}),
-            'preco': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-        }
-    
-    def clean_codigo(self):
-        codigo = self.cleaned_data['codigo']
-        if len(codigo) != 6 or not codigo.isdigit():
-            raise forms.ValidationError("O código do produto deve ter exatamente 6 dígitos numéricos.")
-        return codigo
-
-# Formulário para processo de sincronização com o BI
-class SincronizarBIForm(forms.Form):
-    MESES_CHOICES = [
-        ('01', 'Janeiro'),
-        ('02', 'Fevereiro'),
-        ('03', 'Março'),
-        ('04', 'Abril'),
-        ('05', 'Maio'),
-        ('06', 'Junho'),
-        ('07', 'Julho'),
-        ('08', 'Agosto'),
-        ('09', 'Setembro'),
-        ('10', 'Outubro'),
-        ('11', 'Novembro'),
-        ('12', 'Dezembro'),
-    ]
-    
-    # Gerar anos dinamicamente, mostrando apenas os últimos 5 anos
-    ano_atual = datetime.now().year - 2000  # No formato YY como no Clipper
-    ANOS_CHOICES = [(str(ano).zfill(2), str(2000 + ano)) for ano in range(ano_atual - 4, ano_atual + 1)]
-    
-    mes = forms.ChoiceField(
-        label="Mês de Referência",
-        choices=MESES_CHOICES,
-        initial=str(datetime.now().month).zfill(2),
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
-    
-    ano = forms.ChoiceField(
-        label="Ano de Referência",
-        choices=ANOS_CHOICES,
-        initial=str(datetime.now().year - 2000).zfill(2),
-        widget=forms.Select(attrs={'class': 'form-select'})
+class ImportarVendasForm(forms.Form):
+    arquivo_csv = forms.FileField(
+        label="Arquivo CSV de Vendas",
+        help_text="Selecione o arquivo CSV com os dados de vendas do BI",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv'})
     )
     
     limpar_registros_anteriores = forms.BooleanField(
         label="Limpar registros anteriores",
         required=False,
-        initial=True,
-        help_text="Se marcado, os registros existentes para o mês/ano selecionado serão removidos antes da importação",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    verificar_dependencias = forms.BooleanField(
-        label="Verificar dependências (clientes, produtos, etc.)",
-        required=False,
-        initial=True,
-        help_text="Verifica e atualiza automaticamente dados de clientes, produtos e vendedores necessários",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    cache_local = forms.BooleanField(
-        label="Armazenar cópia local dos dados",
-        required=False,
         initial=False,
-        help_text="Mantém uma cópia local dos dados para acesso offline (útil para relatórios)",
+        help_text="Se marcado, todos os registros de vendas existentes serão removidos antes da importação",
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
     
-    notificar_conclusao = forms.BooleanField(
-        label="Notificar quando concluir",
-        required=False,
-        initial=False,
-        help_text="Enviar notificação por e-mail quando a sincronização for concluída",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    periodo_completo = forms.BooleanField(
-        label="Período completo (considerar todo o mês)",
+    criar_dependencias = forms.BooleanField(
+        label="Criar dependências automaticamente",
         required=False,
         initial=True,
-        help_text="Se desmarcado, você pode especificar um intervalo de dias específico",
-        widget=forms.CheckboxInput(attrs={
-            'class': 'form-check-input',
-            'data-bs-toggle': 'collapse',
-            'data-bs-target': '#collapsePeriodo',
-            'aria-expanded': 'true',
-            'aria-controls': 'collapsePeriodo'
-        })
+        help_text="Cria automaticamente clientes, produtos, grupos, fabricantes, lojas e vendedores que não existirem",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
     
-    dia_inicial = forms.IntegerField(
-        label="Dia inicial",
-        required=False,
-        min_value=1,
-        max_value=31,
-        initial=1,
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
-    )
-    
-    dia_final = forms.IntegerField(
-        label="Dia final",
-        required=False,
-        min_value=1,
-        max_value=31,
-        initial=lambda: calendar.monthrange(datetime.now().year, datetime.now().month)[1],
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
-    )
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        
-        # Validação apenas se período completo não estiver marcado
-        if not cleaned_data.get('periodo_completo'):
-            dia_inicial = cleaned_data.get('dia_inicial')
-            dia_final = cleaned_data.get('dia_final')
-            
-            # Validar se os dias foram informados
-            if dia_inicial is None:
-                self.add_error('dia_inicial', "Dia inicial é obrigatório quando período completo não está selecionado")
-            
-            if dia_final is None:
-                self.add_error('dia_final', "Dia final é obrigatório quando período completo não está selecionado")
-            
-            # Validar se dia final é maior ou igual ao dia inicial
-            if dia_inicial and dia_final and dia_inicial > dia_final:
-                self.add_error('dia_final', "Dia final deve ser maior ou igual ao dia inicial")
-            
-            # Validar se os dias são válidos para o mês/ano selecionado
-            if dia_inicial and dia_final and 'mes' in cleaned_data and 'ano' in cleaned_data:
-                mes = int(cleaned_data.get('mes'))
-                ano = int(cleaned_data.get('ano')) + 2000  # Converter de YY para YYYY
-                
-                _, ultimo_dia = calendar.monthrange(ano, mes)
-                
-                if dia_inicial > ultimo_dia:
-                    self.add_error('dia_inicial', f"O mês {mes}/{ano} tem apenas {ultimo_dia} dias")
-                
-                if dia_final > ultimo_dia:
-                    self.add_error('dia_final', f"O mês {mes}/{ano} tem apenas {ultimo_dia} dias")
-        
-        return cleaned_data
-
-# Formulário para processo de sincronização com o BI (versão anterior - compatibilidade)
-class SincronizarBIForm_Old(forms.Form):
-    arquivo_csv = forms.FileField(
-        label="Arquivo CSV do BI",
-        help_text="Selecione o arquivo CSV com os dados do BI para sincronização",
-        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv'})
-    )
-    
-    mes = forms.ChoiceField(
-        label="Mês de Referência",
-        choices=[(i, i) for i in range(1, 13)],
+    status_cliente_novo = forms.ChoiceField(
+        label="Status para clientes novos",
+        choices=Cliente.STATUS_CHOICES,
+        initial='rascunho',
+        help_text="Status que será atribuído aos clientes criados automaticamente durante a importação",
         widget=forms.Select(attrs={'class': 'form-select'})
-    )
-    
-    ano = forms.ChoiceField(
-        label="Ano de Referência",
-        choices=[(i, i) for i in range(2020, 2026)],
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
-    
-    limpar_registros_anteriores = forms.BooleanField(
-        label="Limpar registros anteriores",
-        required=False,
-        initial=True,
-        help_text="Se marcado, os registros existentes para o mês/ano selecionado serão removidos antes da importação",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-
-# Formulário para processo de sincronização com a Receita Federal
-class SincronizarReceitaForm(forms.Form):
-    arquivo_csv = forms.FileField(
-        label="Arquivo CSV da Receita Federal",
-        help_text="Selecione o arquivo CSV com os dados da Receita Federal para sincronização",
-        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv'})
-    )
-    
-    atualizar_existentes = forms.BooleanField(
-        label="Atualizar registros existentes",
-        required=False,
-        initial=True,
-        help_text="Se marcado, os registros existentes serão atualizados com os novos dados",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-
-# Formulário para sincronização completa
-class SincronizacaoCompletaForm(forms.Form):
-    sincronizar_lojas = forms.BooleanField(
-        label="Sincronizar Lojas",
-        required=False,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    sincronizar_vendedores = forms.BooleanField(
-        label="Sincronizar Vendedores",
-        required=False,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    sincronizar_classes = forms.BooleanField(
-        label="Sincronizar Classes de Produto",
-        required=False,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    sincronizar_produtos = forms.BooleanField(
-        label="Sincronizar Produtos",
-        required=False,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    sincronizar_clientes = forms.BooleanField(
-        label="Sincronizar Clientes",
-        required=False,
-        initial=True,
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    atualizar_existentes = forms.BooleanField(
-        label="Atualizar registros existentes",
-        required=False,
-        initial=True,
-        help_text="Se marcado, os registros existentes serão atualizados com os novos dados",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    verificar_receita = forms.BooleanField(
-        label="Verificar dados na Receita Federal",
-        required=False,
-        initial=False,
-        help_text="Consulta dados de CPF/CNPJ na Receita Federal para clientes novos ou desatualizados",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )

@@ -1,0 +1,155 @@
+<!-- ===== LOJA LIST - gestor/templates/gestor/loja_list.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Lojas | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-store me-2"></i> Lojas
+    </h5>
+    <div>
+      <a href="{% url 'gestor:loja_create' %}" class="btn btn-primary btn-sm">
+        <i class="fas fa-plus me-1"></i> Nova Loja
+      </a>
+      <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar
+      </a>
+    </div>
+  </div>
+  
+  <div class="card-header bg-white">
+    <form method="get" class="row g-3 align-items-end">
+      <div class="col-md-6">
+        <label for="search" class="form-label small">Buscar</label>
+        <input type="text" name="search" id="search" class="form-control form-control-sm" 
+               placeholder="Código, nome, cidade..." value="{{ search|default:'' }}">
+      </div>
+      
+      <div class="col-md-3">
+        <button type="submit" class="btn btn-sm btn-primary w-100">
+          <i class="fas fa-search me-1"></i> Buscar
+        </button>
+      </div>
+      
+      <div class="col-md-3">
+        <a href="{% url 'gestor:loja_list' %}" class="btn btn-sm btn-outline-secondary w-100">
+          <i class="fas fa-eraser me-1"></i> Limpar
+        </a>
+      </div>
+    </form>
+  </div>
+  
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 80px;">Código</th>
+            <th>Nome</th>
+            <th style="width: 200px;">Localização</th>
+            <th style="width: 150px;">Contato</th>
+            <th style="width: 80px;" class="text-center">Status</th>
+            <th style="width: 120px;" class="text-end">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for loja in lojas %}
+            <tr>
+              <td>
+                <code class="bg-light px-2 py-1 rounded">{{ loja.codigo }}</code>
+              </td>
+              <td>
+                <div class="fw-semibold">{{ loja.nome }}</div>
+                {% if loja.endereco %}
+                  <small class="text-muted">{{ loja.endereco|truncatechars:30 }}</small>
+                {% endif %}
+              </td>
+              <td>
+                {% if loja.cidade or loja.estado %}
+                  <div>
+                    {% if loja.cidade %}{{ loja.cidade }}{% endif %}
+                    {% if loja.estado %} - {{ loja.estado }}{% endif %}
+                  </div>
+                {% endif %}
+                {% if loja.cep %}
+                  <small class="text-muted">CEP: {{ loja.cep }}</small>
+                {% endif %}
+                {% if not loja.cidade and not loja.estado and not loja.cep %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if loja.telefone %}
+                  <div>
+                    <i class="fas fa-phone me-1"></i>{{ loja.telefone }}
+                  </div>
+                {% endif %}
+                {% if loja.email %}
+                  <div>
+                    <i class="fas fa-envelope me-1"></i>{{ loja.email|truncatechars:15 }}
+                  </div>
+                {% endif %}
+                {% if not loja.telefone and not loja.email %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td class="text-center">
+                <span class="badge {% if loja.ativo %}bg-success{% else %}bg-danger{% endif %}">
+                  {% if loja.ativo %}
+                    <i class="fas fa-check me-1"></i>Ativa
+                  {% else %}
+                    <i class="fas fa-times me-1"></i>Inativa
+                  {% endif %}
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="btn-group" role="group">
+                  <a href="{% url 'gestor:loja_edit' loja.codigo %}" 
+                     class="btn btn-sm btn-outline-primary" 
+                     title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="{% url 'gestor:loja_delete' loja.codigo %}" 
+                     class="btn btn-sm btn-outline-danger" 
+                     title="Excluir">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="6" class="text-center py-4 text-muted">
+                {% if search %}
+                  Nenhuma loja encontrada com os critérios de busca.
+                  <br><a href="{% url 'gestor:loja_list' %}" class="btn btn-sm btn-outline-primary mt-2">
+                    <i class="fas fa-eraser me-1"></i> Limpar busca
+                  </a>
+                {% else %}
+                  Nenhuma loja cadastrada.
+                  <br><a href="{% url 'gestor:loja_create' %}" class="btn btn-sm btn-primary mt-2">
+                    <i class="fas fa-plus me-1"></i> Cadastrar primeira loja
+                  </a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <small class="text-muted">
+          Total: {{ lojas|length }} loja{{ lojas|length|pluralize:"s" }}
+          {% if search %}
+            (filtrado{{ lojas|length|pluralize }})
+          {% endif %}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

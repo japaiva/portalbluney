@@ -1,0 +1,75 @@
+<!-- ===== PRODUTO DELETE - gestor/templates/gestor/produto_confirm_delete.html ===== -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Excluir Produto | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-trash-alt me-2"></i> Excluir Produto
+    </h5>
+    <a href="{% url 'gestor:produto_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <div class="alert alert-danger">
+      <h5><i class="fas fa-exclamation-triangle me-2"></i> Confirmação de Exclusão</h5>
+      <p>Você tem certeza que deseja excluir o produto?</p>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            <li><strong>Código:</strong> <code>{{ produto.codigo }}</code></li>
+            <li><strong>Descrição:</strong> {{ produto.descricao }}</li>
+            <li><strong>Grupo:</strong> 
+              <span class="badge bg-info text-dark">{{ produto.grupo.codigo }}</span>
+              {{ produto.grupo.descricao }}
+            </li>
+            <li><strong>Fabricante:</strong> 
+              <span class="badge bg-warning text-dark">{{ produto.fabricante.codigo }}</span>
+              {{ produto.fabricante.descricao }}
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul class="list-unstyled mb-0">
+            <li><strong>Status:</strong> 
+              <span class="badge {% if produto.ativo %}bg-success{% else %}bg-danger{% endif %}">
+                {% if produto.ativo %}Ativo{% else %}Inativo{% endif %}
+              </span>
+            </li>
+            {% if produto.vendas_set.count > 0 %}
+            <li><strong>Vendas:</strong> {{ produto.vendas_set.count }} registro{{ produto.vendas_set.count|pluralize }}</li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+      
+      {% if produto.vendas_set.count > 0 %}
+      <div class="alert alert-warning mt-3 mb-0">
+        <i class="fas fa-exclamation-circle me-2"></i>
+        <strong>Atenção:</strong> Este produto possui {{ produto.vendas_set.count }} venda{{ produto.vendas_set.count|pluralize }} 
+        associada{{ produto.vendas_set.count|pluralize }}. A exclusão pode afetar o histórico de vendas.
+      </div>
+      {% endif %}
+      
+      <p class="mt-3 mb-0"><strong>Esta ação é irreversível.</strong></p>
+    </div>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-end mt-3">
+        <a href="{% url 'gestor:produto_list' %}" class="btn btn-outline-secondary me-2">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
+        <button type="submit" class="btn btn-danger">
+          <i class="fas fa-trash-alt me-1"></i> Excluir Produto
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
