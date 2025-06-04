@@ -1,139 +1,153 @@
-<!-- ===== IMPORTAR VENDAS - gestor/templates/gestor/importar_vendas.html ===== -->
-{% extends 'gestor/base_gestor.html' %}
+<!-- gestor/templates/gestor/importar_vendas.html - VERSÃO SIMPLIFICADA -->
 
-{% block title %}{{ title }} | Portal Comercial{% endblock %}
+{% extends 'gestor/base_gestor.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<div class="card shadow">
-  <div class="card-header bg-light d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">
-      <i class="fas fa-upload me-2"></i> {{ title }}
-    </h5>
-    <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary btn-sm">
-      <i class="fas fa-arrow-left me-1"></i> Voltar
-    </a>
-  </div>
-  
-  <div class="card-body">
-    
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      
-      {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-          {% for error in form.non_field_errors %}
-            <p class="mb-0">{{ error }}</p>
-          {% endfor %}
-        </div>
-      {% endif %}
-      
-      <div class="row g-3">
+<div class="container-fluid">
+    <div class="row">
         <div class="col-12">
-          <label for="{{ form.arquivo_csv.id_for_label }}" class="form-label">Arquivo de Dados*</label>
-          {{ form.arquivo_csv }}
-          {% if form.arquivo_csv.errors %}
-            <div class="text-danger small mt-1">{{ form.arquivo_csv.errors.0 }}</div>
-          {% endif %}
-        </div>
-        
-        <div class="col-md-6">
-          <label for="{{ form.status_cliente_novo.id_for_label }}" class="form-label">Status para Clientes Novos</label>
-          {{ form.status_cliente_novo }}
-          {% if form.status_cliente_novo.errors %}
-            <div class="text-danger small mt-1">{{ form.status_cliente_novo.errors.0 }}</div>
-          {% endif %}
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{ title }}</h4>
+                    <small class="text-muted">Importação completa da base de dados</small>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        <!-- Arquivo Principal BI -->
+                        <div class="mb-4">
+                            <label for="{{ form.arquivo_csv.id_for_label }}" class="form-label">
+                                <i class="fas fa-file-excel"></i> {{ form.arquivo_csv.label }}
+                            </label>
+                            {{ form.arquivo_csv }}
+                            <div class="form-text">{{ form.arquivo_csv.help_text }}</div>
+                            {% if form.arquivo_csv.errors %}
+                                <div class="text-danger">{{ form.arquivo_csv.errors }}</div>
+                            {% endif %}
+                        </div>
 
-        </div>
-        
-        <div class="col-12">
-          <h6 class="mt-3 mb-3">Opções de Importação</h6>
-        </div>
-        
-        <div class="col-md-6">
-          <div class="form-check form-switch">
-            {{ form.criar_dependencias }}
-            <label class="form-check-label" for="{{ form.criar_dependencias.id_for_label }}">
-              <strong>Criar dependências automaticamente</strong>
-            </label>
-          </div>
-          {% if form.criar_dependencias.errors %}
-            <div class="text-danger small mt-1">{{ form.criar_dependencias.errors.0 }}</div>
-          {% endif %}
-        </div>
-        
-        <div class="col-md-6">
-          <div class="form-check form-switch">
-            {{ form.limpar_registros_anteriores }}
-            <label class="form-check-label" for="{{ form.limpar_registros_anteriores.id_for_label }}">
-              <strong>Limpar registros anteriores</strong>
-            </label>
-          </div>
-          {% if form.limpar_registros_anteriores.errors %}
-            <div class="text-danger small mt-1">{{ form.limpar_registros_anteriores.errors.0 }}</div>
-          {% endif %}
-        </div>
-      </div>
-      
+                        <!-- === PLANILHAS AUXILIARES === -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-table"></i> Planilhas Auxiliares (Opcionais)
+                                </h6>
+                                <small class="text-muted">Se não fornecidas, dados padrão serão criados automaticamente</small>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="{{ form.arquivo_produtos.id_for_label }}" class="form-label">
+                                                {{ form.arquivo_produtos.label }}
+                                            </label>
+                                            {{ form.arquivo_produtos }}
+                                            <div class="form-text">{{ form.arquivo_produtos.help_text }}</div>
+                                            {% if form.arquivo_produtos.errors %}
+                                                <div class="text-danger">{{ form.arquivo_produtos.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="{{ form.arquivo_classes.id_for_label }}" class="form-label">
+                                                {{ form.arquivo_classes.label }}
+                                            </label>
+                                            {{ form.arquivo_classes }}
+                                            <div class="form-text">{{ form.arquivo_classes.help_text }}</div>
+                                            {% if form.arquivo_classes.errors %}
+                                                <div class="text-danger">{{ form.arquivo_classes.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="{{ form.arquivo_fabricantes.id_for_label }}" class="form-label">
+                                                {{ form.arquivo_fabricantes.label }}
+                                            </label>
+                                            {{ form.arquivo_fabricantes }}
+                                            <div class="form-text">{{ form.arquivo_fabricantes.help_text }}</div>
+                                            {% if form.arquivo_fabricantes.errors %}
+                                                <div class="text-danger">{{ form.arquivo_fabricantes.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-      
-      <div class="d-flex justify-content-end mt-4">
-        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary me-2">
-          <i class="fas fa-times me-1"></i> Cancelar
-        </a>
-        <button type="submit" class="btn btn-success" id="btn-importar">
-          <i class="fas fa-upload me-1"></i> Iniciar Importação
-        </button>
-      </div>
-    </form>
-  </div>
+                        <!-- === CONFIGURAÇÕES SIMPLES === -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-cog"></i> Configurações
+                                </h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-check mb-3">
+                                    {{ form.limpar_registros_anteriores }}
+                                    <label class="form-check-label" for="{{ form.limpar_registros_anteriores.id_for_label }}">
+                                        {{ form.limpar_registros_anteriores.label }}
+                                    </label>
+                                    <div class="form-text">Recomendado para evitar duplicatas</div>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    {{ form.verificar_dependencias }}
+                                    <label class="form-check-label" for="{{ form.verificar_dependencias.id_for_label }}">
+                                        {{ form.verificar_dependencias.label }}
+                                    </label>
+                                    <div class="form-text">{{ form.verificar_dependencias.help_text }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- === BOTÕES === -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancelar
+                            </a>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-upload"></i> Importar Dados Completos
+                            </button>
+                        </div>
+                        
+                        <!-- Aviso sobre a importação completa -->
+                        <div class="alert alert-success mt-3" role="alert">
+                            <i class="fas fa-check-circle"></i>
+                            <strong>Importação Completa:</strong> Todos os registros do arquivo serão processados. O tempo de processamento depende do tamanho do arquivo.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
+// Script para mostrar preview dos arquivos selecionados
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    const btnImportar = document.getElementById('btn-importar');
-    const limparCheckbox = document.querySelector('input[name="limpar_registros_anteriores"]');
+    const fileInputs = document.querySelectorAll('input[type="file"]');
     
-    // Alerta ao selecionar "limpar registros anteriores"
-    if (limparCheckbox) {
-        limparCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                if (!confirm('ATENÇÃO: Esta opção irá remover TODOS os registros de vendas existentes. Tem certeza?')) {
-                    this.checked = false;
-                }
-            }
-        });
-    }
-    
-    // Loading no botão de importar
-    form.addEventListener('submit', function() {
-        btnImportar.disabled = true;
-        btnImportar.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i> Importando...';
-    });
-    
-    // Validação do arquivo
-    const arquivoInput = document.querySelector('input[type="file"]');
-    if (arquivoInput) {
-        arquivoInput.addEventListener('change', function() {
-            const file = this.files[0];
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function(e) {
+            const file = e.target.files[0];
             if (file) {
-                const extension = file.name.split('.').pop().toLowerCase();
-                const validExtensions = ['csv', 'xlsx', 'xls'];
-                
-                if (!validExtensions.includes(extension)) {
-                    alert('Formato de arquivo não suportado. Use CSV, XLS ou XLSX.');
-                    this.value = '';
-                }
-                
-                // Verificar tamanho (máximo 50MB)
-                const maxSize = 50 * 1024 * 1024; // 50MB
-                if (file.size > maxSize) {
-                    alert('Arquivo muito grande. Máximo: 50MB');
-                    this.value = '';
+                const label = this.previousElementSibling;
+                if (label) {
+                    const icon = file.name.toLowerCase().includes('.xlsx') ? 'fa-file-excel' : 'fa-file-csv';
+                    label.innerHTML = `<i class="fas ${icon} text-success"></i> ${label.textContent.split(' -')[0]} - <span class="text-success">${file.name}</span>`;
                 }
             }
         });
-    }
+    });
 });
 </script>
 {% endblock %}

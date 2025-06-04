@@ -325,6 +325,10 @@ class Vendas(models.Model):
     numero_nf = models.CharField(max_length=20, blank=True, null=True, verbose_name="Número NF")
     serie_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Série NF")
     estado = models.CharField(max_length=2, blank=True, null=True, verbose_name="Estado")
+
+    # NOVO CAMPO para vendedor da época
+    vendedor_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Vendedor NF")
+
     
     # Campos calculados para relatórios
     anomes = models.CharField(max_length=6, verbose_name="Ano/Mês", db_index=True,

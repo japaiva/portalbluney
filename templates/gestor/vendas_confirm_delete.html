@@ -1,42 +1,61 @@
+
 <!-- ===== VENDAS DELETE - gestor/templates/gestor/vendas_confirm_delete.html ===== -->
 {% extends 'gestor/base_gestor.html' %}
 
 {% block title %}Excluir Venda | Portal Comercial{% endblock %}
 
 {% block content %}
-<div class="card shadow">
-  <div class="card-header bg-light d-flex justify-content-between align-items-center">
-    <h5 class="card-title mb-0">
-      <i class="fas fa-trash-alt me-2"></i> Excluir Venda
-    </h5>
-    <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary btn-sm">
-      <i class="fas fa-arrow-left me-1"></i> Voltar
-    </a>
-  </div>
-  
-  <div class="card-body">
-    <div class="alert alert-danger">
-      <h5><i class="fas fa-exclamation-triangle me-2"></i> Confirmação de Exclusão</h5>
-      <p>Você tem certeza que deseja excluir esta venda?</p>
-      <ul>
-        <li><strong>Data:</strong> {{ venda.data_venda|date:"d/m/Y" }}</li>
-        <li><strong>Cliente:</strong> {{ venda.cliente.nome }}</li>
-        <li><strong>Produto:</strong> {{ venda.produto.descricao }}</li>
-        <li><strong>Valor:</strong> R$ {{ venda.valor_total|floatformat:2 }}</li>
-        {% if venda.numero_nf %}<li><strong>NF:</strong> {{ venda.numero_nf }}</li>{% endif %}
-      </ul>
-      <p class="mb-0"><strong>Atenção:</strong> Esta ação é irreversível.</p>
-    </div>
-    
-    <form method="post">
-      {% csrf_token %}
-      <div class="d-flex justify-content-end mt-3">
-        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary me-2">Cancelar</a>
-        <button type="submit" class="btn btn-danger">
-          <i class="fas fa-trash-alt me-1"></i> Excluir Venda
-        </button>
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow">
+      <div class="card-header bg-danger text-white">
+        <h5 class="card-title mb-0">
+          <i class="fas fa-exclamation-triangle me-2"></i> Confirmar Exclusão
+        </h5>
       </div>
-    </form>
+      
+      <div class="card-body">
+        <div class="alert alert-warning">
+          <i class="fas fa-warning me-2"></i>
+          <strong>Atenção:</strong> Esta ação não pode ser desfeita!
+        </div>
+        
+        <p>Tem certeza que deseja excluir a seguinte venda?</p>
+        
+        <div class="card bg-light">
+          <div class="card-body">
+            <dl class="row mb-0">
+              <dt class="col-sm-4">ID:</dt>
+              <dd class="col-sm-8">#{{ venda.id }}</dd>
+              
+              <dt class="col-sm-4">Data:</dt>
+              <dd class="col-sm-8">{{ venda.data_venda|date:"d/m/Y" }}</dd>
+              
+              <dt class="col-sm-4">Cliente:</dt>
+              <dd class="col-sm-8">{{ venda.cliente.nome }}</dd>
+              
+              <dt class="col-sm-4">Produto:</dt>
+              <dd class="col-sm-8">{{ venda.produto.descricao|truncatechars:40 }}</dd>
+              
+              <dt class="col-sm-4">Valor:</dt>
+              <dd class="col-sm-8"><strong class="text-success">R$ {{ venda.valor_total|floatformat:2 }}</strong></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-footer bg-white d-flex justify-content-end gap-2">
+        <a href="{% url 'gestor:vendas_detail' venda.id %}" class="btn btn-secondary">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
+        <form method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash me-1"></i> Excluir
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-<!-- ===== VENDAS LIST COMPLETO - gestor/templates/gestor/vendas_list.html ===== -->
+<!-- ===== VENDAS LIST MELHORADO - gestor/templates/gestor/vendas_list.html ===== -->
 {% extends 'gestor/base_gestor.html' %}
 
 {% block title %}Vendas | Portal Comercial{% endblock %}
@@ -13,71 +13,118 @@
       <a href="{% url 'gestor:vendas_create' %}" class="btn btn-primary btn-sm">
         <i class="fas fa-plus me-1"></i> Nova Venda
       </a>
-      <a href="{% url 'gestor:importar_vendas' %}" class="btn btn-success btn-sm">
-        <i class="fas fa-upload me-1"></i> Importar BI
-      </a>
       <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-arrow-left me-1"></i> Voltar
       </a>
     </div>
   </div>
   
+  <!-- Filtros Avançados -->
   <div class="card-header bg-white">
     <form method="get" class="row g-3 align-items-end">
-      <div class="col-md-6">
+      <div class="col-md-3">
         <label for="search" class="form-label small">Buscar</label>
         <input type="text" name="search" id="search" class="form-control form-control-sm" 
-               placeholder="Cliente, produto, NF..." value="{{ search|default:'' }}">
+               placeholder="Cliente, produto, código..." value="{{ search|default:'' }}">
       </div>
       
-      <div class="col-md-3">
+      <div class="col-md-2">
+        <label for="data_inicio" class="form-label small">Data Início</label>
+        <input type="date" name="data_inicio" id="data_inicio" class="form-control form-control-sm" 
+               value="{{ data_inicio|default:'' }}">
+      </div>
+      
+      <div class="col-md-2">
+        <label for="data_fim" class="form-label small">Data Fim</label>
+        <input type="date" name="data_fim" id="data_fim" class="form-control form-control-sm" 
+               value="{{ data_fim|default:'' }}">
+      </div>
+      
+      <div class="col-md-2">
+        <label for="loja" class="form-label small">Loja</label>
+        <select name="loja" id="loja" class="form-select form-select-sm">
+          <option value="">Todas</option>
+          {% for loja in lojas_disponiveis %}
+            <option value="{{ loja.codigo }}" {% if loja_filtro == loja.codigo %}selected{% endif %}>
+              {{ loja.codigo }} - {{ loja.nome|truncatechars:15 }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <div class="col-md-2">
+        <label for="vendedor" class="form-label small">Vendedor</label>
+        <select name="vendedor" id="vendedor" class="form-select form-select-sm">
+          <option value="">Todos</option>
+          {% for vendedor in vendedores_disponiveis %}
+            <option value="{{ vendedor.codigo }}" {% if vendedor_filtro == vendedor.codigo %}selected{% endif %}>
+              {{ vendedor.codigo }} - {{ vendedor.nome|truncatechars:15 }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <div class="col-md-1">
         <button type="submit" class="btn btn-sm btn-primary w-100">
-          <i class="fas fa-search me-1"></i> Buscar
+          <i class="fas fa-search"></i>
         </button>
       </div>
-      
-      <div class="col-md-3">
-        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-sm btn-outline-secondary w-100">
-          <i class="fas fa-eraser me-1"></i> Limpar
+    </form>
+    
+    <!-- Botão Limpar Filtros -->
+    {% if search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
+    <div class="row mt-2">
+      <div class="col-12">
+        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-sm btn-outline-secondary">
+          <i class="fas fa-eraser me-1"></i> Limpar filtros
         </a>
       </div>
-    </form>
+    </div>
+    {% endif %}
   </div>
   
   <div class="card-body">
+
+    
     <div class="table-responsive">
       <table class="table table-hover align-middle">
         <thead class="table-light">
           <tr>
-            <th style="width: 100px;">Data</th>
+            <th style="width: 80px;">Data</th>
             <th style="width: 200px;">Cliente</th>
             <th>Produto</th>
             <th style="width: 80px;">Qtd</th>
             <th style="width: 100px;">Valor</th>
+            <th style="width: 80px;">Loja</th>
             <th style="width: 80px;">NF</th>
             <th style="width: 120px;" class="text-end">Ações</th>
           </tr>
         </thead>
         <tbody>
-          {% for venda in page_obj %}
+          {% for venda in vendas %}
             <tr>
-              <td>{{ venda.data_venda|date:"d/m/Y" }}</td>
+              <td>
+                <span class="fw-semibold">{{ venda.data_venda|date:"d/m/Y" }}</span>
+              </td>
               <td>
                 <div class="fw-semibold">{{ venda.cliente.nome|truncatechars:25 }}</div>
                 <small class="text-muted">{{ venda.cliente.codigo }}</small>
               </td>
               <td>
-                <div>{{ venda.produto.descricao|truncatechars:30 }}</div>
+                <div>{{ venda.produto.descricao|truncatechars:35 }}</div>
                 <small class="text-muted">
                   <span class="badge bg-info text-dark">{{ venda.grupo_produto.codigo }}</span>
                   <span class="badge bg-warning text-dark">{{ venda.fabricante.codigo }}</span>
                 </small>
               </td>
-              <td>{{ venda.quantidade|floatformat:0 }}</td>
-              <td>
-                <strong>R$ {{ venda.valor_total|floatformat:2 }}</strong>
+              <td class="text-end">{{ venda.quantidade|floatformat:0 }}</td>
+              <td class="text-end">
+                <strong class="text-success">R$ {{ venda.valor_total|floatformat:2 }}</strong>
               </td>
-              <td>
+              <td class="text-center">
+                <span class="badge bg-primary">{{ venda.loja.codigo }}</span>
+              </td>
+              <td class="text-center">
                 {% if venda.numero_nf %}
                   <span class="badge bg-secondary">{{ venda.numero_nf }}</span>
                 {% else %}
@@ -85,7 +132,6 @@
                 {% endif %}
               </td>
               <td class="text-end">
-                <div class="btn-group" role="group">
                   <a href="{% url 'gestor:vendas_edit' venda.pk %}" 
                      class="btn btn-sm btn-outline-primary" 
                      title="Editar">
@@ -101,11 +147,11 @@
             </tr>
           {% empty %}
             <tr>
-              <td colspan="7" class="text-center py-4 text-muted">
-                {% if search %}
-                  Nenhuma venda encontrada com os critérios de busca.
+              <td colspan="8" class="text-center py-4 text-muted">
+                {% if search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
+                  Nenhuma venda encontrada com os filtros aplicados.
                   <br><a href="{% url 'gestor:vendas_list' %}" class="btn btn-sm btn-outline-primary mt-2">
-                    <i class="fas fa-eraser me-1"></i> Limpar busca
+                    <i class="fas fa-eraser me-1"></i> Limpar filtros
                   </a>
                 {% else %}
                   Nenhuma venda cadastrada.
@@ -124,30 +170,77 @@
       </table>
     </div>
     
-    <!-- Paginação -->
-    {% if page_obj.paginator.num_pages > 1 %}
-    <div class="d-flex justify-content-center mt-3">
-      <nav>
-        <ul class="pagination pagination-sm">
-          {% if page_obj.has_previous %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search %}&search={{ search }}{% endif %}">Anterior</a>
-            </li>
+    <!-- Informações da Paginação -->
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <small class="text-muted">
+          Mostrando {{ vendas.start_index }} a {{ vendas.end_index }} de {{ vendas.paginator.count }} venda{{ vendas.paginator.count|pluralize }}
+          {% if search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
+            (filtrada{{ vendas.paginator.count|pluralize }})
           {% endif %}
-          
-          <li class="page-item active">
-            <span class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
-          </li>
-          
-          {% if page_obj.has_next %}
-            <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search %}&search={{ search }}{% endif %}">Próximo</a>
-            </li>
-          {% endif %}
-        </ul>
-      </nav>
+        </small>
+      </div>
     </div>
-    {% endif %}
   </div>
+  
+  <!-- Paginação -->
+  {% if vendas.paginator.num_pages > 1 %}
+  <div class="card-footer bg-white">
+    <nav aria-label="Navegação de página">
+      <ul class="pagination pagination-sm justify-content-center mb-0">
+        {% if vendas.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1{% if search %}&search={{ search }}{% endif %}{% if data_inicio %}&data_inicio={{ data_inicio }}{% endif %}{% if data_fim %}&data_fim={{ data_fim }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}" aria-label="Primeiro">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ vendas.previous_page_number }}{% if search %}&search={{ search }}{% endif %}{% if data_inicio %}&data_inicio={{ data_inicio }}{% endif %}{% if data_fim %}&data_fim={{ data_fim }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}" aria-label="Anterior">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% endif %}
+        
+        <li class="page-item active">
+          <span class="page-link">{{ vendas.number }} de {{ vendas.paginator.num_pages }}</span>
+        </li>
+        
+        {% if vendas.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ vendas.next_page_number }}{% if search %}&search={{ search }}{% endif %}{% if data_inicio %}&data_inicio={{ data_inicio }}{% endif %}{% if data_fim %}&data_fim={{ data_fim }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}" aria-label="Próximo">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ vendas.paginator.num_pages }}{% if search %}&search={{ search }}{% endif %}{% if data_inicio %}&data_inicio={{ data_inicio }}{% endif %}{% if data_fim %}&data_fim={{ data_fim }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}" aria-label="Último">
+              <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+  {% endif %}
 </div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-submit ao mudar filtros de select
+    const filtros = document.querySelectorAll('#loja, #vendedor');
+    filtros.forEach(filtro => {
+        filtro.addEventListener('change', function() {
+            this.form.submit();
+        });
+    });
+    
+    // Enter no campo de busca
+    document.getElementById('search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            this.form.submit();
+        }
+    });
+});
+</script>
+{% endblock %}
 {% endblock %}

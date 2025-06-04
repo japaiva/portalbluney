@@ -1,4 +1,7 @@
-<!-- ===== VENDAS FORM - gestor/templates/gestor/vendas_form.html ===== -->
+
+
+
+<!-- ===== VENDAS FORM MELHORADO - gestor/templates/gestor/vendas_form.html ===== -->
 {% extends 'gestor/base_gestor.html' %}
 
 {% block title %}{{ title }} | Portal Comercial{% endblock %}
@@ -15,7 +18,7 @@
   </div>
   
   <div class="card-body">
-    <form method="post">
+    <form method="post" novalidate>
       {% csrf_token %}
       
       {% if form.non_field_errors %}
@@ -26,25 +29,50 @@
         </div>
       {% endif %}
       
-      <div class="row g-3">
+      <!-- Seção: Informações Básicas -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h6 class="text-primary border-bottom pb-2 mb-3">
+            <i class="fas fa-info-circle me-1"></i> Informações Básicas
+          </h6>
+        </div>
+        
         <div class="col-md-3">
-          <label for="{{ form.data_venda.id_for_label }}" class="form-label">Data da Venda*</label>
+          <label for="{{ form.data_venda.id_for_label }}" class="form-label">
+            {{ form.data_venda.label }} <span class="text-danger">*</span>
+          </label>
           {{ form.data_venda }}
+          {% if form.data_venda.help_text %}
+            <div class="form-text">{{ form.data_venda.help_text }}</div>
+          {% endif %}
           {% if form.data_venda.errors %}
             <div class="text-danger small mt-1">{{ form.data_venda.errors.0 }}</div>
           {% endif %}
         </div>
         
         <div class="col-md-9">
-          <label for="{{ form.cliente.id_for_label }}" class="form-label">Cliente*</label>
+          <label for="{{ form.cliente.id_for_label }}" class="form-label">
+            {{ form.cliente.label }} <span class="text-danger">*</span>
+          </label>
           {{ form.cliente }}
           {% if form.cliente.errors %}
             <div class="text-danger small mt-1">{{ form.cliente.errors.0 }}</div>
           {% endif %}
         </div>
+      </div>
+      
+      <!-- Seção: Produto -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h6 class="text-primary border-bottom pb-2 mb-3">
+            <i class="fas fa-box me-1"></i> Produto
+          </h6>
+        </div>
         
         <div class="col-md-6">
-          <label for="{{ form.produto.id_for_label }}" class="form-label">Produto*</label>
+          <label for="{{ form.produto.id_for_label }}" class="form-label">
+            {{ form.produto.label }} <span class="text-danger">*</span>
+          </label>
           {{ form.produto }}
           {% if form.produto.errors %}
             <div class="text-danger small mt-1">{{ form.produto.errors.0 }}</div>
@@ -52,23 +80,83 @@
         </div>
         
         <div class="col-md-3">
-          <label for="{{ form.grupo_produto.id_for_label }}" class="form-label">Grupo*</label>
+          <label for="{{ form.grupo_produto.id_for_label }}" class="form-label">
+            {{ form.grupo_produto.label }}
+          </label>
           {{ form.grupo_produto }}
+          {% if form.grupo_produto.help_text %}
+            <div class="form-text">{{ form.grupo_produto.help_text }}</div>
+          {% endif %}
           {% if form.grupo_produto.errors %}
             <div class="text-danger small mt-1">{{ form.grupo_produto.errors.0 }}</div>
           {% endif %}
         </div>
         
         <div class="col-md-3">
-          <label for="{{ form.fabricante.id_for_label }}" class="form-label">Fabricante*</label>
+          <label for="{{ form.fabricante.id_for_label }}" class="form-label">
+            {{ form.fabricante.label }}
+          </label>
           {{ form.fabricante }}
+          {% if form.fabricante.help_text %}
+            <div class="form-text">{{ form.fabricante.help_text }}</div>
+          {% endif %}
           {% if form.fabricante.errors %}
             <div class="text-danger small mt-1">{{ form.fabricante.errors.0 }}</div>
           {% endif %}
         </div>
+      </div>
+      
+      <!-- Seção: Valores -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h6 class="text-primary border-bottom pb-2 mb-3">
+            <i class="fas fa-calculator me-1"></i> Valores
+          </h6>
+        </div>
+        
+        <div class="col-md-4">
+          <label for="{{ form.quantidade.id_for_label }}" class="form-label">
+            {{ form.quantidade.label }} <span class="text-danger">*</span>
+          </label>
+          {{ form.quantidade }}
+          {% if form.quantidade.errors %}
+            <div class="text-danger small mt-1">{{ form.quantidade.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-4">
+          <label for="{{ form.valor_total.id_for_label }}" class="form-label">
+            {{ form.valor_total.label }} <span class="text-danger">*</span>
+          </label>
+          {{ form.valor_total }}
+          {% if form.valor_total.errors %}
+            <div class="text-danger small mt-1">{{ form.valor_total.errors.0 }}</div>
+          {% endif %}
+        </div>
+        
+        <div class="col-md-4">
+          <label for="{{ form.numero_nf.id_for_label }}" class="form-label">
+            {{ form.numero_nf.label }}
+          </label>
+          {{ form.numero_nf }}
+          {% if form.numero_nf.errors %}
+            <div class="text-danger small mt-1">{{ form.numero_nf.errors.0 }}</div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Seção: Vendedores e Local -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h6 class="text-primary border-bottom pb-2 mb-3">
+            <i class="fas fa-users me-1"></i> Vendedores e Local
+          </h6>
+        </div>
         
         <div class="col-md-3">
-          <label for="{{ form.loja.id_for_label }}" class="form-label">Loja*</label>
+          <label for="{{ form.loja.id_for_label }}" class="form-label">
+            {{ form.loja.label }} <span class="text-danger">*</span>
+          </label>
           {{ form.loja }}
           {% if form.loja.errors %}
             <div class="text-danger small mt-1">{{ form.loja.errors.0 }}</div>
@@ -76,7 +164,9 @@
         </div>
         
         <div class="col-md-3">
-          <label for="{{ form.vendedor.id_for_label }}" class="form-label">Vendedor*</label>
+          <label for="{{ form.vendedor.id_for_label }}" class="form-label">
+            {{ form.vendedor.label }} <span class="text-danger">*</span>
+          </label>
           {{ form.vendedor }}
           {% if form.vendedor.errors %}
             <div class="text-danger small mt-1">{{ form.vendedor.errors.0 }}</div>
@@ -84,39 +174,22 @@
         </div>
         
         <div class="col-md-3">
-          <label for="{{ form.quantidade.id_for_label }}" class="form-label">Quantidade*</label>
-          {{ form.quantidade }}
-          {% if form.quantidade.errors %}
-            <div class="text-danger small mt-1">{{ form.quantidade.errors.0 }}</div>
+          <label for="{{ form.vendedor_nf.id_for_label }}" class="form-label">
+            {{ form.vendedor_nf.label }}
+          </label>
+          {{ form.vendedor_nf }}
+          {% if form.vendedor_nf.help_text %}
+            <div class="form-text">{{ form.vendedor_nf.help_text }}</div>
+          {% endif %}
+          {% if form.vendedor_nf.errors %}
+            <div class="text-danger small mt-1">{{ form.vendedor_nf.errors.0 }}</div>
           {% endif %}
         </div>
         
         <div class="col-md-3">
-          <label for="{{ form.valor_total.id_for_label }}" class="form-label">Valor Total*</label>
-          {{ form.valor_total }}
-          {% if form.valor_total.errors %}
-            <div class="text-danger small mt-1">{{ form.valor_total.errors.0 }}</div>
-          {% endif %}
-        </div>
-        
-        <div class="col-md-3">
-          <label for="{{ form.numero_nf.id_for_label }}" class="form-label">Número NF</label>
-          {{ form.numero_nf }}
-          {% if form.numero_nf.errors %}
-            <div class="text-danger small mt-1">{{ form.numero_nf.errors.0 }}</div>
-          {% endif %}
-        </div>
-        
-        <div class="col-md-2">
-          <label for="{{ form.serie_nf.id_for_label }}" class="form-label">Série NF</label>
-          {{ form.serie_nf }}
-          {% if form.serie_nf.errors %}
-            <div class="text-danger small mt-1">{{ form.serie_nf.errors.0 }}</div>
-          {% endif %}
-        </div>
-        
-        <div class="col-md-2">
-          <label for="{{ form.estado.id_for_label }}" class="form-label">Estado</label>
+          <label for="{{ form.estado.id_for_label }}" class="form-label">
+            {{ form.estado.label }}
+          </label>
           {{ form.estado }}
           {% if form.estado.errors %}
             <div class="text-danger small mt-1">{{ form.estado.errors.0 }}</div>
@@ -124,7 +197,10 @@
         </div>
       </div>
       
-      <div class="d-flex justify-content-end mt-4">
+      <div class="d-flex justify-content-end gap-2">
+        <a href="{% url 'gestor:vendas_list' %}" class="btn btn-outline-secondary">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
         <button type="submit" class="btn btn-primary">
           <i class="fas fa-save me-1"></i> Salvar
         </button>
@@ -132,4 +208,67 @@
     </form>
   </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-preencher grupo e fabricante quando produto for selecionado
+    const produtoSelect = document.getElementById('{{ form.produto.id_for_label }}');
+    const grupoSelect = document.getElementById('{{ form.grupo_produto.id_for_label }}');
+    const fabricanteSelect = document.getElementById('{{ form.fabricante.id_for_label }}');
+    
+    if (produtoSelect) {
+        produtoSelect.addEventListener('change', function() {
+            const produtoId = this.value;
+            if (produtoId) {
+                // Fazer requisição AJAX para obter dados do produto
+                fetch(/gestor/api/produto/${produtoId}/)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Preencher grupo
+                            if (grupoSelect && data.grupo_id) {
+                                grupoSelect.value = data.grupo_id;
+                            }
+                            // Preencher fabricante
+                            if (fabricanteSelect && data.fabricante_id) {
+                                fabricanteSelect.value = data.fabricante_id;
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao buscar dados do produto:', error);
+                    });
+            } else {
+                // Limpar campos se nenhum produto for selecionado
+                if (grupoSelect) grupoSelect.value = '';
+                if (fabricanteSelect) fabricanteSelect.value = '';
+            }
+        });
+    }
+    
+    // Formatar valores monetários
+    const valorInput = document.getElementById('{{ form.valor_total.id_for_label }}');
+    if (valorInput) {
+        valorInput.addEventListener('blur', function() {
+            let valor = parseFloat(this.value);
+            if (!isNaN(valor)) {
+                this.value = valor.toFixed(2);
+            }
+        });
+    }
+    
+    // Formatar quantidade
+    const quantidadeInput = document.getElementById('{{ form.quantidade.id_for_label }}');
+    if (quantidadeInput) {
+        quantidadeInput.addEventListener('blur', function() {
+            let qtd = parseFloat(this.value);
+            if (!isNaN(qtd)) {
+                this.value = qtd.toFixed(2);
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

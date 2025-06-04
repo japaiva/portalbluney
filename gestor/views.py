@@ -832,25 +832,86 @@ def produto_delete(request, pk):
 
 # ===== CRUD VENDAS =====
 
+
 @login_required
 def vendas_list(request):
+    # Filtros múltiplos
     search = request.GET.get('search', '')
-    vendas = Vendas.objects.select_related(
-        'cliente', 'produto', 'loja', 'vendedor', 'grupo_produto', 'fabricante'
+    data_inicio = request.GET.get('data_inicio', '')
+    data_fim = request.GET.get('data_fim', '')
+    loja_filtro = request.GET.get('loja', '')
+    vendedor_filtro = request.GET.get('vendedor', '')
+    
+    vendas_list = Vendas.objects.select_related(
+        'cliente', 'produto', 'produto__grupo', 'produto__fabricante', 
+        'loja', 'vendedor'
     ).all()
     
+    # Aplicar filtros
     if search:
-        vendas = vendas.filter(
+        vendas_list = vendas_list.filter(
             Q(cliente__nome__icontains=search) |
+            Q(cliente__codigo__icontains=search) |
             Q(produto__descricao__icontains=search) |
+            Q(produto__codigo__icontains=search) |
             Q(numero_nf__icontains=search)
         )
     
-    paginator = Paginator(vendas, 20)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    if data_inicio:
+        try:
+            data_inicio_parsed = datetime.strptime(data_inicio, '%Y-%m-%d').date()
+            vendas_list = vendas_list.filter(data_venda__gte=data_inicio_parsed)
+        except ValueError:
+            pass
     
-    context = {'page_obj': page_obj, 'search': search}
+    if data_fim:
+        try:
+            data_fim_parsed = datetime.strptime(data_fim, '%Y-%m-%d').date()
+            vendas_list = vendas_list.filter(data_venda__lte=data_fim_parsed)
+        except ValueError:
+            pass
+    
+    if loja_filtro:
+        vendas_list = vendas_list.filter(loja__codigo=loja_filtro)
+    
+    if vendedor_filtro:
+        vendas_list = vendas_list.filter(vendedor__codigo=vendedor_filtro)
+    
+    # Ordenação
+    vendas_list = vendas_list.order_by('-data_venda', '-id')
+    
+    # Paginação
+    paginator = Paginator(vendas_list, 20)
+    page = request.GET.get('page', 1)
+    
+    try:
+        vendas = paginator.page(page)
+    except PageNotAnInteger:
+        vendas = paginator.page(1)
+    except EmptyPage:
+        vendas = paginator.page(paginator.num_pages)
+    
+    # Dados para filtros
+    lojas_disponiveis = Loja.objects.filter(ativo=True).order_by('codigo')
+    vendedores_disponiveis = Vendedor.objects.filter(ativo=True).order_by('nome')
+    
+    # Calcular totais da página atual
+    total_quantidade = sum(v.quantidade for v in vendas)
+    total_valor = sum(v.valor_total for v in vendas)
+    
+    context = {
+        'vendas': vendas,
+        'search': search,
+        'data_inicio': data_inicio,
+        'data_fim': data_fim,
+        'loja_filtro': loja_filtro,
+        'vendedor_filtro': vendedor_filtro,
+        'lojas_disponiveis': lojas_disponiveis,
+        'vendedores_disponiveis': vendedores_disponiveis,
+        'total_quantidade': total_quantidade,
+        'total_valor': total_valor,
+    }
+    
     return render(request, 'gestor/vendas_list.html', context)
 
 @login_required
@@ -858,13 +919,23 @@ def vendas_create(request):
     if request.method == 'POST':
         form = VendasForm(request.POST)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Venda criada com sucesso!')
-            return redirect('gestor:vendas_list')
+            try:
+                venda = form.save()
+                messages.success(request, f'Venda para {venda.cliente.nome} criada com sucesso!')
+                return redirect('gestor:vendas_detail', pk=venda.id)
+            except Exception as e:
+                logger.error(f"Erro ao criar venda: {str(e)}")
+                messages.error(request, f'Erro ao criar venda: {str(e)}')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
     else:
         form = VendasForm()
     
-    context = {'form': form, 'title': 'Nova Venda'}
+    context = {
+        'form': form, 
+        'title': 'Nova Venda',
+        'is_create': True
+    }
     return render(request, 'gestor/vendas_form.html', context)
 
 @login_required
@@ -874,384 +945,60 @@ def vendas_edit(request, pk):
     if request.method == 'POST':
         form = VendasForm(request.POST, instance=venda)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Venda atualizada com sucesso!')
-            return redirect('gestor:vendas_list')
+            try:
+                venda = form.save()
+                messages.success(request, f'Venda para {venda.cliente.nome} atualizada com sucesso!')
+                return redirect('gestor:vendas_detail', pk=venda.id)
+            except Exception as e:
+                logger.error(f"Erro ao atualizar venda: {str(e)}")
+                messages.error(request, f'Erro ao atualizar venda: {str(e)}')
+        else:
+            messages.error(request, 'Corrija os erros abaixo.')
     else:
         form = VendasForm(instance=venda)
     
-    context = {'form': form, 'title': 'Editar Venda', 'venda': venda}
+    context = {
+        'form': form, 
+        'title': f'Editar Venda #{venda.id}',
+        'venda': venda,
+        'is_edit': True
+    }
     return render(request, 'gestor/vendas_form.html', context)
+
+@login_required
+def vendas_detail(request, pk):
+    venda = get_object_or_404(Vendas.objects.select_related(
+        'cliente', 'produto', 'grupo_produto', 'fabricante', 
+        'loja', 'vendedor'
+    ), pk=pk)
+    
+    # Buscar outras vendas do mesmo cliente
+    vendas_relacionadas = Vendas.objects.filter(
+        cliente=venda.cliente
+    ).exclude(pk=venda.pk).order_by('-data_venda')[:5]
+    
+    context = {
+        'venda': venda,
+        'vendas_relacionadas': vendas_relacionadas,
+    }
+    
+    return render(request, 'gestor/vendas_detail.html', context)
 
 @login_required
 def vendas_delete(request, pk):
     venda = get_object_or_404(Vendas, pk=pk)
     
     if request.method == 'POST':
+        cliente_nome = venda.cliente.nome
+        venda_id = venda.id
         venda.delete()
-        messages.success(request, 'Venda excluída com sucesso!')
+        messages.success(request, f'Venda #{venda_id} de {cliente_nome} excluída com sucesso!')
         return redirect('gestor:vendas_list')
     
-    context = {'venda': venda}
+    context = {
+        'venda': venda
+    }
     return render(request, 'gestor/vendas_confirm_delete.html', context)
-
-# ===== IMPORTAÇÃO DE VENDAS =====
-
-
-# VERSÃO CORRIGIDA da função importar_vendas
-
-
-@login_required
-def importar_vendas(request):
-    if request.method == 'POST':
-        form = ImportarVendasForm(request.POST, request.FILES)
-        if form.is_valid():
-            try:
-                arquivo = request.FILES['arquivo_csv']  # Pode ser CSV ou Excel
-                limpar_registros = form.cleaned_data['limpar_registros_anteriores']
-                criar_dependencias = form.cleaned_data['criar_dependencias']
-                status_cliente_novo = form.cleaned_data['status_cliente_novo']
-                
-                # Detectar tipo de arquivo e ler
-                nome_arquivo = arquivo.name.lower()
-                
-                try:
-                    if nome_arquivo.endswith('.xlsx') or nome_arquivo.endswith('.xls'):
-                        # Ler arquivo Excel - especificar engine
-                        df = pd.read_excel(arquivo, sheet_name=0, engine='openpyxl' if nome_arquivo.endswith('.xlsx') else 'xlrd')
-                    elif nome_arquivo.endswith('.csv'):
-                        # Ler arquivo CSV com diferentes encodings
-                        try:
-                            df = pd.read_csv(arquivo, encoding='utf-8', sep=',')
-                        except UnicodeDecodeError:
-                            # Tentar com encoding latin-1
-                            arquivo.seek(0)  # Voltar ao início do arquivo
-                            df = pd.read_csv(arquivo, encoding='latin-1', sep=',')
-                    else:
-                        raise ValueError("Formato de arquivo não suportado. Use CSV (.csv) ou Excel (.xlsx, .xls).")
-                except ImportError as e:
-                    if 'openpyxl' in str(e):
-                        raise ValueError("Para ler arquivos Excel (.xlsx), instale: pip install openpyxl")
-                    elif 'xlrd' in str(e):
-                        raise ValueError("Para ler arquivos Excel (.xls), instale: pip install xlrd")
-                    else:
-                        raise ValueError(f"Erro ao ler arquivo: {str(e)}")
-                
-                # Normalizar nomes das colunas (remover espaços e converter para maiúsculo)
-                df.columns = df.columns.str.strip().str.upper()
-                
-                # Verificar se as colunas necessárias existem
-                colunas_necessarias = [
-                    'CLIENTE', 'ANOMES', 'VEND', 'NUMLOJ', 'PRODUTO', 'CLASSE', 
-                    'QTD', 'TOTAL', 'NF', 'CNPJ', 'CODPRO', 'ANO', 'MES', 'UF', 'CODVEN'
-                ]
-                
-                # Verificar colunas disponíveis
-                colunas_disponiveis = list(df.columns)
-                colunas_faltando = [col for col in colunas_necessarias if col not in colunas_disponiveis]
-                
-                if colunas_faltando:
-                    raise ValueError(
-                        f"Colunas obrigatórias não encontradas: {', '.join(colunas_faltando)}.\n"
-                        f"Colunas disponíveis no arquivo: {', '.join(colunas_disponiveis)}"
-                    )
-                
-                # Remover linhas completamente vazias
-                df = df.dropna(how='all')
-                
-                if df.empty:
-                    raise ValueError("O arquivo não contém dados válidos.")
-                
-                # Contadores
-                vendas_criadas = 0
-                clientes_criados = 0
-                produtos_criados = 0
-                grupos_criados = 0
-                fabricantes_criados = 0
-                lojas_criadas = 0
-                vendedores_criados = 0
-                erros = []
-                duplicatas_ignoradas = 0
-                
-                # Limpar registros anteriores se solicitado
-                if limpar_registros:
-                    count_deletados = Vendas.objects.all().count()
-                    Vendas.objects.all().delete()
-                    messages.info(request, f'{count_deletados} registros de vendas anteriores foram removidos.')
-                
-                # Processar cada linha
-                total_linhas = len(df)
-                for index, row in df.iterrows():
-                    try:
-                        with transaction.atomic():
-                            # Verificar se a linha tem dados mínimos necessários
-                            if pd.isna(row['CLIENTE']) or pd.isna(row['PRODUTO']) or pd.isna(row['CODPRO']):
-                                erros.append(f"Linha {index + 2}: Dados obrigatórios ausentes (CLIENTE, PRODUTO ou CODPRO)")
-                                continue
-                            
-                            # Extrair e limpar dados
-                            nome_cliente = str(row['CLIENTE']).strip()
-                            anomes = str(row['ANOMES']).strip()
-                            nome_vendedor = str(row['VEND']).strip() if pd.notna(row['VEND']) else 'VENDEDOR PADRÃO'
-                            
-                            # Tratar códigos numéricos que podem vir como float
-                            try:
-                                codigo_loja = str(int(float(row['NUMLOJ']))).zfill(3) if pd.notna(row['NUMLOJ']) else '001'
-                            except (ValueError, OverflowError):
-                                codigo_loja = '001'
-                                
-                            desc_produto = str(row['PRODUTO']).strip()
-                            desc_classe = str(row['CLASSE']).strip() if pd.notna(row['CLASSE']) else 'CLASSE PADRÃO'
-                            
-                            # Valores numéricos
-                            try:
-                                quantidade = Decimal(str(row['QTD']).replace(',', '.')) if pd.notna(row['QTD']) else Decimal('1')
-                                valor_total = Decimal(str(row['TOTAL']).replace(',', '.')) if pd.notna(row['TOTAL']) else Decimal('0')
-                            except (ValueError, TypeError):
-                                erros.append(f"Linha {index + 2}: Valores numéricos inválidos (QTD ou TOTAL)")
-                                continue
-                            
-                            # Outros campos
-                            numero_nf = str(int(float(row['NF']))) if pd.notna(row['NF']) and row['NF'] != '' else ''
-                            cnpj = str(row['CNPJ']).strip() if pd.notna(row['CNPJ']) else ''
-                            
-                            try:
-                                codigo_produto = str(int(float(row['CODPRO']))).zfill(6)  # Garantir 6 dígitos
-                            except (ValueError, OverflowError):
-                                erros.append(f"Linha {index + 2}: Código de produto inválido: {row['CODPRO']}")
-                                continue
-                                
-                            ano = str(row['ANO']).strip() if pd.notna(row['ANO']) else '24'
-                            mes = str(int(float(row['MES']))).zfill(2) if pd.notna(row['MES']) else '01'
-                            uf = str(row['UF']).strip() if pd.notna(row['UF']) else 'SP'
-                            
-                            try:
-                                codigo_vendedor = str(int(float(row['CODVEN']))).zfill(3) if pd.notna(row['CODVEN']) else '001'
-                            except (ValueError, OverflowError):
-                                codigo_vendedor = '001'
-                            
-                            # Gerar códigos baseados nos dados
-                            # Código do cliente: usar CNPJ se disponível, senão gerar baseado no nome
-                            if cnpj and len(cnpj.replace('.', '').replace('/', '').replace('-', '')) >= 10:
-                                # Limpar CNPJ e usar primeiros 10 dígitos
-                                cnpj_limpo = ''.join(filter(str.isdigit, cnpj))
-                                codigo_cliente = cnpj_limpo[:10] if len(cnpj_limpo) >= 10 else cnpj_limpo.ljust(10, '0')
-                            else:
-                                # Gerar código baseado no nome (primeiras letras)
-                                palavras = re.findall(r'\b\w+', nome_cliente.upper())
-                                codigo_cliente = ''.join([p[:2] for p in palavras[:3]])[:6]
-                                if len(codigo_cliente) < 6:
-                                    codigo_cliente = codigo_cliente.ljust(6, '0')
-                                # Adicionar sufixo numérico para garantir unicidade
-                                codigo_cliente = f"CLI{codigo_cliente}"[:10]
-                            
-                            # Código da classe/grupo: baseado na descrição (garantir 4 dígitos numéricos)
-                            palavras_classe = re.findall(r'\b\w+', desc_classe.upper())
-                            if palavras_classe:
-                                codigo_classe = ''.join([p[:2] for p in palavras_classe[:2]])[:4]
-                                # Converter para numérico se possível, senão usar hash
-                                codigo_numerico = ''.join(filter(str.isdigit, codigo_classe))
-                                if len(codigo_numerico) >= 4:
-                                    codigo_classe = codigo_numerico[:4]
-                                else:
-                                    # Usar hash da descrição para gerar código numérico
-                                    hash_valor = abs(hash(desc_classe)) % 10000
-                                    codigo_classe = str(hash_valor).zfill(4)
-                            else:
-                                codigo_classe = '0001'
-                            
-                            # Código do fabricante: extrair da descrição do produto
-                            desc_upper = desc_produto.upper()
-                            if 'FUJI' in desc_upper:
-                                codigo_fabricante = 'FUJI'
-                            elif 'KODAK' in desc_upper:
-                                codigo_fabricante = 'KODAK'
-                            elif 'CANON' in desc_upper:
-                                codigo_fabricante = 'CANON'
-                            elif 'NIKON' in desc_upper:
-                                codigo_fabricante = 'NIKON'
-                            elif 'SONY' in desc_upper:
-                                codigo_fabricante = 'SONY'
-                            elif 'SAMSUNG' in desc_upper:
-                                codigo_fabricante = 'SAMSUNG'
-                            else:
-                                # Usar primeira palavra ou código genérico
-                                primeira_palavra = desc_produto.split()[0][:6] if desc_produto else 'GENERICO'
-                                codigo_fabricante = primeira_palavra.upper()
-                            
-                            # Converter ANOMES para data (formato: AAMM -> 20AA-MM-01)
-                            try:
-                                if len(anomes) == 4 and anomes.isdigit():
-                                    ano_completo = '20' + anomes[:2]
-                                    mes_num = anomes[2:]
-                                    data_venda = datetime.strptime(f"{ano_completo}-{mes_num}-01", '%Y-%m-%d').date()
-                                else:
-                                    # Tentar usar ano e mês separados
-                                    ano_int = int(ano) if ano.isdigit() else 24
-                                    mes_int = int(mes) if mes.isdigit() else 1
-                                    ano_completo = 2000 + ano_int if ano_int < 100 else ano_int
-                                    data_venda = datetime(ano_completo, mes_int, 1).date()
-                            except (ValueError, TypeError):
-                                erros.append(f"Linha {index + 2}: Data inválida - ANOMES: {anomes}, ANO: {ano}, MES: {mes}")
-                                continue
-                            
-                            if criar_dependencias:
-                                # Criar/buscar Fabricante
-                                fabricante, criado = Fabricante.objects.get_or_create(
-                                    codigo=codigo_fabricante,
-                                    defaults={'descricao': codigo_fabricante}
-                                )
-                                if criado:
-                                    fabricantes_criados += 1
-                                
-                                # Criar/buscar Grupo (Classe)
-                                grupo, criado = GrupoProduto.objects.get_or_create(
-                                    codigo=codigo_classe,
-                                    defaults={'descricao': desc_classe[:100]}  # Limitar tamanho
-                                )
-                                if criado:
-                                    grupos_criados += 1
-                                
-                                # Criar/buscar Loja
-                                loja, criado = Loja.objects.get_or_create(
-                                    codigo=codigo_loja,
-                                    defaults={'nome': f'Loja {codigo_loja}'}
-                                )
-                                if criado:
-                                    lojas_criadas += 1
-                                
-                                # Criar/buscar Vendedor
-                                vendedor, criado = Vendedor.objects.get_or_create(
-                                    codigo=codigo_vendedor,
-                                    defaults={
-                                        'nome': nome_vendedor[:100],  # Limitar tamanho
-                                        'loja': loja
-                                    }
-                                )
-                                if criado:
-                                    vendedores_criados += 1
-                                
-                                # Criar/buscar Cliente
-                                cliente, criado = Cliente.objects.get_or_create(
-                                    codigo=codigo_cliente,
-                                    defaults={
-                                        'nome': nome_cliente[:100],  # Limitar tamanho
-                                        'status': status_cliente_novo,
-                                        'cpf_cnpj': cnpj,
-                                        'tipo_documento': 'cnpj' if len(cnpj.replace('.', '').replace('/', '').replace('-', '')) == 14 else 'cpf',
-                                        'codigo_loja': codigo_loja,
-                                        'codigo_vendedor': codigo_vendedor,
-                                        'nome_vendedor': nome_vendedor[:100],
-                                        'uf': uf
-                                    }
-                                )
-                                if criado:
-                                    clientes_criados += 1
-                                
-                                # Criar/buscar Produto
-                                produto, criado = Produto.objects.get_or_create(
-                                    codigo=codigo_produto,
-                                    defaults={
-                                        'descricao': desc_produto[:200],  # Limitar tamanho
-                                        'grupo': grupo,
-                                        'fabricante': fabricante
-                                    }
-                                )
-                                if criado:
-                                    produtos_criados += 1
-                            else:
-                                # Buscar entidades existentes
-                                try:
-                                    fabricante = Fabricante.objects.get(codigo=codigo_fabricante)
-                                    grupo = GrupoProduto.objects.get(codigo=codigo_classe)
-                                    loja = Loja.objects.get(codigo=codigo_loja)
-                                    vendedor = Vendedor.objects.get(codigo=codigo_vendedor)
-                                    cliente = Cliente.objects.get(codigo=codigo_cliente)
-                                    produto = Produto.objects.get(codigo=codigo_produto)
-                                except Exception as e:
-                                    erros.append(f"Linha {index + 2}: Dependência não encontrada: {str(e)}")
-                                    continue
-                            
-                            # Verificar se a venda já existe (evitar duplicatas)
-                            venda_existente = Vendas.objects.filter(
-                                data_venda=data_venda,
-                                cliente=cliente,
-                                produto=produto,
-                                numero_nf=numero_nf,
-                                valor_total=valor_total
-                            ).exists()
-                            
-                            if not venda_existente:
-                                # Criar venda
-                                venda = Vendas.objects.create(
-                                    data_venda=data_venda,
-                                    cliente=cliente,
-                                    produto=produto,
-                                    grupo_produto=grupo,
-                                    fabricante=fabricante,
-                                    loja=loja,
-                                    vendedor=vendedor,
-                                    quantidade=quantidade,
-                                    valor_total=valor_total,
-                                    numero_nf=numero_nf,
-                                    estado=uf
-                                )
-                                vendas_criadas += 1
-                            else:
-                                duplicatas_ignoradas += 1
-                            
-                    except Exception as e:
-                        erros.append(f"Linha {index + 2}: Erro: {str(e)}")
-                        continue
-                    
-                    # Log de progresso a cada 1000 registros
-                    if (index + 1) % 1000 == 0:
-                        logger.info(f"Processadas {index + 1}/{total_linhas} linhas")
-                
-                # Mensagem de resultado
-                mensagem_sucesso = f"Importação concluída! {vendas_criadas} vendas importadas de {total_linhas} registros."
-                
-                if duplicatas_ignoradas > 0:
-                    mensagem_sucesso += f" {duplicatas_ignoradas} duplicatas ignoradas."
-                
-                if criar_dependencias:
-                    detalhes = []
-                    if clientes_criados > 0:
-                        detalhes.append(f"{clientes_criados} clientes")
-                    if produtos_criados > 0:
-                        detalhes.append(f"{produtos_criados} produtos")
-                    if grupos_criados > 0:
-                        detalhes.append(f"{grupos_criados} grupos")
-                    if fabricantes_criados > 0:
-                        detalhes.append(f"{fabricantes_criados} fabricantes")
-                    if lojas_criadas > 0:
-                        detalhes.append(f"{lojas_criadas} lojas")
-                    if vendedores_criados > 0:
-                        detalhes.append(f"{vendedores_criados} vendedores")
-                    
-                    if detalhes:
-                        mensagem_sucesso += f" Criados: {', '.join(detalhes)}."
-                
-                messages.success(request, mensagem_sucesso)
-                
-                # Mostrar erros se houver
-                if erros:
-                    messages.warning(request, f"{len(erros)} linhas com erro foram ignoradas.")
-                    for erro in erros[:5]:  # Mostrar os primeiros 5 erros
-                        messages.error(request, erro)
-                    if len(erros) > 5:
-                        messages.warning(request, f"... e mais {len(erros) - 5} erros. Verifique o log para detalhes.")
-                
-                return redirect('gestor:vendas_list')
-                
-            except Exception as e:
-                logger.error(f"Erro na importação: {str(e)}")
-                messages.error(request, f'Erro ao processar arquivo: {str(e)}')
-    else:
-        form = ImportarVendasForm()
-    
-    context = {'form': form, 'title': 'Importar Vendas do BI'}
-    return render(request, 'gestor/importar_vendas.html', context)
 
 # ===== API E CONSULTAS EXTERNAS =====
 
@@ -1428,3 +1175,323 @@ def consultar_bi(request, codigo_cliente):
         else:
             messages.error(request, f'Erro ao consultar dados de BI: {str(e)}')
             return redirect('gestor:cliente_detail', pk=cliente.id)
+        
+# ===== IMPORTAR VENDAS =====
+# gestor/views.py - FUNÇÃO IMPORTAR VENDAS CORRIGIDA
+# gestor/views.py - FUNÇÃO IMPORTAR VENDAS SIMPLIFICADA
+# gestor/views.py - FUNÇÃO IMPORTAR VENDAS SIMPLIFICADA
+
+@login_required
+def importar_vendas(request):
+    """Importação BI simplificada - processa arquivo completo com limite de 5 registros para teste"""
+    if request.method == 'POST':
+        form = ImportarVendasForm(request.POST, request.FILES)
+        if form.is_valid():
+            try:
+                # ===== CARREGAR ARQUIVO PRINCIPAL =====
+                arquivo_bi = request.FILES['arquivo_csv']
+                nome_arquivo = arquivo_bi.name.lower()
+                
+                # Ler planilha BI
+                if nome_arquivo.endswith('.xlsx'):
+                    df_bi = pd.read_excel(arquivo_bi, sheet_name=0, engine='openpyxl', dtype=str)
+                elif nome_arquivo.endswith('.csv'):
+                    df_bi = pd.read_csv(arquivo_bi, encoding='utf-8', sep=',', dtype=str)
+                
+                messages.info(request, f"📊 Arquivo BI carregado: {len(df_bi)} registros encontrados")
+                
+                # ===== CARREGAR PLANILHAS AUXILIARES =====
+                planilhas_aux = {}
+                
+                # Tentar carregar planilhas auxiliares enviadas via formulário
+                for campo, nome_planilha in [
+                    ('arquivo_produtos', 'produtos'),
+                    ('arquivo_classes', 'classes'), 
+                    ('arquivo_fabricantes', 'fabricantes')
+                ]:
+                    if campo in request.FILES:
+                        try:
+                            arquivo_aux = request.FILES[campo]
+                            df_aux = pd.read_excel(arquivo_aux, sheet_name=0, dtype=str)
+                            df_aux.columns = df_aux.columns.str.strip().str.upper()
+                            planilhas_aux[nome_planilha] = df_aux
+                            messages.success(request, f"✅ Planilha {nome_planilha.upper()} carregada: {len(df_aux)} registros")
+                        except Exception as e:
+                            messages.warning(request, f"⚠️ Erro ao carregar {nome_planilha}: {str(e)}")
+                
+                # Se arquivo principal for Excel com múltiplas planilhas, tentar carregar auxiliares automaticamente
+                if nome_arquivo.endswith('.xlsx') and len(planilhas_aux) == 0:
+                    try:
+                        xls_file = pd.ExcelFile(arquivo_bi)
+                        messages.info(request, f"🔍 Buscando planilhas auxiliares no arquivo: {xls_file.sheet_names}")
+                        
+                        for sheet_name in xls_file.sheet_names:
+                            sheet_upper = sheet_name.upper().strip()
+                            
+                            if sheet_upper in ['CLASSE', 'CLASSES'] or 'CLASS' in sheet_upper:
+                                planilhas_aux['classes'] = pd.read_excel(xls_file, sheet_name=sheet_name, dtype=str)
+                                planilhas_aux['classes'].columns = planilhas_aux['classes'].columns.str.strip().str.upper()
+                                messages.success(request, f"✅ CLASSE encontrada: {len(planilhas_aux['classes'])} registros")
+                            elif sheet_upper in ['PRODUTOS', 'PRODUTO'] or 'PRODUTO' in sheet_upper:
+                                planilhas_aux['produtos'] = pd.read_excel(xls_file, sheet_name=sheet_name, dtype=str)
+                                planilhas_aux['produtos'].columns = planilhas_aux['produtos'].columns.str.strip().str.upper()
+                                messages.success(request, f"✅ PRODUTOS encontrada: {len(planilhas_aux['produtos'])} registros")
+                            elif sheet_upper in ['FABR', 'FABRICANTES'] or 'FABRIC' in sheet_upper:
+                                planilhas_aux['fabricantes'] = pd.read_excel(xls_file, sheet_name=sheet_name, dtype=str)
+                                planilhas_aux['fabricantes'].columns = planilhas_aux['fabricantes'].columns.str.strip().str.upper()
+                                messages.success(request, f"✅ FABRICANTES encontrada: {len(planilhas_aux['fabricantes'])} registros")
+                        
+                    except Exception as e:
+                        messages.warning(request, f"⚠️ Erro ao buscar planilhas auxiliares: {str(e)}")
+                
+                # ===== NORMALIZAR COLUNAS =====
+                df_bi.columns = df_bi.columns.str.strip().str.upper()
+                messages.info(request, f"🔍 Colunas do BI: {list(df_bi.columns)}")
+                
+                # ===== LIMPAR BASE ANTERIOR (SE SOLICITADO) =====
+                if form.cleaned_data.get('limpar_registros_anteriores', True):
+                    count_deletados = Vendas.objects.all().count()
+                    Vendas.objects.all().delete()
+                    messages.info(request, f"🗑️ Base anterior zerada: {count_deletados} registros removidos")
+                
+                # ===== PROCESSAMENTO - BASE COMPLETA =====
+                df_processamento = df_bi  # Processar todos os registros
+                total_registros = len(df_bi)
+                messages.info(request, f"🔄 Iniciando processamento de {total_registros} registros...")
+                
+                # Contadores
+                vendas_criadas = 0
+                clientes_criados = 0
+                produtos_criados = 0
+                grupos_criados = 0
+                fabricantes_criados = 0
+                vendedores_criados = 0
+                lojas_criadas = 0
+                erros = []
+                
+                # ===== PROCESSAR REGISTROS =====
+                total_linhas = len(df_processamento)
+                for index, row in df_processamento.iterrows():
+                    try:
+                        # Mostrar progresso a cada 100 registros
+                        if (index + 1) % 100 == 0:
+                            messages.info(request, f"📊 Processando... {index + 1}/{total_linhas} registros")
+                        
+                        with transaction.atomic():
+                            # Extrair dados básicos
+                            cnpj_cpf = str(row['CNPJ']).strip() if pd.notna(row['CNPJ']) else ''
+                            codigo_produto_bi = str(row['CODPRO']).strip() if pd.notna(row['CODPRO']) else ''
+                            codigo_loja = str(row['NUMLOJ']).strip()
+                            codigo_vendedor = str(row['CODVEN']).strip() if pd.notna(row['CODVEN']) else '001'
+                            
+                            # === CRIAR/BUSCAR CLIENTE ===
+                            cliente = None
+                            if cnpj_cpf:
+                                cnpj_cpf_limpo = ''.join(filter(str.isdigit, cnpj_cpf))
+                                cliente = Cliente.objects.filter(cpf_cnpj__icontains=cnpj_cpf_limpo).first()
+                                
+                                if not cliente:
+                                    codigo_cliente = cnpj_cpf_limpo[:10] if len(cnpj_cpf_limpo) >= 10 else cnpj_cpf_limpo.ljust(10, '0')
+                                    nome_cliente = str(row['CLIENTE']).strip()
+                                    
+                                    cliente = Cliente.objects.create(
+                                        codigo=codigo_cliente,
+                                        nome=nome_cliente[:100],
+                                        status='rascunho',
+                                        cpf_cnpj=cnpj_cpf_limpo,
+                                        tipo_documento='cnpj' if len(cnpj_cpf_limpo) == 14 else 'cpf',
+                                        codigo_loja=codigo_loja,
+                                        codigo_vendedor=codigo_vendedor,
+                                        uf=str(row.get('UF', 'SP')).strip()
+                                    )
+                                    clientes_criados += 1
+                            
+                            if not cliente:
+                                erros.append(f"Linha {index + 2}: Cliente não encontrado/criado")
+                                continue
+                            
+                            # === CRIAR/BUSCAR PRODUTO COM PLANILHAS AUXILIARES ===
+                            produto = None
+                            grupo = None
+                            fabricante = None
+                            
+                            if codigo_produto_bi:
+                                codigo_produto_formatado = codigo_produto_bi.zfill(6)
+                                produto = Produto.objects.filter(codigo=codigo_produto_formatado).first()
+                                
+                                if produto:
+                                    grupo = produto.grupo
+                                    fabricante = produto.fabricante
+                                else:
+                                    # Valores padrão
+                                    codigo_grupo = '0001'
+                                    codigo_fabricante = '001'
+                                    desc_produto = str(row['PRODUTO']).strip()
+                                    desc_grupo = 'GRUPO PADRÃO'
+                                    desc_fabricante = 'FABRICANTE PADRÃO'
+                                    
+                                    # Buscar nas planilhas auxiliares
+                                    if 'produtos' in planilhas_aux:
+                                        df_produtos = planilhas_aux['produtos']
+                                        produto_planilha = df_produtos[
+                                            df_produtos['CODPRO'].astype(str).str.strip().str.zfill(6) == codigo_produto_formatado
+                                        ]
+                                        
+                                        if not produto_planilha.empty:
+                                            produto_row = produto_planilha.iloc[0]
+                                            codigo_grupo = str(produto_row.get('CODCLA', '0001')).strip().zfill(4)
+                                            codigo_fabricante = str(produto_row.get('CODFAB', '001')).strip().zfill(3)
+                                            desc_produto = str(produto_row.get('DESCR', desc_produto)).strip()
+                                    
+                                    # Buscar/criar grupo
+                                    if 'classes' in planilhas_aux:
+                                        df_classes = planilhas_aux['classes']
+                                        classe_planilha = df_classes[
+                                            df_classes['CODCLA'].astype(str).str.strip().str.zfill(4) == codigo_grupo
+                                        ]
+                                        if not classe_planilha.empty:
+                                            desc_grupo = str(classe_planilha.iloc[0].get('DESCR', desc_grupo)).strip()
+                                    
+                                    grupo, grupo_criado = GrupoProduto.objects.get_or_create(
+                                        codigo=codigo_grupo,
+                                        defaults={'descricao': desc_grupo[:100]}
+                                    )
+                                    if grupo_criado:
+                                        grupos_criados += 1
+                                    
+                                    # Buscar/criar fabricante
+                                    if 'fabricantes' in planilhas_aux:
+                                        df_fabricantes = planilhas_aux['fabricantes']
+                                        fab_planilha = df_fabricantes[
+                                            df_fabricantes['CODFAB'].astype(str).str.strip().str.zfill(3) == codigo_fabricante
+                                        ]
+                                        if not fab_planilha.empty:
+                                            desc_fabricante = str(fab_planilha.iloc[0].get('DESCR', desc_fabricante)).strip()
+                                    
+                                    fabricante, fab_criado = Fabricante.objects.get_or_create(
+                                        codigo=codigo_fabricante,
+                                        defaults={'descricao': desc_fabricante[:100]}
+                                    )
+                                    if fab_criado:
+                                        fabricantes_criados += 1
+                                    
+                                    # Criar produto
+                                    produto = Produto.objects.create(
+                                        codigo=codigo_produto_formatado,
+                                        descricao=desc_produto[:200],
+                                        grupo=grupo,
+                                        fabricante=fabricante
+                                    )
+                                    produtos_criados += 1
+                            
+                            if not produto:
+                                erros.append(f"Linha {index + 2}: Produto não encontrado/criado")
+                                continue
+                            
+                            # === CRIAR/BUSCAR LOJA E VENDEDOR ===
+                            loja, loja_criada = Loja.objects.get_or_create(
+                                codigo=codigo_loja,
+                                defaults={'nome': f'Loja {codigo_loja}'}
+                            )
+                            if loja_criada:
+                                lojas_criadas += 1
+                            
+                            nome_vendedor = str(row.get('VEND', 'VENDEDOR PADRÃO')).strip()
+                            vendedor, vendedor_criado = Vendedor.objects.get_or_create(
+                                codigo=codigo_vendedor.zfill(3),
+                                defaults={'nome': nome_vendedor[:100], 'loja': loja}
+                            )
+                            if vendedor_criado:
+                                vendedores_criados += 1
+                            
+                            # === CRIAR VENDA ===
+                            try:
+                                quantidade = Decimal(str(row['QTD']).replace(',', '.')) if pd.notna(row['QTD']) else Decimal('1')
+                                valor_total = Decimal(str(row['TOTAL']).replace(',', '.')) if pd.notna(row['TOTAL']) else Decimal('0')
+                            except (ValueError, TypeError):
+                                erros.append(f"Linha {index + 2}: Valores numéricos inválidos")
+                                continue
+                            
+                            # Processar data
+                            try:
+                                anomes = str(row['ANOMES']).strip()
+                                if len(anomes) == 4 and anomes.isdigit():
+                                    ano_completo = '20' + anomes[:2]
+                                    mes_num = anomes[2:]
+                                    data_venda = datetime.strptime(f"{ano_completo}-{mes_num}-01", '%Y-%m-%d').date()
+                                else:
+                                    # Fallback para formato alternativo
+                                    data_venda = datetime(2024, 1, 1).date()
+                            except (ValueError, TypeError):
+                                data_venda = datetime(2024, 1, 1).date()
+                            
+                            numero_nf = str(int(float(row['NF']))) if pd.notna(row['NF']) and row['NF'] != '' else ''
+                            vendedor_nf = str(row.get('CLIVEN', '')).strip() if 'CLIVEN' in row else ''
+                            uf = str(row.get('UF', 'SP')).strip()
+                            
+                            venda = Vendas.objects.create(
+                                data_venda=data_venda,
+                                cliente=cliente,
+                                produto=produto,
+                                grupo_produto=grupo,
+                                fabricante=fabricante,
+                                loja=loja,
+                                vendedor=vendedor,
+                                quantidade=quantidade,
+                                valor_total=valor_total,
+                                numero_nf=numero_nf,
+                                estado=uf,
+                                vendedor_nf=vendedor_nf
+                            )
+                            vendas_criadas += 1
+                            
+                    except Exception as e:
+                        erros.append(f"Linha {index + 2}: {str(e)}")
+                        continue
+                
+                # ===== MENSAGEM DE RESULTADO COMPLETO =====
+                total_processados = len(df_processamento)
+                if vendas_criadas > 0:
+                    messages.success(request, 
+                        f"✅ IMPORTAÇÃO COMPLETA! "
+                        f"{vendas_criadas} vendas importadas de {total_processados} registros processados."
+                    )
+                    
+                    # Mostrar estatísticas dos novos registros criados
+                    if clientes_criados + produtos_criados + grupos_criados + fabricantes_criados > 0:
+                        detalhes = []
+                        if clientes_criados > 0:
+                            detalhes.append(f"{clientes_criados} clientes")
+                        if produtos_criados > 0:
+                            detalhes.append(f"{produtos_criados} produtos")
+                        if grupos_criados > 0:
+                            detalhes.append(f"{grupos_criados} grupos")
+                        if fabricantes_criados > 0:
+                            detalhes.append(f"{fabricantes_criados} fabricantes")
+                        if lojas_criadas > 0:
+                            detalhes.append(f"{lojas_criadas} lojas")
+                        if vendedores_criados > 0:
+                            detalhes.append(f"{vendedores_criados} vendedores")
+                        
+                        messages.info(request, f"📈 Novos registros criados: {', '.join(detalhes)}")
+                else:
+                    messages.warning(request, "⚠️ Nenhuma venda foi processada com sucesso.")
+                
+                if erros:
+                    messages.warning(request, f"⚠️ {len(erros)} linhas com erro foram ignoradas.")
+                    # Mostrar apenas os primeiros 5 erros para não poluir a tela
+                    for erro in erros[:5]:
+                        messages.error(request, erro)
+                    if len(erros) > 5:
+                        messages.info(request, f"... e mais {len(erros) - 5} erros similares")
+                
+                return redirect('gestor:vendas_list')
+                
+            except Exception as e:
+                logger.error(f"Erro na importação BI: {str(e)}")
+                messages.error(request, f'❌ Erro ao processar arquivo: {str(e)}')
+    else:
+        form = ImportarVendasForm()
+    
+    context = {'form': form, 'title': 'Importar Dados do BI'}
+    return render(request, 'gestor/importar_vendas.html', context)

@@ -56,12 +56,14 @@ urlpatterns = [
     path('produtos/<str:pk>/editar/', views.produto_edit, name='produto_edit'),
     path('produtos/<str:pk>/excluir/', views.produto_delete, name='produto_delete'),
     
-    # ===== VENDAS =====
+
+    # URLs para vendas
     path('vendas/', views.vendas_list, name='vendas_list'),
     path('vendas/nova/', views.vendas_create, name='vendas_create'),
+    path('vendas/<int:pk>/', views.vendas_detail, name='vendas_detail'),
     path('vendas/<int:pk>/editar/', views.vendas_edit, name='vendas_edit'),
     path('vendas/<int:pk>/excluir/', views.vendas_delete, name='vendas_delete'),
-    
+        
     # ===== IMPORTAÇÃO =====
     path('vendas/importar/', views.importar_vendas, name='importar_vendas'),
     

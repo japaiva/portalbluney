@@ -3266,3 +3266,803 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-06-01 23:05:19,797 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10926
 [INFO] 2025-06-01 23:05:23,958 "GET /gestor/vendas/ HTTP/1.1" 200 8858
 [INFO] 2025-06-01 23:05:41,302 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 03:55:30,468 Watching for file changes with StatReloader
+[INFO] 2025-06-02 03:55:41,624 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 03:55:57,825 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 03:56:01,522 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 03:56:21,497 "GET /gestor/clientes/?page=2 HTTP/1.1" 200 41395
+[INFO] 2025-06-02 03:56:25,401 "GET /gestor/clientes/?page=3 HTTP/1.1" 200 41913
+[INFO] 2025-06-02 03:56:31,601 "GET /gestor/clientes/1074/editar/ HTTP/1.1" 200 37298
+[INFO] 2025-06-02 03:56:31,602 - Broken pipe from ('127.0.0.1', 51785)
+[INFO] 2025-06-02 03:56:31,947 "GET /gestor/clientes/1074/editar/ HTTP/1.1" 200 37298
+[INFO] 2025-06-02 03:56:51,517 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 03:57:07,847 "GET /gestor/clientes/?page=100 HTTP/1.1" 200 30028
+[INFO] 2025-06-02 03:57:20,389 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 03:57:24,566 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 03:57:33,295 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10926
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:11:05,716 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:11:09,284 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 04:11:11,381 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:11:13,196 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 04:11:14,585 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10911
+[INFO] 2025-06-02 04:11:51,625 "POST /gestor/vendas/importar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:11:51,800 "GET /gestor/vendas/ HTTP/1.1" 200 12333
+[INFO] 2025-06-02 04:13:25,728 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10911
+[INFO] 2025-06-02 04:13:47,607 "POST /gestor/vendas/importar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:13:47,785 "GET /gestor/vendas/ HTTP/1.1" 200 11835
+[INFO] 2025-06-02 04:19:18,931 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:19:19,792 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:19:31,947 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:19:32,461 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:20:05,885 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:20:06,364 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:20:25,166 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:20:27,644 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 04:20:29,043 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10869
+[INFO] 2025-06-02 04:20:46,037 "POST /gestor/vendas/importar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:20:46,277 "GET /gestor/vendas/ HTTP/1.1" 200 58695
+[INFO] 2025-06-02 04:22:00,171 "GET /gestor/vendas/5/editar/ HTTP/1.1" 200 114887
+[INFO] 2025-06-02 04:23:09,339 "GET /gestor/vendas/ HTTP/1.1" 200 15164
+[INFO] 2025-06-02 04:23:15,398 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:23:18,225 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 04:23:24,108 "GET /gestor/clientes/?status=todos&tipo=todos&q=nunah HTTP/1.1" 200 13569
+[INFO] 2025-06-02 04:23:34,787 "GET /gestor/clientes/1513/ HTTP/1.1" 200 15380
+[INFO] 2025-06-02 04:23:41,774 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 04:23:47,100 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:23:52,404 "GET /gestor/vendedores/ HTTP/1.1" 200 12031
+[INFO] 2025-06-02 04:23:58,770 "GET /gestor/vendedores/237/editar/ HTTP/1.1" 200 9945
+[INFO] 2025-06-02 04:24:07,896 "GET /gestor/vendedores/ HTTP/1.1" 200 12031
+[INFO] 2025-06-02 04:24:19,195 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:28:44,257 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 04:28:51,268 "GET /gestor/clientes/?status=todos&tipo=todos&q= HTTP/1.1" 200 41139
+[INFO] 2025-06-02 04:28:57,829 "GET /gestor/clientes/?status=todos&tipo=todos&q=nunah HTTP/1.1" 200 13569
+[INFO] 2025-06-02 04:29:10,160 "GET /gestor/clientes/1513/editar/ HTTP/1.1" 200 37178
+[INFO] 2025-06-02 04:29:25,437 "GET /gestor/clientes/ HTTP/1.1" 200 41139
+[INFO] 2025-06-02 04:31:07,497 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:31:09,591 "GET /gestor/vendas/ HTTP/1.1" 200 15164
+[INFO] 2025-06-02 04:31:18,798 "GET /gestor/vendas/4/editar/ HTTP/1.1" 200 114887
+[INFO] 2025-06-02 04:31:33,127 "GET /gestor/vendas/ HTTP/1.1" 200 15164
+[INFO] 2025-06-02 04:31:35,373 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:31:38,415 "GET /gestor/grupos/ HTTP/1.1" 200 10770
+[INFO] 2025-06-02 04:32:05,943 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:32:08,912 "GET /gestor/produtos/ HTTP/1.1" 200 12738
+[INFO] 2025-06-02 04:32:23,943 "GET /gestor/produtos/026021/editar/ HTTP/1.1" 200 9431
+[INFO] 2025-06-02 04:44:22,284 "GET /gestor/produtos/ HTTP/1.1" 200 12738
+[INFO] 2025-06-02 04:44:32,018 "GET /gestor/produtos/026021/excluir/ HTTP/1.1" 200 8622
+[ERROR] 2025-06-02 04:44:37,884 Internal Server Error: /gestor/produtos/026021/excluir/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 826, in produto_delete
+    produto.delete()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1272, in delete
+    collector.collect([self], keep_parents=keep_parents)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/deletion.py", line 351, in collect
+    raise ProtectedError(
+    ...<7 lines>...
+    )
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'Produto' because they are referenced through protected foreign keys: 'Vendas.produto'.", {<Vendas: Venda 26793 - 2021-02-01 - FOCO PROFISSIONAL LTDA - ME>, <Vendas: Venda 26794 - 2021-02-01 - NUNAH MODAS LTDA>})
+[ERROR] 2025-06-02 04:44:37,891 "POST /gestor/produtos/026021/excluir/ HTTP/1.1" 500 91676
+[INFO] 2025-06-02 04:44:47,687 "GET /gestor/produtos/ HTTP/1.1" 200 12738
+[INFO] 2025-06-02 04:44:50,382 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:44:53,095 "GET /gestor/vendas/ HTTP/1.1" 200 15164
+[INFO] 2025-06-02 04:44:56,007 "GET /gestor/vendas/5/excluir/ HTTP/1.1" 200 7643
+[INFO] 2025-06-02 04:44:57,701 "POST /gestor/vendas/5/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:44:57,938 "GET /gestor/vendas/ HTTP/1.1" 200 14280
+[INFO] 2025-06-02 04:44:59,664 "GET /gestor/vendas/4/excluir/ HTTP/1.1" 200 7644
+[INFO] 2025-06-02 04:45:01,007 "POST /gestor/vendas/4/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:01,280 "GET /gestor/vendas/ HTTP/1.1" 200 12904
+[INFO] 2025-06-02 04:45:02,531 "GET /gestor/vendas/3/excluir/ HTTP/1.1" 200 7644
+[INFO] 2025-06-02 04:45:03,868 "POST /gestor/vendas/3/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:04,110 "GET /gestor/vendas/ HTTP/1.1" 200 11528
+[INFO] 2025-06-02 04:45:05,492 "GET /gestor/vendas/2/excluir/ HTTP/1.1" 200 7655
+[INFO] 2025-06-02 04:45:06,795 "POST /gestor/vendas/2/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:07,043 "GET /gestor/vendas/ HTTP/1.1" 200 10141
+[INFO] 2025-06-02 04:45:08,134 "GET /gestor/vendas/1/excluir/ HTTP/1.1" 200 7655
+[INFO] 2025-06-02 04:45:09,393 "POST /gestor/vendas/1/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:09,586 "GET /gestor/vendas/ HTTP/1.1" 200 9349
+[INFO] 2025-06-02 04:45:11,668 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:45:15,624 "GET /gestor/produtos/ HTTP/1.1" 200 12738
+[INFO] 2025-06-02 04:45:17,640 "GET /gestor/produtos/026021/excluir/ HTTP/1.1" 200 8292
+[INFO] 2025-06-02 04:45:18,936 "POST /gestor/produtos/026021/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:19,144 "GET /gestor/produtos/ HTTP/1.1" 200 11769
+[INFO] 2025-06-02 04:45:20,843 "GET /gestor/produtos/026031/excluir/ HTTP/1.1" 200 8292
+[INFO] 2025-06-02 04:45:22,356 "POST /gestor/produtos/026031/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:22,541 "GET /gestor/produtos/ HTTP/1.1" 200 10306
+[INFO] 2025-06-02 04:45:25,151 "GET /gestor/produtos/026032/excluir/ HTTP/1.1" 200 8297
+[INFO] 2025-06-02 04:45:26,732 "POST /gestor/produtos/026032/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:26,906 "GET /gestor/produtos/ HTTP/1.1" 200 9186
+[INFO] 2025-06-02 04:45:28,759 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:45:32,221 "GET /gestor/produtos/ HTTP/1.1" 200 8693
+[INFO] 2025-06-02 04:45:33,870 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:45:35,830 "GET /gestor/grupos/ HTTP/1.1" 200 10770
+[INFO] 2025-06-02 04:45:38,117 "GET /gestor/grupos/1141/excluir/ HTTP/1.1" 200 7419
+[INFO] 2025-06-02 04:45:39,508 "POST /gestor/grupos/1141/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:39,675 "GET /gestor/grupos/ HTTP/1.1" 200 10391
+[INFO] 2025-06-02 04:45:40,800 "GET /gestor/grupos/1001/excluir/ HTTP/1.1" 200 7399
+[INFO] 2025-06-02 04:45:42,070 "POST /gestor/grupos/1001/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:42,276 "GET /gestor/grupos/ HTTP/1.1" 200 9529
+[INFO] 2025-06-02 04:45:44,957 "GET /gestor/grupos/3232/excluir/ HTTP/1.1" 200 7413
+[INFO] 2025-06-02 04:45:46,120 "POST /gestor/grupos/3232/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:46,328 "GET /gestor/grupos/ HTTP/1.1" 200 9056
+[INFO] 2025-06-02 04:45:49,389 "GET /gestor/fabricantes/ HTTP/1.1" 200 9909
+[INFO] 2025-06-02 04:45:51,207 "GET /gestor/fabricantes/01/excluir/ HTTP/1.1" 200 7425
+[INFO] 2025-06-02 04:45:52,342 "POST /gestor/fabricantes/01/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:52,749 "GET /gestor/fabricantes/ HTTP/1.1" 200 9540
+[INFO] 2025-06-02 04:45:54,257 "GET /gestor/fabricantes/FUJI/excluir/ HTTP/1.1" 200 7427
+[INFO] 2025-06-02 04:45:55,355 "POST /gestor/fabricantes/FUJI/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:45:55,562 "GET /gestor/fabricantes/ HTTP/1.1" 200 9087
+[INFO] 2025-06-02 04:45:58,737 "GET /gestor/vendedores/ HTTP/1.1" 200 12031
+[INFO] 2025-06-02 04:46:01,906 "GET /gestor/vendedores/237/excluir/ HTTP/1.1" 200 7427
+[INFO] 2025-06-02 04:46:03,228 "POST /gestor/vendedores/237/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:46:03,423 "GET /gestor/vendedores/ HTTP/1.1" 200 11267
+[INFO] 2025-06-02 04:46:04,834 "GET /gestor/vendedores/982/excluir/ HTTP/1.1" 200 7428
+[INFO] 2025-06-02 04:46:06,015 "POST /gestor/vendedores/982/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:46:06,205 "GET /gestor/vendedores/ HTTP/1.1" 200 9975
+[INFO] 2025-06-02 04:46:07,341 "GET /gestor/vendedores/999/excluir/ HTTP/1.1" 200 7420
+[INFO] 2025-06-02 04:46:08,418 "POST /gestor/vendedores/999/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:46:08,603 "GET /gestor/vendedores/ HTTP/1.1" 200 9177
+[INFO] 2025-06-02 04:46:11,943 "GET /gestor/lojas/ HTTP/1.1" 200 11019
+[INFO] 2025-06-02 04:46:15,289 "GET /gestor/lojas/970/editar/ HTTP/1.1" 200 11817
+[INFO] 2025-06-02 04:46:22,184 "POST /gestor/lojas/970/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:46:22,371 "GET /gestor/lojas/ HTTP/1.1" 200 11505
+[INFO] 2025-06-02 04:46:24,438 "GET /gestor/lojas/973/editar/ HTTP/1.1" 200 11817
+[INFO] 2025-06-02 04:46:29,310 "POST /gestor/lojas/973/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 04:46:29,505 "GET /gestor/lojas/ HTTP/1.1" 200 11500
+[INFO] 2025-06-02 04:46:31,958 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:46:34,359 "GET /gestor/lojas/ HTTP/1.1" 200 11009
+[INFO] 2025-06-02 04:46:41,777 "GET /gestor/lojas/970/editar/ HTTP/1.1" 200 11812
+[INFO] 2025-06-02 04:46:51,069 "GET /gestor/lojas/ HTTP/1.1" 200 11009
+[INFO] 2025-06-02 04:46:58,613 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 04:48:13,022 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:48:13,942 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:48:18,920 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:48:19,312 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:48:31,132 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:48:31,603 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:48:35,777 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:48:36,097 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:48:42,834 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:48:43,187 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:48:49,811 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:48:50,209 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:50:03,978 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:50:04,563 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:50:23,596 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:50:24,073 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:50:37,916 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:50:38,358 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:50:52,320 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:50:53,000 Watching for file changes with StatReloader
+[INFO] 2025-06-02 04:50:56,694 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 04:50:57,046 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:09:10,520 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:09:58,356 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 05:09:59,504 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10927
+[INFO] 2025-06-02 05:10:38,233 "GET /gestor/vendas/ HTTP/1.1" 200 36472
+[INFO] 2025-06-02 05:11:00,638 "GET /gestor/vendas/ HTTP/1.1" 200 36253
+[INFO] 2025-06-02 05:11:03,253 "GET /gestor/vendas/?search= HTTP/1.1" 200 36416
+[INFO] 2025-06-02 05:11:05,193 - Broken pipe from ('127.0.0.1', 52473)
+[INFO] 2025-06-02 05:11:06,241 "GET /gestor/vendas/170/editar/ HTTP/1.1" 200 118572
+[INFO] 2025-06-02 05:11:17,988 "GET /gestor/vendas/ HTTP/1.1" 200 36441
+[INFO] 2025-06-02 05:11:20,345 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:11:38,008 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:11:50,711 "GET /gestor/fabricantes/ HTTP/1.1" 200 9060
+[INFO] 2025-06-02 05:11:54,209 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:11:56,891 "GET /gestor/produtos/ HTTP/1.1" 200 38137
+[INFO] 2025-06-02 05:12:12,798 "GET /gestor/produtos/?page=2 HTTP/1.1" 200 38289
+[INFO] 2025-06-02 05:12:18,726 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:12:21,839 "GET /gestor/vendedores/ HTTP/1.1" 200 23638
+[INFO] 2025-06-02 05:12:39,729 "GET /gestor/vendedores/058/editar/ HTTP/1.1" 200 9938
+[INFO] 2025-06-02 05:12:42,923 "GET /gestor/vendedores/ HTTP/1.1" 200 23638
+[INFO] 2025-06-02 05:12:59,009 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:13:01,506 "GET /gestor/vendas/ HTTP/1.1" 200 36413
+[INFO] 2025-06-02 05:13:04,527 "GET /gestor/clientes/ HTTP/1.1" 200 41159
+[INFO] 2025-06-02 05:13:15,952 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:13:18,754 "GET /gestor/vendas/ HTTP/1.1" 200 36413
+[INFO] 2025-06-02 05:13:25,969 "GET /gestor/vendas/262/editar/ HTTP/1.1" 200 119381
+[INFO] 2025-06-02 05:13:31,807 "GET /gestor/vendas/ HTTP/1.1" 200 36413
+[INFO] 2025-06-02 05:13:37,245 "GET /gestor/vendas/259/editar/ HTTP/1.1" 200 119380
+[INFO] 2025-06-02 05:14:06,304 "GET /gestor/vendas/ HTTP/1.1" 200 36413
+[INFO] 2025-06-02 05:14:15,378 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:14:27,505 "GET /gestor/vendas/ HTTP/1.1" 200 36413
+[INFO] 2025-06-02 05:14:30,830 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36599
+[INFO] 2025-06-02 05:14:43,551 "GET /gestor/vendas/240/editar/ HTTP/1.1" 200 119379
+[INFO] 2025-06-02 05:21:44,899 "GET /gestor/vendas/ HTTP/1.1" 200 36413
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:28:17,866 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:28:22,163 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:28:26,108 "GET /gestor/produtos/ HTTP/1.1" 200 8693
+[INFO] 2025-06-02 05:28:28,851 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:28:30,323 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 05:28:31,577 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10927
+[INFO] 2025-06-02 05:28:51,720 "POST /gestor/vendas/importar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 05:28:51,983 "GET /gestor/vendas/ HTTP/1.1" 200 30890
+[INFO] 2025-06-02 05:29:34,871 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:29:37,818 "GET /gestor/produtos/ HTTP/1.1" 200 12759
+[INFO] 2025-06-02 05:29:48,194 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:29:50,747 "GET /gestor/vendas/ HTTP/1.1" 200 15189
+[INFO] 2025-06-02 05:29:59,912 "GET /gestor/vendas/267/editar/ HTTP/1.1" 200 115152
+[INFO] 2025-06-02 05:30:04,286 "GET /gestor/clientes/ HTTP/1.1" 200 41159
+[INFO] 2025-06-02 05:30:08,759 "GET /gestor/clientes/?status=todos&tipo=todos&q=nunah HTTP/1.1" 200 13569
+[INFO] 2025-06-02 05:30:11,627 "GET /gestor/clientes/1513/excluir/ HTTP/1.1" 200 7433
+[INFO] 2025-06-02 05:30:13,055 "POST /gestor/clientes/1513/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 05:30:13,302 "GET /gestor/clientes/ HTTP/1.1" 200 41681
+[INFO] 2025-06-02 05:30:18,227 "GET /gestor/vendas/ HTTP/1.1" 200 15189
+[INFO] 2025-06-02 05:30:33,740 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:30:36,168 "GET /gestor/clientes/ HTTP/1.1" 200 41159
+[INFO] 2025-06-02 05:30:39,480 "GET /gestor/clientes/?status=todos&tipo=todos&q=foco HTTP/1.1" 200 15460
+[INFO] 2025-06-02 05:30:53,682 "GET /gestor/clientes/1512/editar/ HTTP/1.1" 200 37188
+[INFO] 2025-06-02 05:31:03,718 "GET /gestor/clientes/ HTTP/1.1" 200 41159
+[INFO] 2025-06-02 05:31:09,033 "GET /gestor/clientes/?status=todos&tipo=todos&q=foco HTTP/1.1" 200 15460
+[INFO] 2025-06-02 05:31:14,495 "GET /gestor/clientes/1512/excluir/ HTTP/1.1" 200 7444
+[ERROR] 2025-06-02 05:31:16,005 Internal Server Error: /gestor/clientes/1512/excluir/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 326, in cliente_delete
+    cliente.delete()
+    ~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/base.py", line 1272, in delete
+    collector.collect([self], keep_parents=keep_parents)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/deletion.py", line 351, in collect
+    raise ProtectedError(
+    ...<7 lines>...
+    )
+django.db.models.deletion.ProtectedError: ("Cannot delete some instances of model 'Cliente' because they are referenced through protected foreign keys: 'Vendas.cliente'.", {<Vendas: Venda 26793 - 2021-02-01 - FOCO PROFISSIONAL LTDA - ME>, <Vendas: Venda 26793 - 2021-02-01 - FOCO PROFISSIONAL LTDA - ME>})
+[ERROR] 2025-06-02 05:31:16,010 "POST /gestor/clientes/1512/excluir/ HTTP/1.1" 500 92180
+[INFO] 2025-06-02 05:31:24,993 "GET /gestor/clientes/1512/ HTTP/1.1" 200 15412
+[INFO] 2025-06-02 05:31:28,315 "GET /gestor/vendas/ HTTP/1.1" 200 15189
+[INFO] 2025-06-02 05:31:36,703 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:31:39,659 "GET /gestor/vendas/ HTTP/1.1" 200 15189
+[INFO] 2025-06-02 05:31:42,989 "GET /gestor/vendas/264/excluir/ HTTP/1.1" 200 7655
+[INFO] 2025-06-02 05:31:44,865 "POST /gestor/vendas/264/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 05:31:45,132 "GET /gestor/vendas/ HTTP/1.1" 200 14285
+[INFO] 2025-06-02 05:31:49,079 "GET /gestor/vendas/263/excluir/ HTTP/1.1" 200 7655
+[INFO] 2025-06-02 05:31:50,733 "POST /gestor/vendas/263/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 05:31:50,988 "GET /gestor/vendas/ HTTP/1.1" 200 12890
+[INFO] 2025-06-02 05:32:02,199 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 05:32:05,282 "GET /gestor/clientes/ HTTP/1.1" 200 41159
+[INFO] 2025-06-02 05:32:09,048 "GET /gestor/clientes/?status=todos&tipo=todos&q= HTTP/1.1" 200 41159
+[INFO] 2025-06-02 05:32:14,037 "GET /gestor/clientes/?status=todos&tipo=todos&q=foco HTTP/1.1" 200 15460
+[INFO] 2025-06-02 05:32:18,487 "GET /gestor/clientes/1512/excluir/ HTTP/1.1" 200 7444
+[INFO] 2025-06-02 05:32:20,330 "POST /gestor/clientes/1512/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 05:32:20,579 "GET /gestor/clientes/ HTTP/1.1" 200 41692
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:41:27,918 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:42:43,984 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:42:44,917 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:43:01,022 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 05:43:02,873 "GET /gestor/vendas/importar/ HTTP/1.1" 200 10965
+[INFO] 2025-06-02 05:43:20,364 "POST /gestor/vendas/importar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 05:43:20,634 "GET /gestor/vendas/ HTTP/1.1" 200 43182
+[INFO] 2025-06-02 05:46:31,894 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:46:32,959 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:46:44,947 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:46:45,388 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 05:57:20,192 Watching for file changes with StatReloader
+[INFO] 2025-06-02 05:57:26,319 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 05:57:28,354 "GET /gestor/vendas/importar/ HTTP/1.1" 200 17423
+[INFO] 2025-06-02 06:00:45,199 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:00:46,633 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:00:59,798 "GET /gestor/vendas/importar/ HTTP/1.1" 200 17399
+[INFO] 2025-06-02 06:01:21,355 "GET / HTTP/1.1" 200 6466
+[INFO] 2025-06-02 06:01:23,253 "GET /gestor/ HTTP/1.1" 200 6848
+[INFO] 2025-06-02 06:01:24,989 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 06:01:26,890 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 06:01:28,165 "GET /gestor/vendas/importar/ HTTP/1.1" 200 17399
+[INFO] 2025-06-02 06:05:13,293 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:05:13,943 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:10:36,187 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:10:36,788 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:10:49,795 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:10:50,231 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:14:55,832 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:14:57,184 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:15:25,063 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:15:25,509 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:16:31,294 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:16:31,760 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:16:39,079 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:16:39,498 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:16:46,438 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:16:46,924 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:16:49,518 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:16:49,877 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:18:33,784 "GET /gestor/vendas/importar/ HTTP/1.1" 200 17399
+[INFO] 2025-06-02 06:19:29,445 "GET /gestor/vendas/importar/ HTTP/1.1" 200 18649
+[INFO] 2025-06-02 06:25:34,436 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:25:36,287 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:26:32,786 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:26:33,337 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:26:37,517 "GET /gestor/clientes/ HTTP/1.1" 200 41159
+[INFO] 2025-06-02 06:26:46,490 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 06:26:48,212 "GET /gestor/vendas/importar/ HTTP/1.1" 200 14453
+[INFO] 2025-06-02 06:27:29,089 "POST /gestor/vendas/importar/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 06:27:29,355 "GET /gestor/vendas/ HTTP/1.1" 200 20004
+[INFO] 2025-06-02 06:28:02,502 "GET /gestor/vendas/277/editar/ HTTP/1.1" 200 104913
+[INFO] 2025-06-02 06:28:20,878 "GET /gestor/vendas/ HTTP/1.1" 200 15165
+[INFO] 2025-06-02 06:28:32,016 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 06:28:35,285 "GET /gestor/vendas/ HTTP/1.1" 200 15165
+[INFO] 2025-06-02 06:28:48,958 "GET /gestor/grupos/ HTTP/1.1" 200 9909
+[INFO] 2025-06-02 06:28:54,660 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 06:31:13,023 Watching for file changes with StatReloader
+[INFO] 2025-06-02 06:31:17,736 "GET /gestor/vendas/ HTTP/1.1" 200 8858
+[INFO] 2025-06-02 06:31:19,847 "GET /gestor/vendas/importar/ HTTP/1.1" 200 14453
+[INFO] 2025-06-02 06:32:10,657 "GET /gestor/fabricantes/ HTTP/1.1" 200 13501
+[INFO] 2025-06-02 06:32:15,008 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 06:32:16,880 "GET /gestor/grupos/ HTTP/1.1" 200 17805
+[INFO] 2025-06-02 06:32:26,382 "GET /gestor/fabricantes/ HTTP/1.1" 200 15269
+[INFO] 2025-06-02 06:32:29,620 "GET /gestor/grupos/ HTTP/1.1" 200 19566
+[INFO] 2025-06-02 06:32:38,615 "GET /gestor/produtos/ HTTP/1.1" 200 38339
+[INFO] 2025-06-02 06:58:58,477 "GET /gestor/produtos/ HTTP/1.1" 200 38162
+[INFO] 2025-06-02 06:59:29,223 "GET /gestor/vendas/ HTTP/1.1" 200 36465
+[INFO] 2025-06-02 06:59:33,678 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36571
+[INFO] 2025-06-02 06:59:37,139 "GET /gestor/vendas/?page=3 HTTP/1.1" 200 36475
+[INFO] 2025-06-02 06:59:48,810 "GET /gestor/vendas/?page=4 HTTP/1.1" 200 36552
+[INFO] 2025-06-02 06:59:52,650 "GET /gestor/vendas/?page=5 HTTP/1.1" 200 36507
+[INFO] 2025-06-02 06:59:56,239 "GET /gestor/vendas/?page=6 HTTP/1.1" 200 36464
+[INFO] 2025-06-02 07:00:00,349 "GET /gestor/vendas/?page=7 HTTP/1.1" 200 36547
+[INFO] 2025-06-02 07:00:14,111 "GET /gestor/vendas/?page=8 HTTP/1.1" 200 36555
+[INFO] 2025-06-02 07:00:18,222 "GET /gestor/vendas/?page=9 HTTP/1.1" 200 36474
+[INFO] 2025-06-02 07:00:39,339 "GET /gestor/grupos/ HTTP/1.1" 200 27468
+[INFO] 2025-06-02 07:00:52,488 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 07:00:55,804 "GET /gestor/produtos/ HTTP/1.1" 200 38129
+[INFO] 2025-06-02 07:01:21,486 "GET /gestor/vendas/ HTTP/1.1" 200 36472
+[INFO] 2025-06-02 07:01:26,140 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36602
+[INFO] 2025-06-02 07:01:29,056 "GET /gestor/vendas/?page=3 HTTP/1.1" 200 36542
+[INFO] 2025-06-02 07:01:44,252 "GET /gestor/vendas/?page=4 HTTP/1.1" 200 36405
+[INFO] 2025-06-02 07:01:47,391 "GET /gestor/vendas/?page=5 HTTP/1.1" 200 36374
+[INFO] 2025-06-02 07:01:55,928 "GET /gestor/vendas/?page=6 HTTP/1.1" 200 36488
+[INFO] 2025-06-02 07:02:02,150 "GET /gestor/vendas/7287/editar/ HTTP/1.1" 200 118302
+[INFO] 2025-06-02 07:02:09,879 "GET /gestor/vendas/ HTTP/1.1" 200 36267
+[INFO] 2025-06-02 07:02:16,350 "GET /gestor/vendas/7443/editar/ HTTP/1.1" 200 118372
+[INFO] 2025-06-02 07:02:21,506 "GET /gestor/vendas/ HTTP/1.1" 200 36290
+[INFO] 2025-06-02 07:02:31,595 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36568
+[INFO] 2025-06-02 07:02:36,943 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 07:02:39,449 "GET /gestor/lojas/ HTTP/1.1" 200 12402
+[INFO] 2025-06-02 07:02:49,180 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 07:02:52,275 "GET /gestor/vendas/ HTTP/1.1" 200 36294
+[INFO] 2025-06-02 07:03:16,693 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36473
+[INFO] 2025-06-02 07:03:26,161 "GET /gestor/vendas/?page=3 HTTP/1.1" 200 36561
+[INFO] 2025-06-02 07:03:30,164 "GET /gestor/vendas/?page=4 HTTP/1.1" 200 36564
+[INFO] 2025-06-02 07:03:35,316 "GET /gestor/vendas/?page=5 HTTP/1.1" 200 36560
+[INFO] 2025-06-02 07:03:48,802 "GET /gestor/clientes/ HTTP/1.1" 200 41199
+[INFO] 2025-06-02 07:03:56,665 "GET /gestor/clientes/?page=2 HTTP/1.1" 200 41455
+[INFO] 2025-06-02 07:04:05,761 "GET /gestor/clientes/?page=4 HTTP/1.1" 200 42079
+[INFO] 2025-06-02 07:04:14,225 "GET /gestor/clientes/?page=5 HTTP/1.1" 200 41661
+[INFO] 2025-06-02 07:04:21,289 "GET /gestor/clientes/?page=103 HTTP/1.1" 200 24435
+[INFO] 2025-06-02 07:04:43,402 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 07:04:46,532 "GET /gestor/vendas/ HTTP/1.1" 200 36442
+[INFO] 2025-06-02 07:05:58,204 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36532
+[INFO] 2025-06-02 07:06:32,396 "GET /gestor/vendas/?page=3 HTTP/1.1" 200 36579
+[INFO] 2025-06-02 07:08:27,783 "GET /gestor/vendas/?page=4 HTTP/1.1" 200 36512
+[INFO] 2025-06-02 07:09:02,129 "GET /gestor/produtos/ HTTP/1.1" 200 38135
+[INFO] 2025-06-02 07:10:00,921 "GET /gestor/produtos/ HTTP/1.1" 200 38135
+[INFO] 2025-06-02 07:10:16,721 "GET /gestor/vendas/ HTTP/1.1" 200 36426
+[INFO] 2025-06-02 07:10:31,767 "GET /gestor/clientes/ HTTP/1.1" 200 41199
+[INFO] 2025-06-02 07:10:38,069 "GET /gestor/clientes/?status=todos&tipo=todos&q=AILTON HTTP/1.1" 200 15318
+[INFO] 2025-06-02 07:11:06,945 "GET /gestor/clientes/36/editar/ HTTP/1.1" 200 37579
+[INFO] 2025-06-02 07:31:44,447 "GET /gestor/vendas/ HTTP/1.1" 200 36545
+[INFO] 2025-06-02 07:31:48,607 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36621
+[INFO] 2025-06-02 07:31:51,795 "GET /gestor/vendas/?page=3 HTTP/1.1" 200 36648
+[INFO] 2025-06-02 07:31:57,784 "GET /gestor/produtos/ HTTP/1.1" 200 38164
+[INFO] 2025-06-02 07:32:06,793 "GET /gestor/produtos/?page=2 HTTP/1.1" 200 38453
+[INFO] 2025-06-02 07:32:10,514 "GET /gestor/produtos/?page=3 HTTP/1.1" 200 38411
+[INFO] 2025-06-02 07:32:15,862 "GET /gestor/produtos/?page=4 HTTP/1.1" 200 38503
+[INFO] 2025-06-02 07:32:19,387 "GET /gestor/produtos/?page=5 HTTP/1.1" 200 38530
+[INFO] 2025-06-02 07:32:29,823 "GET /gestor/produtos/?page=6 HTTP/1.1" 200 38486
+[INFO] 2025-06-02 07:32:34,502 "GET /gestor/vendas/ HTTP/1.1" 200 36469
+[INFO] 2025-06-02 07:32:37,529 "GET /gestor/vendas/?page=2 HTTP/1.1" 200 36591
+[INFO] 2025-06-02 07:32:40,412 "GET /gestor/vendas/?page=3 HTTP/1.1" 200 36556
+[INFO] 2025-06-02 07:49:07,822 "GET /gestor/vendas/?page=4 HTTP/1.1" 200 36537
+[INFO] 2025-06-02 07:49:10,860 "GET /gestor/vendas/?page=5 HTTP/1.1" 200 36547
+[INFO] 2025-06-02 07:49:16,201 "GET /gestor/vendas/?page=6 HTTP/1.1" 200 36542
+[INFO] 2025-06-02 07:49:43,598 "GET /gestor/vendas/?page=7 HTTP/1.1" 200 36607
+[INFO] 2025-06-02 07:50:04,568 "GET /gestor/vendas/?page=8 HTTP/1.1" 200 36629
+[INFO] 2025-06-02 07:55:25,700 "GET /gestor/vendas/?page=9 HTTP/1.1" 200 36622
+[INFO] 2025-06-02 07:59:54,742 "GET /gestor/vendas/?page=10 HTTP/1.1" 200 36569
+[INFO] 2025-06-02 08:05:25,782 "GET /gestor/vendas/?page=11 HTTP/1.1" 200 36616
+[INFO] 2025-06-02 08:05:53,916 "GET /gestor/vendas/?page=12 HTTP/1.1" 200 36585
+[INFO] 2025-06-02 08:08:29,241 "GET /gestor/vendas/?page=13 HTTP/1.1" 200 36586
+[INFO] 2025-06-02 08:10:48,555 "GET /gestor/vendas/?page=14 HTTP/1.1" 200 36584
+[INFO] 2025-06-02 08:12:59,449 "GET /gestor/vendas/?page=15 HTTP/1.1" 200 36651
+[INFO] 2025-06-02 08:29:48,521 "GET /gestor/vendas/?page=16 HTTP/1.1" 200 36557
+[INFO] 2025-06-02 08:50:54,741 "GET /gestor/vendas/?page=17 HTTP/1.1" 200 36530
+[INFO] 2025-06-02 09:43:51,323 "GET /gestor/vendas/?page=18 HTTP/1.1" 200 36598
+[INFO] 2025-06-02 09:52:40,489 "GET /gestor/vendas/?page=19 HTTP/1.1" 200 36588
+[INFO] 2025-06-02 09:53:59,195 "GET /gestor/vendas/?page=20 HTTP/1.1" 200 36632
+[INFO] 2025-06-02 10:03:34,362 "GET /gestor/vendas/?page=21 HTTP/1.1" 200 36622
+[INFO] 2025-06-02 10:48:06,225 "GET /gestor/vendas/?page=22 HTTP/1.1" 200 36549
+[INFO] 2025-06-02 10:48:18,901 "GET /gestor/vendas/?page=23 HTTP/1.1" 200 36639
+[INFO] 2025-06-02 10:48:22,978 "GET /gestor/vendas/?page=24 HTTP/1.1" 200 36630
+[INFO] 2025-06-02 10:48:26,066 "GET /gestor/vendas/?page=25 HTTP/1.1" 200 36639
+[INFO] 2025-06-02 10:48:28,783 "GET /gestor/vendas/?page=26 HTTP/1.1" 200 36589
+[INFO] 2025-06-02 10:48:31,904 "GET /gestor/vendas/?page=27 HTTP/1.1" 200 36559
+[INFO] 2025-06-02 10:48:38,737 "GET /gestor/vendas/?page=28 HTTP/1.1" 200 36581
+[INFO] 2025-06-02 10:49:03,294 - Broken pipe from ('127.0.0.1', 53291)
+[INFO] 2025-06-02 11:03:25,612 "GET /gestor/vendas/?page=29 HTTP/1.1" 200 350675
+[INFO] 2025-06-02 11:06:01,239 "GET /gestor/vendas/?page=28 HTTP/1.1" 200 36600
+[INFO] 2025-06-02 11:06:05,014 "GET /gestor/vendas/?page=29 HTTP/1.1" 200 36630
+[INFO] 2025-06-02 11:07:45,973 "GET /gestor/vendas/?page=30 HTTP/1.1" 200 36654
+[INFO] 2025-06-02 11:07:50,315 "GET /gestor/clientes/ HTTP/1.1" 200 41366
+[INFO] 2025-06-02 11:07:57,271 "GET /gestor/clientes/?page=110 HTTP/1.1" 200 39602
+[INFO] 2025-06-02 11:08:11,482 "GET /gestor/clientes/?page=1 HTTP/1.1" 200 41366
+[INFO] 2025-06-02 11:27:17,822 "GET /gestor/clientes/?status=todos&tipo=todos&q=matheus+patente HTTP/1.1" 200 13469
+[INFO] 2025-06-02 11:27:27,872 "GET /gestor/clientes/1234/ HTTP/1.1" 200 15831
+[INFO] 2025-06-02 11:27:35,196 "GET /gestor/clientes/ HTTP/1.1" 200 41366
+[INFO] 2025-06-02 11:31:42,375 - Broken pipe from ('127.0.0.1', 56630)
+[INFO] 2025-06-02 11:31:43,230 "GET /gestor/clientes/?status=todos&tipo=todos&q=34201 HTTP/1.1" 200 10153
+[INFO] 2025-06-02 11:31:48,412 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 11:31:50,355 "GET /gestor/clientes/ HTTP/1.1" 200 41366
+[INFO] 2025-06-02 11:31:54,754 "GET /gestor/clientes/?status=todos&tipo=todos&q=MERCYA HTTP/1.1" 200 11603
+[INFO] 2025-06-02 11:32:14,408 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 11:32:16,167 "GET /gestor/vendas/ HTTP/1.1" 200 36373
+[INFO] 2025-06-02 11:32:37,453 "GET /gestor/vendas/?search=34201 HTTP/1.1" 200 11050
+[INFO] 2025-06-02 11:32:53,799 "GET /gestor/vendas/59175/editar/ HTTP/1.1" 200 126043
+[INFO] 2025-06-02 11:36:44,640 "GET /gestor/vendas/ HTTP/1.1" 200 36373
+[INFO] 2025-06-02 11:36:53,281 "GET /gestor/vendas/?search=mercya HTTP/1.1" 200 11051
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-02 14:14:36,438 Watching for file changes with StatReloader
+[INFO] 2025-06-02 14:16:39,522 "GET / HTTP/1.1" 200 6466
+[INFO] 2025-06-02 14:16:43,359 "GET /gestor/ HTTP/1.1" 200 6848
+[INFO] 2025-06-02 14:16:44,908 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-02 14:16:47,072 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-02 14:16:53,353 "GET /gestor/clientes/?status=todos&tipo=todos&q=ailton HTTP/1.1" 200 13471
+[INFO] 2025-06-02 14:16:57,993 "GET /gestor/clientes/1074/ HTTP/1.1" 200 17810
+[INFO] 2025-06-02 14:17:08,905 "GET /gestor/clientes/17193/bi/ HTTP/1.1" 302 0
+[INFO] 2025-06-02 14:17:09,385 "GET /gestor/clientes/1074/ HTTP/1.1" 200 18331
+[INFO] 2025-06-02 14:17:19,617 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-02 14:17:34,061 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39657
+[INFO] 2025-06-02 14:17:51,202 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-02 14:18:00,096 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:38:50,206 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:39:06,029 "GET / HTTP/1.1" 200 5546
+[INFO] 2025-06-03 19:39:06,399 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-06-03 19:39:06,436 "GET /static/img/background.jpg HTTP/1.1" 304 0
+[INFO] 2025-06-03 19:39:08,402 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-06-03 19:39:08,471 "GET /login/?next=/gestor/ HTTP/1.1" 200 4910
+[INFO] 2025-06-03 19:39:16,854 "POST /login/?next=/gestor/ HTTP/1.1" 200 5092
+[INFO] 2025-06-03 19:39:22,299 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-06-03 19:39:22,462 "GET /gestor/ HTTP/1.1" 200 6848
+[INFO] 2025-06-03 19:39:24,814 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 19:39:26,322 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-03 19:39:32,316 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 19:39:35,092 "GET /gestor/vendas/ HTTP/1.1" 200 36347
+[INFO] 2025-06-03 19:40:19,205 "GET /gestor/vendas/60867/editar/ HTTP/1.1" 200 126044
+[INFO] 2025-06-03 19:46:19,387 "GET /gestor/vendas/ HTTP/1.1" 200 36347
+[INFO] 2025-06-03 19:48:19,463 "GET /gestor/vendas/?search=papel+fuji HTTP/1.1" 200 36516
+[INFO] 2025-06-03 19:48:29,272 "GET /gestor/vendas/?search=20.3 HTTP/1.1" 200 36448
+[INFO] 2025-06-03 19:48:43,157 "GET /gestor/vendas/?search=disero HTTP/1.1" 200 36403
+[INFO] 2025-06-03 19:49:01,207 "GET /gestor/vendas/ HTTP/1.1" 200 36347
+[INFO] 2025-06-03 19:49:01,844 "GET /gestor/vendas/ HTTP/1.1" 200 36347
+[INFO] 2025-06-03 19:49:02,493 "GET /gestor/vendas/ HTTP/1.1" 200 36347
+[INFO] 2025-06-03 19:49:16,259 "GET /gestor/vendas/?search=10x15+disero HTTP/1.1" 200 8697
+[INFO] 2025-06-03 19:49:20,319 "GET /gestor/vendas/nova/ HTTP/1.1" 200 125955
+[INFO] 2025-06-03 19:49:23,792 "GET /gestor/vendas/ HTTP/1.1" 200 36347
+[INFO] 2025-06-03 19:50:29,589 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:50:31,155 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:50:42,262 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:50:42,774 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:50:58,764 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:50:59,264 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:01,920 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:02,322 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:03,868 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:04,210 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:14,984 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:15,551 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:43,888 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:44,380 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:47,037 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:47,368 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:48,889 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:49,225 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:51:51,748 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:51:52,150 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:53:18,216 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:53:19,027 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:53:31,192 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:53:31,925 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:58:55,503 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:58:56,953 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:58:58,785 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:58:59,165 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:59:05,792 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 19:59:06,147 Watching for file changes with StatReloader
+[INFO] 2025-06-03 19:59:57,703 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 20:00:02,112 "GET /gestor/vendas/ HTTP/1.1" 200 53971
+[INFO] 2025-06-03 20:00:09,372 "GET /gestor/vendas/?page=3058 HTTP/1.1" 200 41000
+[INFO] 2025-06-03 20:00:14,804 "GET /gestor/vendas/?page=1 HTTP/1.1" 200 53971
+[INFO] 2025-06-03 20:01:26,374 "GET /gestor/vendas/?page=1 HTTP/1.1" 200 53104
+[INFO] 2025-06-03 20:01:56,217 "GET /gestor/vendas/?search=miya&data_inicio=&data_fim=&loja=&vendedor= HTTP/1.1" 200 53520
+[INFO] 2025-06-03 20:01:58,165 "GET /gestor/vendas/?search=miya&data_inicio=&data_fim=&loja=&vendedor= HTTP/1.1" 200 53520
+[INFO] 2025-06-03 20:02:03,757 "GET /gestor/vendas/61429/editar/ HTTP/1.1" 200 132589
+[INFO] 2025-06-03 20:02:23,823 "GET /gestor/vendas/ HTTP/1.1" 200 53104
+[INFO] 2025-06-03 20:02:25,676 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13746
+[INFO] 2025-06-03 20:02:39,108 "GET /gestor/vendas/ HTTP/1.1" 200 53104
+[INFO] 2025-06-03 20:04:22,344 "GET /gestor/vendas/ HTTP/1.1" 200 51535
+[INFO] 2025-06-03 20:04:34,595 - Broken pipe from ('127.0.0.1', 52185)
+[INFO] 2025-06-03 20:04:35,023 "GET /gestor/vendas/?search=&data_inicio=&data_fim=&loja=&vendedor=982 HTTP/1.1" 200 51797
+[INFO] 2025-06-03 20:04:41,626 "GET /gestor/vendas/61331/editar/ HTTP/1.1" 200 132589
+[INFO] 2025-06-03 20:04:49,343 "GET /gestor/vendas/ HTTP/1.1" 200 51535
+[INFO] 2025-06-03 20:05:16,855 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:05:36,192 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 20:05:40,471 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:05:43,942 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 132589
+[INFO] 2025-06-03 20:07:34,206 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:07:34,863 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:07:49,042 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:07:49,536 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:07:53,571 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131981
+[INFO] 2025-06-03 20:08:06,824 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:12:48,189 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131981
+[WARNING] 2025-06-03 20:12:49,571 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-03 20:12:49,572 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-03 20:13:40,536 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131981
+[WARNING] 2025-06-03 20:13:40,680 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-03 20:13:40,684 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[WARNING] 2025-06-03 20:13:41,214 Not Found: /favicon.ico
+[WARNING] 2025-06-03 20:13:41,215 "GET /favicon.ico HTTP/1.1" 404 3484
+[INFO] 2025-06-03 20:16:01,961 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:16:03,613 Watching for file changes with StatReloader
+[WARNING] 2025-06-03 20:16:06,271 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-03 20:16:06,272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-03 20:16:12,518 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131956
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:16:31,026 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:16:41,083 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:16:44,701 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131956
+[INFO] 2025-06-03 20:16:50,490 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:43:58,439 "GET /gestor/vendas/?search=&data_inicio=2025-03-07&data_fim=2025-04-30&loja=&vendedor= HTTP/1.1" 200 46446
+[INFO] 2025-06-03 20:43:58,494 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-06-03 20:44:08,360 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 20:44:12,708 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:44:16,605 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131956
+[WARNING] 2025-06-03 20:44:22,563 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-03 20:44:22,564 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-03 20:52:35,556 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:52:36,433 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:53:19,193 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:53:19,710 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:54:44,576 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:54:44,726 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-06-03 20:54:44,733 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[WARNING] 2025-06-03 20:54:44,773 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[INFO] 2025-06-03 20:54:44,774 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[INFO] 2025-06-03 20:54:44,775 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[WARNING] 2025-06-03 20:54:44,776 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-03 20:54:52,425 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 131982
+[INFO] 2025-06-03 20:55:14,775 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:55:57,402 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 20:56:01,434 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[ERROR] 2025-06-03 20:56:03,858 Internal Server Error: /gestor/vendas/61430/editar/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 966, in vendas_edit
+    return render(request, 'gestor/vendas_form.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 586, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 7: 'block'. Looking for one of: endblock.
+[ERROR] 2025-06-03 20:56:03,866 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 500 194959
+[INFO] 2025-06-03 20:57:33,199 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129748
+[INFO] 2025-06-03 20:57:46,881 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 20:57:49,988 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129748
+[INFO] 2025-06-03 20:59:04,021 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:59:05,424 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:59:12,365 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:59:12,831 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:59:15,028 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:59:15,370 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:59:17,528 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:59:17,847 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:59:38,511 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 20:59:38,939 Watching for file changes with StatReloader
+[INFO] 2025-06-03 20:59:57,411 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-03 21:03:14,904 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-03 21:06:02,591 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-03 21:06:03,233 Watching for file changes with StatReloader
+[INFO] 2025-06-03 21:08:53,700 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[ERROR] 2025-06-03 21:08:56,123 Internal Server Error: /gestor/vendas/61430/editar/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 966, in vendas_edit
+    return render(request, 'gestor/vendas_form.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 295, in do_extends
+    nodelist = parser.parse()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 573, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 275: 'endblock'. Did you forget to register or load this tag?
+[ERROR] 2025-06-03 21:08:56,133 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 500 189980
+[INFO] 2025-06-03 21:09:11,479 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129597
+[INFO] 2025-06-03 21:09:21,162 "GET /gestor/vendas/ HTTP/1.1" 200 46015

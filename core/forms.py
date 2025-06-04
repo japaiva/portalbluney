@@ -443,65 +443,244 @@ ClienteCnaeSecundarioFormSet = forms.inlineformset_factory(
     max_num=10,  # Máximo de CNAEs secundários
 )
 
-# ===== FORMULÁRIO DE VENDAS =====
-
 class VendasForm(forms.ModelForm):
     class Meta:
         model = Vendas
         fields = [
-            'data_venda', 'cliente', 'produto', 'grupo_produto', 'fabricante',
-            'loja', 'vendedor', 'quantidade', 'valor_total', 
-            'numero_nf', 'serie_nf', 'estado'
+            'data_venda', 'cliente', 'produto', 'grupo_produto', 'fabricante', 
+            'loja', 'vendedor', 'vendedor_nf', 'quantidade', 'valor_total', 
+            'numero_nf', 'estado'
         ]
         widgets = {
-            'data_venda': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
-            'cliente': forms.Select(attrs={'class': 'form-select'}),
-            'produto': forms.Select(attrs={'class': 'form-select'}),
-            'grupo_produto': forms.Select(attrs={'class': 'form-select'}),
-            'fabricante': forms.Select(attrs={'class': 'form-select'}),
+            'data_venda': forms.DateInput(attrs={
+                'class': 'form-control', 
+                'type': 'date'
+            }),
+            'cliente': forms.Select(attrs={
+                'class': 'form-select',
+                'data-live-search': 'true'
+            }),
+            'produto': forms.Select(attrs={
+                'class': 'form-select',
+                'data-live-search': 'true'
+            }),
+            'grupo_produto': forms.Select(attrs={
+                'class': 'form-select',
+                'readonly': True
+            }),
+            'fabricante': forms.Select(attrs={
+                'class': 'form-select', 
+                'readonly': True
+            }),
             'loja': forms.Select(attrs={'class': 'form-select'}),
             'vendedor': forms.Select(attrs={'class': 'form-select'}),
-            'quantidade': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'valor_total': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'numero_nf': forms.TextInput(attrs={'class': 'form-control'}),
-            'serie_nf': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
-            'estado': forms.Select(attrs={'class': 'form-select'}, 
-                                 choices=[('', '---')] + [(s, s) for s in [
-                                     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 
-                                     'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 
-                                     'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
-                                 ]]),
+            'vendedor_nf': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Vendedor da época',
+                'maxlength': '3'
+            }),
+            'quantidade': forms.NumberInput(attrs={
+                'class': 'form-control', 
+                'step': '0.01',
+                'min': '0',
+                'placeholder': '0,00'
+            }),
+            'valor_total': forms.NumberInput(attrs={
+                'class': 'form-control', 
+                'step': '0.01',
+                'min': '0',
+                'placeholder': '0,00'
+            }),
+            'numero_nf': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Número da Nota Fiscal'
+            }),
+            'estado': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'maxlength': '2',
+                'placeholder': 'UF (ex: SP)',
+                'style': 'text-transform: uppercase;'
+            }),
+        }
+        labels = {
+            'data_venda': 'Data da Venda',
+            'cliente': 'Cliente', 
+            'produto': 'Produto',
+            'grupo_produto': 'Grupo do Produto',
+            'fabricante': 'Fabricante',
+            'loja': 'Loja',
+            'vendedor': 'Vendedor Atual',
+            'vendedor_nf': 'Vendedor da NF',
+            'quantidade': 'Quantidade',
+            'valor_total': 'Valor Total (R$)',
+            'numero_nf': 'Número da NF',
+            'estado': 'Estado (UF)',
         }
 
-# ===== FORMULÁRIO PARA IMPORTAÇÃO DE VENDAS =====
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Tornar campos obrigatórios
+        self.fields['data_venda'].required = True
+        self.fields['cliente'].required = True
+        self.fields['produto'].required = True
+        self.fields['loja'].required = True
+        self.fields['vendedor'].required = True
+        self.fields['quantidade'].required = True
+        self.fields['valor_total'].required = True
+        
+        # Se estiver editando, preencher grupo e fabricante automaticamente
+        if self.instance and self.instance.pk and self.instance.produto:
+            self.fields['grupo_produto'].initial = self.instance.produto.grupo
+            self.fields['fabricante'].initial = self.instance.produto.fabricante
+            # Tornar estes campos readonly
+            self.fields['grupo_produto'].widget.attrs['disabled'] = True
+            self.fields['fabricante'].widget.attrs['disabled'] = True
+        
+        # Ordenar e filtrar querysets
+        self.fields['cliente'].queryset = Cliente.objects.filter(
+            status='ativo'
+        ).order_by('nome')
+        
+        self.fields['produto'].queryset = Produto.objects.filter(
+            ativo=True
+        ).select_related('grupo', 'fabricante').order_by('descricao')
+        
+        self.fields['loja'].queryset = Loja.objects.filter(
+            ativo=True
+        ).order_by('codigo')
+        
+        self.fields['vendedor'].queryset = Vendedor.objects.filter(
+            ativo=True
+        ).order_by('nome')
+        
+        # Adicionar opções vazias para campos obrigatórios
+        self.fields['cliente'].empty_label = "Selecione um cliente"
+        self.fields['produto'].empty_label = "Selecione um produto"
+        self.fields['loja'].empty_label = "Selecione uma loja"
+        self.fields['vendedor'].empty_label = "Selecione um vendedor"
+        
+        # Se não for edição, definir valores padrão
+        if not self.instance.pk:
+            from datetime import date
+            self.fields['data_venda'].initial = date.today()
+    
+    def clean_estado(self):
+        estado = self.cleaned_data.get('estado', '').strip().upper()
+        if estado and len(estado) != 2:
+            raise forms.ValidationError("Estado deve ter exatamente 2 caracteres (UF)")
+        return estado
+    
+    def clean_vendedor_nf(self):
+        vendedor_nf = self.cleaned_data.get('vendedor_nf', '').strip()
+        if vendedor_nf and (len(vendedor_nf) > 3 or not vendedor_nf.isdigit()):
+            raise forms.ValidationError("Vendedor NF deve ter no máximo 3 dígitos numéricos")
+        return vendedor_nf
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        # Validar se produto está ativo
+        produto = cleaned_data.get('produto')
+        if produto and not produto.ativo:
+            self.add_error('produto', 'O produto selecionado está inativo.')
+        
+        # Validar se cliente está ativo
+        cliente = cleaned_data.get('cliente')
+        if cliente and cliente.status != 'ativo':
+            self.add_error('cliente', 'O cliente selecionado não está ativo.')
+        
+        # Validar valores numéricos
+        quantidade = cleaned_data.get('quantidade')
+        valor_total = cleaned_data.get('valor_total')
+        
+        if quantidade is not None and quantidade <= 0:
+            self.add_error('quantidade', 'Quantidade deve ser maior que zero.')
+        
+        if valor_total is not None and valor_total <= 0:
+            self.add_error('valor_total', 'Valor total deve ser maior que zero.')
+        
+        # Auto-preencher grupo e fabricante baseado no produto
+        if produto:
+            cleaned_data['grupo_produto'] = produto.grupo
+            cleaned_data['fabricante'] = produto.fabricante
+        
+        return cleaned_data
+    
+    def save(self, commit=True):
+        venda = super().save(commit=False)
+        
+        # Garantir que grupo e fabricante sejam preenchidos
+        if venda.produto:
+            venda.grupo_produto = venda.produto.grupo
+            venda.fabricante = venda.produto.fabricante
+        
+        if commit:
+            venda.save()
+        
+        return venda
 
+# ===== FORMULÁRIO PARA IMPORTAÇÃO DE VENDAS =====
 class ImportarVendasForm(forms.Form):
+    """Formulário simplificado para importação de vendas - apenas campos essenciais"""
+    
+    # === ARQUIVO PRINCIPAL ===
     arquivo_csv = forms.FileField(
-        label="Arquivo CSV de Vendas",
-        help_text="Selecione o arquivo CSV com os dados de vendas do BI",
-        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv'})
+        label="Arquivo BI (Excel/CSV)",
+        help_text="Selecione o arquivo principal com dados do BI - processará arquivo completo",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv,.xlsx,.xls'})
     )
     
-    limpar_registros_anteriores = forms.BooleanField(
-        label="Limpar registros anteriores",
+    # === PLANILHAS AUXILIARES (OPCIONAIS) ===
+    arquivo_produtos = forms.FileField(
+        label="PRODUTOS.xlsx",
         required=False,
-        initial=False,
-        help_text="Se marcado, todos os registros de vendas existentes serão removidos antes da importação",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+        help_text="Planilha com dados de produtos (opcional)",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.xlsx,.xls'})
+    )
+
+    arquivo_classes = forms.FileField(
+        label="CLASSE.xlsx", 
+        required=False,
+        help_text="Planilha com dados de classes/grupos (opcional)",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.xlsx,.xls'})
+    )
+
+    arquivo_fabricantes = forms.FileField(
+        label="FABR.xlsx",
+        required=False, 
+        help_text="Planilha com dados de fabricantes (opcional)",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.xlsx,.xls'})
     )
     
-    criar_dependencias = forms.BooleanField(
-        label="Criar dependências automaticamente",
+    # === CONFIGURAÇÕES BÁSICAS ===
+    limpar_registros_anteriores = forms.BooleanField(
+        label="Limpar dados anteriores antes da importação",
         required=False,
         initial=True,
-        help_text="Cria automaticamente clientes, produtos, grupos, fabricantes, lojas e vendedores que não existirem",
+        help_text="Remove todos os registros de vendas existentes",
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
     
-    status_cliente_novo = forms.ChoiceField(
-        label="Status para clientes novos",
-        choices=Cliente.STATUS_CHOICES,
-        initial='rascunho',
-        help_text="Status que será atribuído aos clientes criados automaticamente durante a importação",
-        widget=forms.Select(attrs={'class': 'form-select'})
+    verificar_dependencias = forms.BooleanField(
+        label="Criar/atualizar clientes, produtos e outros dados automaticamente",
+        required=False,
+        initial=True,
+        help_text="Cria automaticamente registros que não existem (clientes, produtos, etc.)",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
+    
+    def clean_arquivo_csv(self):
+        arquivo = self.cleaned_data['arquivo_csv']
+        
+        if arquivo:
+            # Verificar tamanho do arquivo (máx 50MB)
+            if arquivo.size > 50 * 1024 * 1024:
+                raise forms.ValidationError("Arquivo muito grande. Máximo permitido: 50MB")
+            
+            # Verificar extensão
+            nome = arquivo.name.lower()
+            if not (nome.endswith('.csv') or nome.endswith('.xlsx') or nome.endswith('.xls')):
+                raise forms.ValidationError("Formato não suportado. Use .csv, .xlsx ou .xls")
+        
+        return arquivo
