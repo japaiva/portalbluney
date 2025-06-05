@@ -150,23 +150,41 @@ class Produto(models.Model):
 # ===== MODELO CLIENTE ATUALIZADO =====
 
 class Cliente(models.Model):
+    # Choices para Situação Cadastral da Receita Federal
+    SITUACAO_CADASTRAL_CHOICES = [
+        ('01', 'Nula'),
+        ('02', 'Ativa'),
+        ('03', 'Suspensa'),
+        ('04', 'Inapta'),
+        ('08', 'Baixada'),
+        ('2.0', 'Ativa'),  # Compatibilidade com retornos da API
+        ('3.0', 'Suspensa'),
+        ('4.0', 'Inapta'),
+        ('8.0', 'Baixada'),
+    ]
+    
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),
         ('inativo', 'Inativo'),
         ('rascunho', 'Rascunho'),
     ]
     
-    # Campos de identificação
+    # ===== CAMPOS DE IDENTIFICAÇÃO =====
     codigo = models.CharField(max_length=20, unique=True, verbose_name="Código")
     codigo_master = models.CharField(max_length=20, blank=True, null=True, verbose_name="Código Master",
                                     help_text="Se preenchido, indica que este é um sub-cliente")
     nome = models.CharField(max_length=100, verbose_name="Nome")
     nome_fantasia = models.CharField(max_length=200, blank=True, null=True, verbose_name="Nome Fantasia")
     
-    # Status atualizado
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ativo', verbose_name="Status")
+    # ===== STATUS =====
+    status = models.CharField(
+        max_length=10, 
+        choices=STATUS_CHOICES, 
+        default='ativo', 
+        verbose_name="Status"
+    )
     
-    # Campos de endereço
+    # ===== CAMPOS DE ENDEREÇO =====
     tipo_logradouro = models.CharField(max_length=20, blank=True, null=True, verbose_name="Tipo de Logradouro",
                                      help_text="Ex: Rua, Avenida, Alameda, etc.")
     endereco = models.CharField(max_length=200, blank=True, null=True, verbose_name="Logradouro")
@@ -177,30 +195,29 @@ class Cliente(models.Model):
     estado = models.CharField(max_length=2, blank=True, null=True, verbose_name="Estado")
     cep = models.CharField(max_length=10, blank=True, null=True, verbose_name="CEP")
     
-    # Campos de contato
+    # ===== CAMPOS DE CONTATO =====
     telefone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefone")
     email = models.EmailField(blank=True, null=True, verbose_name="Email")
     
-    # Datas
-    data_cadastro = models.DateTimeField(default=timezone.now, verbose_name="Data de Cadastro")
+    # ===== DATAS E OBSERVAÇÕES =====
+    data_cadastro = models.DateField(default=timezone.now, verbose_name="Data de Cadastro")
     data_ultima_compra = models.DateField(blank=True, null=True, verbose_name="Data da Última Compra")
     observacoes = models.TextField(blank=True, null=True, verbose_name="Observações")
     
-    # Campos para integração com SysFat 
+    # ===== INFORMAÇÕES COMERCIAIS (INTEGRAÇÃO COM SYSFAT) =====
     codigo_loja = models.CharField(max_length=3, blank=True, null=True, 
                                    verbose_name="Código da Loja",
                                    help_text="Código de 3 dígitos da loja (NUMLOJ no SysFat)")
     codigo_vendedor = models.CharField(max_length=3, blank=True, null=True, 
                                       verbose_name="Código do Vendedor",
                                       help_text="Código de 3 dígitos do vendedor (CODVEN no SysFat)")
-    nome_vendedor = models.CharField(max_length=100, blank=True, null=True, 
-                                    verbose_name="Nome do Vendedor",
-                                    help_text="Nome do vendedor (VEND no SysFat)")
+    nome_vendedor = models.CharField(max_length=100, blank=True, null=True, verbose_name="Nome do Vendedor",
+                                    help_text="Nome do vendedor (preenchido automaticamente)")
     uf = models.CharField(max_length=2, blank=True, null=True, 
                          verbose_name="UF",
                          help_text="Unidade Federativa (UF no SysFat)")
     
-    # Dados fiscais
+    # ===== DADOS FISCAIS =====
     cpf_cnpj = models.CharField(max_length=20, blank=True, null=True, verbose_name="CPF/CNPJ")
     tipo_documento = models.CharField(
         max_length=10, 
@@ -211,15 +228,21 @@ class Cliente(models.Model):
     )
     nome_razao_social = models.CharField(max_length=200, blank=True, null=True, verbose_name="Nome/Razão Social")
     
-    # Dados da Receita Federal
+    # ===== DADOS DA RECEITA FEDERAL =====
     inscricao_estadual = models.CharField(max_length=30, blank=True, null=True, verbose_name="Inscrição Estadual")
     inscricao_municipal = models.CharField(max_length=30, blank=True, null=True, verbose_name="Inscrição Municipal")
-    situacao_cadastral = models.CharField(max_length=50, blank=True, null=True, verbose_name="Situação Cadastral")
+    situacao_cadastral = models.CharField(
+        max_length=20, 
+        blank=True, 
+        null=True, 
+        choices=SITUACAO_CADASTRAL_CHOICES,
+        verbose_name="Situação Cadastral"
+    )
     data_situacao_cadastral = models.DateField(blank=True, null=True, verbose_name="Data da Situação Cadastral")
     motivo_situacao_cadastral = models.CharField(max_length=100, blank=True, null=True, verbose_name="Motivo da Situação Cadastral")
     data_ultima_verificacao = models.DateTimeField(blank=True, null=True, verbose_name="Data da Última Verificação")
     
-    # Campos para pessoa jurídica
+    # ===== CAMPOS PARA PESSOA JURÍDICA =====
     natureza_juridica = models.CharField(max_length=100, blank=True, null=True, verbose_name="Natureza Jurídica")
     codigo_natureza_juridica = models.CharField(max_length=10, blank=True, null=True, verbose_name="Código Natureza Jurídica")
     porte_empresa = models.CharField(max_length=30, blank=True, null=True, verbose_name="Porte da Empresa")
@@ -229,13 +252,13 @@ class Cliente(models.Model):
     data_inicio_atividade = models.DateField(blank=True, null=True, verbose_name="Data de Início das Atividades")
     capital_social = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True, verbose_name="Capital Social")
     
-    # Campos para opções tributárias
+    # ===== CAMPOS PARA OPÇÕES TRIBUTÁRIAS =====
     opcao_pelo_simples = models.BooleanField(default=False, verbose_name="Optante pelo Simples")
     data_opcao_pelo_simples = models.DateField(blank=True, null=True, verbose_name="Data da Opção pelo Simples")
     data_exclusao_do_simples = models.DateField(blank=True, null=True, verbose_name="Data da Exclusão do Simples")
     opcao_pelo_mei = models.BooleanField(default=False, verbose_name="Optante pelo MEI")
     
-    # Campos para contato da Receita
+    # ===== CAMPOS PARA CONTATO DA RECEITA =====
     ddd_telefone_1 = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefone 1")
     ddd_telefone_2 = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefone 2")
     ddd_fax = models.CharField(max_length=20, blank=True, null=True, verbose_name="Fax")
@@ -264,6 +287,60 @@ class Cliente(models.Model):
     def ativo(self):
         """Propriedade para compatibilidade - retorna True se status for 'ativo'"""
         return self.status == 'ativo'
+    
+    def get_situacao_cadastral_display_customizada(self):
+        """
+        Retorna a situação cadastral formatada corretamente
+        """
+        if not self.situacao_cadastral:
+            return "Não informada"
+            
+        # Mapeamento de códigos para descrições
+        mapeamento = {
+            '01': 'Nula',
+            '02': 'Ativa',
+            '03': 'Suspensa',
+            '04': 'Inapta',
+            '08': 'Baixada',
+            '2.0': 'Ativa',
+            '3.0': 'Suspensa',
+            '4.0': 'Inapta',
+            '8.0': 'Baixada',
+            '2': 'Ativa',
+            '3': 'Suspensa',
+            '4': 'Inapta',
+            '8': 'Baixada',
+        }
+        
+        return mapeamento.get(str(self.situacao_cadastral), self.situacao_cadastral)
+    
+    def save(self, *args, **kwargs):
+        """Override do save para buscar nome do vendedor automaticamente"""
+        # Se código do vendedor foi informado mas nome não foi
+        if self.codigo_vendedor and not self.nome_vendedor:
+            try:
+                vendedor = Vendedor.objects.get(codigo=self.codigo_vendedor)
+                self.nome_vendedor = vendedor.nome
+            except Vendedor.DoesNotExist:
+                pass  # Mantém em branco se vendedor não existe
+        
+        # Se código do vendedor foi alterado, atualizar o nome
+        if self.pk:  # Só para instâncias já salvas
+            try:
+                old_instance = Cliente.objects.get(pk=self.pk)
+                if old_instance.codigo_vendedor != self.codigo_vendedor:
+                    if self.codigo_vendedor:
+                        try:
+                            vendedor = Vendedor.objects.get(codigo=self.codigo_vendedor)
+                            self.nome_vendedor = vendedor.nome
+                        except Vendedor.DoesNotExist:
+                            self.nome_vendedor = ''
+                    else:
+                        self.nome_vendedor = ''
+            except Cliente.DoesNotExist:
+                pass
+        
+        super().save(*args, **kwargs)
 
 # ===== OUTROS MODELOS =====
 
@@ -325,10 +402,7 @@ class Vendas(models.Model):
     numero_nf = models.CharField(max_length=20, blank=True, null=True, verbose_name="Número NF")
     serie_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Série NF")
     estado = models.CharField(max_length=2, blank=True, null=True, verbose_name="Estado")
-
-    # NOVO CAMPO para vendedor da época
     vendedor_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Vendedor NF")
-
     
     # Campos calculados para relatórios
     anomes = models.CharField(max_length=6, verbose_name="Ano/Mês", db_index=True,
@@ -430,3 +504,31 @@ class ClienteCnaeSecundario(models.Model):
         """Override save para limpeza automática"""
         self.full_clean()  # Chama clean() automaticamente
         super().save(*args, **kwargs)
+
+# Modelo para registrar sincronizações com sistemas externos
+class LogSincronizacao(models.Model):
+    TIPO_CHOICES = [
+        ('bi', 'BI SysFat'),
+        ('receita', 'Receita Federal'),
+        ('chatwoot', 'ChatWoot'),
+    ]
+    
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    data_inicio = models.DateTimeField(auto_now_add=True)
+    data_termino = models.DateTimeField(blank=True, null=True)
+    registros_processados = models.IntegerField(default=0)
+    registros_criados = models.IntegerField(default=0)
+    registros_atualizados = models.IntegerField(default=0)
+    registros_com_erro = models.IntegerField(default=0)
+    status = models.CharField(max_length=20, default='iniciado')
+    mensagem = models.TextField(blank=True, null=True)
+    usuario = models.ForeignKey(Usuario, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    def __str__(self):
+        return f"{self.get_tipo_display()} - {self.data_inicio}"
+    
+    class Meta:
+        db_table = 'log_sincronizacao'
+        verbose_name = "Log de Sincronização"
+        verbose_name_plural = "Logs de Sincronização"
+        ordering = ["-data_inicio"]

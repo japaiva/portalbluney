@@ -153,12 +153,19 @@
   <script>
     // Inicializa máscaras para campos
     $(document).ready(function() {
-      $('[data-mask]').each(function() {
-        $(this).mask($(this).data('mask'));
+      // Aplicar máscaras apenas em campos que NÃO são de data
+      $('[data-mask]').not('input[type="date"], input[type="datetime-local"]').each(function() {
+        try {
+          $(this).mask($(this).data('mask'));
+        } catch (error) {
+          console.warn('Erro ao aplicar máscara:', error);
+        }
       });
     });
   </script>
   
+
+
   {% block extra_js %}
   <script>
     // Inicializar toasts com duração de 3 segundos

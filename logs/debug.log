@@ -4066,3 +4066,508 @@ django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 275: '
 [ERROR] 2025-06-03 21:08:56,133 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 500 189980
 [INFO] 2025-06-03 21:09:11,479 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129597
 [INFO] 2025-06-03 21:09:21,162 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:21:54,485 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:23:09,926 "GET / HTTP/1.1" 200 6466
+[INFO] 2025-06-04 17:23:11,930 "GET /gestor/ HTTP/1.1" 200 6848
+[INFO] 2025-06-04 17:23:14,155 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-04 17:23:20,007 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-04 17:23:20,124 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-06-04 17:23:20,143 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[INFO] 2025-06-04 17:23:25,390 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129597
+[WARNING] 2025-06-04 17:23:34,639 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-04 17:23:34,639 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-04 17:38:26,647 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:38:27,901 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:43:18,257 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:43:19,825 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:43:26,154 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:43:26,672 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:43:51,348 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:43:51,836 Watching for file changes with StatReloader
+[WARNING] 2025-06-04 17:44:04,101 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-04 17:44:04,106 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-04 17:44:10,559 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129622
+[INFO] 2025-06-04 17:48:42,486 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:48:44,187 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:49:23,274 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:49:23,815 Watching for file changes with StatReloader
+[ERROR] 2025-06-04 17:49:52,871 Internal Server Error: /gestor/vendas/61430/editar/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 958, in vendas_edit
+    form = VendasForm(instance=venda)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py", line 566, in __init__
+    if isinstance(data, (datetime.date, datetime.datetime)):
+                                        ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
+[ERROR] 2025-06-04 17:49:52,880 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 500 82079
+[INFO] 2025-06-04 17:51:34,409 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:51:36,026 Watching for file changes with StatReloader
+[ERROR] 2025-06-04 17:51:39,407 Internal Server Error: /gestor/vendas/61430/editar/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py", line 958, in vendas_edit
+    form = VendasForm(instance=venda)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py", line 566, in __init__
+    if isinstance(data, (datetime.date, datetime.datetime)):
+                                        ^^^^^^^^^^^^^^^^^
+AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
+[ERROR] 2025-06-04 17:51:39,433 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 500 82079
+[INFO] 2025-06-04 17:53:23,085 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:53:24,897 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:53:28,888 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:53:29,520 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:53:33,372 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:53:33,889 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:53:36,096 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:53:36,423 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:53:39,057 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:53:39,507 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:53:42,702 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:53:43,030 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:54:03,184 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:54:03,699 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:54:12,212 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129622
+[INFO] 2025-06-04 17:54:29,546 "POST /gestor/vendas/61430/editar/ HTTP/1.1" 200 130442
+[INFO] 2025-06-04 17:54:46,769 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:54:48,298 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:54:51,141 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:54:51,560 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:54:53,739 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:54:54,131 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:54:58,400 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:54:58,732 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:55:00,902 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:55:01,236 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:55:29,070 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:55:29,688 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:55:32,580 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:55:32,964 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:55:34,557 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 17:55:34,914 Watching for file changes with StatReloader
+[INFO] 2025-06-04 17:55:38,975 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129597
+[INFO] 2025-06-04 17:55:45,150 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-04 17:55:48,266 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129597
+[INFO] 2025-06-04 18:07:31,136 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:07:33,003 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:07:40,348 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:07:40,854 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:07:43,143 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:07:43,484 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:07:52,868 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:07:53,285 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:13:26,354 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:13:28,051 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:13:40,149 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:13:41,390 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:13:45,142 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:13:45,633 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:14:49,987 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:14:51,523 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:14:54,399 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:14:54,884 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:14:58,530 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:14:59,164 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:15:00,792 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:15:01,337 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:15:15,238 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:15:15,822 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:16:02,883 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:16:04,427 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:16:10,318 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:16:10,935 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:16:33,170 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:16:33,687 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:16:38,480 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:16:38,945 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:17:06,935 "GET /gestor/vendas/ HTTP/1.1" 200 46015
+[INFO] 2025-06-04 18:17:08,778 "GET /gestor/dashboard/ HTTP/1.1" 200 6608
+[INFO] 2025-06-04 18:17:11,633 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-04 18:17:14,241 "GET /gestor/clientes/936/ HTTP/1.1" 200 20212
+[INFO] 2025-06-04 18:17:17,625 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-04 18:17:19,685 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39657
+[INFO] 2025-06-04 18:18:33,923 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:18:34,574 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:18:36,855 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:18:37,251 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:18:50,678 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:18:51,136 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:18:56,663 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39638
+[INFO] 2025-06-04 18:19:32,320 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:19:33,852 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:19:49,169 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:19:50,414 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:19:55,548 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39637
+[INFO] 2025-06-04 18:20:39,964 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39637
+[INFO] 2025-06-04 18:21:10,765 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:12,338 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:14,340 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:15,329 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:20,083 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:20,605 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:24,845 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:25,179 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:28,383 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:28,794 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:30,951 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:31,280 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:34,577 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:34,961 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:37,761 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:21:38,144 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:21:46,233 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39637
+[INFO] 2025-06-04 18:26:57,996 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:26:59,552 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:28:45,600 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:28:47,618 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:30:41,708 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:30:43,200 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:30:49,143 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:30:50,627 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:30:53,578 "GET /gestor/clientes/ HTTP/1.1" 200 41231
+[INFO] 2025-06-04 18:30:56,637 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39638
+[INFO] 2025-06-04 18:32:57,062 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:32:58,582 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:33:10,051 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:33:10,871 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:33:25,332 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:33:25,819 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:33:39,263 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:33:39,728 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:34:09,376 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:34:10,668 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:34:17,015 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:34:17,444 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:34:19,641 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:34:20,000 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:34:40,347 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:34:41,166 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:34:59,755 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:35:00,243 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:35:03,076 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:35:03,558 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:35:22,747 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:35:23,592 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:35:25,363 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:35:25,760 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:35:33,528 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39647
+[INFO] 2025-06-04 18:35:44,150 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39647
+[INFO] 2025-06-04 18:37:27,110 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:37:28,513 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:37:48,774 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:37:49,413 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:37:51,027 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 18:37:51,373 Watching for file changes with StatReloader
+[INFO] 2025-06-04 18:38:05,558 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39663
+[INFO] 2025-06-04 18:38:32,631 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39663
+[INFO] 2025-06-04 18:38:32,670 "GET /static/css/style.css HTTP/1.1" 200 9872
+[INFO] 2025-06-04 18:38:32,671 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-06-04 18:38:32,778 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-06-04 18:38:32,781 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-06-04 18:38:32,781 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-06-04 18:38:32,789 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 200 1609
+[INFO] 2025-06-04 18:38:32,790 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 200 36056
+[WARNING] 2025-06-04 18:38:33,049 Not Found: /favicon.ico
+[WARNING] 2025-06-04 18:38:33,050 "GET /favicon.ico HTTP/1.1" 404 3484
+[INFO] 2025-06-04 18:38:57,951 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39663
+[WARNING] 2025-06-04 18:39:06,480 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-04 18:39:06,481 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-04 19:03:08,186 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 39899
+[WARNING] 2025-06-04 19:03:08,393 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-04 19:03:08,394 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-04 19:10:04,315 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:10:06,022 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:10:12,972 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:10:13,434 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:10:18,063 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:10:18,409 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:10:19,949 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:10:20,362 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:10:21,919 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:10:22,245 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:11:01,036 "GET /gestor/clientes/ HTTP/1.1" 200 41467
+[INFO] 2025-06-04 19:11:03,287 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-04 19:11:06,818 "GET /gestor/vendas/ HTTP/1.1" 200 46251
+[INFO] 2025-06-04 19:11:10,433 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129833
+[INFO] 2025-06-04 19:11:19,409 "POST /gestor/vendas/61430/editar/ HTTP/1.1" 200 130542
+[INFO] 2025-06-04 19:11:32,035 "GET /gestor/vendas/ HTTP/1.1" 200 46251
+[INFO] 2025-06-04 19:11:34,869 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129833
+[INFO] 2025-06-04 19:11:59,202 "POST /gestor/vendas/61430/editar/ HTTP/1.1" 200 130542
+[INFO] 2025-06-04 19:15:34,322 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:15:35,109 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:15:41,132 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:15:41,628 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:15:54,081 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:15:54,505 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:16:24,977 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:16:25,540 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:16:28,185 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:16:28,536 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:16:31,063 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:16:31,454 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:16:35,036 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:16:35,401 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:17:30,431 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:17:31,974 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:18:32,535 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129684
+[INFO] 2025-06-04 19:18:37,729 "POST /gestor/vendas/61430/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-04 19:18:38,085 "GET /gestor/vendas/61430/ HTTP/1.1" 200 14515
+[INFO] 2025-06-04 19:18:50,942 "GET /gestor/vendas/ HTTP/1.1" 200 46251
+[INFO] 2025-06-04 19:18:55,151 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 129684
+[INFO] 2025-06-04 19:20:52,824 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:20:54,360 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:21:27,100 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:21:28,233 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:21:46,468 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:21:47,052 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:21:48,240 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:21:48,551 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:21:52,176 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:21:52,561 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:21:59,592 "POST /gestor/vendas/61430/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-04 19:22:01,041 "GET /gestor/vendas/ HTTP/1.1" 200 46784
+[INFO] 2025-06-04 19:22:07,964 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-04 19:22:10,698 "GET /gestor/clientes/ HTTP/1.1" 200 41467
+[INFO] 2025-06-04 19:22:13,465 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 40135
+[WARNING] 2025-06-04 19:25:18,508 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+[WARNING] 2025-06-04 19:25:18,510 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 3595
+[INFO] 2025-06-04 19:28:10,210 "GET /gestor/api/consultar-receita/57926914000103/ HTTP/1.1" 200 1091
+[INFO] 2025-06-04 19:29:16,284 "GET /gestor/api/consultar-receita/57926914000103/ HTTP/1.1" 200 1091
+[INFO] 2025-06-04 19:30:16,620 "GET /gestor/api/consultar-receita/57926914000103/ HTTP/1.1" 200 1091
+[INFO] 2025-06-04 19:30:34,297 "POST /gestor/clientes/936/editar/ HTTP/1.1" 200 46616
+[INFO] 2025-06-04 19:31:47,543 "POST /gestor/clientes/936/editar/ HTTP/1.1" 200 46606
+[INFO] 2025-06-04 19:32:12,789 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 40135
+[INFO] 2025-06-04 19:32:19,264 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 40135
+[INFO] 2025-06-04 19:32:43,036 "POST /gestor/clientes/936/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-04 19:32:43,646 "GET /gestor/clientes/936/ HTTP/1.1" 200 21038
+[INFO] 2025-06-04 19:32:49,343 "GET /gestor/clientes/ HTTP/1.1" 200 41467
+[INFO] 2025-06-04 19:32:51,743 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 40138
+[INFO] 2025-06-04 19:33:14,989 "POST /gestor/clientes/936/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-04 19:33:15,581 "GET /gestor/clientes/936/ HTTP/1.1" 200 21038
+[INFO] 2025-06-04 19:33:19,108 "GET /gestor/clientes/ HTTP/1.1" 200 41467
+[INFO] 2025-06-04 19:33:23,408 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 40138
+[INFO] 2025-06-04 19:35:11,130 "POST /gestor/clientes/936/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-04 19:35:11,729 "GET /gestor/clientes/936/ HTTP/1.1" 200 20998
+[INFO] 2025-06-04 19:35:16,950 "GET /gestor/clientes/936/editar/ HTTP/1.1" 200 40128
+[INFO] 2025-06-04 19:50:23,753 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:50:26,098 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:52:33,519 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:52:35,269 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:52:45,709 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:52:46,657 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:52:51,940 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:52:52,436 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:52:54,663 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:52:55,082 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:53:19,835 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:53:20,305 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:54:09,843 Watching for file changes with StatReloader
+[INFO] 2025-06-04 19:58:06,142 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 19:58:07,827 Watching for file changes with StatReloader
+[INFO] 2025-06-04 20:01:54,103 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 20:01:55,815 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:36:51,855 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:37:07,609 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 21:37:13,936 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 33357
+[INFO] 2025-06-04 21:37:48,534 "GET /gestor/api/cliente-por-codigo/a4/ HTTP/1.1" 200 60
+[INFO] 2025-06-04 21:37:49,904 "GET /gestor/api/cliente-por-codigo/a4/ HTTP/1.1" 200 60
+[INFO] 2025-06-04 21:38:01,249 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 21:38:05,210 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 33357
+[INFO] 2025-06-04 21:38:10,562 "GET /gestor/api/cliente-por-codigo/1146/ HTTP/1.1" 200 99
+[INFO] 2025-06-04 21:38:22,720 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 33357
+[WARNING] 2025-06-04 21:38:27,720 Not Found: /gestor/api/vendedor-por-codigo/121/
+[WARNING] 2025-06-04 21:38:27,720 "GET /gestor/api/vendedor-por-codigo/121/ HTTP/1.1" 404 15136
+[INFO] 2025-06-04 21:38:55,712 "GET /gestor/api/consultar-receita/07004539000168/ HTTP/1.1" 200 1091
+[INFO] 2025-06-04 21:39:11,964 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 21:39:15,595 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 33357
+[INFO] 2025-06-04 21:39:43,884 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 33215
+[INFO] 2025-06-04 21:40:15,139 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 32937
+[INFO] 2025-06-04 21:41:18,611 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 32779
+[INFO] 2025-06-04 21:42:11,667 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:42:12,292 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:42:59,407 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:43:00,039 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:43:21,496 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:43:22,032 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:43:24,217 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:43:24,524 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:43:33,890 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:43:34,456 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:44:11,722 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:44:14,590 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 32754
+[INFO] 2025-06-04 21:45:58,942 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 32422
+[INFO] 2025-06-04 21:46:39,961 "POST /gestor/clientes/374/editar/ HTTP/1.1" 200 32908
+[INFO] 2025-06-04 21:46:48,609 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 21:46:50,683 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 32422
+[INFO] 2025-06-04 21:46:54,986 "POST /gestor/clientes/374/editar/ HTTP/1.1" 200 32908
+[INFO] 2025-06-04 21:47:10,502 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 21:47:40,945 "GET /gestor/clientes/?page=101 HTTP/1.1" 200 30287
+[INFO] 2025-06-04 21:47:46,106 "GET /gestor/clientes/1460/editar/ HTTP/1.1" 200 32453
+[INFO] 2025-06-04 21:54:54,996 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:54:56,496 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:55:15,931 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:55:16,730 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:55:18,363 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:55:18,718 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:56:34,233 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:56:34,843 Watching for file changes with StatReloader
+[INFO] 2025-06-04 21:57:12,789 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 21:57:13,312 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:01:18,726 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:01:20,430 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:01:29,435 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:01:29,961 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:01:33,622 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:01:33,979 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:02:06,474 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:02:07,671 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:12:43,424 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:12:53,088 "GET /gestor/clientes/1460/editar/ HTTP/1.1" 200 54170
+[INFO] 2025-06-04 22:13:01,484 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 22:13:03,804 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 44459
+[INFO] 2025-06-04 22:13:06,336 "GET /gestor/api/vendedor-por-codigo/121/ HTTP/1.1" 200 95
+[INFO] 2025-06-04 22:13:09,916 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 22:13:12,031 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 44459
+[INFO] 2025-06-04 22:13:22,573 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 22:13:25,216 "GET /gestor/clientes/1430/editar/ HTTP/1.1" 200 40429
+[INFO] 2025-06-04 22:13:26,945 "GET /gestor/api/vendedor-por-codigo/999/ HTTP/1.1" 200 81
+[INFO] 2025-06-04 22:13:30,104 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 22:13:34,068 "GET /gestor/clientes/12/editar/ HTTP/1.1" 200 48298
+[INFO] 2025-06-04 22:13:35,636 "GET /gestor/api/vendedor-por-codigo/554/ HTTP/1.1" 200 103
+[INFO] 2025-06-04 22:13:38,811 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+[INFO] 2025-06-04 22:13:40,781 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 44459
+[INFO] 2025-06-04 22:14:17,354 "GET /gestor/clientes/ HTTP/1.1" 200 41473

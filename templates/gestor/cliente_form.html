@@ -26,12 +26,12 @@
         </div>
       {% endif %}
       
-      <!-- Bloco de Informações Principais -->
+      <!-- Bloco de Informações Gerais (AGRUPADO COM COMERCIAIS) -->
       <div class="card shadow mt-4">
         <div class="card-header bg-light">
           <h5 class="card-title mb-0">
             <i class="fas fa-info-circle me-2"></i>
-            Informações Principais
+            Informações Gerais
           </h5>
         </div>
         <div class="card-body">
@@ -57,6 +57,16 @@
             </div>
             
             <div class="col-md-3">
+              <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
+              {{ form.status }}
+              {% if form.status.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.status.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-3">
               <label for="{{ form.codigo_master.id_for_label }}" class="form-label">Código Master</label>
               <div class="input-group">
                 {{ form.codigo_master }}
@@ -69,18 +79,70 @@
                   {% for error in form.codigo_master.errors %}{{ error }}{% endfor %}
                 </div>
               {% endif %}
-              <div class="form-text small text-muted">
-                Deixe em branco se este for um cliente principal.
-              </div>
               <div id="nomeClienteMaster" class="form-text fw-bold text-primary mt-1"></div>
             </div>
             
-            <div class="col-md-12">
+            <div class="col-md-9">
               <label for="{{ form.nome_fantasia.id_for_label }}" class="form-label">Nome Fantasia</label>
               {{ form.nome_fantasia }}
               {% if form.nome_fantasia.errors %}
                 <div class="text-danger small mt-1">
                   {% for error in form.nome_fantasia.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-2">
+              <label for="{{ form.codigo_loja.id_for_label }}" class="form-label">Código da Loja</label>
+              {{ form.codigo_loja }}
+              {% if form.codigo_loja.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.codigo_loja.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-2">
+              <label for="{{ form.codigo_vendedor.id_for_label }}" class="form-label">Código Vendedor</label>
+              <div class="input-group">
+                {{ form.codigo_vendedor }}
+                <button type="button" class="btn btn-outline-secondary btn-sm" id="buscarVendedor">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+              {% if form.codigo_vendedor.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.codigo_vendedor.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.nome_vendedor.id_for_label }}" class="form-label">Nome do Vendedor</label>
+              {{ form.nome_vendedor }}
+              {% if form.nome_vendedor.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.nome_vendedor.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-2">
+              <label for="{{ form.data_cadastro.id_for_label }}" class="form-label">Data Cadastro</label>
+              {{ form.data_cadastro }}
+              {% if form.data_cadastro.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.data_cadastro.errors %}{{ error }}{% endfor %}
+                </div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-2">
+              <label for="{{ form.data_ultima_compra.id_for_label }}" class="form-label">Última Compra</label>
+              {{ form.data_ultima_compra }}
+              {% if form.data_ultima_compra.errors %}
+                <div class="text-danger small mt-1">
+                  {% for error in form.data_ultima_compra.errors %}{{ error }}{% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -155,7 +217,14 @@
             
             <div class="col-md-4">
               <label for="{{ form.situacao_cadastral.id_for_label }}" class="form-label">Situação Cadastral</label>
-              {{ form.situacao_cadastral }}
+              <div class="input-group">
+                {{ form.situacao_cadastral }}
+                <button type="button" class="btn btn-outline-info btn-sm" id="infoSituacao" 
+                        data-bs-toggle="tooltip" 
+                        title="Situação do CPF/CNPJ na Receita Federal">
+                  <i class="fas fa-info-circle"></i>
+                </button>
+              </div>
               {% if form.situacao_cadastral.errors %}
                 <div class="text-danger small mt-1">
                   {% for error in form.situacao_cadastral.errors %}{{ error }}{% endfor %}
@@ -356,182 +425,98 @@
         </div>
       </div>
 
-
-      <!-- Adicionar esta seção APÓS o bloco "Informações da Receita Federal" -->
-
-      <!-- Bloco de CNAEs Secundários -->
+      <!-- BLOCO DE CNAES SECUNDÁRIOS -->
       <div class="card shadow mt-4">
         <div class="card-header bg-light d-flex justify-content-between align-items-center">
           <h5 class="card-title mb-0">
-            <i class="fas fa-industry me-2"></i>
+            <i class="fas fa-list-alt me-2"></i>
             CNAEs Secundários
           </h5>
-          <button type="button" class="btn btn-sm btn-success" id="adicionarCnae">
+          <button type="button" class="btn btn-outline-primary btn-sm" id="adicionarCnae">
             <i class="fas fa-plus me-1"></i> Adicionar CNAE
           </button>
         </div>
         <div class="card-body">
-          <!-- Mostrar CNAE Principal como referência -->
-          <div class="alert alert-info mb-3">
-            <strong>CNAE Principal:</strong> 
-            <span id="cnae-principal-display">
-              {% if form.cnae_principal.value %}
-                {{ form.cnae_principal.value }} - {{ form.cnae_descricao.value|default:"" }}
-              {% else %}
-                Não informado
-              {% endif %}
-            </span>
-          </div>
-
-          <!-- FormSet Management Form (obrigatório para Django FormSets) -->
-          {{ cnaes_formset.management_form }}
-          
-          <!-- Container para CNAEs Secundários -->
           <div id="cnaes-container">
-            {% for cnae_form in cnaes_formset %}
-              <div class="cnae-item border rounded p-3 mb-3" data-form-index="{{ forloop.counter0 }}">
-                <div class="row g-3">
-                  <div class="col-md-2">
-                    <label class="form-label">Ordem</label>
-                    {{ cnae_form.ordem }}
-                    {% if cnae_form.ordem.errors %}
-                      <div class="text-danger small">{{ cnae_form.ordem.errors.0 }}</div>
-                    {% endif %}
-                  </div>
-                  
-                  <div class="col-md-3">
-                    <label class="form-label">Código CNAE*</label>
-                    {{ cnae_form.codigo_cnae }}
-                    {% if cnae_form.codigo_cnae.errors %}
-                      <div class="text-danger small">{{ cnae_form.codigo_cnae.errors.0 }}</div>
-                    {% endif %}
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <label class="form-label">Descrição*</label>
-                    {{ cnae_form.descricao_cnae }}
-                    {% if cnae_form.descricao_cnae.errors %}
-                      <div class="text-danger small">{{ cnae_form.descricao_cnae.errors.0 }}</div>
-                    {% endif %}
-                  </div>
-                  
-                  <div class="col-md-1 d-flex align-items-end">
-                    {% if cnae_form.instance.pk %}
-                      {{ cnae_form.DELETE }}
-                      <label for="{{ cnae_form.DELETE.id_for_label }}" class="btn btn-outline-danger btn-sm">
-                        <i class="fas fa-trash"></i>
-                      </label>
-                    {% else %}
-                      <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
-                        <i class="fas fa-trash"></i>
-                      </button>
-                    {% endif %}
-                  </div>
-                </div>
-                
-                <!-- Hidden fields para o FormSet -->
-                {% for hidden in cnae_form.hidden_fields %}
+            {{ cnaes_formset.management_form }}
+            {% for form_cnae in cnaes_formset %}
+              <div class="cnae-form-row" data-form-index="{{ forloop.counter0 }}">
+                {% for hidden in form_cnae.hidden_fields %}
                   {{ hidden }}
                 {% endfor %}
+                <div class="row g-3 mb-3">
+                  <div class="col-md-3">
+                    <label class="form-label">Código CNAE</label>
+                    {{ form_cnae.codigo_cnae }}
+                    {% if form_cnae.codigo_cnae.errors %}
+                      <div class="text-danger small mt-1">
+                        {% for error in form_cnae.codigo_cnae.errors %}{{ error }}{% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label">Descrição</label>
+                    {{ form_cnae.descricao_cnae }}
+                    {% if form_cnae.descricao_cnae.errors %}
+                      <div class="text-danger small mt-1">
+                        {% for error in form_cnae.descricao_cnae.errors %}{{ error }}{% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-2">
+                    <label class="form-label">Ordem</label>
+                    {{ form_cnae.ordem }}
+                    {% if form_cnae.ordem.errors %}
+                      <div class="text-danger small mt-1">
+                        {% for error in form_cnae.ordem.errors %}{{ error }}{% endfor %}
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-1">
+                    <label class="form-label">&nbsp;</label>
+                    <div>
+                      {% if form_cnae.instance.pk %}
+                        {{ form_cnae.DELETE }}
+                        <label for="{{ form_cnae.DELETE.id_for_label }}" class="btn btn-outline-danger btn-sm">
+                          <i class="fas fa-trash"></i>
+                        </label>
+                      {% else %}
+                        <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
               </div>
             {% endfor %}
           </div>
           
-          <!-- Template para novos CNAEs (hidden) -->
-          <div id="cnae-template" class="cnae-item border rounded p-3 mb-3 d-none">
-            <div class="row g-3">
-              <div class="col-md-2">
-                <label class="form-label">Ordem</label>
-                <input type="number" class="form-control" name="__prefix__-ordem" min="1" value="1">
+          <!-- Template para novos CNAEs -->
+          <div id="cnae-template" style="display: none;">
+            <div class="cnae-form-row" data-form-index="__prefix__">
+              <div class="row g-3 mb-3">
+                <div class="col-md-3">
+                  <label class="form-label">Código CNAE</label>
+                  <input type="text" name="cnaes-__prefix__-codigo_cnae" class="form-control" placeholder="Ex: 4761003">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Descrição</label>
+                  <input type="text" name="cnaes-__prefix__-descricao_cnae" class="form-control" placeholder="Descrição da atividade">
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Ordem</label>
+                  <input type="number" name="cnaes-__prefix__-ordem" class="form-control" value="1" min="1">
+                </div>
+                <div class="col-md-1">
+                  <label class="form-label">&nbsp;</label>
+                  <div>
+                    <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </div>
               </div>
-              
-              <div class="col-md-3">
-                <label class="form-label">Código CNAE*</label>
-                <input type="text" class="form-control" name="__prefix__-codigo_cnae" maxlength="10" placeholder="Ex: 4761003">
-              </div>
-              
-              <div class="col-md-6">
-                <label class="form-label">Descrição*</label>
-                <input type="text" class="form-control" name="__prefix__-descricao_cnae" placeholder="Descrição da atividade">
-              </div>
-              
-              <div class="col-md-1 d-flex align-items-end">
-                <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          
-          {% if not cnaes_formset %}
-            <div class="text-muted text-center py-3">
-              <i class="fas fa-info-circle me-2"></i>
-              Nenhum CNAE secundário cadastrado. Use o botão "Adicionar CNAE" para incluir atividades secundárias.
-            </div>
-          {% endif %}
-        </div>
-      </div>
-
-
-
-      <!-- Bloco de Informações Comerciais -->
-      <div class="card shadow mt-4">
-        <div class="card-header bg-light">
-          <h5 class="card-title mb-0">
-            <i class="fas fa-shopping-cart me-2"></i>
-            Informações Comerciais
-          </h5>
-        </div>
-        <div class="card-body">
-          <div class="row g-3">
-            <div class="col-md-3">
-              <label for="{{ form.codigo_loja.id_for_label }}" class="form-label">Código da Loja</label>
-              {{ form.codigo_loja }}
-              {% if form.codigo_loja.errors %}
-                <div class="text-danger small mt-1">
-                  {% for error in form.codigo_loja.errors %}{{ error }}{% endfor %}
-                </div>
-              {% endif %}
-            </div>
-            
-            <div class="col-md-3">
-              <label for="{{ form.codigo_vendedor.id_for_label }}" class="form-label">Código do Vendedor</label>
-              {{ form.codigo_vendedor }}
-              {% if form.codigo_vendedor.errors %}
-                <div class="text-danger small mt-1">
-                  {% for error in form.codigo_vendedor.errors %}{{ error }}{% endfor %}
-                </div>
-              {% endif %}
-            </div>
-            
-            <div class="col-md-6">
-              <label for="{{ form.nome_vendedor.id_for_label }}" class="form-label">Nome do Vendedor</label>
-              {{ form.nome_vendedor }}
-              {% if form.nome_vendedor.errors %}
-                <div class="text-danger small mt-1">
-                  {% for error in form.nome_vendedor.errors %}{{ error }}{% endfor %}
-                </div>
-              {% endif %}
-            </div>
-            
-            <div class="col-md-6">
-              <label for="{{ form.data_cadastro.id_for_label }}" class="form-label">Data de Cadastro</label>
-              {{ form.data_cadastro }}
-              {% if form.data_cadastro.errors %}
-                <div class="text-danger small mt-1">
-                  {% for error in form.data_cadastro.errors %}{{ error }}{% endfor %}
-                </div>
-              {% endif %}
-            </div>
-            
-            <div class="col-md-6">
-              <label for="{{ form.data_ultima_compra.id_for_label }}" class="form-label">Data da Última Compra</label>
-              {{ form.data_ultima_compra }}
-              {% if form.data_ultima_compra.errors %}
-                <div class="text-danger small mt-1">
-                  {% for error in form.data_ultima_compra.errors %}{{ error }}{% endfor %}
-                </div>
-              {% endif %}
             </div>
           </div>
         </div>
@@ -576,18 +561,6 @@
                 </div>
               {% endif %}
             </div>
-            
-            <div class="col-12">
-              <div class="form-check form-switch mt-2">
-                {{ form.ativo }}
-                <label class="form-check-label" for="{{ form.ativo.id_for_label }}">Cliente Ativo</label>
-              </div>
-              {% if form.ativo.errors %}
-                <div class="text-danger small mt-1">
-                  {% for error in form.ativo.errors %}{{ error }}{% endfor %}
-                </div>
-              {% endif %}
-            </div>
           </div>
         </div>
       </div>
@@ -607,232 +580,129 @@
 {% block extra_js %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // ===== VARIÁVEIS GLOBAIS =====
-  let formIndex = {{ cnaes_formset.total_form_count|default:0 }};
-  const maxForms = {{ cnaes_formset.max_num|default:10 }};
   
-  // ===== FUNÇÕES DE GERENCIAMENTO DE CNAEs =====
-  
-  function updateTotalForms() {
-    const totalFormsInput = document.querySelector('input[name="cnaes-TOTAL_FORMS"]');
-    if (totalFormsInput) {
-      totalFormsInput.value = formIndex;
-    }
+  // ===== NORMALIZAÇÃO DA SITUAÇÃO CADASTRAL =====
+  function normalizarSituacaoCadastral(situacao) {
+    const mapeamento = {
+      '1': '01',
+      '2': '02', 
+      '3': '03',
+      '4': '04',
+      '8': '08',
+      '2.0': '02',
+      '3.0': '03',
+      '4.0': '04', 
+      '8.0': '08'
+    };
+    
+    return mapeamento[situacao] || situacao;
   }
   
-  function reorderCnaes() {
-    const container = document.getElementById('cnaes-container');
-    const forms = container.querySelectorAll('.cnae-item:not(.d-none)');
+  // ===== BUSCAR VENDEDOR AUTOMATICAMENTE - CORRIGIDO =====
+  const codigoVendedorInput = document.getElementById('id_codigo_vendedor');
+  const nomeVendedorInput = document.getElementById('id_nome_vendedor');
+  const btnBuscarVendedor = document.getElementById('buscarVendedor');
+
+  if (codigoVendedorInput && nomeVendedorInput) {
     
-    forms.forEach((form, index) => {
-      const ordemInput = form.querySelector('input[name$="-ordem"]');
-      if (ordemInput) {
-        ordemInput.value = index + 1;
+    // Função para buscar vendedor
+    function buscarVendedor(codigo) {
+      if (!codigo || codigo.length !== 3) {
+        nomeVendedorInput.value = '';
+        nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
+        return;
       }
-    });
-  }
-  
-  function removeCnae(formElement) {
-    if (confirm('Deseja remover este CNAE?')) {
-      formElement.remove();
-      formIndex--;
-      updateTotalForms();
-      reorderCnaes();
+      
+      // Indicador visual de carregamento
+      nomeVendedorInput.value = 'Buscando...';
+      nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
+      
+      fetch(`/gestor/api/vendedor-por-codigo/${codigo}/`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            nomeVendedorInput.value = data.nome;
+            nomeVendedorInput.classList.add('is-valid');
+            nomeVendedorInput.classList.remove('is-invalid');
+            
+            // Mostrar informação da loja se disponível
+            if (data.loja) {
+              nomeVendedorInput.setAttribute('title', `Loja: ${data.loja}`);
+            }
+          } else {
+            nomeVendedorInput.value = '';
+            nomeVendedorInput.classList.add('is-invalid');
+            nomeVendedorInput.classList.remove('is-valid');
+            nomeVendedorInput.setAttribute('title', data.message || 'Vendedor não encontrado');
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar vendedor:', error);
+          nomeVendedorInput.value = '';
+          nomeVendedorInput.classList.add('is-invalid');
+          nomeVendedorInput.setAttribute('title', 'Erro ao buscar vendedor');
+        });
     }
-  }
-  
-  function adicionarCnaeSecundario(codigo, descricao, ordem = null) {
-    if (formIndex >= maxForms) {
-      console.warn(`Máximo de ${maxForms} CNAEs atingido`);
-      return false;
-    }
     
-    const container = document.getElementById('cnaes-container');
-    const template = document.getElementById('cnae-template');
-    const newForm = template.cloneNode(true);
+    // Event listeners
+    let timeoutId;
     
-    // Configurar novo formulário
-    newForm.classList.remove('d-none');
-    newForm.removeAttribute('id');
-    newForm.setAttribute('data-form-index', formIndex);
-    
-    // Atualizar nomes e valores dos campos
-    const inputs = newForm.querySelectorAll('input');
-    inputs.forEach(input => {
-      const name = input.getAttribute('name');
-      if (name) {
-        const newName = name.replace('__prefix__', `cnaes-${formIndex}`);
-        input.setAttribute('name', newName);
-        input.setAttribute('id', `id_cnaes-${formIndex}-${name.split('-')[1]}`);
-        
-        // Preencher valores
-        if (name.includes('-codigo_cnae')) {
-          input.value = codigo;
-        } else if (name.includes('-descricao_cnae')) {
-          input.value = descricao;
-        } else if (name.includes('-ordem')) {
-          input.value = ordem || (formIndex + 1);
-        }
-      }
-    });
-    
-    container.appendChild(newForm);
-    
-    // Adicionar evento de remoção
-    const removeBtn = newForm.querySelector('.remover-cnae');
-    if (removeBtn) {
-      removeBtn.addEventListener('click', function() {
-        removeCnae(newForm);
+    // Botão de busca manual
+    if (btnBuscarVendedor) {
+      btnBuscarVendedor.addEventListener('click', function() {
+        const codigo = codigoVendedorInput.value.trim();
+        buscarVendedor(codigo);
       });
     }
     
-    formIndex++;
-    updateTotalForms();
-    return true;
-  }
-  
-  function popularCnaesSecundarios(cnaesSecundarios) {
-    // Limpar CNAEs secundários existentes (apenas os não salvos)
-    const container = document.getElementById('cnaes-container');
-    const cnaesExistentes = container.querySelectorAll('.cnae-item:not(.d-none)');
+    // Buscar quando sair do campo (blur)
+    codigoVendedorInput.addEventListener('blur', function() {
+      const codigo = this.value.trim();
+      buscarVendedor(codigo);
+    });
     
-    // Confirmar se deseja substituir CNAEs existentes
-    if (cnaesExistentes.length > 0) {
-      const confirmar = confirm(
-        `Existem ${cnaesExistentes.length} CNAEs secundários cadastrados. ` +
-        `Deseja substituí-los pelos ${cnaesSecundarios.length} CNAEs da Receita Federal?`
-      );
+    // Buscar com delay enquanto digita (input)
+    codigoVendedorInput.addEventListener('input', function() {
+      const codigo = this.value.trim();
       
-      if (!confirmar) {
-        return; // Usuário cancelou
+      // Limpar timeout anterior
+      clearTimeout(timeoutId);
+      
+      // Se campo vazio, limpar nome imediatamente
+      if (!codigo) {
+        nomeVendedorInput.value = '';
+        nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
+        return;
       }
       
-      // Remover CNAEs existentes que não estão salvos no banco
-      cnaesExistentes.forEach(cnae => {
-        const hasId = cnae.querySelector('input[name$="-id"]');
-        if (!hasId || !hasId.value) {
-          cnae.remove();
-          formIndex--;
-        }
-      });
-    }
-    
-    // Adicionar novos CNAEs da Receita
-    let sucessos = 0;
-    cnaesSecundarios.forEach((cnae, index) => {
-      if (adicionarCnaeSecundario(cnae.codigo, cnae.descricao, index + 1)) {
-        sucessos++;
+      // Se tem 3 dígitos, buscar após 800ms de pausa
+      if (codigo.length === 3) {
+        timeoutId = setTimeout(() => {
+          buscarVendedor(codigo);
+        }, 800);
       }
     });
     
-    if (sucessos > 0) {
-      // Mostrar mensagem de sucesso
-      const alertDiv = document.createElement('div');
-      alertDiv.className = 'alert alert-success alert-dismissible fade show';
-      alertDiv.innerHTML = `
-        <strong>CNAEs Adicionados!</strong> ${sucessos} CNAEs secundários da Receita Federal foram adicionados.
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      `;
+    // Validação em tempo real do código
+    codigoVendedorInput.addEventListener('input', function() {
+      const codigo = this.value.trim();
       
-      // Inserir antes do container de CNAEs
-      const cnaesCard = document.querySelector('#cnaes-container').closest('.card');
-      cnaesCard.parentNode.insertBefore(alertDiv, cnaesCard);
-      
-      // Remover alerta após 5 segundos
-      setTimeout(() => {
-        alertDiv.remove();
-      }, 5000);
-    }
-  }
-  
-  function updateCnaeDisplay() {
-    const cnaePrincipalInput = document.getElementById('{{ form.cnae_principal.id_for_label }}');
-    const cnaeDescricaoInput = document.getElementById('{{ form.cnae_descricao.id_for_label }}');
-    const cnaeDisplay = document.getElementById('cnae-principal-display');
-    
-    const codigo = cnaePrincipalInput?.value || '';
-    const descricao = cnaeDescricaoInput?.value || '';
-    
-    if (codigo) {
-      cnaeDisplay.textContent = `${codigo}${descricao ? ' - ' + descricao : ''}`;
-    } else {
-      cnaeDisplay.textContent = 'Não informado';
-    }
-  }
-  
-  // ===== EVENT LISTENERS =====
-  
-  // Botão adicionar CNAE
-  document.getElementById('adicionarCnae')?.addEventListener('click', function() {
-    if (formIndex >= maxForms) {
-      alert(`Máximo de ${maxForms} CNAEs permitidos`);
-      return;
-    }
-    
-    const container = document.getElementById('cnaes-container');
-    const template = document.getElementById('cnae-template');
-    const newForm = template.cloneNode(true);
-    
-    // Remover classe d-none e ID
-    newForm.classList.remove('d-none');
-    newForm.removeAttribute('id');
-    newForm.setAttribute('data-form-index', formIndex);
-    
-    // Atualizar nomes dos campos
-    const inputs = newForm.querySelectorAll('input');
-    inputs.forEach(input => {
-      const name = input.getAttribute('name');
-      if (name) {
-        input.setAttribute('name', name.replace('__prefix__', `cnaes-${formIndex}`));
-        input.setAttribute('id', `id_cnaes-${formIndex}-${name.split('-')[1]}`);
+      // Validar formato (3 dígitos numéricos)
+      if (codigo && (codigo.length !== 3 || !/^\d{3}$/.test(codigo))) {
+        this.classList.add('is-invalid');
+        this.classList.remove('is-valid');
+      } else if (codigo.length === 3) {
+        this.classList.remove('is-invalid');
+        this.classList.add('is-valid');
+      } else {
+        this.classList.remove('is-valid', 'is-invalid');
       }
     });
-    
-    // Atualizar ordem automaticamente
-    const ordemInput = newForm.querySelector('input[name$="-ordem"]');
-    if (ordemInput) {
-      ordemInput.value = formIndex + 1;
-    }
-    
-    container.appendChild(newForm);
-    
-    // Atualizar total forms
-    formIndex++;
-    updateTotalForms();
-    
-    // Adicionar evento de remoção
-    const removeBtn = newForm.querySelector('.remover-cnae');
-    if (removeBtn) {
-      removeBtn.addEventListener('click', function() {
-        removeCnae(newForm);
-      });
-    }
-  });
-  
-  // Botões de remoção existentes
-  document.querySelectorAll('.remover-cnae').forEach(btn => {
-    btn.addEventListener('click', function() {
-      const formElement = btn.closest('.cnae-item');
-      removeCnae(formElement);
-    });
-  });
-  
-  // Atualizar display do CNAE principal
-  const cnaePrincipalInput = document.getElementById('{{ form.cnae_principal.id_for_label }}');
-  const cnaeDescricaoInput = document.getElementById('{{ form.cnae_descricao.id_for_label }}');
-  
-  if (cnaePrincipalInput) {
-    cnaePrincipalInput.addEventListener('input', updateCnaeDisplay);
   }
-  
-  if (cnaeDescricaoInput) {
-    cnaeDescricaoInput.addEventListener('input', updateCnaeDisplay);
-  }
-  
-  // ===== CONSULTA RECEITA FEDERAL ATUALIZADA =====
-  
+
+  // ===== CONSULTA RECEITA FEDERAL - CORRIGIDA =====
   const btnConsultarReceita = document.getElementById('consultarReceita');
-  const cpfCnpjInput = document.getElementById('{{ form.cpf_cnpj.id_for_label }}');
+  const cpfCnpjInput = document.getElementById('id_cpf_cnpj');
   
   if (btnConsultarReceita && cpfCnpjInput) {
     btnConsultarReceita.addEventListener('click', function() {
@@ -849,37 +719,54 @@ document.addEventListener('DOMContentLoaded', function() {
               const dados = data.dados;
               
               // Preencher campos básicos
-              if (dados.razaoSocial) document.getElementById('{{ form.nome_razao_social.id_for_label }}').value = dados.razaoSocial;
-              if (dados.nomeFantasia) document.getElementById('{{ form.nome_fantasia.id_for_label }}').value = dados.nomeFantasia;
-              if (dados.situacaoCadastral) document.getElementById('{{ form.situacao_cadastral.id_for_label }}').value = dados.situacaoCadastral;
-              if (dados.naturezaJuridica) document.getElementById('{{ form.natureza_juridica.id_for_label }}').value = dados.naturezaJuridica;
-              if (dados.porteEmpresa) document.getElementById('{{ form.porte_empresa.id_for_label }}').value = dados.porteEmpresa;
-              if (dados.dataAbertura) document.getElementById('{{ form.data_abertura.id_for_label }}').value = dados.dataAbertura;
+              if (dados.razaoSocial) document.getElementById('id_nome_razao_social').value = dados.razaoSocial;
+              if (dados.nomeFantasia) document.getElementById('id_nome_fantasia').value = dados.nomeFantasia;
+              
+              // *** SITUAÇÃO CADASTRAL NORMALIZADA ***
+              if (dados.situacaoCadastral) {
+                const situacaoNormalizada = normalizarSituacaoCadastral(dados.situacaoCadastral);
+                const situacaoSelect = document.getElementById('id_situacao_cadastral');
+                
+                // Definir o valor normalizado
+                situacaoSelect.value = situacaoNormalizada;
+                
+                // Se o valor não existe nas options, adicionar temporariamente
+                if (!situacaoSelect.querySelector(`option[value="${situacaoNormalizada}"]`)) {
+                  const opcaoTemp = new Option(dados.situacaoCadastral, situacaoNormalizada, true, true);
+                  situacaoSelect.appendChild(opcaoTemp);
+                }
+              }
+              
+              if (dados.naturezaJuridica) document.getElementById('id_natureza_juridica').value = dados.naturezaJuridica;
+              if (dados.porteEmpresa) document.getElementById('id_porte_empresa').value = dados.porteEmpresa;
+              if (dados.dataAbertura) document.getElementById('id_data_abertura').value = dados.dataAbertura;
               
               // Preencher CNAE principal
               if (dados.cnaeFiscal) {
-                document.getElementById('{{ form.cnae_principal.id_for_label }}').value = dados.cnaeFiscal;
-                document.getElementById('{{ form.cnae_descricao.id_for_label }}').value = dados.cnaeFiscalDescricao || '';
-                updateCnaeDisplay();
+                document.getElementById('id_cnae_principal').value = dados.cnaeFiscal;
+                document.getElementById('id_cnae_descricao').value = dados.cnaeFiscalDescricao || '';
               }
               
               // Atualizar data da consulta
-              document.getElementById('{{ form.data_ultima_verificacao.id_for_label }}').value = new Date().toISOString().slice(0, 16);
+              document.getElementById('id_data_ultima_verificacao').value = new Date().toISOString().slice(0, 16);
               
               // Atualizar opções tributárias
               if (dados.optanteSimples !== undefined) {
-                document.getElementById('{{ form.opcao_pelo_simples.id_for_label }}').checked = dados.optanteSimples;
+                document.getElementById('id_opcao_pelo_simples').checked = dados.optanteSimples;
               }
               if (dados.optanteMei !== undefined) {
-                document.getElementById('{{ form.opcao_pelo_mei.id_for_label }}').checked = dados.optanteMei;
+                document.getElementById('id_opcao_pelo_mei').checked = dados.optanteMei;
               }
               
-              // *** POPULAR CNAEs SECUNDÁRIOS ***
+              // PROCESSAR CNAES SECUNDÁRIOS
               if (dados.cnaesSecundarios && dados.cnaesSecundarios.length > 0) {
-                popularCnaesSecundarios(dados.cnaesSecundarios);
+                adicionarCnaesSecundarios(dados.cnaesSecundarios);
               }
               
-              alert(`Dados atualizados! CNAE principal + ${dados.cnaesSecundarios?.length || 0} CNAEs secundários`);
+              // Mostrar situação de forma amigável
+              mostrarStatusSituacao(dados.situacaoCadastral);
+              
+              alert(`✅ Dados atualizados!\n🏢 CNAE principal: ${dados.cnaeFiscal || 'N/A'}\n📋 CNAEs secundários: ${dados.cnaesSecundarios?.length || 0}`);
             } else {
               alert(data.message || 'Erro ao consultar dados na Receita Federal');
             }
@@ -898,10 +785,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // ===== BUSCAR CLIENTE MASTER =====
+  // ===== FUNÇÃO PARA MOSTRAR STATUS DA SITUAÇÃO =====
+  function mostrarStatusSituacao(situacao) {
+    const situacaoNormalizada = normalizarSituacaoCadastral(situacao);
+    
+    // Remover status anterior se existir
+    const statusAnterior = document.querySelector('#situacao-display');
+    if (statusAnterior) {
+      statusAnterior.remove();
+    }
+    
+    const situacaoTexto = {
+      '02': '✅ Empresa ATIVA na Receita Federal',
+      '03': '⚠️ Empresa SUSPENSA na Receita Federal', 
+      '04': '❌ Empresa INAPTA na Receita Federal',
+      '08': '🔒 Empresa BAIXADA na Receita Federal',
+      '01': '❓ Situação NULA na Receita Federal'
+    };
+    
+    const situacaoDisplay = document.createElement('div');
+    situacaoDisplay.id = 'situacao-display';
+    situacaoDisplay.className = 'alert alert-info mt-2';
+    situacaoDisplay.innerHTML = situacaoTexto[situacaoNormalizada] || `📄 Situação: ${situacao}`;
+    
+    // Inserir após o campo de situação cadastral
+    const situacaoField = document.getElementById('id_situacao_cadastral').closest('.col-md-4');
+    situacaoField.appendChild(situacaoDisplay);
+  }
   
+  // ===== BUSCAR CLIENTE MASTER - CORRIGIDO =====
   const btnBuscarMaster = document.getElementById('buscarMaster');
-  const codigoMasterInput = document.getElementById('{{ form.codigo_master.id_for_label }}');
+  const codigoMasterInput = document.getElementById('id_codigo_master');
   const nomeClienteMaster = document.getElementById('nomeClienteMaster');
   
   if (btnBuscarMaster && codigoMasterInput) {
@@ -912,20 +826,149 @@ document.addEventListener('DOMContentLoaded', function() {
           .then(response => response.json())
           .then(data => {
             if (data.success) {
-              nomeClienteMaster.textContent = data.nome;
+              nomeClienteMaster.textContent = `${data.nome} (${data.status})`;
+              nomeClienteMaster.className = 'form-text fw-bold text-success mt-1';
             } else {
-              nomeClienteMaster.textContent = 'Cliente master não encontrado';
+              nomeClienteMaster.textContent = data.message || 'Cliente master não encontrado';
+              nomeClienteMaster.className = 'form-text fw-bold text-danger mt-1';
             }
           })
           .catch(error => {
             console.error('Erro ao buscar cliente master:', error);
             nomeClienteMaster.textContent = 'Erro ao buscar cliente master';
+            nomeClienteMaster.className = 'form-text fw-bold text-danger mt-1';
           });
       } else {
         nomeClienteMaster.textContent = '';
       }
     });
   }
+  
+  // ===== GERENCIAMENTO DE CNAES SECUNDÁRIOS =====
+  let formsetIndex = document.querySelectorAll('.cnae-form-row').length;
+  
+  // Função para adicionar CNAEs vindos da Receita Federal
+  function adicionarCnaesSecundarios(cnaesData) {
+    const container = document.getElementById('cnaes-container');
+    
+    cnaesData.forEach((cnae, index) => {
+      const novoFormIndex = formsetIndex++;
+      const template = document.getElementById('cnae-template');
+      const novoForm = template.cloneNode(true);
+      
+      novoForm.style.display = 'block';
+      novoForm.id = '';
+      novoForm.className = 'cnae-form-row';
+      novoForm.setAttribute('data-form-index', novoFormIndex);
+      
+      // Substituir __prefix__ pelo índice real
+      novoForm.innerHTML = novoForm.innerHTML.replace(/__prefix__/g, novoFormIndex);
+      
+      // Preencher valores
+      novoForm.querySelector(`input[name="cnaes-${novoFormIndex}-codigo_cnae"]`).value = cnae.codigo;
+      novoForm.querySelector(`input[name="cnaes-${novoFormIndex}-descricao_cnae"]`).value = cnae.descricao;
+      novoForm.querySelector(`input[name="cnaes-${novoFormIndex}-ordem"]`).value = index + 1;
+      
+      container.appendChild(novoForm);
+    });
+    
+    // Atualizar total forms
+    atualizarTotalForms();
+  }
+  
+  // Botão para adicionar CNAE manualmente
+  const btnAdicionarCnae = document.getElementById('adicionarCnae');
+  if (btnAdicionarCnae) {
+    btnAdicionarCnae.addEventListener('click', function() {
+      const container = document.getElementById('cnaes-container');
+      const template = document.getElementById('cnae-template');
+      const novoFormIndex = formsetIndex++;
+      
+      const novoForm = template.cloneNode(true);
+      novoForm.style.display = 'block';
+      novoForm.id = '';
+      novoForm.className = 'cnae-form-row';
+      novoForm.setAttribute('data-form-index', novoFormIndex);
+      
+      // Substituir __prefix__ pelo índice real
+      novoForm.innerHTML = novoForm.innerHTML.replace(/__prefix__/g, novoFormIndex);
+      
+      container.appendChild(novoForm);
+      atualizarTotalForms();
+    });
+  }
+  
+  // Event delegation para botões de remover
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.remover-cnae')) {
+      e.preventDefault();
+      const formRow = e.target.closest('.cnae-form-row');
+      formRow.remove();
+      atualizarTotalForms();
+    }
+  });
+  
+  // Função para atualizar o total de forms do formset
+  function atualizarTotalForms() {
+    const totalForms = document.getElementById('id_cnaes-TOTAL_FORMS');
+    if (totalForms) {
+      totalForms.value = document.querySelectorAll('.cnae-form-row').length;
+    }
+  }
+  
+  // ===== INICIALIZAR TOOLTIPS =====
+  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+  const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+
+  // ===== CSS ADICIONAL =====
+  const style = document.createElement('style');
+  style.textContent = `
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.4rem 0.6rem;
+    }
+    
+    .badge .fas {
+      font-size: 0.7rem;
+    }
+    
+    #infoSituacao {
+      border-left: none;
+    }
+    
+    .is-valid {
+      border-color: #198754;
+    }
+    
+    .is-invalid {
+      border-color: #dc3545;
+    }
+    
+    .form-control:read-only {
+      background-color: #f8f9fa;
+      border-color: #dee2e6;
+    }
+    
+    .alert-info {
+      --bs-alert-color: #055160;
+      --bs-alert-bg: #cff4fc;
+      --bs-alert-border-color: #b6effb;
+    }
+    
+    .cnae-form-row {
+      border-left: 3px solid #e9ecef;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .cnae-form-row:hover {
+      border-left-color: #007bff;
+      background-color: #f8f9fa;
+    }
+  `;
+  document.head.appendChild(style);
 });
 </script>
 

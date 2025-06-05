@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const produtoId = this.value;
             if (produtoId) {
                 // Fazer requisição AJAX para obter dados do produto
-                fetch(/gestor/api/produto/${produtoId}/)
+                fetch(`/gestor/api/produto/${produtoId}/`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
@@ -248,26 +248,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Formatar valores monetários
-    const valorInput = document.getElementById('{{ form.valor_total.id_for_label }}');
-    if (valorInput) {
-        valorInput.addEventListener('blur', function() {
-            let valor = parseFloat(this.value);
-            if (!isNaN(valor)) {
-                this.value = valor.toFixed(2);
-            }
-        });
+    // Tornar campos readonly visualmente (não funcionalmente)
+    if (grupoSelect) {
+        grupoSelect.style.backgroundColor = '#f8f9fa';
+        grupoSelect.style.pointerEvents = 'none';
+        grupoSelect.setAttribute('tabindex', '-1');
     }
     
-    // Formatar quantidade
-    const quantidadeInput = document.getElementById('{{ form.quantidade.id_for_label }}');
-    if (quantidadeInput) {
-        quantidadeInput.addEventListener('blur', function() {
-            let qtd = parseFloat(this.value);
-            if (!isNaN(qtd)) {
-                this.value = qtd.toFixed(2);
-            }
-        });
+    if (fabricanteSelect) {
+        fabricanteSelect.style.backgroundColor = '#f8f9fa';
+        fabricanteSelect.style.pointerEvents = 'none';
+        fabricanteSelect.setAttribute('tabindex', '-1');
     }
 });
 </script>
