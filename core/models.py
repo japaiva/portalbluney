@@ -1,9 +1,13 @@
 # core/models.py
 
+import logging
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.conf import settings
+from django.core.cache import cache
+
+logger = logging.getLogger(__name__)
 
 class Usuario(AbstractUser):
     NIVEL_CHOICES = [
@@ -149,6 +153,15 @@ class Produto(models.Model):
 
 # ===== MODELO CLIENTE ATUALIZADO =====
 
+# core/models.py - Modelo Cliente Corrigido
+
+import logging
+from django.db import models
+from django.utils import timezone
+from django.core.cache import cache
+
+logger = logging.getLogger(__name__)
+
 class Cliente(models.Model):
     # Choices para Situação Cadastral da Receita Federal
     SITUACAO_CADASTRAL_CHOICES = [
@@ -211,8 +224,6 @@ class Cliente(models.Model):
     codigo_vendedor = models.CharField(max_length=3, blank=True, null=True, 
                                       verbose_name="Código do Vendedor",
                                       help_text="Código de 3 dígitos do vendedor (CODVEN no SysFat)")
-    nome_vendedor = models.CharField(max_length=100, blank=True, null=True, verbose_name="Nome do Vendedor",
-                                    help_text="Nome do vendedor (preenchido automaticamente)")
     uf = models.CharField(max_length=2, blank=True, null=True, 
                          verbose_name="UF",
                          help_text="Unidade Federativa (UF no SysFat)")
@@ -264,15 +275,123 @@ class Cliente(models.Model):
     ddd_fax = models.CharField(max_length=20, blank=True, null=True, verbose_name="Fax")
     email_receita = models.EmailField(blank=True, null=True, verbose_name="Email Cadastrado na Receita")
 
-    def __str__(self):
-        return f"{self.codigo} - {self.nome}"
+    # ===== PROPERTIES E MÉTODOS =====
     
-    class Meta:
-        db_table = 'clientes'
-        verbose_name = "Cliente"
-        verbose_name_plural = "Clientes"
-        ordering = ["nome"]
+    @property
+    def nome_vendedor(self):
+        """
+        Property que busca o nome do vendedor automaticamente
+        Usa cache para otimizar performance
+        """
+        if not self.codigo_vendedor:
+            return ''
         
+        # Normalizar código para 3 dígitos
+        codigo_formatado = str(self.codigo_vendedor).zfill(3)
+        
+        # Chave do cache
+        cache_key = f'vendedor_nome_{codigo_formatado}'
+        
+        # Tentar buscar no cache primeiro
+        nome_cached = cache.get(cache_key)
+        if nome_cached is not None:
+            return nome_cached
+        
+        try:
+            # Importar aqui para evitar importação circular
+            from core.models import Vendedor
+            vendedor = Vendedor.objects.select_related('loja').get(
+                codigo=codigo_formatado, 
+                ativo=True
+            )
+            nome = vendedor.nome
+            
+            # Cachear por 5 minutos
+            cache.set(cache_key, nome, 300)
+            
+            return nome
+            
+        except Exception:  # Pode ser Vendedor.DoesNotExist ou ImportError
+            # Cachear resultado negativo por 1 minuto
+            cache.set(cache_key, '', 60)
+            return ''
+    
+    @property
+    def vendedor_completo(self):
+        """
+        Retorna objeto Vendedor completo (com dados da loja)
+        Usa cache para otimizar performance
+        """
+        if not self.codigo_vendedor:
+            return None
+        
+        codigo_formatado = str(self.codigo_vendedor).zfill(3)
+        cache_key = f'vendedor_obj_{codigo_formatado}'
+        
+        # Tentar buscar no cache primeiro
+        vendedor_cached = cache.get(cache_key)
+        if vendedor_cached is not None:
+            return vendedor_cached
+        
+        try:
+            from core.models import Vendedor
+            vendedor = Vendedor.objects.select_related('loja').get(
+                codigo=codigo_formatado, 
+                ativo=True
+            )
+            
+            # Cachear por 5 minutos
+            cache.set(cache_key, vendedor, 300)
+            return vendedor
+            
+        except Exception:
+            # Cachear resultado negativo por 1 minuto
+            cache.set(cache_key, None, 60)
+            return None
+    
+    @property
+    def vendedor_info_completa(self):
+        """
+        Retorna informações completas do vendedor formatadas
+        """
+        if not self.codigo_vendedor:
+            return "Vendedor não informado"
+        
+        nome = self.nome_vendedor
+        if nome:
+            return f"{self.codigo_vendedor} - {nome}"
+        else:
+            return f"{self.codigo_vendedor} - Vendedor não encontrado"
+    
+    @property
+    def vendedor_loja_info(self):
+        """
+        Retorna informações do vendedor + loja
+        """
+        vendedor = self.vendedor_completo
+        if not vendedor:
+            return None
+        
+        info = {
+            'codigo': vendedor.codigo,
+            'nome': vendedor.nome,
+            'email': vendedor.email or '',
+            'telefone': vendedor.telefone or '',
+            'loja_codigo': vendedor.loja.codigo if vendedor.loja else '',
+            'loja_nome': vendedor.loja.nome if vendedor.loja else '',
+            'loja_info': f"{vendedor.loja.codigo} - {vendedor.loja.nome}" if vendedor.loja else ''
+        }
+        return info
+    
+    def limpar_cache_vendedor(self):
+        """
+        Limpa o cache do vendedor (útil quando vendedor é alterado)
+        """
+        if self.codigo_vendedor:
+            codigo_formatado = str(self.codigo_vendedor).zfill(3)
+            cache.delete(f'vendedor_nome_{codigo_formatado}')
+            cache.delete(f'vendedor_obj_{codigo_formatado}')
+    
     def is_cliente_principal(self):
         """Verifica se este cliente é um cliente principal (não tem código master)"""
         return self.codigo_master is None or self.codigo_master == ""
@@ -313,37 +432,88 @@ class Cliente(models.Model):
         }
         
         return mapeamento.get(str(self.situacao_cadastral), self.situacao_cadastral)
-    
+
     def save(self, *args, **kwargs):
-        """Override do save para buscar nome do vendedor automaticamente"""
-        # Se código do vendedor foi informado mas nome não foi
-        if self.codigo_vendedor and not self.nome_vendedor:
-            try:
-                vendedor = Vendedor.objects.get(codigo=self.codigo_vendedor)
-                self.nome_vendedor = vendedor.nome
-            except Vendedor.DoesNotExist:
-                pass  # Mantém em branco se vendedor não existe
-        
-        # Se código do vendedor foi alterado, atualizar o nome
-        if self.pk:  # Só para instâncias já salvas
+        """
+        Override save para limpar cache quando código do vendedor muda
+        """
+        # Se é uma instância existente, verificar se código mudou
+        if self.pk:
             try:
                 old_instance = Cliente.objects.get(pk=self.pk)
                 if old_instance.codigo_vendedor != self.codigo_vendedor:
-                    if self.codigo_vendedor:
-                        try:
-                            vendedor = Vendedor.objects.get(codigo=self.codigo_vendedor)
-                            self.nome_vendedor = vendedor.nome
-                        except Vendedor.DoesNotExist:
-                            self.nome_vendedor = ''
-                    else:
-                        self.nome_vendedor = ''
+                    # Limpar cache do vendedor antigo
+                    if old_instance.codigo_vendedor:
+                        old_codigo = str(old_instance.codigo_vendedor).zfill(3)
+                        cache.delete(f'vendedor_nome_{old_codigo}')
+                        cache.delete(f'vendedor_obj_{old_codigo}')
+                    
+                    # Limpar cache do vendedor novo
+                    self.limpar_cache_vendedor()
+                    
+                    logger.info(f"🔄 Código do vendedor alterado para cliente {self.codigo}: {old_instance.codigo_vendedor} → {self.codigo_vendedor}")
             except Cliente.DoesNotExist:
                 pass
         
+        # Normalizar código do vendedor
+        if self.codigo_vendedor:
+            self.codigo_vendedor = str(self.codigo_vendedor).zfill(3)
+        
         super().save(*args, **kwargs)
+    
+    @classmethod 
+    def limpar_cache_vendedores(cls):
+        """
+        Método utilitário para limpar todo o cache de vendedores
+        Útil quando dados de vendedores são atualizados em lote
+        """
+        try:
+            # Buscar todos os códigos de vendedores únicos
+            codigos = cls.objects.exclude(
+                codigo_vendedor__isnull=True
+            ).exclude(
+                codigo_vendedor=''
+            ).values_list('codigo_vendedor', flat=True).distinct()
+            
+            for codigo in codigos:
+                codigo_formatado = str(codigo).zfill(3)
+                cache.delete(f'vendedor_nome_{codigo_formatado}')
+                cache.delete(f'vendedor_obj_{codigo_formatado}')
+            
+            logger.info(f"🧹 Cache de vendedores limpo para {len(codigos)} códigos")
+            return len(codigos)
+            
+        except Exception as e:
+            logger.error(f"Erro ao limpar cache de vendedores: {str(e)}")
+            return 0
+
+    def __str__(self):
+        return f"{self.codigo} - {self.nome}"
+    
+    class Meta:
+        db_table = 'clientes'
+        verbose_name = "Cliente"
+        verbose_name_plural = "Clientes"
+        ordering = ["nome"]
+
+
+# ===== SINAIS PARA LIMPAR CACHE QUANDO VENDEDOR É ALTERADO =====
+# (Devem ficar FORA da classe, no final do arquivo)
+
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
+
+@receiver([post_save, post_delete], sender='core.Vendedor')
+def limpar_cache_vendedor_alterado(sender, instance, **kwargs):
+    """
+    Limpa o cache quando um vendedor é alterado ou deletado
+    """
+    codigo_formatado = str(instance.codigo).zfill(3)
+    cache.delete(f'vendedor_nome_{codigo_formatado}')
+    cache.delete(f'vendedor_obj_{codigo_formatado}')
+    logger.info(f"🧹 Cache limpo para vendedor {codigo_formatado} - {instance.nome}")
 
 # ===== OUTROS MODELOS =====
-
 class ClienteContato(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='contatos', verbose_name="Cliente")
     codigo = models.CharField(max_length=20, verbose_name="Código")
@@ -357,7 +527,7 @@ class ClienteContato(models.Model):
     # Campos para integração com ChatWoot
     chatwoot_id = models.CharField(max_length=50, blank=True, null=True, verbose_name="ID no ChatWoot")
     chatwoot_inbox_id = models.CharField(max_length=50, blank=True, null=True, verbose_name="ID da Caixa de Entrada no ChatWoot")
-    ultima_sincronizacao = models.DateTimeField(blank=True, null=True, verbose_name="Última Sincronização")
+    ultima_sincronizacao = models.DateField(blank=True, null=True, verbose_name="Última Sincronização")
     
     def save(self, *args, **kwargs):
         # Se estamos criando um novo objeto (não tem ID ainda)

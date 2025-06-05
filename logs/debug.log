@@ -4571,3 +4571,502 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-06-04 22:13:38,811 "GET /gestor/clientes/ HTTP/1.1" 200 41473
 [INFO] 2025-06-04 22:13:40,781 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 44459
 [INFO] 2025-06-04 22:14:17,354 "GET /gestor/clientes/ HTTP/1.1" 200 41473
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:17:17,174 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:17:21,918 "GET /gestor/clientes/ HTTP/1.1" 200 41038
+[INFO] 2025-06-04 22:17:52,316 "GET /gestor/clientes/12/editar/ HTTP/1.1" 200 48298
+[INFO] 2025-06-04 22:17:55,070 "GET /gestor/api/vendedor-por-codigo/554/ HTTP/1.1" 200 103
+[INFO] 2025-06-04 22:18:17,944 "GET /gestor/clientes/ HTTP/1.1" 200 41038
+[INFO] 2025-06-04 22:18:25,942 "GET /gestor/clientes/?status=ativo&tipo=todos&q= HTTP/1.1" 200 40850
+[INFO] 2025-06-04 22:18:29,668 "GET /gestor/clientes/?status=ativo&tipo=principal&q= HTTP/1.1" 200 40850
+[INFO] 2025-06-04 22:23:01,687 "GET /gestor/clientes/?page=88&status=ativo&tipo=principal HTTP/1.1" 200 37276
+[INFO] 2025-06-04 22:28:18,969 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:28:20,875 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:32:03,468 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:32:04,098 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:32:06,313 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:32:06,657 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:33:01,072 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:33:01,586 Watching for file changes with StatReloader
+[INFO] 2025-06-04 22:33:04,799 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-04 22:33:05,149 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:04:47,346 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:07:34,704 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:07:52,225 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-05 02:07:55,191 "GET /gestor/clientes/ HTTP/1.1" 200 42323
+[INFO] 2025-06-05 02:07:58,245 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 49006
+[INFO] 2025-06-05 02:08:31,158 "GET /gestor/clientes/ HTTP/1.1" 200 42323
+[INFO] 2025-06-05 02:08:54,597 "GET /gestor/clientes/?status=todos&tipo=coligados&q= HTTP/1.1" 200 41037
+[INFO] 2025-06-05 02:09:00,892 "GET /gestor/clientes/?status=todos&tipo=todos&q= HTTP/1.1" 200 42323
+[INFO] 2025-06-05 02:09:39,130 "GET /gestor/clientes/?status=todos&tipo=todos&q= HTTP/1.1" 200 40753
+[ERROR] 2025-06-05 02:11:06,268 Internal Server Error: /gestor/clientes/48/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 286, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1067, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 745, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaultfilters.py", line 784, in date
+    return formats.date_format(value, arg)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/formats.py", line 155, in date_format
+    return dateformat.format(
+           ~~~~~~~~~~~~~~~~~^
+        value, get_format(format or "DATE_FORMAT", use_l10n=use_l10n)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/dateformat.py", line 325, in format
+    return df.format(format_string)
+           ~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/dateformat.py", line 45, in format
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: The format for date objects may not contain time-related format specifiers (found 'H').
+[ERROR] 2025-06-05 02:11:06,280 "GET /gestor/clientes/48/ HTTP/1.1" 500 232348
+[ERROR] 2025-06-05 02:14:25,537 Internal Server Error: /gestor/clientes/374/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 286, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1067, in render
+    output = self.filter_expression.resolve(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 745, in resolve
+    new_obj = func(obj, *arg_vals)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaultfilters.py", line 784, in date
+    return formats.date_format(value, arg)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/formats.py", line 155, in date_format
+    return dateformat.format(
+           ~~~~~~~~~~~~~~~~~^
+        value, get_format(format or "DATE_FORMAT", use_l10n=use_l10n)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/dateformat.py", line 325, in format
+    return df.format(format_string)
+           ~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/utils/dateformat.py", line 45, in format
+    raise TypeError(
+    ...<2 lines>...
+    )
+TypeError: The format for date objects may not contain time-related format specifiers (found 'H').
+[ERROR] 2025-06-05 02:14:25,551 "GET /gestor/clientes/374/ HTTP/1.1" 500 229420
+[INFO] 2025-06-05 02:16:04,852 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:16:09,057 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:17:41,875 "GET /gestor/clientes/?status=todos&tipo=todos&q= HTTP/1.1" 200 44215
+[INFO] 2025-06-05 02:19:30,570 "GET /gestor/clientes/?status=todos&tipo=todos&q= HTTP/1.1" 200 44208
+[INFO] 2025-06-05 02:19:51,209 "GET /gestor/clientes/?status=ativo&tipo=todos&loja=&vendedor=&q= HTTP/1.1" 200 43881
+[INFO] 2025-06-05 02:19:55,715 "GET /gestor/clientes/?status=ativo&tipo=coligados&loja=&vendedor=&q= HTTP/1.1" 200 42686
+[INFO] 2025-06-05 02:19:59,254 "GET /gestor/clientes/?status=ativo&tipo=coligados&loja=70&vendedor=&q= HTTP/1.1" 200 14000
+[INFO] 2025-06-05 02:20:03,597 "GET /gestor/clientes/?status=ativo&tipo=coligados&loja=970&vendedor=&q= HTTP/1.1" 200 42637
+[INFO] 2025-06-05 02:21:34,702 "GET /gestor/clientes/?status=ativo&tipo=coligados&loja=970&vendedor=&q= HTTP/1.1" 200 42637
+[INFO] 2025-06-05 02:21:41,389 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:21:56,854 "GET /gestor/clientes/374/ HTTP/1.1" 200 17590
+[INFO] 2025-06-05 02:22:58,335 "GET /gestor/clientes/374/ HTTP/1.1" 200 17561
+[INFO] 2025-06-05 02:23:17,591 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:23:20,121 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 49006
+[INFO] 2025-06-05 02:24:58,289 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:24:59,768 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:25:12,939 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:25:13,432 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:25:14,952 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 53565
+[INFO] 2025-06-05 02:25:40,816 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:25:44,116 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 53565
+[INFO] 2025-06-05 02:26:12,441 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:26:14,327 "GET /gestor/clientes/374/ HTTP/1.1" 200 17561
+[INFO] 2025-06-05 02:29:22,930 "GET /gestor/clientes/95724/bi/ HTTP/1.1" 302 0
+[INFO] 2025-06-05 02:29:23,257 "GET /gestor/clientes/374/ HTTP/1.1" 200 18082
+[INFO] 2025-06-05 02:29:27,146 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:29:32,806 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-05 02:29:35,797 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:29:55,553 "GET /gestor/clientes/?status=rascunho&tipo=principal&loja=&vendedor=&q= HTTP/1.1" 200 41040
+[INFO] 2025-06-05 02:29:56,405 "GET /gestor/clientes/?status=rascunho&tipo=principal&loja=&vendedor=&q= HTTP/1.1" 200 41040
+[INFO] 2025-06-05 02:30:11,777 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-05 02:31:18,660 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:31:20,807 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37404
+[INFO] 2025-06-05 02:32:54,186 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37404
+[INFO] 2025-06-05 02:33:46,059 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:33:47,514 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:34:02,735 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:34:03,213 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:34:32,463 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:34:37,472 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37394
+[INFO] 2025-06-05 02:35:00,280 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:35:03,515 "GET /gestor/clientes/374/ HTTP/1.1" 200 17561
+[INFO] 2025-06-05 02:35:23,478 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37394
+[INFO] 2025-06-05 02:35:40,834 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:35:57,643 - Broken pipe from ('127.0.0.1', 50943)
+[INFO] 2025-06-05 02:35:57,922 "GET /gestor/clientes/374/ HTTP/1.1" 200 17561
+[INFO] 2025-06-05 02:36:16,299 - Broken pipe from ('127.0.0.1', 50951)
+[INFO] 2025-06-05 02:36:16,625 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:36:21,063 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37394
+[INFO] 2025-06-05 02:36:23,390 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:36:25,624 "GET /gestor/clientes/374/ HTTP/1.1" 200 17561
+[INFO] 2025-06-05 02:36:38,808 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37394
+[INFO] 2025-06-05 02:39:41,826 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37394
+[INFO] 2025-06-05 02:39:45,022 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:39:47,435 "GET /gestor/clientes/374/ HTTP/1.1" 200 17561
+[INFO] 2025-06-05 02:40:47,543 "GET /gestor/clientes/374/ HTTP/1.1" 200 17559
+[INFO] 2025-06-05 02:41:19,998 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:41:24,749 "GET /gestor/clientes/?status=ativo&tipo=coligados&loja=&vendedor=&q= HTTP/1.1" 200 42686
+[INFO] 2025-06-05 02:41:28,692 "GET /gestor/clientes/84/ HTTP/1.1" 200 17795
+[INFO] 2025-06-05 02:41:37,952 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:41:43,977 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=89109 HTTP/1.1" 200 15378
+[INFO] 2025-06-05 02:41:46,421 "GET /gestor/clientes/228/ HTTP/1.1" 200 19757
+[INFO] 2025-06-05 02:41:58,507 "GET /gestor/clientes/84/ HTTP/1.1" 200 17795
+[INFO] 2025-06-05 02:42:00,704 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:42:06,039 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=89109 HTTP/1.1" 200 15378
+[INFO] 2025-06-05 02:42:08,252 "GET /gestor/clientes/228/ HTTP/1.1" 200 19757
+[INFO] 2025-06-05 02:42:25,354 "GET /gestor/clientes/89109/bi/ HTTP/1.1" 302 0
+[INFO] 2025-06-05 02:42:25,748 "GET /gestor/clientes/228/ HTTP/1.1" 200 20278
+[INFO] 2025-06-05 02:42:56,382 "GET /gestor/clientes/228/ HTTP/1.1" 200 19595
+[INFO] 2025-06-05 02:43:26,616 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:50:33,936 "GET /gestor/clientes/374/ HTTP/1.1" 200 17398
+[INFO] 2025-06-05 02:50:59,418 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 02:51:02,768 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37394
+[INFO] 2025-06-05 02:59:20,306 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:59:21,192 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:59:32,647 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:59:33,083 Watching for file changes with StatReloader
+[INFO] 2025-06-05 02:59:35,272 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 02:59:35,591 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:00:20,682 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:00:21,231 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:00:42,407 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:00:42,894 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:00:47,614 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/utils/view_utils.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:00:47,962 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:00:52,151 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:00:53,888 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37385
+[INFO] 2025-06-05 03:01:28,810 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:01:29,355 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:01:51,975 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37385
+[INFO] 2025-06-05 03:01:58,389 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:02:00,304 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37385
+[INFO] 2025-06-05 03:02:34,485 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37385
+[INFO] 2025-06-05 03:02:49,063 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:02:51,997 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37385
+[INFO] 2025-06-05 03:02:56,891 "POST /gestor/clientes/374/editar/ HTTP/1.1" 200 37871
+[INFO] 2025-06-05 03:05:46,532 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:06:17,723 "GET /gestor/clientes/374/ HTTP/1.1" 200 17398
+[INFO] 2025-06-05 03:06:21,822 "GET /gestor/clientes/95724/bi/ HTTP/1.1" 302 0
+[INFO] 2025-06-05 03:06:22,103 "GET /gestor/clientes/374/ HTTP/1.1" 200 17919
+[INFO] 2025-06-05 03:06:41,265 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:07:42,101 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:07:44,499 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:08:16,356 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 37385
+[INFO] 2025-06-05 03:08:19,603 "POST /gestor/clientes/374/editar/ HTTP/1.1" 200 37897
+[INFO] 2025-06-05 03:09:37,178 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:09:38,885 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:09:44,955 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:09:45,518 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:01,581 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:02,225 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:12,695 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:14,001 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:19,020 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:19,604 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:27,533 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:28,056 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:43,587 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:44,047 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:45,224 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:45,534 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:10:49,745 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:10:50,316 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:11:09,373 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:11:09,873 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:11:39,230 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:11:39,740 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:11:45,356 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:11:45,800 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:17:21,840 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:17:23,619 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 36476
+[INFO] 2025-06-05 03:17:33,520 "POST /gestor/clientes/374/editar/ HTTP/1.1" 200 37643
+[INFO] 2025-06-05 03:23:23,543 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:23:25,043 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:26:02,232 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:26:15,136 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 36469
+[INFO] 2025-06-05 03:26:18,854 "POST /gestor/clientes/374/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-05 03:26:19,196 "GET /gestor/clientes/374/ HTTP/1.1" 200 17961
+[INFO] 2025-06-05 03:26:26,673 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 36473
+[INFO] 2025-06-05 03:27:46,768 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 36285
+[INFO] 2025-06-05 03:27:50,248 "POST /gestor/clientes/374/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-05 03:27:50,589 "GET /gestor/clientes/374/ HTTP/1.1" 200 17961
+[INFO] 2025-06-05 03:28:08,222 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:28:21,973 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-05 03:28:25,909 "GET /gestor/vendas/ HTTP/1.1" 200 46251
+[INFO] 2025-06-05 03:28:33,425 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-05 03:28:36,046 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:28:41,307 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=reviva HTTP/1.1" 200 15389
+[INFO] 2025-06-05 03:28:44,175 "GET /gestor/clientes/71/ HTTP/1.1" 200 18788
+[INFO] 2025-06-05 03:28:48,526 "GET /gestor/clientes/13212/bi/ HTTP/1.1" 302 0
+[INFO] 2025-06-05 03:28:48,963 "GET /gestor/clientes/71/ HTTP/1.1" 200 19309
+[INFO] 2025-06-05 03:36:46,302 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:36:47,830 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:36:52,741 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:36:53,109 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:37:06,011 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:37:06,525 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:37:13,269 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:37:13,748 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:37:30,797 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:37:31,270 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:37:44,189 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:37:44,712 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:37:46,407 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:37:46,738 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:37:52,337 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:37:52,732 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:38:05,566 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:38:06,159 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:38:11,038 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:38:11,632 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:38:15,519 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:38:16,005 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:38:48,372 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:38:48,845 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:38:50,472 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:38:50,798 Watching for file changes with StatReloader
+[ERROR] 2025-06-05 03:39:41,884 Internal Server Error: /gestor/clientes/13212/bi/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+TypeError: consultar_bi() got an unexpected keyword argument 'codigo_cliente'
+[ERROR] 2025-06-05 03:39:41,888 "GET /gestor/clientes/13212/bi/ HTTP/1.1" 500 73251
+[INFO] 2025-06-05 03:41:38,049 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:41:38,799 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:41:43,090 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:41:43,479 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:41:57,948 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:41:58,380 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:42:02,277 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:42:02,648 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:42:05,091 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:42:05,427 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:42:24,321 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:42:24,791 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:42:29,413 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-05 03:42:29,771 Watching for file changes with StatReloader
+[INFO] 2025-06-05 03:42:49,244 "GET /gestor/clientes/13212/bi/ HTTP/1.1" 200 23871
+[WARNING] 2025-06-05 03:42:49,298 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-05 03:42:49,298 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-05 03:43:05,138 "GET /gestor/clientes/13212/bi/?periodo=90&data_inicio=2025-03-07&data_fim=2025-06-05 HTTP/1.1" 200 23871
+[WARNING] 2025-06-05 03:43:05,178 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[WARNING] 2025-06-05 03:43:05,178 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[INFO] 2025-06-05 03:43:06,224 "GET /gestor/clientes/13212/bi/?periodo=90&data_inicio=2025-03-07&data_fim=2025-06-05 HTTP/1.1" 200 23871
+[WARNING] 2025-06-05 03:43:06,260 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-05 03:43:06,261 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-05 03:43:20,391 "GET /gestor/clientes/71/ HTTP/1.1" 200 18788
+[INFO] 2025-06-05 03:43:25,885 "GET /gestor/clientes/13212/bi/ HTTP/1.1" 200 23871
+[WARNING] 2025-06-05 03:43:25,933 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[WARNING] 2025-06-05 03:43:25,933 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[INFO] 2025-06-05 03:43:34,548 "GET /gestor/clientes/13212/bi/?format=json HTTP/1.1" 200 2311
+[INFO] 2025-06-05 03:44:13,583 "GET /gestor/clientes/71/ HTTP/1.1" 200 18788
+[INFO] 2025-06-05 03:45:23,096 "GET /gestor/clientes/71/ HTTP/1.1" 200 18647
+[INFO] 2025-06-05 03:45:40,607 "GET /gestor/clientes/71/contatos/novo/ HTTP/1.1" 200 8920
+[INFO] 2025-06-05 03:45:43,271 "GET /gestor/clientes/71/ HTTP/1.1" 200 18647
+[INFO] 2025-06-05 03:45:45,808 "GET /gestor/clientes/novo/?codigo_master=13212 HTTP/1.1" 200 35820
+[INFO] 2025-06-05 03:45:47,652 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:45:50,909 "GET /gestor/clientes/374/ HTTP/1.1" 200 17261
+[INFO] 2025-06-05 03:46:27,399 "GET /gestor/clientes/374/ HTTP/1.1" 200 17117
+[INFO] 2025-06-05 03:46:35,279 "GET /gestor/clientes/95724/bi/ HTTP/1.1" 200 14034
+[WARNING] 2025-06-05 03:46:35,340 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-05 03:46:35,340 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-05 03:48:03,753 "GET /gestor/clientes/95724/bi/ HTTP/1.1" 200 13660
+[WARNING] 2025-06-05 03:48:03,821 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-05 03:48:03,821 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-05 03:48:45,216 "GET /gestor/clientes/95724/bi/ HTTP/1.1" 200 13327
+[WARNING] 2025-06-05 03:48:45,266 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-05 03:48:45,267 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-05 03:48:49,505 "GET /gestor/clientes/374/ HTTP/1.1" 200 17117
+[INFO] 2025-06-05 03:48:52,576 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:48:59,645 "GET /gestor/clientes/196/ HTTP/1.1" 200 18929
+[INFO] 2025-06-05 03:49:02,696 "GET /gestor/clientes/79353/bi/ HTTP/1.1" 200 23097
+[WARNING] 2025-06-05 03:49:02,722 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-05 03:49:02,723 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-05 03:49:17,200 "GET /gestor/clientes/196/ HTTP/1.1" 200 18929
+[INFO] 2025-06-05 03:49:18,810 "GET /gestor/clientes/ HTTP/1.1" 200 43742
+[INFO] 2025-06-05 03:49:20,306 "GET /gestor/dashboard/ HTTP/1.1" 200 6844

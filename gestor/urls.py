@@ -17,7 +17,9 @@ urlpatterns = [
     path('clientes/<int:pk>/editar/', views.cliente_update, name='cliente_update'),
     path('clientes/<int:pk>/excluir/', views.cliente_delete, name='cliente_delete'),
     path('clientes/codigo/<str:codigo>/', views.cliente_detail_by_codigo, name='cliente_detail_by_codigo'),
+    path('clientes/codigo/<str:codigo>/', views.cliente_detail_by_codigo, name='cliente_detail_by_codigo'),
     
+
     # ===== CONTATOS DO CLIENTE =====
     path('clientes/<int:cliente_id>/contatos/novo/', views.cliente_contato_create, name='cliente_contato_create'),
     path('contatos/<int:pk>/editar/', views.cliente_contato_update, name='cliente_contato_update'),
@@ -91,5 +93,5 @@ urlpatterns = [
     path('api/consultar-receita/<str:cpf_cnpj>/', views.consultar_receita, name='api_consultar_receita'),
     
     # ===== BI E RELATÓRIOS =====
-    path('clientes/<str:codigo_cliente>/bi/', views.consultar_bi, name='consultar_bi'),
-]
+    path('clientes/<str:codigo>/bi/', views.api.consultar_bi, name='consultar_bi'),
+]   

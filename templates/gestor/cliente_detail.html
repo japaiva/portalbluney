@@ -1,3 +1,4 @@
+
 {% extends 'gestor/base_gestor.html' %}
 {% load static %}
 
@@ -10,11 +11,11 @@
       <i class="fas fa-user me-2"></i> {{ cliente.nome }}
       {% if cliente.codigo_master %}
         <small class="badge bg-secondary ms-2">
-          <i class="fas fa-link"></i> Coligado
+          Coligado
         </small>
       {% else %}
         <small class="badge bg-primary ms-2">
-          <i class="fas fa-crown"></i> Principal
+          Principal
         </small>
       {% endif %}
     </h5>
@@ -25,16 +26,11 @@
       </a>
       {% endif %}
       
-      {# Replaced toggle status with delete button #}
-      {% if perms.core.delete_cliente %} {# Assuming a delete permission #}
+      {% if perms.core.delete_cliente %}
       <a href="{% url 'gestor:cliente_delete' cliente.id %}" class="btn btn-sm btn-outline-danger me-1">
         <i class="fas fa-trash-alt me-1"></i> Excluir
       </a>
       {% endif %}
-      
-      <a href="{% url 'gestor:consultar_bi' cliente.codigo %}" class="btn btn-outline-info btn-sm me-1">
-        <i class="fas fa-chart-bar me-1"></i> Consultar BI
-      </a>
       
       <a href="{% url 'gestor:cliente_list' %}" class="btn btn-outline-secondary btn-sm me-2">
         <i class="fas fa-arrow-left me-1"></i> Voltar
@@ -66,15 +62,34 @@
                 </a>
               </li>
               {% endif %}
-              <li class="list-group-item"><strong>Data Cadastro:</strong> {{ cliente.data_cadastro|date:"d/m/Y H:i" }}</li>
+              {% if cliente.codigo_loja %}
+              <li class="list-group-item">
+                <strong>Loja:</strong> 
+                <span class="badge bg-info">{{ cliente.codigo_loja }}</span>
+              </li>
+              {% endif %}
+              {% if cliente.codigo_vendedor %}
+              <li class="list-group-item">
+                <strong>Vendedor:</strong> 
+                <span class="badge bg-success">{{ cliente.codigo_vendedor }}</span>
+                {% if cliente.nome_vendedor %} - {{ cliente.nome_vendedor }}{% endif %}
+              </li>
+              {% endif %}
+              <li class="list-group-item"><strong>Data Cadastro:</strong> {{ cliente.data_cadastro|date:"d/m/Y" }}</li>
               {% if cliente.data_ultima_compra %}
               <li class="list-group-item"><strong>Última Compra:</strong> {{ cliente.data_ultima_compra|date:"d/m/Y" }}</li>
               {% endif %}
               <li class="list-group-item">
                 <strong>Status:</strong>
-                <span class="badge {% if cliente.ativo %}bg-success{% else %}bg-danger{% endif %}">
-                  {% if cliente.ativo %}Ativo{% else %}Inativo{% endif %}
-                </span>
+                {% if cliente.status == 'ativo' %}
+                  <span class="badge bg-success">Ativo</span>
+                {% elif cliente.status == 'inativo' %}
+                  <span class="badge bg-danger">Inativo</span>
+                {% elif cliente.status == 'rascunho' %}
+                  <span class="badge bg-warning text-dark">Rascunho</span>
+                {% else %}
+                  <span class="badge bg-secondary">{{ cliente.status|title }}</span>
+                {% endif %}
               </li>
             </ul>
           </div>
@@ -106,8 +121,8 @@
               {% if cliente.situacao_cadastral %}
               <li class="list-group-item">
                 <strong>Situação Cadastral:</strong> 
-                <span class="badge {% if cliente.situacao_cadastral == 'ATIVA' or cliente.situacao_cadastral == '2' %}bg-success{% else %}bg-warning{% endif %}">
-                  {{ cliente.situacao_cadastral }}
+                <span class="badge {% if cliente.situacao_cadastral == 'ATIVA' or cliente.situacao_cadastral == '2' or cliente.situacao_cadastral == '02' %}bg-success{% else %}bg-warning{% endif %}">
+                  {{ cliente.get_situacao_cadastral_display_customizada }}
                 </span>
                 {% if cliente.data_situacao_cadastral %}
                   <br><small class="text-muted">Data: {{ cliente.data_situacao_cadastral|date:"d/m/Y" }}</small>
@@ -209,24 +224,12 @@
         <div class="card mb-3">
           <div class="card-header bg-light">
             <h6 class="card-title mb-0">
-              <i class="fas fa-shopping-cart me-2"></i>Dados Comerciais
+              <i class="fas fa-shopping-cart me-2"></i>Dados Contato
             </h6>
           </div>
           <div class="card-body p-0">
             <ul class="list-group list-group-flush">
-              {% if cliente.codigo_loja %}
-              <li class="list-group-item">
-                <strong>Loja:</strong> 
-                <span class="badge bg-info">{{ cliente.codigo_loja }}</span>
-              </li>
-              {% endif %}
-              {% if cliente.codigo_vendedor %}
-              <li class="list-group-item">
-                <strong>Vendedor:</strong> 
-                <span class="badge bg-success">{{ cliente.codigo_vendedor }}</span>
-                {% if cliente.nome_vendedor %} - {{ cliente.nome_vendedor }}{% endif %}
-              </li>
-              {% endif %}
+
               {% if cliente.telefone %}
               <li class="list-group-item"><strong>Telefone:</strong> {{ cliente.telefone }}</li>
               {% endif %}
@@ -281,9 +284,15 @@
                         <td><code>{{ cliente_associado.codigo }}</code></td>
                         <td>{{ cliente_associado.nome }}</td>
                         <td class="text-center">
-                          <span class="badge {% if cliente_associado.ativo %}bg-success{% else %}bg-danger{% endif %}">
-                            {% if cliente_associado.ativo %}Ativo{% else %}Inativo{% endif %}
-                          </span>
+                          {% if cliente_associado.status == 'ativo' %}
+                            <span class="badge bg-success">Ativo</span>
+                          {% elif cliente_associado.status == 'inativo' %}
+                            <span class="badge bg-danger">Inativo</span>
+                          {% elif cliente_associado.status == 'rascunho' %}
+                            <span class="badge bg-warning text-dark">Rascunho</span>
+                          {% else %}
+                            <span class="badge bg-secondary">{{ cliente_associado.status|title }}</span>
+                          {% endif %}
                         </td>
                         <td class="text-end">
                           <div class="btn-group" role="group">
@@ -294,7 +303,6 @@
                             <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary">
                               <i class="fas fa-edit"></i>
                             </a>
-                            {# Replaced toggle status with delete button #}
                             {% if perms.core.delete_cliente %}
                             <a href="{% url 'gestor:cliente_delete' cliente_associado.id %}" class="btn btn-sm btn-outline-danger">
                               <i class="fas fa-trash-alt"></i>
@@ -310,7 +318,6 @@
               </div>
             {% else %}
               <div class="text-center py-3 text-muted">
-                <i class="fas fa-sitemap fa-2x mb-2 d-block"></i>
                 <p class="mb-0">Nenhum cliente associado.</p>
               </div>
             {% endif %}
@@ -410,7 +417,6 @@
                   </div>
                 {% else %}
                   <div class="text-center py-3 text-muted">
-                    <i class="fas fa-address-book fa-2x mb-2 d-block"></i>
                     <p class="mb-0">Nenhum contato cadastrado.</p>
                   </div>
                 {% endif %}
@@ -463,7 +469,6 @@
                   </div>
                 {% else %}
                   <div class="text-center py-3 text-muted">
-                    <i class="fas fa-address-book fa-2x mb-2 d-block"></i>
                     <p class="mb-0">Nenhum contato cadastrado para este cliente.</p>
                   </div>
                 {% endif %}
@@ -556,7 +561,6 @@
               </div>
             {% else %}
               <div class="text-center py-3 text-muted">
-                <i class="fas fa-chart-line fa-2x mb-2 d-block"></i>
                 <p class="mb-0">Nenhum registro de venda nos últimos 90 dias.</p>
               </div>
             {% endif %}

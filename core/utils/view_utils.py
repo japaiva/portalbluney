@@ -20,9 +20,13 @@ class CustomDateInput(forms.DateInput):
     input_type = 'date'
     
     def format_value(self, value):
-        # Se o valor for None, retornar vazio
         if value is None:
-            return ''
+            return None  # ← MUDANÇA AQUI: era '' agora é None
+        
+        # Se for string vazia, também retornar None
+        if value == '':
+            return None  # ← ADICIONADO: tratar string vazia
+        
         # Se já for uma string, verificar se está no formato correto
         if isinstance(value, str):
             try:
@@ -48,7 +52,11 @@ class CustomDateTimeInput(forms.DateTimeInput):
     def format_value(self, value):
         # Se o valor for None, retornar vazio
         if value is None:
-            return ''
+            return None  # ← MUDANÇA AQUI: era '' agora é None
+        
+        # Se for string vazia, também retornar None
+        if value == '':
+            return None  # ← ADICIONADO: tratar string vazia
         
         # Se for uma string, tentar converter diferentes formatos
         if isinstance(value, str):

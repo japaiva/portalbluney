@@ -19,13 +19,14 @@
   </div>
   
   <div class="card-header bg-white">
-    <form method="get" class="row g-3 align-items-end">
+    <form method="get" class="row g-2 align-items-end">
       <div class="col-md-2">
         <label for="status" class="form-label small">Status</label>
         <select name="status" id="status" class="form-select form-select-sm">
           <option value="todos" {% if status_filtro == 'todos' %}selected{% endif %}>Todos</option>
           <option value="ativo" {% if status_filtro == 'ativo' %}selected{% endif %}>Ativos</option>
           <option value="inativo" {% if status_filtro == 'inativo' %}selected{% endif %}>Inativos</option>
+          <option value="rascunho" {% if status_filtro == 'rascunho' %}selected{% endif %}>Rascunhos</option>
         </select>
       </div>
       
@@ -38,21 +39,45 @@
         </select>
       </div>
       
+      <div class="col-md-1">
+        <label for="loja" class="form-label small">Loja</label>
+        <select name="loja" id="loja" class="form-select form-select-sm">
+          <option value="">Todas</option>
+          {% for loja in lojas %}
+            <option value="{{ loja.codigo }}" {% if loja_filtro == loja.codigo %}selected{% endif %}>
+              {{ loja.codigo }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      <div class="col-md-1">
+        <label for="vendedor" class="form-label small">Vend</label>
+        <select name="vendedor" id="vendedor" class="form-select form-select-sm">
+          <option value="">Todos</option>
+          {% for vendedor in vendedores %}
+            <option value="{{ vendedor.codigo }}" {% if vendedor_filtro == vendedor.codigo %}selected{% endif %}>
+              {{ vendedor.codigo }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      
       <div class="col-md-4">
         <label for="q" class="form-label small">Buscar</label>
         <input type="text" name="q" id="q" class="form-control form-control-sm" 
                placeholder="Nome, código, CPF/CNPJ..." value="{{ query|default:'' }}">
       </div>
       
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-sm btn-primary w-100">
-          <i class="fas fa-search me-1"></i> Filtrar
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-sm btn-primary w-100" title="Filtrar">
+          <i class="fas fa-search"></i>
         </button>
       </div>
       
-      <div class="col-md-2">
-        <a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-secondary w-100">
-          <i class="fas fa-eraser me-1"></i> Limpar
+      <div class="col-md-1">
+        <a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-secondary w-100" title="Limpar filtros">
+          <i class="fas fa-eraser me-1"></i>
         </a>
       </div>
     </form>
@@ -64,12 +89,12 @@
         <thead class="table-light">
           <tr>
             <th style="width: 80px;">Código</th>
-            <th style="width: 250px;">Nome</th> {# Increased width #}
+            <th style="width: 250px;">Nome</th>
             <th style="width: 120px;">CPF/CNPJ</th>
-            <th style="width: 80px;">Loja</th>
-            <th style="width: 80px;">Vend</th>
+            <th style="width: 60px;">Loja</th>
+            <th style="width: 60px;">Vend</th>
             <th style="width: 80px;" class="text-center">Status</th>
-            <th style="width: 100px;" class="text-center">Tipo</th>
+            <th style="width: 80px;" class="text-center">Tipo</th>
             <th style="width: 120px;" class="text-end">Ações</th>
           </tr>
         </thead>
@@ -100,26 +125,29 @@
               <td>
                 {% if cliente.codigo_vendedor %}
                   <span class="badge bg-success">{{ cliente.codigo_vendedor }}</span>
-                  {% if cliente.nome_vendedor %}
-                    <br><small class="text-muted">{{ cliente.nome_vendedor|truncatechars:15 }}</small>
-                  {% endif %}
                 {% else %}
                   <span class="text-muted">-</span>
                 {% endif %}
               </td>
               <td class="text-center">
-                <span class="badge {% if cliente.ativo %}bg-success{% else %}bg-danger{% endif %}">
-                  {% if cliente.ativo %}Ativo{% else %}Inativo{% endif %}
-                </span>
+                {% if cliente.status == 'ativo' %}
+                  <span class="badge bg-success">Ativo</span>
+                {% elif cliente.status == 'inativo' %}
+                  <span class="badge bg-danger">Inativo</span>
+                {% elif cliente.status == 'rascunho' %}
+                  <span class="badge bg-warning text-dark">Rascunho</span>
+                {% else %}
+                  <span class="badge bg-secondary">{{ cliente.status|title }}</span>
+                {% endif %}
               </td>
               <td class="text-center">
                 {% if cliente.codigo_master %}
                   <span class="badge bg-secondary" title="Sub-cliente de {{ cliente.codigo_master }}">
-                    <i class="fas fa-link"></i> Coligado
+                    Coligado
                   </span>
                 {% else %}
                   <span class="badge bg-primary">
-                    <i class="fas fa-crown"></i> Principal
+                    Principal
                   </span>
                 {% endif %}
               </td>
@@ -135,7 +163,6 @@
                      title="Editar">
                     <i class="fas fa-edit"></i>
                   </a>
-                  {# Replaced toggle status with delete button #}
                   <a href="{% url 'gestor:cliente_delete' cliente.id %}" 
                      class="btn btn-sm btn-outline-danger" 
                      title="Excluir">
@@ -146,8 +173,8 @@
             </tr>
           {% empty %}
             <tr>
-              <td colspan="8" class="text-center py-4 text-muted"> {# Adjusted colspan #}
-                {% if query or status_filtro != 'todos' or tipo_filtro != 'todos' %}
+              <td colspan="8" class="text-center py-4 text-muted">
+                {% if query or status_filtro != 'ativo' or tipo_filtro != 'principal' or vendedor_filtro or loja_filtro %}
                   Nenhum cliente encontrado com os filtros aplicados.
                   <br><a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="fas fa-eraser me-1"></i> Limpar filtros
@@ -169,7 +196,7 @@
       <div class="col-md-6">
         <small class="text-muted">
           Mostrando {{ clientes.start_index }} a {{ clientes.end_index }} de {{ clientes.paginator.count }} cliente{{ clientes.paginator.count|pluralize }}
-          {% if query or status_filtro != 'todos' or tipo_filtro != 'todos' %}
+          {% if query or status_filtro != 'ativo' or tipo_filtro != 'principal' or vendedor_filtro or loja_filtro %}
             (filtrado{{ clientes.paginator.count|pluralize }})
           {% endif %}
         </small>
@@ -183,12 +210,12 @@
       <ul class="pagination pagination-sm justify-content-center mb-0">
         {% if clientes.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?page=1{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Primeiro">
+            <a class="page-link" href="?page=1{% if status_filtro != 'ativo' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'principal' %}&tipo={{ tipo_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Primeiro">
               <span aria-hidden="true">&laquo;&laquo;</span>
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="?page={{ clientes.previous_page_number }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
+            <a class="page-link" href="?page={{ clientes.previous_page_number }}{% if status_filtro != 'ativo' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'principal' %}&tipo={{ tipo_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Anterior">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
@@ -206,19 +233,19 @@
             <li class="page-item active"><span class="page-link">{{ i }}</span></li>
           {% elif i > clientes.number|add:'-3' and i < clientes.number|add:'3' %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ i }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a>
+              <a class="page-link" href="?page={{ i }}{% if status_filtro != 'ativo' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'principal' %}&tipo={{ tipo_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}">{{ i }}</a>
             </li>
           {% endif %}
         {% endfor %}
         
         {% if clientes.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ clientes.next_page_number }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Próximo">
+            <a class="page-link" href="?page={{ clientes.next_page_number }}{% if status_filtro != 'ativo' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'principal' %}&tipo={{ tipo_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Próximo">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="?page={{ clientes.paginator.num_pages }}{% if status_filtro != 'todos' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'todos' %}&tipo={{ tipo_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Último">
+            <a class="page-link" href="?page={{ clientes.paginator.num_pages }}{% if status_filtro != 'ativo' %}&status={{ status_filtro }}{% endif %}{% if tipo_filtro != 'principal' %}&tipo={{ tipo_filtro }}{% endif %}{% if vendedor_filtro %}&vendedor={{ vendedor_filtro }}{% endif %}{% if loja_filtro %}&loja={{ loja_filtro }}{% endif %}{% if query %}&q={{ query }}{% endif %}" aria-label="Último">
               <span aria-hidden="true">&raquo;&raquo;</span>
             </a>
           </li>
@@ -240,7 +267,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Auto-submit ao mudar filtros
-    const filtros = document.querySelectorAll('#status, #tipo');
+    const filtros = document.querySelectorAll('#status, #tipo, #loja, #vendedor');
     filtros.forEach(filtro => {
         filtro.addEventListener('change', function() {
             this.form.submit();

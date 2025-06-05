@@ -1,5 +1,6 @@
 {% extends 'gestor/base_gestor.html' %}
 {% load static %}
+{% load math_filters %}
 
 {% block title %}Consulta BI - {{ cliente.nome }} | Portal Comercial{% endblock %}
 
@@ -61,9 +62,6 @@
                   <i class="fas fa-filter me-1"></i> Filtrar
                 </button>
                 
-                <a href="{% url 'gestor:consultar_bi' cliente.codigo %}?format=json" class="btn btn-outline-secondary" target="_blank">
-                  <i class="fas fa-code me-1"></i> Visualizar JSON
-                </a>
               </div>
             </form>
           </div>
@@ -80,10 +78,7 @@
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                   Total de Vendas</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">R$ {{ total_valor|floatformat:2 }}</div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_valor|format_currency }}</div>
               </div>
             </div>
           </div>
@@ -98,9 +93,6 @@
                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                   Total de Itens</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_quantidade|floatformat:0 }}</div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-boxes fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -118,9 +110,6 @@
                   {{ data_inicio|date:'d/m/Y' }} a {{ data_fim|date:'d/m/Y' }}
                 </div>
               </div>
-              <div class="col-auto">
-                <i class="fas fa-calendar fa-2x text-gray-300"></i>
-              </div>
             </div>
           </div>
         </div>
@@ -134,11 +123,12 @@
                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                   Ticket Médio</div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  R$ {% if vendas.count > 0 %}{{ total_valor|div:vendas.count|floatformat:2 }}{% else %}0.00{% endif %}
+                  {% if vendas.count > 0 %}
+                    {{ total_valor|safe_divide:vendas.count|format_currency }}
+                  {% else %}
+                    R$ 0,00
+                  {% endif %}
                 </div>
-              </div>
-              <div class="col-auto">
-                <i class="fas fa-receipt fa-2x text-gray-300"></i>
               </div>
             </div>
           </div>
@@ -202,7 +192,7 @@
                     <td>{{ venda.loja.codigo }} - {{ venda.loja.nome }}</td>
                     <td>{{ venda.vendedor.codigo }} - {{ venda.vendedor.nome }}</td>
                     <td class="text-end">{{ venda.quantidade|floatformat:2 }}</td>
-                    <td class="text-end">R$ {{ venda.valor_total|floatformat:2 }}</td>
+                    <td class="text-end">{{ venda.valor_total|format_currency }}</td>
                   </tr>
                 {% endfor %}
               </tbody>
@@ -210,7 +200,7 @@
                 <tr>
                   <th colspan="4">Total</th>
                   <th class="text-end">{{ total_quantidade|floatformat:2 }}</th>
-                  <th class="text-end">R$ {{ total_valor|floatformat:2 }}</th>
+                  <th class="text-end">{{ total_valor|format_currency }}</th>
                 </tr>
               </tfoot>
             </table>
@@ -456,5 +446,5 @@
     {% endif %}
   });
 </script>
-{% endblock %}
-{% endblock %}
+{% endblock %}</content>
+</invoke>

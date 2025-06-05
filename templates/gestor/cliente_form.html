@@ -9,59 +9,112 @@
       <i class="fas {% if form.instance.pk %}fa-edit{% else %}fa-plus-circle{% endif %} me-2"></i>
       {% if form.instance.pk %}Editar{% else %}Novo{% endif %} Cliente
     </h5>
-    <a href="{% url 'gestor:cliente_list' %}" class="btn btn-outline-secondary btn-sm">
-      <i class="fas fa-arrow-left me-1"></i> Voltar
-    </a>
+    <div>
+
+      <a href="{% url 'gestor:cliente_list' %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar
+      </a>
+    </div>
   </div>
   
   <div class="card-body">
-    <form method="post">
+    <form method="post" novalidate>
       {% csrf_token %}
 
+      <!-- *** SEÇÃO DE ERROS GERAIS *** -->
       {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-          {% for error in form.non_field_errors %}
-            <p class="mb-0">{{ error }}</p>
-          {% endfor %}
+        <div class="alert alert-danger alert-dismissible fade show">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          <strong>Erros de Validação:</strong>
+          
+          <ul class="mb-0 mt-2">
+            {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+          
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
       {% endif %}
-      
-      <!-- Bloco de Informações Gerais (AGRUPADO COM COMERCIAIS) -->
+
+      <!-- *** RESUMO DE ERROS POR CAMPO *** -->
+      {% if form.errors %}
+        <div class="alert alert-warning alert-dismissible fade show">
+          <i class="fas fa-list me-2"></i>
+          <strong>Campos com erro:</strong>
+          <ul class="mb-0 mt-2">
+            {% for field in form %}
+              {% if field.errors %}
+                <li>
+                  <strong>{{ field.label }}:</strong>
+                  {% for error in field.errors %}
+                    {{ error }}{% if not forloop.last %} | {% endif %}
+                  {% endfor %}
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endif %}
+
+      <!-- Bloco de Informações Gerais -->
       <div class="card shadow mt-4">
         <div class="card-header bg-light">
           <h5 class="card-title mb-0">
             <i class="fas fa-info-circle me-2"></i>
             Informações Gerais
+            {% if form.codigo.errors or form.nome.errors or form.status.errors %}
+              <span class="badge bg-danger ms-2">
+                <i class="fas fa-exclamation-triangle"></i> 
+                {{ form.codigo.errors|length|add:form.nome.errors|length|add:form.status.errors|length }} erro(s)
+              </span>
+            {% endif %}
           </h5>
         </div>
         <div class="card-body">
           <div class="row g-3">
             <div class="col-md-3">
-              <label for="{{ form.codigo.id_for_label }}" class="form-label">Código*</label>
+              <label for="{{ form.codigo.id_for_label }}" class="form-label">
+                Código*
+                {% if form.codigo.errors %}<i class="fas fa-exclamation-triangle text-danger ms-1"></i>{% endif %}
+              </label>
               {{ form.codigo }}
               {% if form.codigo.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.codigo.errors %}{{ error }}{% endfor %}
+                  {% for error in form.codigo.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
             
             <div class="col-md-6">
-              <label for="{{ form.nome.id_for_label }}" class="form-label">Nome*</label>
+              <label for="{{ form.nome.id_for_label }}" class="form-label">
+                Nome*
+                {% if form.nome.errors %}<i class="fas fa-exclamation-triangle text-danger ms-1"></i>{% endif %}
+              </label>
               {{ form.nome }}
               {% if form.nome.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.nome.errors %}{{ error }}{% endfor %}
+                  {% for error in form.nome.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
             
             <div class="col-md-3">
-              <label for="{{ form.status.id_for_label }}" class="form-label">Status</label>
+              <label for="{{ form.status.id_for_label }}" class="form-label">
+                Status
+                {% if form.status.errors %}<i class="fas fa-exclamation-triangle text-danger ms-1"></i>{% endif %}
+              </label>
               {{ form.status }}
               {% if form.status.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.status.errors %}{{ error }}{% endfor %}
+                  {% for error in form.status.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -76,7 +129,9 @@
               </div>
               {% if form.codigo_master.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.codigo_master.errors %}{{ error }}{% endfor %}
+                  {% for error in form.codigo_master.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
               <div id="nomeClienteMaster" class="form-text fw-bold text-primary mt-1"></div>
@@ -87,7 +142,9 @@
               {{ form.nome_fantasia }}
               {% if form.nome_fantasia.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.nome_fantasia.errors %}{{ error }}{% endfor %}
+                  {% for error in form.nome_fantasia.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -97,11 +154,13 @@
               {{ form.codigo_loja }}
               {% if form.codigo_loja.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.codigo_loja.errors %}{{ error }}{% endfor %}
+                  {% for error in form.codigo_loja.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
-            
+
             <div class="col-md-2">
               <label for="{{ form.codigo_vendedor.id_for_label }}" class="form-label">Código Vendedor</label>
               <div class="input-group">
@@ -112,17 +171,21 @@
               </div>
               {% if form.codigo_vendedor.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.codigo_vendedor.errors %}{{ error }}{% endfor %}
+                  {% for error in form.codigo_vendedor.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
-            
+
             <div class="col-md-4">
-              <label for="{{ form.nome_vendedor.id_for_label }}" class="form-label">Nome do Vendedor</label>
-              {{ form.nome_vendedor }}
-              {% if form.nome_vendedor.errors %}
+              <label for="{{ form.nome_vendedor_display.id_for_label }}" class="form-label">Nome do Vendedor</label>
+              {{ form.nome_vendedor_display }}
+              {% if form.nome_vendedor_display.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.nome_vendedor.errors %}{{ error }}{% endfor %}
+                  {% for error in form.nome_vendedor_display.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -132,7 +195,9 @@
               {{ form.data_cadastro }}
               {% if form.data_cadastro.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.data_cadastro.errors %}{{ error }}{% endfor %}
+                  {% for error in form.data_cadastro.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -142,7 +207,9 @@
               {{ form.data_ultima_compra }}
               {% if form.data_ultima_compra.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.data_ultima_compra.errors %}{{ error }}{% endfor %}
+                  {% for error in form.data_ultima_compra.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -165,7 +232,9 @@
               {{ form.tipo_documento }}
               {% if form.tipo_documento.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.tipo_documento.errors %}{{ error }}{% endfor %}
+                  {% for error in form.tipo_documento.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -180,7 +249,9 @@
               </div>
               {% if form.cpf_cnpj.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.cpf_cnpj.errors %}{{ error }}{% endfor %}
+                  {% for error in form.cpf_cnpj.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -190,7 +261,9 @@
               {{ form.nome_razao_social }}
               {% if form.nome_razao_social.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.nome_razao_social.errors %}{{ error }}{% endfor %}
+                  {% for error in form.nome_razao_social.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -200,7 +273,9 @@
               {{ form.inscricao_estadual }}
               {% if form.inscricao_estadual.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.inscricao_estadual.errors %}{{ error }}{% endfor %}
+                  {% for error in form.inscricao_estadual.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -210,7 +285,9 @@
               {{ form.inscricao_municipal }}
               {% if form.inscricao_municipal.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.inscricao_municipal.errors %}{{ error }}{% endfor %}
+                  {% for error in form.inscricao_municipal.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -227,7 +304,9 @@
               </div>
               {% if form.situacao_cadastral.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.situacao_cadastral.errors %}{{ error }}{% endfor %}
+                  {% for error in form.situacao_cadastral.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -250,7 +329,9 @@
               {{ form.tipo_logradouro }}
               {% if form.tipo_logradouro.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.tipo_logradouro.errors %}{{ error }}{% endfor %}
+                  {% for error in form.tipo_logradouro.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -260,7 +341,9 @@
               {{ form.endereco }}
               {% if form.endereco.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.endereco.errors %}{{ error }}{% endfor %}
+                  {% for error in form.endereco.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -270,7 +353,9 @@
               {{ form.numero }}
               {% if form.numero.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.numero.errors %}{{ error }}{% endfor %}
+                  {% for error in form.numero.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -280,7 +365,9 @@
               {{ form.complemento }}
               {% if form.complemento.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.complemento.errors %}{{ error }}{% endfor %}
+                  {% for error in form.complemento.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -290,7 +377,9 @@
               {{ form.bairro }}
               {% if form.bairro.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.bairro.errors %}{{ error }}{% endfor %}
+                  {% for error in form.bairro.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -300,7 +389,9 @@
               {{ form.cidade }}
               {% if form.cidade.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.cidade.errors %}{{ error }}{% endfor %}
+                  {% for error in form.cidade.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -310,7 +401,9 @@
               {{ form.estado }}
               {% if form.estado.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.estado.errors %}{{ error }}{% endfor %}
+                  {% for error in form.estado.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -320,7 +413,9 @@
               {{ form.cep }}
               {% if form.cep.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.cep.errors %}{{ error }}{% endfor %}
+                  {% for error in form.cep.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -343,7 +438,9 @@
               {{ form.cnae_principal }}
               {% if form.cnae_principal.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.cnae_principal.errors %}{{ error }}{% endfor %}
+                  {% for error in form.cnae_principal.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -353,7 +450,9 @@
               {{ form.cnae_descricao }}
               {% if form.cnae_descricao.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.cnae_descricao.errors %}{{ error }}{% endfor %}
+                  {% for error in form.cnae_descricao.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -363,7 +462,9 @@
               {{ form.porte_empresa }}
               {% if form.porte_empresa.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.porte_empresa.errors %}{{ error }}{% endfor %}
+                  {% for error in form.porte_empresa.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -373,7 +474,9 @@
               {{ form.natureza_juridica }}
               {% if form.natureza_juridica.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.natureza_juridica.errors %}{{ error }}{% endfor %}
+                  {% for error in form.natureza_juridica.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -383,17 +486,21 @@
               {{ form.data_abertura }}
               {% if form.data_abertura.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.data_abertura.errors %}{{ error }}{% endfor %}
+                  {% for error in form.data_abertura.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="{{ form.data_ultima_verificacao.id_for_label }}" class="form-label">Data da Última Consulta</label>
               {{ form.data_ultima_verificacao }}
               {% if form.data_ultima_verificacao.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.data_ultima_verificacao.errors %}{{ error }}{% endfor %}
+                  {% for error in form.data_ultima_verificacao.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -405,7 +512,9 @@
               </div>
               {% if form.opcao_pelo_simples.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.opcao_pelo_simples.errors %}{{ error }}{% endfor %}
+                  {% for error in form.opcao_pelo_simples.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -417,106 +526,11 @@
               </div>
               {% if form.opcao_pelo_mei.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.opcao_pelo_mei.errors %}{{ error }}{% endfor %}
+                  {% for error in form.opcao_pelo_mei.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- BLOCO DE CNAES SECUNDÁRIOS -->
-      <div class="card shadow mt-4">
-        <div class="card-header bg-light d-flex justify-content-between align-items-center">
-          <h5 class="card-title mb-0">
-            <i class="fas fa-list-alt me-2"></i>
-            CNAEs Secundários
-          </h5>
-          <button type="button" class="btn btn-outline-primary btn-sm" id="adicionarCnae">
-            <i class="fas fa-plus me-1"></i> Adicionar CNAE
-          </button>
-        </div>
-        <div class="card-body">
-          <div id="cnaes-container">
-            {{ cnaes_formset.management_form }}
-            {% for form_cnae in cnaes_formset %}
-              <div class="cnae-form-row" data-form-index="{{ forloop.counter0 }}">
-                {% for hidden in form_cnae.hidden_fields %}
-                  {{ hidden }}
-                {% endfor %}
-                <div class="row g-3 mb-3">
-                  <div class="col-md-3">
-                    <label class="form-label">Código CNAE</label>
-                    {{ form_cnae.codigo_cnae }}
-                    {% if form_cnae.codigo_cnae.errors %}
-                      <div class="text-danger small mt-1">
-                        {% for error in form_cnae.codigo_cnae.errors %}{{ error }}{% endfor %}
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="col-md-6">
-                    <label class="form-label">Descrição</label>
-                    {{ form_cnae.descricao_cnae }}
-                    {% if form_cnae.descricao_cnae.errors %}
-                      <div class="text-danger small mt-1">
-                        {% for error in form_cnae.descricao_cnae.errors %}{{ error }}{% endfor %}
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="col-md-2">
-                    <label class="form-label">Ordem</label>
-                    {{ form_cnae.ordem }}
-                    {% if form_cnae.ordem.errors %}
-                      <div class="text-danger small mt-1">
-                        {% for error in form_cnae.ordem.errors %}{{ error }}{% endfor %}
-                      </div>
-                    {% endif %}
-                  </div>
-                  <div class="col-md-1">
-                    <label class="form-label">&nbsp;</label>
-                    <div>
-                      {% if form_cnae.instance.pk %}
-                        {{ form_cnae.DELETE }}
-                        <label for="{{ form_cnae.DELETE.id_for_label }}" class="btn btn-outline-danger btn-sm">
-                          <i class="fas fa-trash"></i>
-                        </label>
-                      {% else %}
-                        <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-          
-          <!-- Template para novos CNAEs -->
-          <div id="cnae-template" style="display: none;">
-            <div class="cnae-form-row" data-form-index="__prefix__">
-              <div class="row g-3 mb-3">
-                <div class="col-md-3">
-                  <label class="form-label">Código CNAE</label>
-                  <input type="text" name="cnaes-__prefix__-codigo_cnae" class="form-control" placeholder="Ex: 4761003">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Descrição</label>
-                  <input type="text" name="cnaes-__prefix__-descricao_cnae" class="form-control" placeholder="Descrição da atividade">
-                </div>
-                <div class="col-md-2">
-                  <label class="form-label">Ordem</label>
-                  <input type="number" name="cnaes-__prefix__-ordem" class="form-control" value="1" min="1">
-                </div>
-                <div class="col-md-1">
-                  <label class="form-label">&nbsp;</label>
-                  <div>
-                    <button type="button" class="btn btn-outline-danger btn-sm remover-cnae">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -537,7 +551,9 @@
               {{ form.telefone }}
               {% if form.telefone.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.telefone.errors %}{{ error }}{% endfor %}
+                  {% for error in form.telefone.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -547,7 +563,9 @@
               {{ form.email }}
               {% if form.email.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.email.errors %}{{ error }}{% endfor %}
+                  {% for error in form.email.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -557,7 +575,9 @@
               {{ form.observacoes }}
               {% if form.observacoes.errors %}
                 <div class="text-danger small mt-1">
-                  {% for error in form.observacoes.errors %}{{ error }}{% endfor %}
+                  {% for error in form.observacoes.errors %}
+                    <i class="fas fa-times-circle me-1"></i>{{ error }}
+                  {% endfor %}
                 </div>
               {% endif %}
             </div>
@@ -567,8 +587,11 @@
 
       <!-- Botões de ação -->
       <div class="d-flex justify-content-end mt-4">
+        <a href="{% url 'gestor:cliente_list' %}" class="btn btn-secondary me-2">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
         <button type="submit" class="btn btn-primary">
-          <i class="fas fa-save me-1"></i> Salvar
+          <i class="fas fa-save me-1"></i> {% if form.instance.pk %}Atualizar{% else %}Salvar{% endif %}
         </button>
       </div>
     </form>
@@ -579,6 +602,7 @@
 
 {% block extra_js %}
 <script>
+// ===== JAVASCRIPT PARA CLIENTE FORM =====
 document.addEventListener('DOMContentLoaded', function() {
   
   // ===== NORMALIZAÇÃO DA SITUAÇÃO CADASTRAL =====
@@ -598,9 +622,9 @@ document.addEventListener('DOMContentLoaded', function() {
     return mapeamento[situacao] || situacao;
   }
   
-  // ===== BUSCAR VENDEDOR AUTOMATICAMENTE - CORRIGIDO =====
+  // ===== BUSCAR VENDEDOR AUTOMATICAMENTE =====
   const codigoVendedorInput = document.getElementById('id_codigo_vendedor');
-  const nomeVendedorInput = document.getElementById('id_nome_vendedor');
+  const nomeVendedorInput = document.getElementById('id_nome_vendedor_display');
   const btnBuscarVendedor = document.getElementById('buscarVendedor');
 
   if (codigoVendedorInput && nomeVendedorInput) {
@@ -610,6 +634,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!codigo || codigo.length !== 3) {
         nomeVendedorInput.value = '';
         nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
+        nomeVendedorInput.removeAttribute('title');
         return;
       }
       
@@ -629,347 +654,321 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.loja) {
               nomeVendedorInput.setAttribute('title', `Loja: ${data.loja}`);
             }
+            
+            console.log('✅ Vendedor encontrado:', data.nome);
           } else {
             nomeVendedorInput.value = '';
             nomeVendedorInput.classList.add('is-invalid');
             nomeVendedorInput.classList.remove('is-valid');
             nomeVendedorInput.setAttribute('title', data.message || 'Vendedor não encontrado');
+            
+            console.log('❌ Vendedor não encontrado:', data.message);
           }
         })
         .catch(error => {
-          console.error('Erro ao buscar vendedor:', error);
-          nomeVendedorInput.value = '';
-          nomeVendedorInput.classList.add('is-invalid');
-          nomeVendedorInput.setAttribute('title', 'Erro ao buscar vendedor');
-        });
-    }
-    
-    // Event listeners
-    let timeoutId;
-    
-    // Botão de busca manual
-    if (btnBuscarVendedor) {
-      btnBuscarVendedor.addEventListener('click', function() {
-        const codigo = codigoVendedorInput.value.trim();
-        buscarVendedor(codigo);
-      });
-    }
-    
-    // Buscar quando sair do campo (blur)
-    codigoVendedorInput.addEventListener('blur', function() {
-      const codigo = this.value.trim();
-      buscarVendedor(codigo);
-    });
-    
-    // Buscar com delay enquanto digita (input)
-    codigoVendedorInput.addEventListener('input', function() {
-      const codigo = this.value.trim();
-      
-      // Limpar timeout anterior
-      clearTimeout(timeoutId);
-      
-      // Se campo vazio, limpar nome imediatamente
-      if (!codigo) {
-        nomeVendedorInput.value = '';
-        nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
-        return;
-      }
-      
-      // Se tem 3 dígitos, buscar após 800ms de pausa
-      if (codigo.length === 3) {
-        timeoutId = setTimeout(() => {
-          buscarVendedor(codigo);
-        }, 800);
-      }
-    });
-    
-    // Validação em tempo real do código
-    codigoVendedorInput.addEventListener('input', function() {
-      const codigo = this.value.trim();
-      
-      // Validar formato (3 dígitos numéricos)
-      if (codigo && (codigo.length !== 3 || !/^\d{3}$/.test(codigo))) {
-        this.classList.add('is-invalid');
-        this.classList.remove('is-valid');
-      } else if (codigo.length === 3) {
-        this.classList.remove('is-invalid');
-        this.classList.add('is-valid');
-      } else {
-        this.classList.remove('is-valid', 'is-invalid');
-      }
-    });
-  }
+          console.error('💥 Erro ao buscar vendedor:', error);
+         nomeVendedorInput.value = '';
+         nomeVendedorInput.classList.add('is-invalid');
+         nomeVendedorInput.setAttribute('title', 'Erro ao buscar vendedor');
+       });
+   }
+   
+   // Event listeners
+   let timeoutId;
+   
+   // Botão de busca manual
+   if (btnBuscarVendedor) {
+     btnBuscarVendedor.addEventListener('click', function() {
+       const codigo = codigoVendedorInput.value.trim();
+       buscarVendedor(codigo);
+     });
+   }
+   
+   // Buscar quando sair do campo (blur)
+   codigoVendedorInput.addEventListener('blur', function() {
+     const codigo = this.value.trim();
+     buscarVendedor(codigo);
+   });
+   
+   // Buscar com delay enquanto digita (input)
+   codigoVendedorInput.addEventListener('input', function() {
+     const codigo = this.value.trim();
+     
+     // Limpar timeout anterior
+     clearTimeout(timeoutId);
+     
+     // Se campo vazio, limpar nome imediatamente
+     if (!codigo) {
+       nomeVendedorInput.value = '';
+       nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
+       return;
+     }
+     
+     // Validação visual imediata
+     if (codigo.length !== 3 || !/^\d{3}$/.test(codigo)) {
+       this.classList.add('is-invalid');
+       this.classList.remove('is-valid');
+       nomeVendedorInput.value = '';
+     } else {
+       this.classList.remove('is-invalid');
+       this.classList.add('is-valid');
+       
+       // Buscar após pausa na digitação
+       timeoutId = setTimeout(() => {
+         buscarVendedor(codigo);
+       }, 800);
+     }
+   });
+ }
 
-  // ===== CONSULTA RECEITA FEDERAL - CORRIGIDA =====
-  const btnConsultarReceita = document.getElementById('consultarReceita');
-  const cpfCnpjInput = document.getElementById('id_cpf_cnpj');
-  
-  if (btnConsultarReceita && cpfCnpjInput) {
-    btnConsultarReceita.addEventListener('click', function() {
-      const cpfCnpj = cpfCnpjInput.value.trim().replace(/[^\d]/g, '');
-      
-      if (cpfCnpj) {
-        btnConsultarReceita.disabled = true;
-        btnConsultarReceita.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        
-        fetch(`/gestor/api/consultar-receita/${cpfCnpj}/`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              const dados = data.dados;
-              
-              // Preencher campos básicos
-              if (dados.razaoSocial) document.getElementById('id_nome_razao_social').value = dados.razaoSocial;
-              if (dados.nomeFantasia) document.getElementById('id_nome_fantasia').value = dados.nomeFantasia;
-              
-              // *** SITUAÇÃO CADASTRAL NORMALIZADA ***
-              if (dados.situacaoCadastral) {
-                const situacaoNormalizada = normalizarSituacaoCadastral(dados.situacaoCadastral);
-                const situacaoSelect = document.getElementById('id_situacao_cadastral');
-                
-                // Definir o valor normalizado
-                situacaoSelect.value = situacaoNormalizada;
-                
-                // Se o valor não existe nas options, adicionar temporariamente
-                if (!situacaoSelect.querySelector(`option[value="${situacaoNormalizada}"]`)) {
-                  const opcaoTemp = new Option(dados.situacaoCadastral, situacaoNormalizada, true, true);
-                  situacaoSelect.appendChild(opcaoTemp);
-                }
-              }
-              
-              if (dados.naturezaJuridica) document.getElementById('id_natureza_juridica').value = dados.naturezaJuridica;
-              if (dados.porteEmpresa) document.getElementById('id_porte_empresa').value = dados.porteEmpresa;
-              if (dados.dataAbertura) document.getElementById('id_data_abertura').value = dados.dataAbertura;
-              
-              // Preencher CNAE principal
-              if (dados.cnaeFiscal) {
-                document.getElementById('id_cnae_principal').value = dados.cnaeFiscal;
-                document.getElementById('id_cnae_descricao').value = dados.cnaeFiscalDescricao || '';
-              }
-              
-              // Atualizar data da consulta
-              document.getElementById('id_data_ultima_verificacao').value = new Date().toISOString().slice(0, 16);
-              
-              // Atualizar opções tributárias
-              if (dados.optanteSimples !== undefined) {
-                document.getElementById('id_opcao_pelo_simples').checked = dados.optanteSimples;
-              }
-              if (dados.optanteMei !== undefined) {
-                document.getElementById('id_opcao_pelo_mei').checked = dados.optanteMei;
-              }
-              
-              // PROCESSAR CNAES SECUNDÁRIOS
-              if (dados.cnaesSecundarios && dados.cnaesSecundarios.length > 0) {
-                adicionarCnaesSecundarios(dados.cnaesSecundarios);
-              }
-              
-              // Mostrar situação de forma amigável
-              mostrarStatusSituacao(dados.situacaoCadastral);
-              
-              alert(`✅ Dados atualizados!\n🏢 CNAE principal: ${dados.cnaeFiscal || 'N/A'}\n📋 CNAEs secundários: ${dados.cnaesSecundarios?.length || 0}`);
-            } else {
-              alert(data.message || 'Erro ao consultar dados na Receita Federal');
-            }
-          })
-          .catch(error => {
-            console.error('Erro na consulta:', error);
-            alert('Erro ao realizar a consulta.');
-          })
-          .finally(() => {
-            btnConsultarReceita.disabled = false;
-            btnConsultarReceita.innerHTML = '<i class="fas fa-sync-alt"></i>';
-          });
-      } else {
-        alert('Informe um CPF/CNPJ válido para consulta');
-      }
-    });
-  }
-  
-  // ===== FUNÇÃO PARA MOSTRAR STATUS DA SITUAÇÃO =====
-  function mostrarStatusSituacao(situacao) {
-    const situacaoNormalizada = normalizarSituacaoCadastral(situacao);
-    
-    // Remover status anterior se existir
-    const statusAnterior = document.querySelector('#situacao-display');
-    if (statusAnterior) {
-      statusAnterior.remove();
-    }
-    
-    const situacaoTexto = {
-      '02': '✅ Empresa ATIVA na Receita Federal',
-      '03': '⚠️ Empresa SUSPENSA na Receita Federal', 
-      '04': '❌ Empresa INAPTA na Receita Federal',
-      '08': '🔒 Empresa BAIXADA na Receita Federal',
-      '01': '❓ Situação NULA na Receita Federal'
-    };
-    
-    const situacaoDisplay = document.createElement('div');
-    situacaoDisplay.id = 'situacao-display';
-    situacaoDisplay.className = 'alert alert-info mt-2';
-    situacaoDisplay.innerHTML = situacaoTexto[situacaoNormalizada] || `📄 Situação: ${situacao}`;
-    
-    // Inserir após o campo de situação cadastral
-    const situacaoField = document.getElementById('id_situacao_cadastral').closest('.col-md-4');
-    situacaoField.appendChild(situacaoDisplay);
-  }
-  
-  // ===== BUSCAR CLIENTE MASTER - CORRIGIDO =====
-  const btnBuscarMaster = document.getElementById('buscarMaster');
-  const codigoMasterInput = document.getElementById('id_codigo_master');
-  const nomeClienteMaster = document.getElementById('nomeClienteMaster');
-  
-  if (btnBuscarMaster && codigoMasterInput) {
-    btnBuscarMaster.addEventListener('click', function() {
-      const codigoMaster = codigoMasterInput.value.trim();
-      if (codigoMaster) {
-        fetch(`/gestor/api/cliente-por-codigo/${codigoMaster}/`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              nomeClienteMaster.textContent = `${data.nome} (${data.status})`;
-              nomeClienteMaster.className = 'form-text fw-bold text-success mt-1';
-            } else {
-              nomeClienteMaster.textContent = data.message || 'Cliente master não encontrado';
-              nomeClienteMaster.className = 'form-text fw-bold text-danger mt-1';
-            }
-          })
-          .catch(error => {
-            console.error('Erro ao buscar cliente master:', error);
-            nomeClienteMaster.textContent = 'Erro ao buscar cliente master';
-            nomeClienteMaster.className = 'form-text fw-bold text-danger mt-1';
-          });
-      } else {
-        nomeClienteMaster.textContent = '';
-      }
-    });
-  }
-  
-  // ===== GERENCIAMENTO DE CNAES SECUNDÁRIOS =====
-  let formsetIndex = document.querySelectorAll('.cnae-form-row').length;
-  
-  // Função para adicionar CNAEs vindos da Receita Federal
-  function adicionarCnaesSecundarios(cnaesData) {
-    const container = document.getElementById('cnaes-container');
-    
-    cnaesData.forEach((cnae, index) => {
-      const novoFormIndex = formsetIndex++;
-      const template = document.getElementById('cnae-template');
-      const novoForm = template.cloneNode(true);
-      
-      novoForm.style.display = 'block';
-      novoForm.id = '';
-      novoForm.className = 'cnae-form-row';
-      novoForm.setAttribute('data-form-index', novoFormIndex);
-      
-      // Substituir __prefix__ pelo índice real
-      novoForm.innerHTML = novoForm.innerHTML.replace(/__prefix__/g, novoFormIndex);
-      
-      // Preencher valores
-      novoForm.querySelector(`input[name="cnaes-${novoFormIndex}-codigo_cnae"]`).value = cnae.codigo;
-      novoForm.querySelector(`input[name="cnaes-${novoFormIndex}-descricao_cnae"]`).value = cnae.descricao;
-      novoForm.querySelector(`input[name="cnaes-${novoFormIndex}-ordem"]`).value = index + 1;
-      
-      container.appendChild(novoForm);
-    });
-    
-    // Atualizar total forms
-    atualizarTotalForms();
-  }
-  
-  // Botão para adicionar CNAE manualmente
-  const btnAdicionarCnae = document.getElementById('adicionarCnae');
-  if (btnAdicionarCnae) {
-    btnAdicionarCnae.addEventListener('click', function() {
-      const container = document.getElementById('cnaes-container');
-      const template = document.getElementById('cnae-template');
-      const novoFormIndex = formsetIndex++;
-      
-      const novoForm = template.cloneNode(true);
-      novoForm.style.display = 'block';
-      novoForm.id = '';
-      novoForm.className = 'cnae-form-row';
-      novoForm.setAttribute('data-form-index', novoFormIndex);
-      
-      // Substituir __prefix__ pelo índice real
-      novoForm.innerHTML = novoForm.innerHTML.replace(/__prefix__/g, novoFormIndex);
-      
-      container.appendChild(novoForm);
-      atualizarTotalForms();
-    });
-  }
-  
-  // Event delegation para botões de remover
-  document.addEventListener('click', function(e) {
-    if (e.target.closest('.remover-cnae')) {
-      e.preventDefault();
-      const formRow = e.target.closest('.cnae-form-row');
-      formRow.remove();
-      atualizarTotalForms();
-    }
-  });
-  
-  // Função para atualizar o total de forms do formset
-  function atualizarTotalForms() {
-    const totalForms = document.getElementById('id_cnaes-TOTAL_FORMS');
-    if (totalForms) {
-      totalForms.value = document.querySelectorAll('.cnae-form-row').length;
-    }
-  }
-  
-  // ===== INICIALIZAR TOOLTIPS =====
-  const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
+ // ===== CONSULTA RECEITA FEDERAL =====
+ const btnConsultarReceita = document.getElementById('consultarReceita');
+ const cpfCnpjInput = document.getElementById('id_cpf_cnpj');
+ 
+ if (btnConsultarReceita && cpfCnpjInput) {
+   btnConsultarReceita.addEventListener('click', function() {
+     const cpfCnpj = cpfCnpjInput.value.trim().replace(/[^\d]/g, '');
+     
+     if (cpfCnpj) {
+       btnConsultarReceita.disabled = true;
+       btnConsultarReceita.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+       
+       fetch(`/gestor/api/consultar-receita/${cpfCnpj}/`)
+         .then(response => response.json())
+         .then(data => {
+           if (data.success) {
+             const dados = data.dados;
+             
+             // Preencher campos básicos
+             if (dados.razaoSocial) document.getElementById('id_nome_razao_social').value = dados.razaoSocial;
+             if (dados.nomeFantasia) document.getElementById('id_nome_fantasia').value = dados.nomeFantasia;
+             
+             // *** SITUAÇÃO CADASTRAL NORMALIZADA ***
+             if (dados.situacaoCadastral) {
+               const situacaoNormalizada = normalizarSituacaoCadastral(dados.situacaoCadastral);
+               const situacaoSelect = document.getElementById('id_situacao_cadastral');
+               
+               // Definir o valor normalizado
+               situacaoSelect.value = situacaoNormalizada;
+               
+               // Se o valor não existe nas options, adicionar temporariamente
+               if (!situacaoSelect.querySelector(`option[value="${situacaoNormalizada}"]`)) {
+                 const opcaoTemp = new Option(dados.situacaoCadastral, situacaoNormalizada, true, true);
+                 situacaoSelect.appendChild(opcaoTemp);
+               }
+             }
+             
+             if (dados.naturezaJuridica) document.getElementById('id_natureza_juridica').value = dados.naturezaJuridica;
+             if (dados.porteEmpresa) document.getElementById('id_porte_empresa').value = dados.porteEmpresa;
+             if (dados.dataAbertura) document.getElementById('id_data_abertura').value = dados.dataAbertura;
+             
+             // Preencher CNAE principal
+             if (dados.cnaeFiscal) {
+               document.getElementById('id_cnae_principal').value = dados.cnaeFiscal;
+               document.getElementById('id_cnae_descricao').value = dados.cnaeFiscalDescricao || '';
+             }
+             
+             // Atualizar data da consulta
+             const dataConsulta = new Date().toISOString().slice(0, 16);
+             const dataUltimaVerificacaoField = document.getElementById('id_data_ultima_verificacao');
+             if (dataUltimaVerificacaoField) {
+               dataUltimaVerificacaoField.value = dataConsulta;
+             }
+             
+             // Atualizar opções tributárias
+             if (dados.optanteSimples !== undefined) {
+               const simplesField = document.getElementById('id_opcao_pelo_simples');
+               if (simplesField) simplesField.checked = dados.optanteSimples;
+             }
+             if (dados.optanteMei !== undefined) {
+               const meiField = document.getElementById('id_opcao_pelo_mei');
+               if (meiField) meiField.checked = dados.optanteMei;
+             }
+             
+             // Mostrar situação de forma amigável
+             mostrarStatusSituacao(dados.situacaoCadastral);
+             
+             alert(`✅ Dados atualizados!\n🏢 CNAE principal: ${dados.cnaeFiscal || 'N/A'}`);
+           } else {
+             alert(data.message || 'Erro ao consultar dados na Receita Federal');
+           }
+         })
+         .catch(error => {
+           console.error('Erro na consulta:', error);
+           alert('Erro ao realizar a consulta.');
+         })
+         .finally(() => {
+           btnConsultarReceita.disabled = false;
+           btnConsultarReceita.innerHTML = '<i class="fas fa-sync-alt"></i>';
+         });
+     } else {
+       alert('Informe um CPF/CNPJ válido para consulta');
+     }
+   });
+ }
+ 
+ // ===== FUNÇÃO PARA MOSTRAR STATUS DA SITUAÇÃO =====
+ function mostrarStatusSituacao(situacao) {
+   const situacaoNormalizada = normalizarSituacaoCadastral(situacao);
+   
+   // Remover status anterior se existir
+   const statusAnterior = document.querySelector('#situacao-display');
+   if (statusAnterior) {
+     statusAnterior.remove();
+   }
+   
+   const situacaoTexto = {
+     '02': '✅ Empresa ATIVA na Receita Federal',
+     '03': '⚠️ Empresa SUSPENSA na Receita Federal', 
+     '04': '❌ Empresa INAPTA na Receita Federal',
+     '08': '🔒 Empresa BAIXADA na Receita Federal',
+     '01': '❓ Situação NULA na Receita Federal'
+   };
+   
+   const situacaoDisplay = document.createElement('div');
+   situacaoDisplay.id = 'situacao-display';
+   situacaoDisplay.className = 'alert alert-info mt-2';
+   situacaoDisplay.innerHTML = situacaoTexto[situacaoNormalizada] || `📄 Situação: ${situacao}`;
+   
+   // Inserir após o campo de situação cadastral
+   const situacaoField = document.getElementById('id_situacao_cadastral');
+   if (situacaoField) {
+     const situacaoContainer = situacaoField.closest('.col-md-4');
+     if (situacaoContainer) {
+       situacaoContainer.appendChild(situacaoDisplay);
+     }
+   }
+ }
+ 
+ // ===== BUSCAR CLIENTE MASTER =====
+ const btnBuscarMaster = document.getElementById('buscarMaster');
+ const codigoMasterInput = document.getElementById('id_codigo_master');
+ const nomeClienteMaster = document.getElementById('nomeClienteMaster');
+ 
+ if (btnBuscarMaster && codigoMasterInput && nomeClienteMaster) {
+   
+   function buscarClienteMaster(codigoMaster) {
+     if (!codigoMaster) {
+       nomeClienteMaster.textContent = '';
+       return;
+     }
+     
+     fetch(`/gestor/api/cliente-por-codigo/${codigoMaster}/`)
+       .then(response => response.json())
+       .then(data => {
+         if (data.success) {
+           nomeClienteMaster.textContent = `${data.nome} (${data.status})`;
+           nomeClienteMaster.className = 'form-text fw-bold text-success mt-1';
+           console.log('✅ Cliente master encontrado:', data.nome);
+         } else {
+           nomeClienteMaster.textContent = data.message || 'Cliente master não encontrado';
+           nomeClienteMaster.className = 'form-text fw-bold text-danger mt-1';
+           console.log('❌ Cliente master não encontrado:', data.message);
+         }
+       })
+       .catch(error => {
+         console.error('💥 Erro ao buscar cliente master:', error);
+         nomeClienteMaster.textContent = 'Erro ao buscar cliente master';
+         nomeClienteMaster.className = 'form-text fw-bold text-danger mt-1';
+       });
+   }
+   
+   // Botão de busca manual
+   btnBuscarMaster.addEventListener('click', function() {
+     const codigoMaster = codigoMasterInput.value.trim();
+     buscarClienteMaster(codigoMaster);
+   });
+   
+   // Buscar automaticamente ao sair do campo
+   codigoMasterInput.addEventListener('blur', function() {
+     const codigoMaster = this.value.trim();
+     buscarClienteMaster(codigoMaster);
+   });
+ }
+ 
+ // ===== MÁSCARAS DE ENTRADA =====
+ // Aplicar máscaras nos campos que precisam
+ const cepInputs = document.querySelectorAll('input[data-mask="00000-000"]');
+ cepInputs.forEach(input => {
+   input.addEventListener('input', function() {
+     let value = this.value.replace(/\D/g, '');
+     if (value.length > 5) {
+       value = value.substring(0, 5) + '-' + value.substring(5, 8);
+     }
+     this.value = value;
+   });
+ });
+ 
+ const telefoneInputs = document.querySelectorAll('input[data-mask="(00) 00000-0000"]');
+ telefoneInputs.forEach(input => {
+   input.addEventListener('input', function() {
+     let value = this.value.replace(/\D/g, '');
+     if (value.length > 0) {
+       if (value.length <= 2) {
+         value = `(${value}`;
+       } else if (value.length <= 7) {
+         value = `(${value.substring(0, 2)}) ${value.substring(2)}`;
+       } else {
+         value = `(${value.substring(0, 2)}) ${value.substring(2, 7)}-${value.substring(7, 11)}`;
+       }
+     }
+     this.value = value;
+   });
+ });
+ 
+ // ===== INICIALIZAR TOOLTIPS =====
+ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+ const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+   return new bootstrap.Tooltip(tooltipTriggerEl);
+ });
 
-  // ===== CSS ADICIONAL =====
-  const style = document.createElement('style');
-  style.textContent = `
-    .badge {
-      font-size: 0.75rem;
-      padding: 0.4rem 0.6rem;
-    }
-    
-    .badge .fas {
-      font-size: 0.7rem;
-    }
-    
-    #infoSituacao {
-      border-left: none;
-    }
-    
-    .is-valid {
-      border-color: #198754;
-    }
-    
-    .is-invalid {
-      border-color: #dc3545;
-    }
-    
-    .form-control:read-only {
-      background-color: #f8f9fa;
-      border-color: #dee2e6;
-    }
-    
-    .alert-info {
-      --bs-alert-color: #055160;
-      --bs-alert-bg: #cff4fc;
-      --bs-alert-border-color: #b6effb;
-    }
-    
-    .cnae-form-row {
-      border-left: 3px solid #e9ecef;
-      padding-left: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    .cnae-form-row:hover {
-      border-left-color: #007bff;
-      background-color: #f8f9fa;
-    }
-  `;
-  document.head.appendChild(style);
+ // ===== VALIDAÇÃO DE FORMULÁRIO =====
+ const form = document.querySelector('form');
+ if (form) {
+   form.addEventListener('submit', function(e) {
+     // Validação básica antes do envio
+     const codigoInput = document.getElementById('id_codigo');
+     const nomeInput = document.getElementById('id_nome');
+     
+     if (codigoInput && !codigoInput.value.trim()) {
+       e.preventDefault();
+       alert('O código do cliente é obrigatório!');
+       codigoInput.focus();
+       return false;
+     }
+     
+     if (nomeInput && !nomeInput.value.trim()) {
+       e.preventDefault();
+       alert('O nome do cliente é obrigatório!');
+       nomeInput.focus();
+       return false;
+     }
+     
+     // Validar código do vendedor se preenchido
+     if (codigoVendedorInput && codigoVendedorInput.value.trim()) {
+       const codigo = codigoVendedorInput.value.trim();
+       if (codigo.length !== 3 || !/^\d{3}$/.test(codigo)) {
+         e.preventDefault();
+         alert('Código do vendedor deve ter exatamente 3 dígitos numéricos!');
+         codigoVendedorInput.focus();
+         return false;
+       }
+     }
+   });
+ }
+ 
+ // ===== LOGGING PARA DEBUG =====
+ console.log('🚀 Cliente Form JavaScript carregado com sucesso!');
+ console.log('📋 Campos encontrados:', {
+   codigoVendedor: !!codigoVendedorInput,
+   nomeVendedor: !!nomeVendedorInput,
+   btnBuscarVendedor: !!btnBuscarVendedor,
+   codigoMaster: !!codigoMasterInput,
+   nomeClienteMaster: !!nomeClienteMaster,
+   btnConsultarReceita: !!btnConsultarReceita
+ });
 });
+
 </script>
 
 {% endblock %}
