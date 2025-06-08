@@ -5070,3 +5070,299 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-06-05 03:49:17,200 "GET /gestor/clientes/196/ HTTP/1.1" 200 18929
 [INFO] 2025-06-05 03:49:18,810 "GET /gestor/clientes/ HTTP/1.1" 200 43742
 [INFO] 2025-06-05 03:49:20,306 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:24:46,127 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:24:53,045 "GET /gestor/vendas/ HTTP/1.1" 200 46344
+[INFO] 2025-06-08 15:27:08,410 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:27:09,839 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:27:17,073 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:27:17,469 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:27:18,651 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:27:18,953 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:27:37,256 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:27:37,743 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:27:47,082 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:27:47,523 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:28:06,082 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:28:06,552 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:28:21,032 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:28:21,517 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:28:27,828 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:28:28,246 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:28:56,009 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:28:56,466 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:42:52,188 Watching for file changes with StatReloader
+[ERROR] 2025-06-08 15:42:58,154 Internal Server Error: /gestor/vendas/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/vendas.py", line 80, in vendas_list
+    total_quantidade = sum(v.quantidade for v in vendas)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/vendas.py", line 80, in <genexpr>
+    total_quantidade = sum(v.quantidade for v in vendas)
+                                                 ^^^^^^
+  File "<frozen _collections_abc>", line 1031, in __iter__
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/paginator.py", line 202, in __getitem__
+    self.object_list = list(self.object_list)
+                       ~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 400, in __iter__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1561, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 747, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ~~~~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases or bool(combinator),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+                                                            ~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1379, in get_related_selections
+    raise FieldError(
+    ...<6 lines>...
+    )
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'vendedor'. Choices are: loja, produto, cliente, grupo_produto, fabricante
+[ERROR] 2025-06-08 15:42:58,160 "GET /gestor/vendas/ HTTP/1.1" 500 151743
+[INFO] 2025-06-08 15:49:02,910 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/vendas.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 15:49:03,550 Watching for file changes with StatReloader
+[INFO] 2025-06-08 15:49:11,714 "GET /gestor/vendas/ HTTP/1.1" 200 73044
+[INFO] 2025-06-08 15:49:59,983 "GET /gestor/vendas/?search=&data_inicio=2022-01-08&data_fim=2022-03-02&loja=&vendedor= HTTP/1.1" 200 73813
+[INFO] 2025-06-08 15:50:19,733 "GET /gestor/vendas/?page=2&data_inicio=2022-01-08&data_fim=2022-03-02 HTTP/1.1" 200 74325
+[INFO] 2025-06-08 15:50:44,140 "GET /gestor/vendas/11450/editar/ HTTP/1.1" 200 146506
+[WARNING] 2025-06-08 15:50:57,682 Not Found: /gestor/api/vendedor/554/
+[WARNING] 2025-06-08 15:50:57,682 "GET /gestor/api/vendedor/554/ HTTP/1.1" 404 21241
+[WARNING] 2025-06-08 15:51:03,694 Not Found: /gestor/api/vendedor/237/
+[WARNING] 2025-06-08 15:51:03,696 "GET /gestor/api/vendedor/237/ HTTP/1.1" 404 21241
+[INFO] 2025-06-08 15:51:34,502 "GET /gestor/vendas/ HTTP/1.1" 200 73044
+[INFO] 2025-06-08 15:51:38,365 "GET /gestor/vendas/61427/editar/ HTTP/1.1" 200 146543
+[INFO] 2025-06-08 15:52:01,665 "GET /gestor/vendas/ HTTP/1.1" 200 73044
+[INFO] 2025-06-08 15:52:15,412 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13982
+[INFO] 2025-06-08 15:52:37,350 "GET /gestor/vendas/ HTTP/1.1" 200 73044
+[INFO] 2025-06-08 15:52:57,642 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 15:55:16,538 "GET /gestor/vendas/ HTTP/1.1" 200 73044
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 16:05:29,044 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 16:08:11,912 Watching for file changes with StatReloader
+[INFO] 2025-06-08 16:08:21,315 "GET /gestor/vendas/ HTTP/1.1" 200 73044
+[INFO] 2025-06-08 16:08:22,936 "GET /gestor/clientes/ HTTP/1.1" 200 43827
+[INFO] 2025-06-08 16:08:48,234 "GET /gestor/clientes/?page=3 HTTP/1.1" 200 44915
+[INFO] 2025-06-08 16:08:57,553 "GET /gestor/clientes/?page=88 HTTP/1.1" 200 40329
+[INFO] 2025-06-08 16:09:03,236 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=023&q= HTTP/1.1" 200 14085
+[INFO] 2025-06-08 16:09:07,341 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=000&q= HTTP/1.1" 200 14085
+[INFO] 2025-06-08 16:11:51,655 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:11:55,252 "GET /gestor/vendedores/ HTTP/1.1" 200 50739
+[INFO] 2025-06-08 16:11:59,097 "GET /gestor/vendedores/000/excluir/ HTTP/1.1" 200 7647
+[INFO] 2025-06-08 16:12:00,583 "POST /gestor/vendedores/000/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:12:00,777 "GET /gestor/vendedores/ HTTP/1.1" 200 49977
+[INFO] 2025-06-08 16:12:26,181 "GET /gestor/vendedores/023/excluir/ HTTP/1.1" 200 7664
+[INFO] 2025-06-08 16:12:28,226 "POST /gestor/vendedores/023/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:12:28,489 "GET /gestor/vendedores/ HTTP/1.1" 200 48708
+[INFO] 2025-06-08 16:12:33,789 "GET /gestor/vendedores/047/excluir/ HTTP/1.1" 200 7650
+[INFO] 2025-06-08 16:12:35,041 "POST /gestor/vendedores/047/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:12:35,236 "GET /gestor/vendedores/ HTTP/1.1" 200 47419
+[INFO] 2025-06-08 16:12:39,237 "GET /gestor/vendedores/066/excluir/ HTTP/1.1" 200 7655
+[INFO] 2025-06-08 16:12:40,356 "POST /gestor/vendedores/066/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:12:40,541 "GET /gestor/vendedores/ HTTP/1.1" 200 46147
+[INFO] 2025-06-08 16:12:47,702 "GET /gestor/vendedores/110/excluir/ HTTP/1.1" 200 7662
+[INFO] 2025-06-08 16:12:48,733 "POST /gestor/vendedores/110/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:12:48,916 "GET /gestor/vendedores/ HTTP/1.1" 200 44870
+[INFO] 2025-06-08 16:12:57,828 "GET /gestor/vendedores/139/excluir/ HTTP/1.1" 200 7647
+[INFO] 2025-06-08 16:12:59,330 "POST /gestor/vendedores/139/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:12:59,530 "GET /gestor/vendedores/ HTTP/1.1" 200 43586
+[INFO] 2025-06-08 16:13:03,398 "GET /gestor/vendedores/140/excluir/ HTTP/1.1" 200 7647
+[INFO] 2025-06-08 16:13:04,739 "POST /gestor/vendedores/140/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:04,941 "GET /gestor/vendedores/ HTTP/1.1" 200 42317
+[INFO] 2025-06-08 16:13:09,896 "GET /gestor/vendedores/145/excluir/ HTTP/1.1" 200 7657
+[INFO] 2025-06-08 16:13:11,136 "POST /gestor/vendedores/145/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:11,329 "GET /gestor/vendedores/ HTTP/1.1" 200 41048
+[INFO] 2025-06-08 16:13:16,584 "GET /gestor/vendedores/201/excluir/ HTTP/1.1" 200 7659
+[INFO] 2025-06-08 16:13:18,076 "POST /gestor/vendedores/201/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:18,293 "GET /gestor/vendedores/ HTTP/1.1" 200 39769
+[INFO] 2025-06-08 16:13:23,226 "GET /gestor/vendedores/207/excluir/ HTTP/1.1" 200 7664
+[INFO] 2025-06-08 16:13:24,330 "POST /gestor/vendedores/207/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:24,525 "GET /gestor/vendedores/ HTTP/1.1" 200 38488
+[INFO] 2025-06-08 16:13:29,573 "GET /gestor/vendedores/216/excluir/ HTTP/1.1" 200 7651
+[INFO] 2025-06-08 16:13:30,724 "POST /gestor/vendedores/216/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:30,917 "GET /gestor/vendedores/ HTTP/1.1" 200 37202
+[INFO] 2025-06-08 16:13:39,709 "GET /gestor/vendedores/238/excluir/ HTTP/1.1" 200 7664
+[INFO] 2025-06-08 16:13:40,923 "POST /gestor/vendedores/238/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:41,125 "GET /gestor/vendedores/ HTTP/1.1" 200 35929
+[INFO] 2025-06-08 16:13:51,533 "GET /gestor/vendedores/256/excluir/ HTTP/1.1" 200 7658
+[INFO] 2025-06-08 16:13:53,002 "POST /gestor/vendedores/256/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:13:53,196 "GET /gestor/vendedores/ HTTP/1.1" 200 34643
+[INFO] 2025-06-08 16:14:01,575 "GET /gestor/vendedores/276/excluir/ HTTP/1.1" 200 7657
+[INFO] 2025-06-08 16:14:02,877 "POST /gestor/vendedores/276/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:14:03,069 "GET /gestor/vendedores/ HTTP/1.1" 200 33363
+[INFO] 2025-06-08 16:14:09,910 "GET /gestor/vendedores/418/excluir/ HTTP/1.1" 200 7656
+[INFO] 2025-06-08 16:14:14,715 "POST /gestor/vendedores/418/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:14:14,915 "GET /gestor/vendedores/ HTTP/1.1" 200 32084
+[INFO] 2025-06-08 16:14:20,476 "GET /gestor/vendedores/999/editar/ HTTP/1.1" 200 10173
+[INFO] 2025-06-08 16:14:32,535 "POST /gestor/vendedores/999/editar/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:14:32,738 "GET /gestor/vendedores/ HTTP/1.1" 200 32077
+[INFO] 2025-06-08 16:14:39,918 "GET /gestor/vendedores/900/excluir/ HTTP/1.1" 200 7658
+[INFO] 2025-06-08 16:14:41,250 "POST /gestor/vendedores/900/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:14:41,432 "GET /gestor/vendedores/ HTTP/1.1" 200 30804
+[INFO] 2025-06-08 16:14:55,081 "GET /gestor/vendedores/420/excluir/ HTTP/1.1" 200 7664
+[INFO] 2025-06-08 16:14:56,054 "POST /gestor/vendedores/420/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:14:56,264 "GET /gestor/vendedores/ HTTP/1.1" 200 29524
+[INFO] 2025-06-08 16:15:08,998 "GET /gestor/vendedores/550/excluir/ HTTP/1.1" 200 7664
+[INFO] 2025-06-08 16:15:09,988 "POST /gestor/vendedores/550/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:15:10,187 "GET /gestor/vendedores/ HTTP/1.1" 200 28238
+[INFO] 2025-06-08 16:15:19,981 "GET /gestor/vendedores/800/excluir/ HTTP/1.1" 200 7654
+[INFO] 2025-06-08 16:15:21,019 "POST /gestor/vendedores/800/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:15:21,203 "GET /gestor/vendedores/ HTTP/1.1" 200 26952
+[INFO] 2025-06-08 16:15:31,062 "GET /gestor/vendedores/807/excluir/ HTTP/1.1" 200 7655
+[INFO] 2025-06-08 16:15:32,006 "POST /gestor/vendedores/807/excluir/ HTTP/1.1" 302 0
+[INFO] 2025-06-08 16:15:32,238 "GET /gestor/vendedores/ HTTP/1.1" 200 25676
+[INFO] 2025-06-08 16:15:35,273 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:15:37,816 "GET /gestor/clientes/ HTTP/1.1" 200 42127
+[INFO] 2025-06-08 16:15:48,906 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:15:52,494 "GET /gestor/vendas/ HTTP/1.1" 200 71048
+[INFO] 2025-06-08 16:16:19,792 - Broken pipe from ('127.0.0.1', 56493)
+[INFO] 2025-06-08 16:16:20,806 "GET /gestor/vendas/?search=&data_inicio=&data_fim=&loja=&vendedor=298 HTTP/1.1" 200 74349
+[INFO] 2025-06-08 16:17:11,203 "GET /gestor/vendas/60658/editar/ HTTP/1.1" 200 146536
+[INFO] 2025-06-08 16:17:49,039 "GET /gestor/vendas/ HTTP/1.1" 200 71048
+[INFO] 2025-06-08 16:19:27,326 "GET /gestor/vendas/ HTTP/1.1" 200 61762
+[INFO] 2025-06-08 16:20:16,172 "GET /gestor/vendas/ HTTP/1.1" 200 61002
+[INFO] 2025-06-08 16:21:53,856 "GET /gestor/vendas/ HTTP/1.1" 200 59182
+[INFO] 2025-06-08 16:22:33,973 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:23:09,466 - Broken pipe from ('127.0.0.1', 56760)
+[INFO] 2025-06-08 16:23:10,234 "GET /gestor/vendas/?search=&data_inicio=&data_fim=&loja=&vendedor=200 HTTP/1.1" 200 59692
+[INFO] 2025-06-08 16:23:23,187 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:23:26,865 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:23:31,414 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13982
+[INFO] 2025-06-08 16:23:37,416 "GET /gestor/vendas/?search=13212 HTTP/1.1" 200 59717
+[INFO] 2025-06-08 16:23:45,277 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:23:49,117 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:23:58,417 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 146544
+[INFO] 2025-06-08 16:31:40,782 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:31:45,451 "GET /gestor/vendas/61430/excluir/ HTTP/1.1" 200 8404
+[INFO] 2025-06-08 16:31:51,615 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13982
+[INFO] 2025-06-08 16:32:36,384 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13975
+[INFO] 2025-06-08 16:33:07,459 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13966
+[INFO] 2025-06-08 16:33:38,714 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13962
+[INFO] 2025-06-08 16:33:56,983 "GET /gestor/vendas/61430/ HTTP/1.1" 200 13959
+[INFO] 2025-06-08 16:34:15,114 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:35:04,257 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 146544
+[INFO] 2025-06-08 16:38:13,208 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:38:15,901 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:38:18,984 "GET /gestor/clientes/ HTTP/1.1" 200 42127
+[INFO] 2025-06-08 16:38:40,102 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 36285
+[INFO] 2025-06-08 16:39:12,629 "GET /gestor/clientes/ HTTP/1.1" 200 42127
+[INFO] 2025-06-08 16:39:20,042 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:39:22,809 "GET /gestor/clientes/ HTTP/1.1" 200 42127
+[INFO] 2025-06-08 16:39:24,902 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:39:28,007 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:39:44,219 - Broken pipe from ('127.0.0.1', 57177)
+[INFO] 2025-06-08 16:39:44,779 "GET /gestor/vendas/?search=&data_inicio=&data_fim=&loja=&vendedor=999 HTTP/1.1" 200 59676
+[INFO] 2025-06-08 16:40:31,548 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:40:34,250 "GET /gestor/clientes/ HTTP/1.1" 200 42127
+[INFO] 2025-06-08 16:44:07,907 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:44:10,944 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 149959
+[INFO] 2025-06-08 16:45:48,277 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141522
+[INFO] 2025-06-08 16:47:25,035 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141530
+[INFO] 2025-06-08 16:48:18,157 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141535
+[INFO] 2025-06-08 16:51:03,898 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141522
+[INFO] 2025-06-08 16:52:49,300 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141565
+[INFO] 2025-06-08 16:53:21,324 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141564
+[INFO] 2025-06-08 16:53:49,128 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141564
+[INFO] 2025-06-08 16:54:13,986 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 141535
+[INFO] 2025-06-08 16:55:44,285 "GET /gestor/vendas/61430/editar/ HTTP/1.1" 200 140865
+[INFO] 2025-06-08 16:56:03,692 "GET /gestor/vendas/ HTTP/1.1" 200 59183
+[INFO] 2025-06-08 16:56:15,749 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:57:30,470 "GET /gestor/clientes/ HTTP/1.1" 200 42127
+[INFO] 2025-06-08 16:59:09,416 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 16:59:40,143 "GET /gestor/vendedores/ HTTP/1.1" 200 25158
+[INFO] 2025-06-08 17:01:20,728 "GET /gestor/vendedores/ HTTP/1.1" 200 24378
+[INFO] 2025-06-08 17:01:52,350 "GET /gestor/vendedores/ HTTP/1.1" 200 22766
+[INFO] 2025-06-08 17:02:05,187 "GET /gestor/vendedores/ HTTP/1.1" 200 22717
+[INFO] 2025-06-08 17:02:21,045 "GET /gestor/dashboard/ HTTP/1.1" 200 6844
+[INFO] 2025-06-08 17:02:23,965 "GET /gestor/produtos/ HTTP/1.1" 200 38361
+[INFO] 2025-06-08 17:04:03,828 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:04:05,769 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:04:18,971 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:04:19,753 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:04:23,399 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:04:23,759 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:04:30,400 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:04:30,787 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:04:32,358 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:04:32,692 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:04:34,217 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:04:34,554 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:05:16,317 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:05:16,957 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:05:31,032 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:05:31,522 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:05:35,187 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:05:35,708 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-08 17:07:23,876 Watching for file changes with StatReloader
+[INFO] 2025-06-08 17:07:32,445 "GET /gestor/clientes/ HTTP/1.1" 200 42177
+[INFO] 2025-06-08 17:07:42,131 "GET /gestor/clientes/374/editar/ HTTP/1.1" 200 36327
+[INFO] 2025-06-08 17:07:47,239 "GET /gestor/clientes/ HTTP/1.1" 200 42177
+[INFO] 2025-06-08 17:07:48,885 "GET /gestor/clientes/374/ HTTP/1.1" 200 17117
+[INFO] 2025-06-08 17:07:57,973 "GET /gestor/clientes/ HTTP/1.1" 200 42177
+[INFO] 2025-06-08 17:08:31,516 "GET /gestor/clientes/374/ HTTP/1.1" 200 17116
+[INFO] 2025-06-08 17:08:38,115 "GET /gestor/clientes/ HTTP/1.1" 200 42177
+[INFO] 2025-06-08 17:08:41,053 "GET /gestor/dashboard/ HTTP/1.1" 200 6844

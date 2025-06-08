@@ -152,16 +152,6 @@ class Produto(models.Model):
         ordering = ['codigo']
 
 # ===== MODELO CLIENTE ATUALIZADO =====
-
-# core/models.py - Modelo Cliente Corrigido
-
-import logging
-from django.db import models
-from django.utils import timezone
-from django.core.cache import cache
-
-logger = logging.getLogger(__name__)
-
 class Cliente(models.Model):
     # Choices para Situação Cadastral da Receita Federal
     SITUACAO_CADASTRAL_CHOICES = [
@@ -176,10 +166,12 @@ class Cliente(models.Model):
         ('8.0', 'Baixada'),
     ]
     
+    # *** ATUALIZADO: STATUS COM "OUTROS" ***
     STATUS_CHOICES = [
         ('ativo', 'Ativo'),
         ('inativo', 'Inativo'),
         ('rascunho', 'Rascunho'),
+        ('outros', 'Outros'),  # ← NOVA OPÇÃO ADICIONADA
     ]
     
     # ===== CAMPOS DE IDENTIFICAÇÃO =====
@@ -552,63 +544,6 @@ class ClienteContato(models.Model):
         verbose_name_plural = "Contatos dos Clientes"
         ordering = ["-principal", "nome"]
 
-# ===== MODELO DE VENDAS (antigo RegistroBI) =====
-
-class Vendas(models.Model):
-    # Campos de relacionamento
-    loja = models.ForeignKey(Loja, on_delete=models.PROTECT, verbose_name="Loja")
-    vendedor = models.ForeignKey(Vendedor, on_delete=models.PROTECT, verbose_name="Vendedor")
-    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, verbose_name="Produto")
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, related_name='vendas', verbose_name="Cliente")
-    grupo_produto = models.ForeignKey(GrupoProduto, on_delete=models.PROTECT, related_name='vendas', verbose_name="Grupo de Produto")
-    fabricante = models.ForeignKey(Fabricante, on_delete=models.PROTECT, related_name='vendas', verbose_name="Fabricante")
-    
-    # Dados da venda
-    data_venda = models.DateField(verbose_name="Data da Venda")
-    quantidade = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Quantidade")
-    valor_total = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Valor Total")
-    
-    # Dados da nota fiscal
-    numero_nf = models.CharField(max_length=20, blank=True, null=True, verbose_name="Número NF")
-    serie_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Série NF")
-    estado = models.CharField(max_length=2, blank=True, null=True, verbose_name="Estado")
-    vendedor_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Vendedor NF")
-    
-    # Campos calculados para relatórios
-    anomes = models.CharField(max_length=6, verbose_name="Ano/Mês", db_index=True,
-                             help_text="Formato: YYYYMM")
-    ano = models.CharField(max_length=4, verbose_name="Ano", db_index=True)
-    mes = models.CharField(max_length=2, verbose_name="Mês", db_index=True)
-    
-    # Metadados
-    data_importacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de Importação")
-    origem_sistema = models.CharField(max_length=20, default="BI", verbose_name="Sistema de Origem")
-    
-    def save(self, *args, **kwargs):
-        # Calcular campos derivados automaticamente
-        if self.data_venda:
-            self.ano = str(self.data_venda.year)
-            self.mes = str(self.data_venda.month).zfill(2)
-            self.anomes = f"{self.ano}{self.mes}"
-        
-        super().save(*args, **kwargs)
-    
-    class Meta:
-        db_table = 'vendas'
-        verbose_name = "Venda"
-        verbose_name_plural = "Vendas"
-        ordering = ["-data_venda"]
-        indexes = [
-            models.Index(fields=['loja', 'vendedor', 'produto']),
-            models.Index(fields=['cliente']),
-            models.Index(fields=['data_venda']),
-            models.Index(fields=['anomes']),
-            models.Index(fields=['ano', 'mes']),
-        ]
-    
-    def __str__(self):
-        return f"Venda {self.numero_nf or 'S/N'} - {self.data_venda} - {self.cliente.nome}"
-
 # ===== MODELO CNAE SECUNDÁRIO =====
 
 class ClienteCnaeSecundario(models.Model):
@@ -702,3 +637,157 @@ class LogSincronizacao(models.Model):
         verbose_name = "Log de Sincronização"
         verbose_name_plural = "Logs de Sincronização"
         ordering = ["-data_inicio"]
+
+
+# ===== MODELO VENDAS ATUALIZADO =====
+class Vendas(models.Model):
+    # ===== RELACIONAMENTOS =====
+    loja = models.ForeignKey(Loja, on_delete=models.PROTECT, verbose_name="Loja")
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, verbose_name="Produto")
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, related_name='vendas', verbose_name="Cliente")
+    grupo_produto = models.ForeignKey(GrupoProduto, on_delete=models.PROTECT, related_name='vendas', verbose_name="Grupo de Produto")
+    fabricante = models.ForeignKey(Fabricante, on_delete=models.PROTECT, related_name='vendas', verbose_name="Fabricante")
+    
+    # ===== VENDEDOR HISTÓRICO (ÚNICO CAMPO) =====
+    # ❌ REMOVIDO: vendedor = models.ForeignKey(Vendedor, on_delete=models.PROTECT, verbose_name="Vendedor")
+    vendedor_nf = models.CharField(
+        max_length=3, 
+        blank=True, 
+        null=True, 
+        verbose_name="Vendedor da NF",
+        help_text="Código do vendedor que fez a venda (histórico da NF)"
+    )
+    
+    # ===== DADOS DA VENDA =====
+    data_venda = models.DateField(verbose_name="Data da Venda")
+    quantidade = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Quantidade")
+    valor_total = models.DecimalField(max_digits=12, decimal_places=2, verbose_name="Valor Total")
+    
+    # ===== DADOS DA NOTA FISCAL =====
+    numero_nf = models.CharField(max_length=20, blank=True, null=True, verbose_name="Número NF")
+    serie_nf = models.CharField(max_length=3, blank=True, null=True, verbose_name="Série NF")
+    estado = models.CharField(max_length=2, blank=True, null=True, verbose_name="Estado")
+    
+    # ===== CAMPOS CALCULADOS PARA RELATÓRIOS =====
+    anomes = models.CharField(max_length=6, verbose_name="Ano/Mês", db_index=True,
+                             help_text="Formato: YYYYMM")
+    ano = models.CharField(max_length=4, verbose_name="Ano", db_index=True)
+    mes = models.CharField(max_length=2, verbose_name="Mês", db_index=True)
+    
+    # ===== METADADOS =====
+    data_importacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de Importação")
+    origem_sistema = models.CharField(max_length=20, default="BI", verbose_name="Sistema de Origem")
+    
+    # ===== PROPERTIES PARA VENDEDOR HISTÓRICO (NF) =====
+    
+    @property
+    def vendedor_nf_nome(self):
+        """Nome do vendedor que fez a venda (histórico da NF)"""
+        if not self.vendedor_nf:
+            return ''
+        
+        codigo_formatado = str(self.vendedor_nf).zfill(3)
+        cache_key = f'vendedor_nome_{codigo_formatado}'
+        
+        nome_cached = cache.get(cache_key)
+        if nome_cached is not None:
+            return nome_cached
+        
+        try:
+            vendedor = Vendedor.objects.get(codigo=codigo_formatado, ativo=True)
+            nome = vendedor.nome
+            cache.set(cache_key, nome, 300)
+            return nome
+        except Vendedor.DoesNotExist:
+            cache.set(cache_key, '', 60)
+            return ''
+    
+    @property
+    def vendedor_nf_obj(self):
+        """Objeto Vendedor que fez a venda (histórico)"""
+        if not self.vendedor_nf:
+            return None
+        
+        codigo_formatado = str(self.vendedor_nf).zfill(3)
+        cache_key = f'vendedor_obj_{codigo_formatado}'
+        
+        vendedor_cached = cache.get(cache_key)
+        if vendedor_cached is not None:
+            return vendedor_cached
+        
+        try:
+            vendedor = Vendedor.objects.select_related('loja').get(
+                codigo=codigo_formatado, ativo=True
+            )
+            cache.set(cache_key, vendedor, 300)
+            return vendedor
+        except Vendedor.DoesNotExist:
+            cache.set(cache_key, None, 60)
+            return None
+    
+    # ===== PROPERTIES PARA VENDEDOR ATUAL DO CLIENTE =====
+    
+    @property
+    def vendedor_atual_cliente(self):
+        """Vendedor ATUAL do cliente (não o da NF)"""
+        return self.cliente.vendedor_atual if self.cliente else None
+    
+    @property
+    def codigo_vendedor_atual_cliente(self):
+        """Código do vendedor ATUAL do cliente"""
+        return self.cliente.codigo_vendedor if self.cliente else ''
+    
+    @property
+    def nome_vendedor_atual_cliente(self):
+        """Nome do vendedor ATUAL do cliente"""
+        return self.cliente.nome_vendedor if self.cliente else ''
+    
+    @property
+    def vendedor_mudou(self):
+        """Verifica se o vendedor do cliente mudou desde a venda"""
+        if not self.vendedor_nf or not self.cliente.codigo_vendedor:
+            return False
+        return str(self.vendedor_nf).zfill(3) != str(self.cliente.codigo_vendedor).zfill(3)
+    
+    # ===== PROPERTIES PARA COMPATIBILIDADE (se necessário) =====
+    
+    @property
+    def vendedor(self):
+        """Property para compatibilidade - retorna objeto vendedor da NF"""
+        return self.vendedor_nf_obj
+    
+    @property
+    def codigo_vendedor(self):
+        """Property para compatibilidade - retorna código do vendedor da NF"""
+        return self.vendedor_nf
+    
+    @property
+    def nome_vendedor(self):
+        """Property para compatibilidade - retorna nome do vendedor da NF"""
+        return self.vendedor_nf_nome
+    
+    def save(self, *args, **kwargs):
+        # Calcular campos derivados automaticamente
+        if self.data_venda:
+            self.ano = str(self.data_venda.year)
+            self.mes = str(self.data_venda.month).zfill(2)
+            self.anomes = f"{self.ano}{self.mes}"
+        
+        super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return f"Venda {self.numero_nf or 'S/N'} - {self.data_venda} - {self.cliente.nome}"
+    
+    class Meta:
+        db_table = 'vendas'
+        verbose_name = "Venda"
+        verbose_name_plural = "Vendas"
+        ordering = ["-data_venda"]
+        indexes = [
+            models.Index(fields=['loja', 'cliente']),
+            models.Index(fields=['vendedor_nf']),  # Index para vendedor histórico
+            models.Index(fields=['cliente', 'data_venda']),
+            models.Index(fields=['data_venda']),
+            models.Index(fields=['anomes']),
+            models.Index(fields=['ano', 'mes']),
+        ]

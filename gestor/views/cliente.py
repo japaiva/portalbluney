@@ -16,6 +16,9 @@ from core.forms import ClienteForm
 
 logger = logging.getLogger(__name__)
 
+
+# gestor/views/cliente.py - Função cliente_list atualizada
+
 @login_required
 def cliente_list(request):
     """Lista de clientes com filtros aprimorados"""
@@ -32,7 +35,7 @@ def cliente_list(request):
     else:
         clientes_list = Cliente.objects.all()
     
-    # Filtro por status
+    # *** ATUALIZADO: FILTRO POR STATUS COM "OUTROS" ***
     status = request.GET.get('status', 'ativo')  # Default: ativo
     if status == 'ativo':
         clientes_list = clientes_list.filter(status='ativo')
@@ -40,6 +43,8 @@ def cliente_list(request):
         clientes_list = clientes_list.filter(status='inativo')
     elif status == 'rascunho':
         clientes_list = clientes_list.filter(status='rascunho')
+    elif status == 'outros':  # ← NOVA CONDIÇÃO ADICIONADA
+        clientes_list = clientes_list.filter(status='outros')
     
     # Filtro por vendedor
     vendedor_codigo = request.GET.get('vendedor', '')

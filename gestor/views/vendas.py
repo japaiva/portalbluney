@@ -1,5 +1,3 @@
-# gestor/views/vendas.py
-
 import logging
 from datetime import datetime
 from django.shortcuts import render, redirect, get_object_or_404
@@ -23,9 +21,11 @@ def vendas_list(request):
     loja_filtro = request.GET.get('loja', '')
     vendedor_filtro = request.GET.get('vendedor', '')
     
+    # Selecionar relações necessárias. 'vendedor' não é mais uma FK direta.
+    # 'cliente__vendedor_nf' não seria correto aqui, pois o vendedor do cliente é 'codigo_vendedor'.
     vendas_list = Vendas.objects.select_related(
         'cliente', 'produto', 'produto__grupo', 'produto__fabricante', 
-        'loja', 'vendedor'
+        'loja' # 'vendedor' foi removido, pois não é FK direta.
     ).all()
     
     # Aplicar filtros
@@ -56,7 +56,8 @@ def vendas_list(request):
         vendas_list = vendas_list.filter(loja__codigo=loja_filtro)
     
     if vendedor_filtro:
-        vendas_list = vendas_list.filter(vendedor__codigo=vendedor_filtro)
+        # CORREÇÃO AQUI: Filtrar pelo 'codigo_vendedor' do cliente
+        vendas_list = vendas_list.filter(cliente__codigo_vendedor=vendedor_filtro)
     
     # Ordenação
     vendas_list = vendas_list.order_by('-data_venda', '-id')
@@ -151,9 +152,10 @@ def vendas_edit(request, pk):
 @login_required
 def vendas_detail(request, pk):
     """Detalhes da venda"""
+    # 'vendedor' também foi removido daqui no select_related
     venda = get_object_or_404(Vendas.objects.select_related(
-        'cliente', 'produto', 'grupo_produto', 'fabricante', 
-        'loja', 'vendedor'
+        'cliente', 'produto', 'produto__grupo', 'produto__fabricante', 
+        'loja'
     ), pk=pk)
     
     # Buscar outras vendas do mesmo cliente

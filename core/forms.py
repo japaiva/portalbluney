@@ -316,207 +316,6 @@ ClienteCnaeSecundarioFormSet = inlineformset_factory(
     can_delete=True,
     can_order=False
 )
-
-# ===== CLIENTEFORM - ADIÇÕES PARA INTEGRAÇÃO COM VENDEDOR =====
-
-# core/forms.py - Ajustado para Property nome_vendedor
-
-from django import forms
-from django.forms import inlineformset_factory
-from core.models import Cliente, ClienteContato, ClienteCnaeSecundario, Usuario, Vendedor
-from django.contrib.auth.hashers import make_password
-from django.utils import timezone
-from core.utils.view_utils import CustomDateInput, CustomDateTimeInput
-
-class ClienteForm(forms.ModelForm):
-    # *** CAMPO VIRTUAL PARA EXIBIR O NOME DO VENDEDOR ***
-    nome_vendedor_display = forms.CharField(
-        label="Nome do Vendedor",
-        required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'readonly': True,
-            'placeholder': 'Preenchido automaticamente'
-        })
-    )
-    
-    class Meta:
-        model = Cliente
-        fields = [
-            # ===== INFORMAÇÕES PRINCIPAIS =====
-            'codigo', 'codigo_master', 'nome', 'nome_fantasia', 'status',
-            
-            # ===== INFORMAÇÕES COMERCIAIS =====
-            'codigo_loja', 'codigo_vendedor',  # *** REMOVIDO nome_vendedor ***
-            'data_cadastro', 'data_ultima_compra',
-            
-            # ===== DADOS FISCAIS =====
-            'tipo_documento', 'cpf_cnpj', 'nome_razao_social',
-            'inscricao_estadual', 'inscricao_municipal', 'situacao_cadastral',
-            
-            # ===== ENDEREÇO COMPLETO =====
-            'tipo_logradouro', 'endereco', 'numero', 'complemento', 
-            'bairro', 'cidade', 'estado', 'cep',
-            
-            # ===== RECEITA FEDERAL =====
-            'cnae_principal', 'cnae_descricao', 'porte_empresa',
-            'natureza_juridica', 'data_abertura', 'data_ultima_verificacao',
-            'opcao_pelo_simples', 'opcao_pelo_mei',
-            
-            # ===== CONTATO =====
-            'telefone', 'email', 'observacoes'
-        ]
-        
-        widgets = {
-            # ===== INFORMAÇÕES PRINCIPAIS =====
-            'codigo': forms.TextInput(attrs={'class': 'form-control'}),
-            'codigo_master': forms.TextInput(attrs={'class': 'form-control'}),
-            'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'nome_fantasia': forms.TextInput(attrs={'class': 'form-control'}),
-            'status': forms.Select(attrs={'class': 'form-select'}),
-            
-            # ===== INFORMAÇÕES COMERCIAIS =====
-            'codigo_loja': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
-            'codigo_vendedor': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
-            'data_cadastro': CustomDateInput(attrs={'class': 'form-control'}),
-            'data_ultima_compra': CustomDateInput(attrs={'class': 'form-control'}),
-            
-            # ===== DADOS FISCAIS =====
-            'tipo_documento': forms.Select(attrs={'class': 'form-select'}),
-            'cpf_cnpj': forms.TextInput(attrs={'class': 'form-control'}),
-            'nome_razao_social': forms.TextInput(attrs={'class': 'form-control'}),
-            'inscricao_estadual': forms.TextInput(attrs={'class': 'form-control'}),
-            'inscricao_municipal': forms.TextInput(attrs={'class': 'form-control'}),
-            'situacao_cadastral': forms.Select(attrs={'class': 'form-select'}),
-            
-            # ===== ENDEREÇO =====
-            'tipo_logradouro': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Rua, Avenida, etc.'}),
-            'endereco': forms.TextInput(attrs={'class': 'form-control'}),
-            'numero': forms.TextInput(attrs={'class': 'form-control'}),
-            'complemento': forms.TextInput(attrs={'class': 'form-control'}),
-            'bairro': forms.TextInput(attrs={'class': 'form-control'}),
-            'cidade': forms.TextInput(attrs={'class': 'form-control'}),
-            'estado': forms.Select(attrs={'class': 'form-select'}, 
-                               choices=[('', '---')] + [(s, s) for s in [
-                                   'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 
-                                   'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 
-                                   'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'
-                               ]]),
-            'cep': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '00000-000'}),
-            
-            # ===== RECEITA FEDERAL =====
-            'cnae_principal': forms.TextInput(attrs={'class': 'form-control'}),
-            'cnae_descricao': forms.TextInput(attrs={'class': 'form-control'}),
-            'porte_empresa': forms.TextInput(attrs={'class': 'form-control'}),
-            'natureza_juridica': forms.TextInput(attrs={'class': 'form-control'}),
-            'data_abertura': CustomDateInput(attrs={'class': 'form-control'}),
-            'data_ultima_verificacao': CustomDateInput(attrs={'class': 'form-control'}),
-            'opcao_pelo_simples': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            'opcao_pelo_mei': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
-            
-            # ===== CONTATO =====
-            'telefone': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'observacoes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
-        }
-    
-    def __init__(self, *args, **kwargs):
-        super(ClienteForm, self).__init__(*args, **kwargs)
-        
-        # Tornar alguns campos obrigatórios
-        self.fields['codigo'].required = True
-        self.fields['nome'].required = True
-        
-        # Configurar choices para situação cadastral
-        self.fields['situacao_cadastral'].choices = [('', '---')] + Cliente.SITUACAO_CADASTRAL_CHOICES
-        
-        # *** PREENCHER CAMPO VIRTUAL COM NOME DO VENDEDOR ***
-        if self.instance and self.instance.pk:
-            # Para instância existente, usar a property
-            self.fields['nome_vendedor_display'].initial = self.instance.nome_vendedor
-        elif self.data and self.data.get('codigo_vendedor'):
-            # Para formulário sendo submetido, buscar o nome
-            codigo_vendedor = self.data.get('codigo_vendedor')
-            if codigo_vendedor and len(codigo_vendedor) == 3:
-                try:
-                    vendedor = Vendedor.objects.get(codigo=codigo_vendedor, ativo=True)
-                    self.fields['nome_vendedor_display'].initial = vendedor.nome
-                except Vendedor.DoesNotExist:
-                    self.fields['nome_vendedor_display'].initial = ''
-        
-        # Se for uma nova instância, preencher data de cadastro
-        if not self.instance.pk and not self.data.get('data_cadastro'):
-            self.initial['data_cadastro'] = timezone.now().strftime('%Y-%m-%d')
-    
-    def clean_codigo_vendedor(self):
-        """Validação específica para código do vendedor"""
-        codigo_vendedor = self.cleaned_data.get('codigo_vendedor')
-        if codigo_vendedor:
-            # Normalizar para 3 dígitos
-            codigo_vendedor = str(codigo_vendedor).zfill(3)
-            
-            # Validar formato
-            if len(codigo_vendedor) != 3 or not codigo_vendedor.isdigit():
-                raise forms.ValidationError("O código do vendedor deve ter exatamente 3 dígitos numéricos.")
-            
-            # Verificar se vendedor existe
-            if not Vendedor.objects.filter(codigo=codigo_vendedor, ativo=True).exists():
-                raise forms.ValidationError(f"Vendedor com código {codigo_vendedor} não encontrado ou inativo.")
-            
-            return codigo_vendedor
-        return codigo_vendedor
-    
-    def clean(self):
-        cleaned_data = super().clean()
-        
-        # Validação para códigos de loja e vendedor
-        codigo_loja = cleaned_data.get('codigo_loja')
-        if codigo_loja and (len(codigo_loja) != 3 or not codigo_loja.isdigit()):
-            self.add_error('codigo_loja', "O código da loja deve ter exatamente 3 dígitos numéricos.")
-        
-        # Validação de CPF/CNPJ
-        cpf_cnpj = cleaned_data.get('cpf_cnpj')
-        tipo_documento = cleaned_data.get('tipo_documento')
-        
-        if cpf_cnpj and tipo_documento:
-            # Remove caracteres não numéricos
-            cpf_cnpj_numerico = ''.join(filter(str.isdigit, cpf_cnpj))
-            
-            if tipo_documento == 'cpf' and len(cpf_cnpj_numerico) != 11:
-                self.add_error('cpf_cnpj', "CPF deve ter 11 dígitos numéricos.")
-            elif tipo_documento == 'cnpj' and len(cpf_cnpj_numerico) != 14:
-                self.add_error('cpf_cnpj', "CNPJ deve ter 14 dígitos numéricos.")
-        
-        # Validação do código master
-        codigo_master = cleaned_data.get('codigo_master')
-        if codigo_master:
-            existe = Cliente.objects.filter(codigo=codigo_master).exists()
-            if not existe:
-                self.add_error('codigo_master', "Código master não existe no cadastro de clientes.")
-        
-        return cleaned_data
-    
-    def clean_situacao_cadastral(self):
-        """Normaliza a situação cadastral para formato consistente"""
-        situacao = self.cleaned_data.get('situacao_cadastral')
-        
-        if not situacao:
-            return situacao
-            
-        # Normalizar códigos decimais para formato padrão
-        normalizacao = {
-            '2.0': '02',
-            '3.0': '03', 
-            '4.0': '04',
-            '8.0': '08',
-            '2': '02',
-            '3': '03',
-            '4': '04', 
-            '8': '08',
-        }
-        
-        return normalizacao.get(situacao, situacao)
-
 class ClienteContatoForm(forms.ModelForm):
     class Meta:
         model = ClienteContato
@@ -620,20 +419,6 @@ class ProdutoForm(forms.ModelForm):
         if len(codigo) != 6 or not codigo.isdigit():
             raise forms.ValidationError("O código do produto deve ter exatamente 6 dígitos numéricos.")
         return codigo
-
-class VendasForm(forms.ModelForm):
-    class Meta:
-        model = Vendas
-        fields = ['loja', 'vendedor', 'produto', 'cliente', 'grupo_produto', 'fabricante',
-                  'data_venda', 'quantidade', 'valor_total', 'numero_nf', 'serie_nf', 'estado']
-        widgets = {
-            'data_venda': CustomDateInput(attrs={'class': 'form-control'}),
-            'quantidade': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'valor_total': forms.NumberInput(attrs={'class': 'form-control', 'step': '0.01'}),
-            'numero_nf': forms.TextInput(attrs={'class': 'form-control'}),
-            'serie_nf': forms.TextInput(attrs={'class': 'form-control'}),
-            'estado': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '2'}),
-        }
 
 class ImportarVendasForm(forms.Form):
     arquivo_csv = forms.FileField(
@@ -843,3 +628,176 @@ class SincronizacaoCompletaForm(forms.Form):
         help_text="Consulta dados de CPF/CNPJ na Receita Federal para clientes novos ou desatualizados",
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
+
+
+class VendasForm(forms.ModelForm):
+    # ===== CAMPOS VIRTUAIS PARA DISPLAY =====
+    
+    # Campo virtual para mostrar nome do vendedor da NF
+    nome_vendedor_nf_display = forms.CharField(
+        label="Nome do Vendedor (NF)",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'readonly': True,
+            'placeholder': 'Preenchido automaticamente'
+        })
+    )
+    
+    # Campo virtual para mostrar vendedor atual do cliente
+    vendedor_atual_cliente_display = forms.CharField(
+        label="Vendedor Atual do Cliente",
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'readonly': True,
+            'placeholder': 'Baseado no cliente selecionado',
+            'style': 'background-color: #f8f9fa;'
+        })
+    )
+    
+    class Meta:
+        model = Vendas
+        fields = [
+            # ===== RELACIONAMENTOS =====
+            'loja', 'cliente', 'produto', 'grupo_produto', 'fabricante',
+            
+            # ===== VENDEDOR HISTÓRICO =====
+            'vendedor_nf',  # ÚNICO campo de vendedor
+            
+            # ===== DADOS DA VENDA =====
+            'data_venda', 'quantidade', 'valor_total', 
+            
+            # ===== DADOS DA NF =====
+            'numero_nf', 'serie_nf', 'estado'
+        ]
+        
+        widgets = {
+            # ===== RELACIONAMENTOS =====
+            'loja': forms.Select(attrs={'class': 'form-select'}),
+            'cliente': forms.Select(attrs={'class': 'form-select'}),
+            'produto': forms.Select(attrs={'class': 'form-select'}),
+            'grupo_produto': forms.Select(attrs={
+                'class': 'form-select',
+                'readonly': True,
+                'style': 'background-color: #f8f9fa; pointer-events: none;'
+            }),
+            'fabricante': forms.Select(attrs={
+                'class': 'form-select',
+                'readonly': True,
+                'style': 'background-color: #f8f9fa; pointer-events: none;'
+            }),
+            
+            # ===== VENDEDOR =====
+            'vendedor_nf': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'maxlength': '3',
+                'placeholder': 'Código do vendedor da NF (3 dígitos)'
+            }),
+            
+            # ===== DADOS DA VENDA =====
+            'data_venda': CustomDateInput(attrs={'class': 'form-control'}),
+            'quantidade': forms.NumberInput(attrs={
+                'class': 'form-control', 
+                'step': '0.01',
+                'min': '0'
+            }),
+            'valor_total': forms.NumberInput(attrs={
+                'class': 'form-control', 
+                'step': '0.01',
+                'min': '0'
+            }),
+            
+            # ===== DADOS DA NF =====
+            'numero_nf': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Número da Nota Fiscal'
+            }),
+            'serie_nf': forms.TextInput(attrs={
+                'class': 'form-control',
+                'maxlength': '3',
+                'placeholder': 'Série'
+            }),
+            'estado': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'maxlength': '2',
+                'placeholder': 'UF'
+            }),
+        }
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Tornar alguns campos obrigatórios
+        self.fields['loja'].required = True
+        self.fields['cliente'].required = True
+        self.fields['produto'].required = True
+        self.fields['data_venda'].required = True
+        self.fields['quantidade'].required = True
+        self.fields['valor_total'].required = True
+        
+        # ===== PREENCHER CAMPOS VIRTUAIS =====
+        if self.instance and self.instance.pk:
+            # Para edição - preencher campos virtuais
+            self.fields['nome_vendedor_nf_display'].initial = self.instance.vendedor_nf_nome
+            
+            if self.instance.cliente and self.instance.cliente.codigo_vendedor:
+                vendedor_atual = f"{self.instance.cliente.codigo_vendedor} - {self.instance.cliente.nome_vendedor}"
+                self.fields['vendedor_atual_cliente_display'].initial = vendedor_atual
+        
+        elif self.data and self.data.get('vendedor_nf'):
+            # Para formulário sendo submetido - buscar nome do vendedor da NF
+            codigo_vendedor_nf = self.data.get('vendedor_nf')
+            if codigo_vendedor_nf and len(codigo_vendedor_nf) == 3:
+                try:
+                    vendedor = Vendedor.objects.get(codigo=codigo_vendedor_nf, ativo=True)
+                    self.fields['nome_vendedor_nf_display'].initial = vendedor.nome
+                except Vendedor.DoesNotExist:
+                    self.fields['nome_vendedor_nf_display'].initial = 'Vendedor não encontrado'
+        
+        # Configurar grupo e fabricante como readonly visual
+        self.fields['grupo_produto'].widget.attrs.update({
+            'tabindex': '-1',
+            'title': 'Preenchido automaticamente pelo produto'
+        })
+        self.fields['fabricante'].widget.attrs.update({
+            'tabindex': '-1',
+            'title': 'Preenchido automaticamente pelo produto'
+        })
+    
+    def clean_vendedor_nf(self):
+        """Validação específica para código do vendedor da NF"""
+        codigo = self.cleaned_data.get('vendedor_nf')
+        if codigo:
+            # Normalizar para 3 dígitos
+            codigo = str(codigo).zfill(3)
+            
+            # Validar formato
+            if len(codigo) != 3 or not codigo.isdigit():
+                raise forms.ValidationError("O código do vendedor deve ter exatamente 3 dígitos numéricos.")
+            
+            # Verificar se vendedor existe (warning, não erro)
+            if not Vendedor.objects.filter(codigo=codigo, ativo=True).exists():
+                # Para dados históricos, permitir vendedores inativos
+                if not Vendedor.objects.filter(codigo=codigo).exists():
+                    raise forms.ValidationError(f"Vendedor com código {codigo} não encontrado.")
+            
+            return codigo
+        return codigo
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        # Validar se grupo_produto e fabricante correspondem ao produto
+        produto = cleaned_data.get('produto')
+        grupo_produto = cleaned_data.get('grupo_produto')
+        fabricante = cleaned_data.get('fabricante')
+        
+        if produto:
+            if grupo_produto and produto.grupo != grupo_produto:
+                self.add_error('grupo_produto', 'Grupo de produto não corresponde ao produto selecionado.')
+            
+            if fabricante and produto.fabricante != fabricante:
+                self.add_error('fabricante', 'Fabricante não corresponde ao produto selecionado.')
+        
+        return cleaned_data

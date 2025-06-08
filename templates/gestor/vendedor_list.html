@@ -50,7 +50,6 @@
             <th style="width: 80px;">Código</th>
             <th>Nome</th>
             <th style="width: 200px;">Loja</th>
-            <th style="width: 150px;">Email</th>
             <th style="width: 80px;" class="text-center">Status</th>
             <th style="width: 120px;" class="text-end">Ações</th>
           </tr>
@@ -68,18 +67,11 @@
               <td>
                 {% if vendedor.loja %}
                   <span class="badge bg-info text-dark">{{ vendedor.loja.codigo }}</span>
-                  <br><small class="text-muted">{{ vendedor.loja.nome|truncatechars:20 }}</small>
                 {% else %}
                   <span class="text-muted">-</span>
                 {% endif %}
               </td>
-              <td>
-                {% if vendedor.email %}
-                  {{ vendedor.email|truncatechars:20 }}
-                {% else %}
-                  <span class="text-muted">-</span>
-                {% endif %}
-              </td>
+
               <td class="text-center">
                 <span class="badge {% if vendedor.ativo %}bg-success{% else %}bg-danger{% endif %}">
                   {% if vendedor.ativo %}Ativo{% else %}Inativo{% endif %}

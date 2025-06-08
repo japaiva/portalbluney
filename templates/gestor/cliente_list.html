@@ -27,6 +27,7 @@
           <option value="ativo" {% if status_filtro == 'ativo' %}selected{% endif %}>Ativos</option>
           <option value="inativo" {% if status_filtro == 'inativo' %}selected{% endif %}>Inativos</option>
           <option value="rascunho" {% if status_filtro == 'rascunho' %}selected{% endif %}>Rascunhos</option>
+          <option value="outros" {% if status_filtro == 'outros' %}selected{% endif %}>Outros</option>
         </select>
       </div>
       
@@ -136,6 +137,8 @@
                   <span class="badge bg-danger">Inativo</span>
                 {% elif cliente.status == 'rascunho' %}
                   <span class="badge bg-warning text-dark">Rascunho</span>
+                {% elif cliente.status == 'outros' %}
+                  <span class="badge bg-secondary">Outros</span>
                 {% else %}
                   <span class="badge bg-secondary">{{ cliente.status|title }}</span>
                 {% endif %}

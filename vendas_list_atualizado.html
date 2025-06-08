@@ -1,0 +1,132 @@
+
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Vendas | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header bg-light">
+    <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i> Lista de Vendas</h5>
+  </div>
+  <div class="card-body">
+    <form method="get" class="row g-3 mb-4">
+      <div class="col-md-3">
+        <label for="search" class="form-label">Busca</label>
+        <input type="text" id="search" name="search" class="form-control" value="{{ search }}">
+      </div>
+      <div class="col-md-2">
+        <label for="data_inicio" class="form-label">Data Início</label>
+        <input type="date" id="data_inicio" name="data_inicio" class="form-control" value="{{ data_inicio }}">
+      </div>
+      <div class="col-md-2">
+        <label for="data_fim" class="form-label">Data Fim</label>
+        <input type="date" id="data_fim" name="data_fim" class="form-control" value="{{ data_fim }}">
+      </div>
+      <div class="col-md-2">
+        <label for="loja" class="form-label">Loja</label>
+        <select id="loja" name="loja" class="form-select">
+          <option value="">Todas</option>
+          {% for loja in lojas_disponiveis %}
+          <option value="{{ loja.codigo }}" {% if loja.codigo|stringformat:"s" == loja_filtro %}selected{% endif %}>
+            {{ loja.nome }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="vendedor" class="form-label">Vendedor Atual</label>
+        <select id="vendedor" name="vendedor" class="form-select">
+          <option value="">Todos</option>
+          {% for vendedor in vendedores_disponiveis %}
+            <option value="{{ vendedor.codigo }}"
+              {% if vendedor.codigo|stringformat:"03d" == vendedor_filtro %}selected{% endif %}>
+              {{ vendedor.nome }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-search me-1"></i> Filtrar
+        </button>
+      </div>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-striped table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Valor Total</th>
+            <th>Vendedor Atual</th>
+            <th class="text-center">Detalhes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for venda in vendas %}
+          <tr>
+            <td>{{ venda.data_venda|date:"d/m/Y" }}</td>
+            <td>{{ venda.cliente.nome }}</td>
+            <td>{{ venda.produto.descricao }}</td>
+            <td>{{ venda.quantidade }}</td>
+            <td>R$ {{ venda.valor_total|floatformat:2 }}</td>
+            <td>
+              {% if venda.cliente.vendedor %}
+                {{ venda.cliente.vendedor.nome }}
+              {% else %}
+                <em>Sem vendedor</em>
+              {% endif %}
+            </td>
+            <td class="text-center">
+              <a href="{% url 'gestor:vendas_detail' venda.id %}" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-search"></i>
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center">Nenhuma venda encontrada.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="mt-3">
+      <ul class="pagination justify-content-center">
+        {% if vendas.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ vendas.previous_page_number }}&{{ request.GET.urlencode|safe }}" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+        {% for num in vendas.paginator.page_range %}
+        <li class="page-item {% if vendas.number == num %}active{% endif %}">
+          <a class="page-link" href="?page={{ num }}&{{ request.GET.urlencode|safe }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+        {% if vendas.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ vendas.next_page_number }}&{{ request.GET.urlencode|safe }}" aria-label="Próxima">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <div class="mt-3 text-end">
+      <strong>Total de Itens: </strong>{{ total_quantidade }}<br>
+      <strong>Total Geral: </strong>R$ {{ total_valor|floatformat:2 }}
+    </div>
+  </div>
+</div>
+{% endblock %}
