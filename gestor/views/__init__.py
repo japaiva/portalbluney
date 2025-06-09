@@ -3,7 +3,8 @@
 from .dashboard import home, dashboard
 from .cliente import (
     cliente_list, cliente_create, cliente_update, cliente_delete, 
-    cliente_detail, cliente_detail_by_codigo
+    cliente_detail, cliente_detail_by_codigo,
+    api_vendedor_por_codigo, api_cliente_por_codigo, api_consultar_receita  # ← APIs movidas do cliente.py
 )
 from .cliente_contato import (
     cliente_contato_create, cliente_contato_update, cliente_contato_delete
@@ -43,8 +44,11 @@ from .usuario import (
     usuario_update, usuario_delete
 )
 from .api import (
-    api_cliente_por_codigo, api_consultar_receita, vendedor_por_codigo,
-    cliente_por_codigo, consultar_receita, consultar_bi
+    vendedor_por_codigo, cliente_por_codigo, consultar_receita, consultar_bi
+)
+# ===== NOVO IMPORT PARA RELATÓRIOS =====
+from .relatorio_clientes import (
+    relatorio_clientes  # ← NOVA VIEW ADICIONADA
 )
 
 __all__ = [
@@ -94,7 +98,12 @@ __all__ = [
     'usuario_list', 'usuario_create', 'usuario_detail',
     'usuario_update', 'usuario_delete',
     
-    # APIs
-    'api_cliente_por_codigo', 'api_consultar_receita', 'vendedor_por_codigo',
-    'cliente_por_codigo', 'consultar_receita', 'consultar_bi',
+    # ===== RELATÓRIOS =====
+    'relatorio_clientes',  # ← NOVA VIEW ADICIONADA
+    
+    # APIs (Cliente)
+    'api_vendedor_por_codigo', 'api_cliente_por_codigo', 'api_consultar_receita',
+    
+    # APIs (Gerais)
+    'vendedor_por_codigo', 'cliente_por_codigo', 'consultar_receita', 'consultar_bi',
 ]

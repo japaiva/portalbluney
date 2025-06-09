@@ -91,6 +91,9 @@ urlpatterns = [
     path('api/cliente-por-codigo/<str:codigo>/', views.cliente_por_codigo, name='api_cliente_por_codigo'),
     path('api/vendedor-por-codigo/<str:codigo>/', views.vendedor_por_codigo, name='api_vendedor_por_codigo'),
     path('api/consultar-receita/<str:cpf_cnpj>/', views.consultar_receita, name='api_consultar_receita'),
+
+        # Relatórios
+    path('relatorio-clientes/', views.relatorio_clientes, name='relatorio_clientes'),
     
     # ===== BI E RELATÓRIOS =====
     path('clientes/<str:codigo>/bi/', views.api.consultar_bi, name='consultar_bi'),

@@ -1,0 +1,866 @@
+{% extends 'gestor/base_gestor.html' %}
+{% load static %}
+
+{% block title %}Relatório de Clientes | Portal Comercial{% endblock %}
+
+{% block extra_css %}
+<style>
+.table-relatorio {
+    font-size: 0.875rem;
+}
+
+.table-relatorio th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    padding: 8px 6px;
+}
+
+.table-relatorio td {
+    border: 1px solid #dee2e6;
+    padding: 6px;
+    vertical-align: middle;
+}
+
+.valor-mes {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+
+.total-cliente {
+    background-color: #f1f3f4;
+    font-weight: 600;
+}
+
+.total-geral {
+    background-color: #e3f2fd;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.cliente-nome {
+    font-weight: 500;
+}
+
+.badge-tipo {
+    font-size: 0.7rem;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #f8f9fa;
+}
+
+.form-filtros {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.scroll-horizontal {
+    overflow-x: auto;
+}
+
+.btn-exportar {
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border: none;
+    color: white;
+}
+
+.btn-exportar:hover {
+    background: linear-gradient(45deg, #218838, #1fa384);
+    color: white;
+}
+
+.stats-cards {
+    margin-bottom: 1rem;
+}
+
+.stats-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.stats-card h6 {
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.stats-card .stats-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: none;
+}
+
+.loading-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* ===== ESTILOS PARA SELECTS MÚLTIPLOS COM CHECKBOXES ===== */
+.dropdown-checkbox {
+    position: relative;
+}
+
+.dropdown-checkbox-button {
+    width: 100%;
+    text-align: left;
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-checkbox-button:hover {
+    border-color: #86b7fe;
+}
+
+.dropdown-checkbox-button:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.dropdown-checkbox-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.dropdown-checkbox-menu.show {
+    display: block;
+}
+
+.checkbox-item {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-item:hover {
+    background-color: #f8f9fa;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.checkbox-item label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.selected-count {
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 0.375rem;
+    padding: 0.125rem 0.375rem;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.dropdown-toggle-icon {
+    transition: transform 0.2s;
+}
+
+.dropdown-toggle-icon.rotated {
+    transform: rotate(180deg);
+}
+
+.clear-filters-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    color: #6c757d;
+    cursor: pointer;
+}
+
+.clear-filters-btn:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  
+  <div class="card shadow-sm mb-3">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h5 class="card-title mb-0">
+        <i class="fas fa-chart-line me-2 text-primary"></i>
+        Relatório de Clientes - Faturamento Mensal
+      </h5>
+      <div>
+        <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+          <i class="fas fa-arrow-left me-1"></i> Voltar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <form method="get" id="formFiltros" onsubmit="showLoading()">
+        
+        <div class="row g-3 mb-4"> {# Adicionado mb-4 para espaço maior #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label for="data_inicio" class="form-label small fw-bold">Data Início</label>
+            <input type="date" name="data_inicio" id="data_inicio" 
+                   class="form-control form-control-sm" 
+                   value="{{ filtros.data_inicio }}" required>
+          </div>
+          
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label for="data_fim" class="form-label small fw-bold">Data Fim</label>
+            <input type="date" name="data_fim" id="data_fim" 
+                   class="form-control form-control-sm" 
+                   value="{{ filtros.data_fim }}" required>
+          </div>
+          
+          {# MULTIPLE SELECT - LOJA #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label class="form-label small fw-bold">Loja</label>
+            <div class="dropdown-checkbox" data-name="loja">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todas</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('loja')">Limpar seleção</div>
+                {% for loja in lojas %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="loja-{{ loja.codigo }}" name="loja" value="{{ loja.codigo }}" 
+                           {% if loja.codigo in filtros.loja_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="loja-{{ loja.codigo }}">{{ loja.codigo }} - {{ loja.nome|truncatechars:20 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row g-3 mb-4"> {# Adicionado mb-4 para espaço maior #}
+          {# MULTIPLE SELECT - VENDEDOR #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label class="form-label small fw-bold">Vendedor</label>
+            <div class="dropdown-checkbox" data-name="vendedor">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('vendedor')">Limpar seleção</div>
+                {% for vendedor in vendedores %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="vendedor-{{ vendedor.codigo }}" name="vendedor" value="{{ vendedor.codigo }}" 
+                           {% if vendedor.codigo in filtros.vendedor_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="vendedor-{{ vendedor.codigo }}">{{ vendedor.codigo }} - {{ vendedor.nome|truncatechars:15 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          {# MULTIPLE SELECT - ESTADO #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label class="form-label small fw-bold">Estado</label>
+            <div class="dropdown-checkbox" data-name="estado">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('estado')">Limpar seleção</div>
+                {% for est in estados %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="estado-{{ est }}" name="estado" value="{{ est }}" 
+                           {% if est in filtros.estado_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="estado-{{ est }}">{{ est }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          {# MULTIPLE SELECT - GRUPO PRODUTO #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label class="form-label small fw-bold">Grupo Produto</label>
+            <div class="dropdown-checkbox" data-name="grupo">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('grupo')">Limpar seleção</div>
+                {% for grupo in grupos %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="grupo-{{ grupo.codigo }}" name="grupo" value="{{ grupo.codigo }}" 
+                           {% if grupo.codigo in filtros.grupo_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="grupo-{{ grupo.codigo }}">{{ grupo.codigo }} - {{ grupo.descricao|truncatechars:15 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row g-3 mb-4"> {# Adicionado mb-4 para espaço maior #}
+          {# MULTIPLE SELECT - FABRICANTE #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label class="form-label small fw-bold">Fabricante</label>
+            <div class="dropdown-checkbox" data-name="fabricante">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('fabricante')">Limpar seleção</div>
+                {% for fabricante in fabricantes %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="fabricante-{{ fabricante.codigo }}" name="fabricante" value="{{ fabricante.codigo }}" 
+                           {% if fabricante.codigo in filtros.fabricante_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="fabricante-{{ fabricante.codigo }}">{{ fabricante.codigo }} - {{ fabricante.descricao|truncatechars:15 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          {# MULTIPLE SELECT - PRODUTO #}
+          <div class="col-md-4"> {# Alterado para col-md-4 #}
+            <label class="form-label small fw-bold">Produto</label>
+            <div class="dropdown-checkbox" data-name="produto">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('produto')">Limpar seleção</div>
+                {% for produto in produtos %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="produto-{{ produto.codigo }}" name="produto" value="{{ produto.codigo }}" 
+                           {% if produto.codigo in filtros.produto_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="produto-{{ produto.codigo }}">{{ produto.codigo }} - {{ produto.descricao|truncatechars:20 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 d-flex align-items-end gap-2"> {# Alterado para col-md-4 #}
+            <div class="form-check form-switch flex-grow-1">
+              <input class="form-check-input" type="checkbox" name="incluir_coligados" 
+                     id="incluir_coligados" {% if filtros.incluir_coligados %}checked{% endif %}
+                     onchange="submitFilters()">
+              <label class="form-check-label small" for="incluir_coligados">
+                Incluir Coligados
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 d-flex justify-content-end gap-2">
+            {# Input hidden para a opção 'apenas_com_vendas' - sempre 'on' #}
+            <input type="hidden" name="apenas_com_vendas" value="on">
+
+            <button type="submit" name="gerar_relatorio" value="1" class="btn btn-primary btn-sm">
+              <i class="fas fa-search me-1"></i> Gerar Relatório
+            </button>
+            
+            {% if dados_relatorio %}
+            <button type="submit" name="exportar_excel" value="1" class="btn btn-exportar btn-sm" onclick="showLoadingForExport()">
+              <i class="fas fa-file-excel me-1"></i> Excel
+            </button>
+            {% endif %}
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  {% if dados_relatorio %}
+  <div class="card shadow-sm">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h6 class="card-title mb-0">
+        <i class="fas fa-table me-2"></i>
+        Resultado do Relatório - {{ total_clientes }} cliente{{ total_clientes|pluralize }}
+      </h6>
+      
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="toggleFullscreen()">
+          <i class="fas fa-expand" id="fullscreen-icon"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="card-body p-0">
+      <div class="scroll-horizontal" id="tableContainer">
+        <table class="table table-relatorio table-striped table-hover mb-0">
+          <thead class="sticky-header">
+            <tr>
+              <th rowspan="2" style="width: 80px;">Código</th>
+              <th rowspan="2" style="width: 200px;">Nome do Cliente</th>
+              <th rowspan="2" style="width: 120px;">CPF/CNPJ</th>
+              <th rowspan="2" style="width: 120px;">Cidade</th>
+              <th rowspan="2" style="width: 40px;">UF</th>
+              <th rowspan="2" style="width: 60px;">Loja</th>
+              <th rowspan="2" style="width: 150px;">Vendedor</th>
+              <th rowspan="2" style="width: 80px;">Status</th>
+              <th rowspan="2" style="width: 70px;">Tipo</th>
+              <th colspan="{{ meses_periodo|length }}" class="text-center">Faturamento por Mês</th>
+              <th rowspan="2" style="width: 100px;">TOTAL</th>
+            </tr>
+            <tr>
+              {% for mes in meses_periodo %}
+                <th style="width: 90px;">{{ mes.nome }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          
+          <tbody>
+            {% for cliente in dados_relatorio %}
+              <tr>
+                <td><code>{{ cliente.codigo }}</code></td>
+                <td class="cliente-nome">{{ cliente.nome|truncatechars:25 }}</td>
+                <td>
+                  {% if cliente.cpf_cnpj != '-' %}
+                    <span class="badge bg-light text-dark">{{ cliente.cpf_cnpj }}</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td>{{ cliente.cidade|truncatechars:15 }}</td>
+                <td class="text-center">
+                  {% if cliente.estado != '-' %}
+                    <span class="badge bg-info">{{ cliente.estado }}</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if cliente.loja_codigo != '-' %}
+                    <span class="badge bg-secondary">{{ cliente.loja_codigo }}</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if cliente.vendedor_codigo != '-' %}
+                    <small>{{ cliente.vendedor_codigo }} - {{ cliente.vendedor_nome|truncatechars:12 }}</small>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if cliente.status == 'Ativo' %}
+                    <span class="badge bg-success">{{ cliente.status }}</span>
+                  {% elif cliente.status == 'Inativo' %}
+                    <span class="badge bg-danger">{{ cliente.status }}</span>
+                  {% else %}
+                    <span class="badge bg-secondary">{{ cliente.status }}</span>
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if cliente.tipo == 'Principal' %}
+                    <span class="badge badge-tipo bg-primary">{{ cliente.tipo }}</span>
+                  {% else %}
+                    <span class="badge badge-tipo bg-secondary">{{ cliente.tipo }}</span>
+                  {% endif %}
+                </td>
+                
+                {% for mes in meses_periodo %}
+                  <td class="valor-mes" data-cliente-codigo="{{ cliente.codigo }}" data-mes-ano="{{ mes.ano_mes }}">
+                    <span class="text-muted">-</span> {# Placeholder, will be filled by JS #}
+                  </td>
+                {% endfor %}
+                
+                <td class="valor-mes total-cliente">
+                  {% if cliente.total > 0 %}
+                    R$ {{ cliente.total|floatformat:2 }}
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            
+            <tr class="total-geral">
+              <td colspan="9" class="text-end fw-bold">TOTAL GERAL:</td>
+              
+              {% for mes in meses_periodo %}
+                <td class="valor-mes" id="total-mes-{{ mes.ano_mes }}">
+                  <span class="fw-bold">R$ 0,00</span> {# Placeholder, will be filled by JS #}
+                </td>
+              {% endfor %}
+              
+              <td class="valor-mes">
+                <strong>R$ {{ total_geral|floatformat:2 }}</strong>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="card-footer bg-light">
+      <div class="row">
+        <div class="col-md-8">
+          <small class="text-muted">
+            <i class="fas fa-info-circle me-1"></i>
+            Período: {{ filtros.data_inicio }} a {{ filtros.data_fim }} | 
+            Gerado em: {% now "d/m/Y H:i" %}
+            {% if filtros.loja %} | Loja: {{ filtros.loja }}{% endif %}
+            {% if filtros.vendedor %} | Vendedor: {{ filtros.vendedor }}{% endif %}
+            {% if filtros.estado %} | Estado: {{ filtros.estado }}{% endif %}
+          </small>
+        </div>
+        <div class="col-md-4 text-end">
+          <small class="text-muted">
+            <i class="fas fa-users me-1"></i>{{ total_clientes }} cliente{{ total_clientes|pluralize }} | 
+            <i class="fas fa-calendar me-1"></i>{{ meses_periodo|length }} meses
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% elif request.GET.gerar_relatorio %}
+  <div class="card shadow-sm">
+    <div class="card-body text-center py-5">
+      <i class="fas fa-search fa-3x text-muted mb-3"></i>
+      <h5 class="text-muted">Nenhum resultado encontrado</h5>
+      <p class="text-muted">
+        Tente ajustar os filtros ou verificar se existem dados para o período selecionado.
+      </p>
+      <button type="button" class="btn btn-outline-primary" onclick="limparFiltros()">
+        <i class="fas fa-eraser me-1"></i> Limpar Filtros
+      </button>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-content">
+    <div class="spinner-border text-primary mb-3" role="status">
+      <span class="visually-hidden">Carregando...</span>
+    </div>
+    <h6>Gerando relatório e exportando para Excel...</h6>
+    <p class="text-muted">Por favor, aguarde.</p>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // JSON data from Django context
+  const dadosRelatorio = {{ dados_relatorio_json|safe }};
+  const mesesPeriodo = {{ meses_periodo_json|safe }};
+  // Note: Filtros iniciais de lista são passados como JSON, então já são arrays.
+  // Não precisamos de .split(',') aqui.
+  const filtrosIniciais = {
+    loja: {{ filtros.loja_list|safe }},
+    vendedor: {{ filtros.vendedor_list|safe }},
+    estado: {{ filtros.estado_list|safe }},
+    grupo: {{ filtros.grupo_list|safe }},
+    fabricante: {{ filtros.fabricante_list|safe }},
+    produto: {{ filtros.produto_list|safe }}
+  };
+
+  // ===== INICIALIZAR DROPDOWNS COM CHECKBOXES =====
+  initializeDropdowns(filtrosIniciais);
+  
+  // ===== PREENCHER VALORES DOS MESES VIA JAVASCRIPT =====
+  // Preencher valores nas células
+  if (dadosRelatorio && dadosRelatorio.length > 0) {
+    dadosRelatorio.forEach(function(cliente) {
+      mesesPeriodo.forEach(function(mes) {
+        const valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
+        // Use data attributes for precise selection
+        const celula = document.querySelector(`td[data-cliente-codigo="${cliente.codigo}"][data-mes-ano="${mes.ano_mes}"]`);
+        
+        if (celula) {
+          if (valor > 0) {
+            celula.innerHTML = `R$ ${valor.toFixed(2).replace('.', ',')}`;
+          } else {
+            celula.innerHTML = '<span class="text-muted">-</span>';
+          }
+        }
+      });
+    });
+    
+    // Calcular e preencher totais por mês
+    mesesPeriodo.forEach(function(mes) {
+      let totalMes = 0;
+      dadosRelatorio.forEach(function(cliente) {
+        const valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
+        totalMes += valor;
+      });
+      
+      const celulaTotalMes = document.getElementById(`total-mes-${mes.ano_mes}`);
+      if (celulaTotalMes) {
+        if (totalMes > 0) {
+          celulaTotalMes.innerHTML = `<span class="fw-bold">R$ ${totalMes.toFixed(2).replace('.', ',')}</span>`;
+        } else {
+          celulaTotalMes.innerHTML = '<span class="text-muted fw-bold">-</span>';
+        }
+      }
+    });
+  }
+  
+  // ===== VALIDAÇÃO DE DATAS =====
+  const dataInicio = document.getElementById('data_inicio');
+  const dataFim = document.getElementById('data_fim');
+  
+  dataInicio.addEventListener('change', function() {
+    if (dataFim.value && this.value > dataFim.value) {
+      alert('Data de início não pode ser maior que data de fim');
+      this.value = '';
+      this.focus();
+    }
+  });
+  
+  dataFim.addEventListener('change', function() {
+    if (dataInicio.value && this.value < dataInicio.value) {
+      alert('Data de fim não pode ser menor que data de início');
+      this.value = '';
+      this.focus();
+    }
+  });
+  
+  // ===== FECHAR DROPDOWNS AO CLICAR FORA =====
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown-checkbox')) {
+      document.querySelectorAll('.dropdown-checkbox-menu.show').forEach(menu => {
+        menu.classList.remove('show');
+        const icon = menu.parentElement.querySelector('.dropdown-toggle-icon');
+        if (icon) icon.classList.remove('rotated');
+      });
+    }
+  });
+  
+});
+
+// ===== FUNÇÕES PARA DROPDOWNS COM CHECKBOXES =====
+
+function initializeDropdowns(filtrosIniciais) {
+  document.querySelectorAll('.dropdown-checkbox').forEach(dropdown => {
+    const filterName = dropdown.dataset.name;
+    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+    
+    // Mark checkboxes based on initial filters
+    checkboxes.forEach(checkbox => {
+      if (filtrosIniciais[filterName] && filtrosIniciais[filterName].includes(checkbox.value)) {
+        checkbox.checked = true;
+      }
+    });
+    
+    // Initial text update
+    updateSelectedText(dropdown);
+  });
+}
+
+function toggleDropdown(button) {
+  const dropdown = button.parentElement;
+  const menu = dropdown.querySelector('.dropdown-checkbox-menu');
+  const icon = button.querySelector('.dropdown-toggle-icon');
+  
+  // Close other dropdowns
+  document.querySelectorAll('.dropdown-checkbox-menu.show').forEach(otherMenu => {
+    if (otherMenu !== menu) {
+      otherMenu.classList.remove('show');
+      const otherIcon = otherMenu.parentElement.querySelector('.dropdown-toggle-icon');
+      if (otherIcon) otherIcon.classList.remove('rotated');
+    }
+  });
+  
+  // Toggle current dropdown
+  menu.classList.toggle('show');
+  icon.classList.toggle('rotated');
+}
+
+function updateSelectedText(dropdownOrCheckbox) {
+  const dropdown = dropdownOrCheckbox.closest ? dropdownOrCheckbox.closest('.dropdown-checkbox') : dropdownOrCheckbox;
+  const filterName = dropdown.dataset.name;
+  const selectedText = dropdown.querySelector('.selected-text');
+  const checkedBoxes = dropdown.querySelectorAll('input[type="checkbox"]:checked');
+  
+  if (checkedBoxes.length === 0) {
+    selectedText.innerHTML = getDefaultText(filterName);
+  } else if (checkedBoxes.length === 1) {
+    const label = checkedBoxes[0].nextElementSibling.textContent.trim();
+    selectedText.innerHTML = label.length > 15 ? label.substring(0, 15) + '...' : label;
+  } else {
+    selectedText.innerHTML = `${checkedBoxes.length} selecionado${checkedBoxes.length > 1 ? 's' : ''} <span class="selected-count">${checkedBoxes.length}</span>`;
+  }
+}
+
+function clearFilter(filterName) {
+  const dropdown = document.querySelector(`.dropdown-checkbox[data-name="${filterName}"]`);
+  const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+  
+  checkboxes.forEach(checkbox => {
+    checkbox.checked = false;
+  });
+  
+  updateSelectedText(dropdown); // Update text after clearing
+  
+  // Close dropdown
+  const menu = dropdown.querySelector('.dropdown-checkbox-menu');
+  const icon = dropdown.querySelector('.dropdown-toggle-icon');
+  menu.classList.remove('show');
+  icon.classList.remove('rotated');
+  
+  submitFilters(); // Auto-submit after clearing
+}
+
+function getDefaultText(filterName) {
+  const defaults = {
+    'loja': 'Todas',
+    'vendedor': 'Todos',
+    'estado': 'Todos',
+    'grupo': 'Todos',
+    'fabricante': 'Todos',
+    'produto': 'Todos'
+  };
+  return defaults[filterName] || 'Todos';
+}
+
+// ===== FUNCTION TO SUBMIT FILTERS (with delay for multiple selections) =====
+let submitTimer;
+function submitFilters() {
+  clearTimeout(submitTimer);
+  // Apenas submete se o relatório já foi gerado ou se o botão de gerar relatório está presente (primeiro submit)
+  if ({{ dados_relatorio_json|safe }}.length > 0 || document.querySelector('button[name="gerar_relatorio"]')) {
+    submitTimer = setTimeout(() => {
+      document.getElementById('formFiltros').submit();
+    }, 300); // Pequeno atraso para permitir múltiplos cliques em checkboxes
+  }
+}
+
+// ===== FUNÇÃO PARA MOSTRAR LOADING =====
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'block';
+}
+
+// ===== FUNÇÃO PARA MOSTRAR LOADING APENAS PARA EXPORTAÇÃO =====
+function showLoadingForExport() {
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const loadingContent = loadingOverlay.querySelector('h6');
+  loadingContent.textContent = "Gerando e baixando arquivo Excel...";
+  loadingOverlay.style.display = 'block';
+
+  // Usar um timer para ocultar o overlay após um período.
+  // Ajuste o tempo conforme necessário para garantir que o download inicie.
+  setTimeout(() => {
+    hideLoading();
+  }, 3000); // Oculta o popup após 3 segundos
+}
+
+// ===== FUNÇÃO PARA OCULTAR LOADING =====
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+// ===== FUNÇÃO PARA LIMPAR FILTROS =====
+function limparFiltros() {
+  const form = document.getElementById('formFiltros');
+  
+  // Limpar todos os filtros de dropdown personalizados
+  form.querySelectorAll('.dropdown-checkbox').forEach(dropdown => {
+    const filterName = dropdown.dataset.name;
+    clearFilter(filterName); 
+  });
+
+  // Limpar checkboxes padrão (se houver, exceto o 'apenas_com_vendas' que é hidden e sempre 'on')
+  document.getElementById('incluir_coligados').checked = false;
+  
+  // Garantir que 'gerar_relatorio' seja definido para 1 para acionar a geração de relatório
+  let generateReportInput = form.querySelector('button[name="gerar_relatorio"]');
+  if (!generateReportInput) { // Se não encontrar o botão, crie um input hidden para simular o clique
+    generateReportInput = document.createElement('input');
+    generateReportInput.type = 'hidden';
+    generateReportInput.name = 'gerar_relatorio';
+    form.appendChild(generateReportInput);
+  }
+  generateReportInput.value = '1'; // Aciona a geração do relatório
+
+  form.submit();
+}
+
+// ===== FUNÇÃO PARA TELA CHEIA =====
+function toggleFullscreen() {
+  const container = document.getElementById('tableContainer');
+  const icon = document.getElementById('fullscreen-icon');
+  
+  if (container.style.height === '80vh') {
+    // Sair do fullscreen
+    container.style.height = 'auto';
+    container.style.maxHeight = 'none';
+    icon.className = 'fas fa-expand';
+  } else {
+    // Entrar em fullscreen
+    container.style.height = '80vh';
+    container.style.maxHeight = '80vh';
+    icon.className = 'fas fa-compress';
+  }
+}
+
+console.log('🚀 Relatório de Clientes JavaScript carregado com sucesso!');
+</script>
+{% endblock %}
