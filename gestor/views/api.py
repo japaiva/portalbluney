@@ -1,4 +1,4 @@
-# gestor/views/api.py
+# gestor/views/api.py - VERSÃO CORRIGIDA
 
 import logging
 from datetime import timedelta, datetime
@@ -231,16 +231,12 @@ def consultar_receita(request, cpf_cnpj):
             'message': f'Erro ao consultar dados: {str(e)}'
         })
 
-
-
-# gestor/views/cliente_bi.py
-
-
+# ===== VIEW DE CONSULTA BI - CORRIGIDA =====
 
 @login_required
 def consultar_bi(request, codigo):
     """
-    View para consultar dados de BI (vendas) do cliente
+    View para consultar dados de BI (vendas) do cliente - CORRIGIDA
     """
     cliente = get_object_or_404(Cliente, codigo=codigo)
     
@@ -284,14 +280,16 @@ def consultar_bi(request, codigo):
         if sub_clientes:
             codigos_clientes.extend([c.codigo for c in sub_clientes])
     
-    # Buscar vendas no período
+    # Buscar vendas no período - *** CORRIGIDO: REMOVIDO 'vendedor' ***
     try:
         vendas = Vendas.objects.filter(
             cliente__codigo__in=codigos_clientes,
             data_venda__gte=data_inicio,
             data_venda__lte=data_fim
         ).select_related(
-            'produto', 'loja', 'vendedor', 'grupo_produto', 'fabricante', 'cliente'
+            'produto', 'loja', 'grupo_produto', 'fabricante', 'cliente'
+            # ❌ REMOVIDO: 'vendedor' - não existe mais no modelo!
+            # ✅ vendedor_nf é CharField, não precisa de select_related
         ).order_by('-data_venda')
         
         # Calcular totais
@@ -320,14 +318,15 @@ def consultar_bi(request, codigo):
     if format_response == 'json':
         vendas_data = []
         for venda in vendas_limitadas:
+            # *** CORRIGIDO: USAR vendedor_nf e vendedor_nf_nome ***
             vendas_data.append({
                 'data_venda': venda.data_venda.strftime('%Y-%m-%d'),
                 'produto_codigo': venda.produto.codigo,
                 'produto_descricao': venda.produto.descricao,
                 'loja_codigo': venda.loja.codigo,
                 'loja_nome': venda.loja.nome,
-                'vendedor_codigo': venda.vendedor.codigo,
-                'vendedor_nome': venda.vendedor.nome,
+                'vendedor_codigo': venda.vendedor_nf or '',  # ← CORRIGIDO
+                'vendedor_nome': venda.vendedor_nf_nome or '',  # ← CORRIGIDO: usar property
                 'quantidade': float(venda.quantidade),
                 'valor_total': float(venda.valor_total),
                 'numero_nf': venda.numero_nf or '',
@@ -382,13 +381,22 @@ def consultar_bi(request, codigo):
         'total_registros': vendas.count(),
         'registros_limitados': vendas.count() > 1000,
         
-        # Para os gráficos JavaScript
+        # Para os gráficos JavaScript - *** CORRIGIDO ***
         'vendas_json': list(vendas_limitadas.values(
-            'data_venda', 'produto__descricao', 'valor_total'
+            'data_venda', 'produto__descricao', 'valor_total', 'vendedor_nf'  # ← CORRIGIDO
         )),
+        
+        # *** INFO ADICIONAL PARA DEBUG ***
+        'debug_info': {
+            'codigos_clientes': codigos_clientes,
+            'total_vendas_query': vendas.count(),
+            'vendas_limitadas': len(vendas_limitadas),
+        }
     }
     
     return render(request, 'gestor/cliente_bi.html', context)
+
+# ===== UTILITÁRIOS =====
 
 def processar_cnaes_receita(cliente, dados_receita):
     """

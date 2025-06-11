@@ -6036,3 +6036,142 @@ django.template.exceptions.TemplateSyntaxError: Could not parse some characters:
 [INFO] 2025-06-08 23:40:01,487 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-06-08&loja=970&apenas_com_vendas=on&exportar_excel=1 HTTP/1.1" 200 43453
 [INFO] 2025-06-08 23:42:46,274 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-06-08&loja=970&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 1352774
 [INFO] 2025-06-08 23:42:49,724 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-06-08&loja=970&apenas_com_vendas=on&exportar_excel=1 HTTP/1.1" 200 43450
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-11 16:10:11,270 Watching for file changes with StatReloader
+[INFO] 2025-06-11 16:10:41,538 "GET / HTTP/1.1" 200 5782
+[INFO] 2025-06-11 16:10:41,598 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[WARNING] 2025-06-11 16:10:41,957 Not Found: /favicon.ico
+[WARNING] 2025-06-11 16:10:41,958 "GET /favicon.ico HTTP/1.1" 404 3484
+[INFO] 2025-06-11 16:10:44,058 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-06-11 16:10:44,135 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-06-11 16:10:55,109 "POST /login/?next=/gestor/ HTTP/1.1" 200 5328
+[INFO] 2025-06-11 16:11:00,459 "POST /login/?next=/gestor/ HTTP/1.1" 200 5328
+[INFO] 2025-06-11 16:11:06,793 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-06-11 16:11:06,946 "GET /gestor/ HTTP/1.1" 200 7201
+[INFO] 2025-06-11 16:11:08,506 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-06-11 16:11:13,107 "GET /gestor/vendas/ HTTP/1.1" 200 59300
+[INFO] 2025-06-11 16:11:15,534 "GET /gestor/clientes/ HTTP/1.1" 200 42286
+[INFO] 2025-06-11 16:11:19,730 "GET /gestor/clientes/374/ HTTP/1.1" 200 17233
+[INFO] 2025-06-11 16:11:23,179 "GET /gestor/clientes/ HTTP/1.1" 200 42286
+[INFO] 2025-06-11 16:11:34,766 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=cidade HTTP/1.1" 200 23374
+[INFO] 2025-06-11 16:11:38,998 "GET /gestor/clientes/386/ HTTP/1.1" 200 17017
+[INFO] 2025-06-11 16:11:42,710 "GET /gestor/clientes/ HTTP/1.1" 200 42286
+[INFO] 2025-06-11 16:11:49,274 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=foto+cidade HTTP/1.1" 200 12555
+[INFO] 2025-06-11 16:11:53,552 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=cidade HTTP/1.1" 200 23374
+[INFO] 2025-06-11 16:12:01,438 "GET /gestor/clientes/438/ HTTP/1.1" 200 16906
+[INFO] 2025-06-11 16:12:03,914 "GET /gestor/clientes/ HTTP/1.1" 200 42286
+[INFO] 2025-06-11 16:12:08,175 "GET /gestor/clientes/763/ HTTP/1.1" 200 18221
+[ERROR] 2025-06-11 16:12:10,748 Internal Server Error: /gestor/clientes/96622/bi/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py", line 391, in consultar_bi
+    return render(request, 'gestor/cliente_bi.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 326, in render
+    if match:
+       ^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 414, in __bool__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1561, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 747, in as_sql
+    extra_select, order_by, group_by = self.pre_sql_setup(
+                                       ~~~~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases or bool(combinator),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 84, in pre_sql_setup
+    self.setup_query(with_col_aliases=with_col_aliases)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 73, in setup_query
+    self.select, self.klass_info, self.annotation_col_map = self.get_select(
+                                                            ~~~~~~~~~~~~~~~^
+        with_col_aliases=with_col_aliases,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 279, in get_select
+    related_klass_infos = self.get_related_selections(select, select_mask)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1379, in get_related_selections
+    raise FieldError(
+    ...<6 lines>...
+    )
+django.core.exceptions.FieldError: Invalid field name(s) given in select_related: 'vendedor'. Choices are: loja, produto, cliente, grupo_produto, fabricante
+[ERROR] 2025-06-11 16:12:10,757 "GET /gestor/clientes/96622/bi/ HTTP/1.1" 500 243380
+[INFO] 2025-06-11 16:17:22,562 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-06-11 16:17:23,220 Watching for file changes with StatReloader
+[INFO] 2025-06-11 16:17:31,840 "GET /gestor/clientes/96622/bi/ HTTP/1.1" 200 21728
+[WARNING] 2025-06-11 16:17:31,884 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[WARNING] 2025-06-11 16:17:31,884 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[INFO] 2025-06-11 16:17:45,263 "GET /gestor/clientes/96622/bi/?periodo=180&data_inicio=2025-03-13&data_fim=2025-06-11 HTTP/1.1" 200 24706
+[WARNING] 2025-06-11 16:17:45,301 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 1901
+[WARNING] 2025-06-11 16:17:45,305 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 1898
+[INFO] 2025-06-11 16:17:52,806 "GET /gestor/clientes/763/ HTTP/1.1" 200 18221
