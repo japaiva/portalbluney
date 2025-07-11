@@ -5,39 +5,39 @@
 
 {% block extra_css %}
 <style>
-/* Estilos para o sistema de busca de produtos */
-.produto-search-container {
+/* ===== ESTILOS SIMPLIFICADOS PARA BUSCA DE PRODUTOS ===== */
+.produto-search-wrapper {
     position: relative;
-    width: 100%;
 }
 
-.produto-search-dropdown {
+.produto-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
     background: white;
     border: 1px solid #dee2e6;
-    border-radius: 0.375rem;
-    max-height: 300px;
+    border-radius: 4px;
+    max-height: 250px;
     overflow-y: auto;
     z-index: 1000;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 2px;
     display: none;
 }
 
-.produto-search-item {
-    padding: 0.75rem;
+.produto-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
     cursor: pointer;
-    border-bottom: 1px solid #f8f9fa;
-    transition: background-color 0.15s ease-in-out;
+    transition: background-color 0.2s;
 }
 
-.produto-search-item:hover {
+.produto-item:hover {
     background-color: #f8f9fa;
 }
 
-.produto-search-item:last-child {
+.produto-item:last-child {
     border-bottom: none;
 }
 
@@ -46,14 +46,13 @@
     align-items: center;
     background: linear-gradient(135deg, #0d6efd, #0b5ed7);
     color: white;
-    padding: 0.375rem 0.75rem;
-    border-radius: 1rem;
+    padding: 4px 8px;
+    border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 500;
-    margin: 0.125rem;
+    margin: 2px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    max-width: 280px;
+    transition: all 0.2s ease;
 }
 
 .produto-tag:hover {
@@ -62,93 +61,43 @@
 }
 
 .produto-tag-remove {
-    margin-left: 0.5rem;
+    margin-left: 4px;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .produto-tag-remove:hover {
     background: rgba(255, 255, 255, 0.5);
 }
 
-.produtos-selecionados {
-    min-height: 50px;
-    background-color: #f8f9fa;
+.produtos-tags-area {
+    min-height: 40px;
+    background: #f8f9fa;
     border: 1px solid #e9ecef;
-    border-radius: 0.375rem;
-    padding: 0.75rem;
-    margin-top: 0.75rem;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 8px;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.25rem;
+    gap: 4px;
     align-items: center;
 }
 
-.produtos-selecionados.empty {
-    justify-content: center;
-}
-
-.empty-state {
-    color: #6c757d;
-    font-style: italic;
+.produtos-tags-area .empty-message {
+    width: 100%;
     text-align: center;
-}
-
-/* Estilos específicos para o relatório */
-.table-relatorio {
+    padding: 8px;
     font-size: 0.875rem;
 }
 
-.table-relatorio th {
-    background-color: #f8f9fa;
-    font-weight: 600;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #dee2e6;
-    padding: 8px 6px;
-}
-
-.table-relatorio td {
-    border: 1px solid #dee2e6;
-    padding: 6px;
-    vertical-align: middle;
-}
-
-.valor-mes {
-    text-align: right;
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-}
-
-.total-cliente {
-    background-color: #f1f3f4;
-    font-weight: 600;
-}
-
-.total-geral {
-    background-color: #e3f2fd;
-    font-weight: bold;
-    color: #1976d2;
-}
-
-.sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background-color: #f8f9fa;
-}
-
-.scroll-horizontal {
-    overflow-x: auto;
-}
-
-/* ===== ESTILOS PARA SELECTS MÚLTIPLOS COM CHECKBOXES ===== */
+/* ===== ESTILOS PARA DROPDOWNS COM CHECKBOXES ===== */
 .dropdown-checkbox {
     position: relative;
 }
@@ -204,6 +153,54 @@
     text-align: center;
     color: #6c757d;
     cursor: pointer;
+}
+
+/* ===== ESTILOS PARA TABELA DE RELATÓRIO ===== */
+.table-relatorio {
+    font-size: 0.875rem;
+}
+
+.table-relatorio th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    padding: 8px 6px;
+}
+
+.table-relatorio td {
+    border: 1px solid #dee2e6;
+    padding: 6px;
+    vertical-align: middle;
+}
+
+.valor-mes {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+
+.total-cliente {
+    background-color: #f1f3f4;
+    font-weight: 600;
+}
+
+.total-geral {
+    background-color: #e3f2fd;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #f8f9fa;
+}
+
+.scroll-horizontal {
+    overflow-x: auto;
 }
 
 .loading-overlay {
@@ -266,7 +263,6 @@
                    value="{{ filtros.data_fim }}" required>
           </div>
           
-          {# MULTIPLE SELECT - LOJA #}
           <div class="col-md-4">
             <label class="form-label small fw-bold">Loja</label>
             <div class="dropdown-checkbox" data-name="loja">
@@ -290,7 +286,6 @@
         </div>
         
         <div class="row g-3 mb-4">
-          {# MULTIPLE SELECT - VENDEDOR #}
           <div class="col-md-4">
             <label class="form-label small fw-bold">Vendedor</label>
             <div class="dropdown-checkbox" data-name="vendedor">
@@ -312,7 +307,6 @@
             </div>
           </div>
           
-          {# MULTIPLE SELECT - ESTADO #}
           <div class="col-md-4">
             <label class="form-label small fw-bold">Estado</label>
             <div class="dropdown-checkbox" data-name="estado">
@@ -334,7 +328,6 @@
             </div>
           </div>
 
-          {# MULTIPLE SELECT - GRUPO PRODUTO #}
           <div class="col-md-4">
             <label class="form-label small fw-bold">Grupo Produto</label>
             <div class="dropdown-checkbox" data-name="grupo">
@@ -358,7 +351,6 @@
         </div>
         
         <div class="row g-3 mb-4">
-          {# MULTIPLE SELECT - FABRICANTE #}
           <div class="col-md-4">
             <label class="form-label small fw-bold">Fabricante</label>
             <div class="dropdown-checkbox" data-name="fabricante">
@@ -380,14 +372,12 @@
             </div>
           </div>
           
-          {# ====== NOVO: BUSCA DE PRODUTOS COM TAGS ====== #}
           <div class="col-md-4">
             <label class="form-label small fw-bold">
               <i class="fas fa-boxes me-1"></i>
               Produto
             </label>
             <div id="produto-search-container" data-name="produto">
-              <!-- O JavaScript substituirá este conteúdo pela interface de busca -->
               <div class="text-center p-3 text-muted">
                 <i class="fas fa-spinner fa-spin me-2"></i>
                 Carregando sistema de busca...
@@ -409,7 +399,6 @@
 
         <div class="row g-3">
           <div class="col-12 d-flex justify-content-end gap-2">
-            {# Input hidden para a opção 'apenas_com_vendas' - sempre 'on' #}
             <input type="hidden" name="apenas_com_vendas" value="on">
 
             <button type="submit" name="gerar_relatorio" value="1" class="btn btn-primary btn-sm">
@@ -608,62 +597,37 @@ console.log('🚀 Inicializando relatório de clientes...');
 document.addEventListener('DOMContentLoaded', function() {
   
   // ===== INICIALIZAR SISTEMA DE BUSCA DE PRODUTOS =====
-  console.log('🔍 Verificando disponibilidade do ProdutoSearchTags...');
-  
   if (typeof window.ProdutoSearchTags !== 'undefined') {
     console.log('✅ ProdutoSearchTags encontrado! Inicializando...');
     
     try {
-      const produtoSearch = new ProdutoSearchTags('produto-search-container', {
-        placeholder: '🔍 Digite para buscar produtos (código ou nome)...',
+      var produtoSearch = new ProdutoSearchTags('produto-search-container', {
+        placeholder: '🔍 Digite para buscar produtos...',
         apiUrl: '{% url "gestor:api_buscar_produtos" %}',
-        emptyMessage: 'Nenhum produto selecionado. Digite acima para buscar.',
-        noResultsMessage: 'Nenhum produto encontrado',
-        loadingMessage: 'Buscando produtos...',
         minChars: 2,
         debounceTime: 300,
-        maxResults: 10
+        maxResults: 10,
+        autoSubmit: false
       });
       
-      console.log('✅ Sistema de busca de produtos inicializado com sucesso!');
-      
-      // Event listeners para eventos do produto search
-      document.getElementById('produto-search-container').addEventListener('produto-selecionado', function(e) {
-        console.log('📦 Produto selecionado:', e.detail);
-        // Você pode adicionar lógica adicional aqui se necessário
-      });
-      
-      document.getElementById('produto-search-container').addEventListener('produto-removido', function(e) {
-        console.log('❌ Produto removido:', e.detail);
-        // Você pode adicionar lógica adicional aqui se necessário
-      });
+      console.log('✅ Sistema de busca inicializado!');
       
     } catch (error) {
-      console.error('❌ Erro ao inicializar ProdutoSearchTags:', error);
-      document.getElementById('produto-search-container').innerHTML = `
-        <div class="alert alert-danger">
-          <i class="fas fa-exclamation-triangle"></i>
-          Erro ao inicializar sistema de busca: ${error.message}
-        </div>
-      `;
+      console.error('❌ Erro ao inicializar busca:', error);
+      document.getElementById('produto-search-container').innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> Erro: ' + error.message + '</div>';
     }
     
   } else {
     console.error('❌ ProdutoSearchTags não encontrado!');
-    document.getElementById('produto-search-container').innerHTML = `
-      <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i>
-        Sistema de busca não disponível. Verifique se o arquivo produto-search-tags.js foi carregado.
-      </div>
-    `;
+    document.getElementById('produto-search-container').innerHTML = '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Sistema de busca não disponível.</div>';
   }
   
   // ===== RESTO DO CÓDIGO EXISTENTE =====
   
   // JSON data from Django context
-  const dadosRelatorio = {{ dados_relatorio_json|safe }};
-  const mesesPeriodo = {{ meses_periodo_json|safe }};
-  const filtrosIniciais = {
+  var dadosRelatorio = {{ dados_relatorio_json|safe }};
+  var mesesPeriodo = {{ meses_periodo_json|safe }};
+  var filtrosIniciais = {
     loja: {{ filtros.loja_list|safe }},
     vendedor: {{ filtros.vendedor_list|safe }},
     estado: {{ filtros.estado_list|safe }},
@@ -677,43 +641,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
   // ===== PREENCHER VALORES DOS MESES VIA JAVASCRIPT =====
   if (dadosRelatorio && dadosRelatorio.length > 0) {
-    dadosRelatorio.forEach(function(cliente) {
-      mesesPeriodo.forEach(function(mes) {
-        const valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
-        const celula = document.querySelector(`td[data-cliente-codigo="${cliente.codigo}"][data-mes-ano="${mes.ano_mes}"]`);
+    for (var i = 0; i < dadosRelatorio.length; i++) {
+      var cliente = dadosRelatorio[i];
+      for (var j = 0; j < mesesPeriodo.length; j++) {
+        var mes = mesesPeriodo[j];
+        var valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
+        var celula = document.querySelector('td[data-cliente-codigo="' + cliente.codigo + '"][data-mes-ano="' + mes.ano_mes + '"]');
         
         if (celula) {
           if (valor > 0) {
-            celula.innerHTML = `R$ ${valor.toFixed(2).replace('.', ',')}`;
+            celula.innerHTML = 'R$ ' + valor.toFixed(2).replace('.', ',');
           } else {
             celula.innerHTML = '<span class="text-muted">-</span>';
           }
         }
-      });
-    });
+      }
+    }
     
     // Calcular e preencher totais por mês
-    mesesPeriodo.forEach(function(mes) {
-      let totalMes = 0;
-      dadosRelatorio.forEach(function(cliente) {
-        const valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
+    for (var k = 0; k < mesesPeriodo.length; k++) {
+      var mes = mesesPeriodo[k];
+      var totalMes = 0;
+      for (var l = 0; l < dadosRelatorio.length; l++) {
+        var cliente = dadosRelatorio[l];
+        var valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
         totalMes += valor;
-      });
+      }
       
-      const celulaTotalMes = document.getElementById(`total-mes-${mes.ano_mes}`);
+      var celulaTotalMes = document.getElementById('total-mes-' + mes.ano_mes);
       if (celulaTotalMes) {
         if (totalMes > 0) {
-          celulaTotalMes.innerHTML = `<span class="fw-bold">R$ ${totalMes.toFixed(2).replace('.', ',')}</span>`;
+          celulaTotalMes.innerHTML = '<span class="fw-bold">R$ ' + totalMes.toFixed(2).replace('.', ',') + '</span>';
         } else {
           celulaTotalMes.innerHTML = '<span class="text-muted fw-bold">-</span>';
         }
       }
-    });
+    }
   }
   
   // ===== VALIDAÇÃO DE DATAS =====
-  const dataInicio = document.getElementById('data_inicio');
-  const dataFim = document.getElementById('data_fim');
+  var dataInicio = document.getElementById('data_inicio');
+  var dataFim = document.getElementById('data_fim');
   
   dataInicio.addEventListener('change', function() {
     if (dataFim.value && this.value > dataFim.value) {
@@ -734,11 +702,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // ===== FECHAR DROPDOWNS AO CLICAR FORA =====
   document.addEventListener('click', function(e) {
     if (!e.target.closest('.dropdown-checkbox')) {
-      document.querySelectorAll('.dropdown-checkbox-menu.show').forEach(menu => {
+      var menus = document.querySelectorAll('.dropdown-checkbox-menu.show');
+      for (var m = 0; m < menus.length; m++) {
+        var menu = menus[m];
         menu.classList.remove('show');
-        const icon = menu.parentElement.querySelector('.dropdown-toggle-icon');
+        var icon = menu.parentElement.querySelector('.dropdown-toggle-icon');
         if (icon) icon.classList.remove('rotated');
-      });
+      }
     }
   });
   
@@ -746,39 +716,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== FUNÇÕES PARA DROPDOWNS COM CHECKBOXES =====
 function initializeDropdowns(filtrosIniciais) {
-  document.querySelectorAll('.dropdown-checkbox').forEach(dropdown => {
-    const filterName = dropdown.dataset.name;
+  var dropdowns = document.querySelectorAll('.dropdown-checkbox');
+  for (var i = 0; i < dropdowns.length; i++) {
+    var dropdown = dropdowns[i];
+    var filterName = dropdown.dataset.name;
     
-    // Pular o dropdown de produtos que usa o sistema customizado
-    if (filterName === 'produto') return;
+    // Pular o dropdown de produtos
+    if (filterName === 'produto') continue;
     
-    const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+    var checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
     
     // Mark checkboxes based on initial filters
-    checkboxes.forEach(checkbox => {
-      if (filtrosIniciais[filterName] && filtrosIniciais[filterName].includes(checkbox.value)) {
+    for (var j = 0; j < checkboxes.length; j++) {
+      var checkbox = checkboxes[j];
+      if (filtrosIniciais[filterName] && filtrosIniciais[filterName].indexOf(checkbox.value) !== -1) {
         checkbox.checked = true;
       }
-    });
+    }
     
     // Initial text update
     updateSelectedText(dropdown);
-  });
+  }
 }
 
 function toggleDropdown(button) {
-  const dropdown = button.parentElement;
-  const menu = dropdown.querySelector('.dropdown-checkbox-menu');
-  const icon = button.querySelector('.dropdown-toggle-icon');
+  var dropdown = button.parentElement;
+  var menu = dropdown.querySelector('.dropdown-checkbox-menu');
+  var icon = button.querySelector('.dropdown-toggle-icon');
   
   // Close other dropdowns
-  document.querySelectorAll('.dropdown-checkbox-menu.show').forEach(otherMenu => {
+  var otherMenus = document.querySelectorAll('.dropdown-checkbox-menu.show');
+  for (var i = 0; i < otherMenus.length; i++) {
+    var otherMenu = otherMenus[i];
     if (otherMenu !== menu) {
       otherMenu.classList.remove('show');
-      const otherIcon = otherMenu.parentElement.querySelector('.dropdown-toggle-icon');
+      var otherIcon = otherMenu.parentElement.querySelector('.dropdown-toggle-icon');
       if (otherIcon) otherIcon.classList.remove('rotated');
     }
-  });
+  }
   
   // Toggle current dropdown
   menu.classList.toggle('show');
@@ -786,43 +761,42 @@ function toggleDropdown(button) {
 }
 
 function updateSelectedText(dropdownOrCheckbox) {
-  const dropdown = dropdownOrCheckbox.closest ? dropdownOrCheckbox.closest('.dropdown-checkbox') : dropdownOrCheckbox;
-  const filterName = dropdown.dataset.name;
+  var dropdown = dropdownOrCheckbox.closest ? dropdownOrCheckbox.closest('.dropdown-checkbox') : dropdownOrCheckbox;
+  var filterName = dropdown.dataset.name;
   
   // Pular o dropdown de produtos
   if (filterName === 'produto') return;
   
-  const selectedText = dropdown.querySelector('.selected-text');
-  const checkedBoxes = dropdown.querySelectorAll('input[type="checkbox"]:checked');
+  var selectedText = dropdown.querySelector('.selected-text');
+  var checkedBoxes = dropdown.querySelectorAll('input[type="checkbox"]:checked');
   
   if (checkedBoxes.length === 0) {
     selectedText.innerHTML = getDefaultText(filterName);
   } else if (checkedBoxes.length === 1) {
-    const label = checkedBoxes[0].nextElementSibling.textContent.trim();
+    var label = checkedBoxes[0].nextElementSibling.textContent.trim();
     selectedText.innerHTML = label.length > 15 ? label.substring(0, 15) + '...' : label;
   } else {
-    selectedText.innerHTML = `${checkedBoxes.length} selecionado${checkedBoxes.length > 1 ? 's' : ''}`;
+    selectedText.innerHTML = checkedBoxes.length + ' selecionado' + (checkedBoxes.length > 1 ? 's' : '');
   }
 }
 
 function clearFilter(filterName) {
-  // Pular o dropdown de produtos
   if (filterName === 'produto') return;
   
-  const dropdown = document.querySelector(`.dropdown-checkbox[data-name="${filterName}"]`);
+  var dropdown = document.querySelector('.dropdown-checkbox[data-name="' + filterName + '"]');
   if (!dropdown) return;
   
-  const checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+  var checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
   
-  checkboxes.forEach(checkbox => {
-    checkbox.checked = false;
-  });
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = false;
+  }
   
   updateSelectedText(dropdown);
   
   // Close dropdown
-  const menu = dropdown.querySelector('.dropdown-checkbox-menu');
-  const icon = dropdown.querySelector('.dropdown-toggle-icon');
+  var menu = dropdown.querySelector('.dropdown-checkbox-menu');
+  var icon = dropdown.querySelector('.dropdown-toggle-icon');
   menu.classList.remove('show');
   icon.classList.remove('rotated');
   
@@ -830,7 +804,7 @@ function clearFilter(filterName) {
 }
 
 function getDefaultText(filterName) {
-  const defaults = {
+  var defaults = {
     'loja': 'Todas',
     'vendedor': 'Todos',
     'estado': 'Todos',
@@ -840,11 +814,12 @@ function getDefaultText(filterName) {
   return defaults[filterName] || 'Todos';
 }
 
-// ===== FUNCTION TO SUBMIT FILTERS =====
-let submitTimer;
+// ===== FUNÇÃO submitFilters MODIFICADA =====
+var submitTimer;
 function submitFilters() {
+  console.log('🔄 Submit dos filtros tradicionais (não produtos)');
   clearTimeout(submitTimer);
-  submitTimer = setTimeout(() => {
+  submitTimer = setTimeout(function() {
     document.getElementById('formFiltros').submit();
   }, 300);
 }
@@ -855,12 +830,12 @@ function showLoading() {
 }
 
 function showLoadingForExport() {
-  const loadingOverlay = document.getElementById('loadingOverlay');
-  const loadingContent = loadingOverlay.querySelector('h6');
+  var loadingOverlay = document.getElementById('loadingOverlay');
+  var loadingContent = loadingOverlay.querySelector('h6');
   loadingContent.textContent = "Gerando e baixando arquivo Excel...";
   loadingOverlay.style.display = 'block';
 
-  setTimeout(() => {
+  setTimeout(function() {
     hideLoading();
   }, 3000);
 }
@@ -870,19 +845,21 @@ function hideLoading() {
 }
 
 function limparFiltros() {
-  const form = document.getElementById('formFiltros');
+  var form = document.getElementById('formFiltros');
   
   // Limpar dropdowns tradicionais
-  form.querySelectorAll('.dropdown-checkbox').forEach(dropdown => {
-    const filterName = dropdown.dataset.name;
+  var dropdowns = form.querySelectorAll('.dropdown-checkbox');
+  for (var i = 0; i < dropdowns.length; i++) {
+    var dropdown = dropdowns[i];
+    var filterName = dropdown.dataset.name;
     if (filterName !== 'produto') {
       clearFilter(filterName); 
     }
-  });
+  }
 
   // Limpar busca de produtos
   try {
-    const produtoContainer = document.getElementById('produto-search-container');
+    var produtoContainer = document.getElementById('produto-search-container');
     if (produtoContainer && produtoContainer.produtoSearchInstance) {
       produtoContainer.produtoSearchInstance.limparTodos();
     }
@@ -896,8 +873,8 @@ function limparFiltros() {
 }
 
 function toggleFullscreen() {
-  const container = document.getElementById('tableContainer');
-  const icon = document.getElementById('fullscreen-icon');
+  var container = document.getElementById('tableContainer');
+  var icon = document.getElementById('fullscreen-icon');
   
   if (container.style.height === '80vh') {
     container.style.height = 'auto';
@@ -910,10 +887,9 @@ function toggleFullscreen() {
   }
 }
 
-console.log('🚀 Relatório de Clientes carregado com sucesso!');
+console.log('🚀 Relatório de Clientes carregado!');
 </script>
 
 <!-- CARREGAMENTO DO SCRIPT DE BUSCA DE PRODUTOS -->
 <script src="{% static 'js/produto-search-tags.js' %}"></script>
 {% endblock %}
-relatorio_clientes.html

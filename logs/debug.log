@@ -7124,3 +7124,90 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-11 16:45:41,660 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 72172
 [INFO] 2025-07-11 16:45:41,699 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
 [INFO] 2025-07-11 16:45:41,914 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 16:47:20,763 Watching for file changes with StatReloader
+[INFO] 2025-07-11 16:47:34,380 "GET /gestor/api/produtos/buscar/?q=pa&exclude=&limit=10 HTTP/1.1" 200 2320
+[INFO] 2025-07-11 16:47:35,778 "GET /gestor/api/produtos/buscar/?q=pap&exclude=&limit=10 HTTP/1.1" 200 2337
+[INFO] 2025-07-11 16:47:37,521 "GET /gestor/api/produtos/buscar/?q=pape&exclude=&limit=10 HTTP/1.1" 200 2338
+[INFO] 2025-07-11 16:47:37,884 "GET /gestor/api/produtos/buscar/?q=papel&exclude=&limit=10 HTTP/1.1" 200 2339
+[INFO] 2025-07-11 16:47:44,661 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=014016&apenas_com_vendas=on HTTP/1.1" 200 80211
+[INFO] 2025-07-11 16:47:44,722 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 13440
+[INFO] 2025-07-11 16:49:02,616 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&estado=AL&apenas_com_vendas=on HTTP/1.1" 200 60665
+[INFO] 2025-07-11 16:49:02,671 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 19035
+[INFO] 2025-07-11 16:49:14,588 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&estado=AL&estado=BA&estado=PB&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 77312
+[INFO] 2025-07-11 16:49:14,628 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:49:29,472 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:49:37,078 "GET /gestor/api/produtos/buscar/?q=pa&exclude=010429&limit=10 HTTP/1.1" 200 2320
+[INFO] 2025-07-11 16:49:37,484 "GET /gestor/api/produtos/buscar/?q=parr&exclude=010429&limit=10 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:49:39,059 "GET /gestor/api/produtos/buscar/?q=par&exclude=010429&limit=10 HTTP/1.1" 200 1895
+[INFO] 2025-07-11 16:49:39,575 "GET /gestor/api/produtos/buscar/?q=pa&exclude=010429&limit=10 HTTP/1.1" 200 2320
+[INFO] 2025-07-11 16:49:40,805 "GET /gestor/api/produtos/buscar/?q=pap&exclude=010429&limit=10 HTTP/1.1" 200 2337
+[INFO] 2025-07-11 16:49:54,241 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&estado=PB&produto=010429&produto=010026&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 61195
+[INFO] 2025-07-11 16:49:54,280 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:50:06,811 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:50:11,556 "GET /gestor/api/produtos/buscar/?q=fi&exclude=010429&limit=10 HTTP/1.1" 200 2346
+[INFO] 2025-07-11 16:50:11,894 "GET /gestor/api/produtos/buscar/?q=fil&exclude=010429&limit=10 HTTP/1.1" 200 1606
+[INFO] 2025-07-11 16:50:18,827 "GET /gestor/api/produtos/buscar/?q=pape&exclude=&limit=10 HTTP/1.1" 200 2338
+[INFO] 2025-07-11 16:50:23,000 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010026&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 61174
+[INFO] 2025-07-11 16:50:23,038 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:50:35,555 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&estado=BA&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 74210
+[INFO] 2025-07-11 16:50:35,590 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:50:52,017 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 16:51:24,744 "GET /gestor/vendas/ HTTP/1.1" 200 59162
+[INFO] 2025-07-11 16:51:31,322 "GET /gestor/vendas/63128/ HTTP/1.1" 200 14068
+[INFO] 2025-07-11 16:51:47,230 "GET /gestor/vendas/ HTTP/1.1" 200 59162
+[INFO] 2025-07-11 16:51:51,711 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 60187
+[INFO] 2025-07-11 16:51:51,736 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:51:54,162 "GET /gestor/api/produtos/buscar/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2311
+[INFO] 2025-07-11 16:51:56,342 "GET /gestor/api/produtos/buscar/?q=ask%20400&exclude=&limit=10 HTTP/1.1" 200 514
+[INFO] 2025-07-11 16:52:04,007 "GET /gestor/api/produtos/buscar/?q=papel&exclude=&limit=10 HTTP/1.1" 200 2339
+[INFO] 2025-07-11 16:52:06,317 "GET /gestor/api/produtos/buscar/?q=papel%20as&exclude=&limit=10 HTTP/1.1" 200 66
+[INFO] 2025-07-11 16:52:10,031 "GET /gestor/api/produtos/buscar/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2311
+[INFO] 2025-07-11 16:52:35,305 "GET /gestor/vendas/ HTTP/1.1" 200 59162
+[INFO] 2025-07-11 16:52:46,287 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 16:52:49,515 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 60187
+[INFO] 2025-07-11 16:52:49,547 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:52:51,755 "GET /gestor/api/produtos/buscar/?q=400&exclude=&limit=10 HTTP/1.1" 200 2110
+[INFO] 2025-07-11 16:53:12,650 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 16:53:16,138 "GET /gestor/vendas/ HTTP/1.1" 200 59162
+[INFO] 2025-07-11 16:53:21,174 "GET /gestor/vendas/63128/ HTTP/1.1" 200 14068
+[INFO] 2025-07-11 16:53:38,523 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 60187
+[INFO] 2025-07-11 16:53:38,555 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:53:41,422 "GET /gestor/api/produtos/buscar/?q=02&exclude=&limit=10 HTTP/1.1" 200 2326
+[INFO] 2025-07-11 16:53:41,666 "GET /gestor/api/produtos/buscar/?q=026&exclude=&limit=10 HTTP/1.1" 200 2359
+[INFO] 2025-07-11 16:53:43,749 "GET /gestor/api/produtos/buscar/?q=02604&exclude=&limit=10 HTTP/1.1" 200 969
+[INFO] 2025-07-11 16:53:52,128 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=026048&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 376995
+[INFO] 2025-07-11 16:54:40,079 "GET /gestor/api/produtos/buscar/?q=01&exclude=&limit=10 HTTP/1.1" 200 2338
+[INFO] 2025-07-11 16:54:44,412 "GET /gestor/api/produtos/buscar/?q=012&exclude=010026&limit=10 HTTP/1.1" 200 2350
+[INFO] 2025-07-11 16:54:49,113 "GET /gestor/api/produtos/buscar/?q=044&exclude=010026,012067&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 16:54:50,474 "GET /gestor/api/produtos/buscar/?q=04&exclude=010026,012067&limit=10 HTTP/1.1" 200 2295
+[INFO] 2025-07-11 16:54:52,991 "GET /gestor/api/produtos/buscar/?q=pap&exclude=010026,012067&limit=10 HTTP/1.1" 200 2335
+[INFO] 2025-07-11 16:58:14,625 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 16:58:17,416 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57426
+[INFO] 2025-07-11 16:58:17,440 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 14215
+[INFO] 2025-07-11 16:58:20,332 "GET /gestor/api/produtos/buscar/?q=02&exclude=&limit=10 HTTP/1.1" 200 2326
+[INFO] 2025-07-11 16:58:20,988 "GET /gestor/api/produtos/buscar/?q=020&exclude=&limit=10 HTTP/1.1" 200 753
+[INFO] 2025-07-11 16:58:26,361 "GET /gestor/api/produtos/buscar/?q=ask&exclude=020099&limit=10 HTTP/1.1" 200 2311
+[INFO] 2025-07-11 16:58:32,772 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=020099&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 668628
+[INFO] 2025-07-11 16:58:32,884 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[ERROR] 2025-07-11 16:58:45,361 Internal Server Error: /logout/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 110, in logout_view
+    return redirect('gestor:login')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+[ERROR] 2025-07-11 16:58:45,369 "GET /logout/ HTTP/1.1" 500 91343
