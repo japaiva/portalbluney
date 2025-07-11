@@ -1,4 +1,4 @@
-<!-- gestor/templates/gestor/importar_vendas.html - VERSÃO SIMPLIFICADA -->
+<!-- gestor/templates/gestor/importar_vendas.html - VERSÃO ATUALIZADA -->
 
 {% extends 'gestor/base_gestor.html' %}
 {% load static %}
@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">{{ title }}</h4>
-                    <small class="text-muted">Importação completa da base de dados</small>
+                    <small class="text-muted">Importação da base de dados com filtros opcionais</small>
                 </div>
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
@@ -30,6 +30,45 @@
                             {% endif %}
                         </div>
 
+                        <!-- === FILTROS DE DATA === -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h6 class="card-title mb-0">
+                                    <i class="fas fa-calendar-alt"></i> Filtros de Data (Opcional)
+                                </h6>
+                                <small class="text-muted">Deixe em branco para importar todos os registros do arquivo</small>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="{{ form.data_inicio.id_for_label }}" class="form-label">
+                                                Data de Início
+                                            </label>
+                                            {{ form.data_inicio }}
+                                            <div class="form-text">Importar vendas a partir desta data</div>
+                                            {% if form.data_inicio.errors %}
+                                                <div class="text-danger">{{ form.data_inicio.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="{{ form.data_fim.id_for_label }}" class="form-label">
+                                                Data de Fim
+                                            </label>
+                                            {{ form.data_fim }}
+                                            <div class="form-text">Importar vendas até esta data</div>
+                                            {% if form.data_fim.errors %}
+                                                <div class="text-danger">{{ form.data_fim.errors }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- === PLANILHAS AUXILIARES === -->
                         <div class="card mb-4">
                             <div class="card-header">
@@ -43,10 +82,10 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="{{ form.arquivo_produtos.id_for_label }}" class="form-label">
-                                                {{ form.arquivo_produtos.label }}
+                                                Planilha de Produtos
                                             </label>
                                             {{ form.arquivo_produtos }}
-                                            <div class="form-text">{{ form.arquivo_produtos.help_text }}</div>
+                                            <div class="form-text">Excel com produtos e códigos</div>
                                             {% if form.arquivo_produtos.errors %}
                                                 <div class="text-danger">{{ form.arquivo_produtos.errors }}</div>
                                             {% endif %}
@@ -56,10 +95,10 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="{{ form.arquivo_classes.id_for_label }}" class="form-label">
-                                                {{ form.arquivo_classes.label }}
+                                                Planilha de Classes
                                             </label>
                                             {{ form.arquivo_classes }}
-                                            <div class="form-text">{{ form.arquivo_classes.help_text }}</div>
+                                            <div class="form-text">Excel com classes de produto</div>
                                             {% if form.arquivo_classes.errors %}
                                                 <div class="text-danger">{{ form.arquivo_classes.errors }}</div>
                                             {% endif %}
@@ -69,10 +108,10 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label for="{{ form.arquivo_fabricantes.id_for_label }}" class="form-label">
-                                                {{ form.arquivo_fabricantes.label }}
+                                                Planilha de Fabricantes
                                             </label>
                                             {{ form.arquivo_fabricantes }}
-                                            <div class="form-text">{{ form.arquivo_fabricantes.help_text }}</div>
+                                            <div class="form-text">Excel com fabricantes</div>
                                             {% if form.arquivo_fabricantes.errors %}
                                                 <div class="text-danger">{{ form.arquivo_fabricantes.errors }}</div>
                                             {% endif %}
@@ -82,29 +121,46 @@
                             </div>
                         </div>
 
-                        <!-- === CONFIGURAÇÕES SIMPLES === -->
+                        <!-- === CONFIGURAÇÕES ATUALIZADAS === -->
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h6 class="card-title mb-0">
-                                    <i class="fas fa-cog"></i> Configurações
+                                    <i class="fas fa-cog"></i> Configurações de Importação
                                 </h6>
                             </div>
                             <div class="card-body">
                                 <div class="form-check mb-3">
-                                    {{ form.limpar_registros_anteriores }}
-                                    <label class="form-check-label" for="{{ form.limpar_registros_anteriores.id_for_label }}">
-                                        {{ form.limpar_registros_anteriores.label }}
+                                    {{ form.limpar_registros_periodo }}
+                                    <label class="form-check-label" for="{{ form.limpar_registros_periodo.id_for_label }}">
+                                        Limpar registros do período selecionado
                                     </label>
-                                    <div class="form-text">Recomendado para evitar duplicatas</div>
+                                    <div class="form-text">Remove apenas os registros do período de datas informado</div>
+                                    {% if form.limpar_registros_periodo.errors %}
+                                        <div class="text-danger">{{ form.limpar_registros_periodo.errors }}</div>
+                                    {% endif %}
                                 </div>
                                 
                                 <div class="form-check mb-3">
+                                    {{ form.limpar_toda_base }}
+                                    <label class="form-check-label text-danger" for="{{ form.limpar_toda_base.id_for_label }}">
+                                        <strong>Limpar TODA a base de vendas</strong>
+                                    </label>
+                                    <div class="form-text text-danger">⚠️ ATENÇÃO: Remove TODAS as vendas existentes no sistema</div>
+                                    {% if form.limpar_toda_base.errors %}
+                                        <div class="text-danger">{{ form.limpar_toda_base.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                
+                                <!-- Checkbox antigo mantido para compatibilidade -->
+                                {% if form.verificar_dependencias %}
+                                <div class="form-check mb-3">
                                     {{ form.verificar_dependencias }}
                                     <label class="form-check-label" for="{{ form.verificar_dependencias.id_for_label }}">
-                                        {{ form.verificar_dependencias.label }}
+                                        Verificar dependências (clientes, produtos, etc.)
                                     </label>
-                                    <div class="form-text">{{ form.verificar_dependencias.help_text }}</div>
+                                    <div class="form-text">Verifica e atualiza automaticamente dados necessários</div>
                                 </div>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -114,15 +170,16 @@
                                 <i class="fas fa-arrow-left"></i> Cancelar
                             </a>
                             
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-upload"></i> Importar Dados Completos
+                            <button type="submit" class="btn btn-primary btn-lg" id="btnImportar">
+                                <i class="fas fa-upload"></i> Importar Dados
                             </button>
                         </div>
                         
-                        <!-- Aviso sobre a importação completa -->
-                        <div class="alert alert-success mt-3" role="alert">
-                            <i class="fas fa-check-circle"></i>
-                            <strong>Importação Completa:</strong> Todos os registros do arquivo serão processados. O tempo de processamento depende do tamanho do arquivo.
+                        <!-- Aviso sobre a importação -->
+                        <div class="alert alert-info mt-3" role="alert">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Dica:</strong> Use os filtros de data para importar apenas um período específico. 
+                            O tempo de processamento depende do tamanho do arquivo.
                         </div>
                     </form>
                 </div>
@@ -132,10 +189,13 @@
 </div>
 
 <script>
-// Script para mostrar preview dos arquivos selecionados
+// Script para mostrar preview dos arquivos selecionados e validações
 document.addEventListener('DOMContentLoaded', function() {
     const fileInputs = document.querySelectorAll('input[type="file"]');
+    const btnImportar = document.getElementById('btnImportar');
+    const form = document.querySelector('form');
     
+    // Preview dos arquivos selecionados
     fileInputs.forEach(input => {
         input.addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -143,10 +203,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 const label = this.previousElementSibling;
                 if (label) {
                     const icon = file.name.toLowerCase().includes('.xlsx') ? 'fa-file-excel' : 'fa-file-csv';
-                    label.innerHTML = `<i class="fas ${icon} text-success"></i> ${label.textContent.split(' -')[0]} - <span class="text-success">${file.name}</span>`;
+                    const originalText = label.textContent.split(' -')[0];
+                    label.innerHTML = '<i class="fas ' + icon + ' text-success"></i> ' + originalText + ' - <span class="text-success">' + file.name + '</span>';
                 }
             }
         });
+    });
+    
+    // Validação de opções de limpeza mutuamente exclusivas
+    const limparPeriodo = document.getElementById('{{ form.limpar_registros_periodo.id_for_label }}');
+    const limparTodaBase = document.getElementById('{{ form.limpar_toda_base.id_for_label }}');
+    
+    if (limparPeriodo && limparTodaBase) {
+        limparPeriodo.addEventListener('change', function() {
+            if (this.checked) {
+                limparTodaBase.checked = false;
+            }
+        });
+        
+        limparTodaBase.addEventListener('change', function() {
+            if (this.checked) {
+                limparPeriodo.checked = false;
+                
+                // Confirmação adicional para limpeza total
+                if (!confirm('⚠️ ATENÇÃO: Esta opção irá REMOVER TODAS as vendas existentes no sistema!\n\nTem certeza que deseja continuar?')) {
+                    this.checked = false;
+                }
+            }
+        });
+    }
+    
+    // Loading no botão de submit
+    form.addEventListener('submit', function(event) {
+        btnImportar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+        btnImportar.disabled = true;
     });
 });
 </script>

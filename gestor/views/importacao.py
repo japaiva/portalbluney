@@ -1,13 +1,14 @@
-# gestor/views/importacao.py
+# gestor/views/importacao.py - Função atualizada
 
 import logging
 import pandas as pd
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, date
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import transaction
+from django.db.models import Q
 
 from core.models import (Cliente, Produto, GrupoProduto, Fabricante, 
                         Loja, Vendedor, Vendas)
@@ -17,11 +18,17 @@ logger = logging.getLogger(__name__)
 
 @login_required
 def importar_vendas(request):
-    """Importação BI simplificada - processa arquivo completo"""
+    """Importação BI com filtros de data e opções de limpeza"""
     if request.method == 'POST':
         form = ImportarVendasForm(request.POST, request.FILES)
         if form.is_valid():
             try:
+                # ===== EXTRAIR DADOS DO FORMULÁRIO =====
+                data_inicio = form.cleaned_data.get('data_inicio')
+                data_fim = form.cleaned_data.get('data_fim')
+                limpar_periodo = form.cleaned_data.get('limpar_registros_periodo', False)
+                limpar_toda_base = form.cleaned_data.get('limpar_toda_base', False)
+                
                 # ===== CARREGAR ARQUIVO PRINCIPAL =====
                 arquivo_bi = request.FILES['arquivo_csv']
                 nome_arquivo = arquivo_bi.name.lower()
@@ -31,7 +38,10 @@ def importar_vendas(request):
                     df_bi = pd.read_excel(arquivo_bi, sheet_name=0, engine='openpyxl', dtype=str)
                 elif nome_arquivo.endswith('.csv'):
                     df_bi = pd.read_csv(arquivo_bi, encoding='utf-8', sep=',', dtype=str)
-                
+                else:
+                    messages.error(request, "❌ Formato de arquivo não suportado. Use CSV ou Excel (.xlsx)")
+                    return redirect('gestor:importar_vendas')
+
                 messages.info(request, f"📊 Arquivo BI carregado: {len(df_bi)} registros encontrados")
                 
                 # ===== CARREGAR PLANILHAS AUXILIARES =====
@@ -82,15 +92,93 @@ def importar_vendas(request):
                 df_bi.columns = df_bi.columns.str.strip().str.upper()
                 messages.info(request, f"🔍 Colunas do BI: {list(df_bi.columns)}")
                 
-                # ===== LIMPAR BASE ANTERIOR (SE SOLICITADO) =====
-                if form.cleaned_data.get('limpar_registros_anteriores', True):
+                # ===== FILTRAR DADOS POR DATA (SE INFORMADO) =====
+                df_processamento = df_bi.copy()
+                
+                if data_inicio or data_fim:
+                    # Verificar se existe coluna de data no arquivo
+                    colunas_data_possiveis = ['DATA', 'DATA_VENDA', 'DT_VENDA', 'ANOMES']
+                    coluna_data_encontrada = None
+                    
+                    for col in colunas_data_possiveis:
+                        if col in df_processamento.columns:
+                            coluna_data_encontrada = col
+                            break
+                    
+                    if coluna_data_encontrada:
+                        try:
+                            # Converter coluna para datetime
+                            if coluna_data_encontrada == 'ANOMES':
+                                # Formato ANOMES (ex: 2412 = dezembro/2024)
+                                df_processamento['data_convertida'] = pd.to_datetime(
+                                    '20' + df_processamento[coluna_data_encontrada].str[:2] + '-' + 
+                                    df_processamento[coluna_data_encontrada].str[2:] + '-01',
+                                    format='%Y-%m-%d'
+                                ).dt.date
+                            else:
+                                df_processamento['data_convertida'] = pd.to_datetime(
+                                    df_processamento[coluna_data_encontrada]
+                                ).dt.date
+                            
+                            # Aplicar filtros de data
+                            if data_inicio:
+                                df_processamento = df_processamento[
+                                    df_processamento['data_convertida'] >= data_inicio
+                                ]
+                            
+                            if data_fim:
+                                df_processamento = df_processamento[
+                                    df_processamento['data_convertida'] <= data_fim
+                                ]
+                            
+                            messages.info(request, 
+                                f"📅 Filtro de data aplicado: {len(df_processamento)} registros restantes "
+                                f"(de {len(df_bi)} originais)"
+                            )
+                            
+                        except Exception as e:
+                            messages.warning(request, f"⚠️ Erro ao filtrar por data: {str(e)}")
+                    else:
+                        messages.warning(request, 
+                            "⚠️ Coluna de data não encontrada. Filtro de data ignorado. "
+                            f"Colunas disponíveis: {list(df_bi.columns)}"
+                        )
+                
+                # ===== LIMPEZA DA BASE ANTERIOR =====
+                if limpar_toda_base:
                     count_deletados = Vendas.objects.all().count()
                     Vendas.objects.all().delete()
-                    messages.info(request, f"🗑️ Base anterior zerada: {count_deletados} registros removidos")
+                    messages.warning(request, f"🗑️ TODA a base de vendas foi zerada: {count_deletados} registros removidos")
+                    
+                elif limpar_periodo and (data_inicio or data_fim):
+                    # Construir filtro para o período
+                    filtro_periodo = Q()
+                    
+                    if data_inicio:
+                        filtro_periodo &= Q(data_venda__gte=data_inicio)
+                    
+                    if data_fim:
+                        filtro_periodo &= Q(data_venda__lte=data_fim)
+                    
+                    vendas_periodo = Vendas.objects.filter(filtro_periodo)
+                    count_periodo = vendas_periodo.count()
+                    
+                    if count_periodo > 0:
+                        vendas_periodo.delete()
+                        period_str = ""
+                        if data_inicio and data_fim:
+                            period_str = f"entre {data_inicio.strftime('%d/%m/%Y')} e {data_fim.strftime('%d/%m/%Y')}"
+                        elif data_inicio:
+                            period_str = f"a partir de {data_inicio.strftime('%d/%m/%Y')}"
+                        elif data_fim:
+                            period_str = f"até {data_fim.strftime('%d/%m/%Y')}"
+                        
+                        messages.info(request, f"🗑️ Registros do período removidos: {count_periodo} vendas {period_str}")
+                    else:
+                        messages.info(request, "ℹ️ Nenhum registro encontrado no período especificado para remoção")
                 
                 # ===== PROCESSAMENTO =====
-                df_processamento = df_bi
-                total_registros = len(df_bi)
+                total_registros = len(df_processamento)
                 messages.info(request, f"🔄 Iniciando processamento de {total_registros} registros...")
                 
                 # Contadores
@@ -248,18 +336,24 @@ def importar_vendas(request):
                             
                             # Processar data
                             try:
-                                anomes = str(row['ANOMES']).strip()
-                                if len(anomes) == 4 and anomes.isdigit():
-                                    ano_completo = '20' + anomes[:2]
-                                    mes_num = anomes[2:]
-                                    data_venda = datetime.strptime(f"{ano_completo}-{mes_num}-01", '%Y-%m-%d').date()
+                                if 'data_convertida' in df_processamento.columns:
+                                    # Usar data já convertida pelo filtro
+                                    data_venda = row['data_convertida']
+                                elif 'ANOMES' in row and pd.notna(row['ANOMES']):
+                                    anomes = str(row['ANOMES']).strip()
+                                    if len(anomes) == 4 and anomes.isdigit():
+                                        ano_completo = '20' + anomes[:2]
+                                        mes_num = anomes[2:]
+                                        data_venda = datetime.strptime(f"{ano_completo}-{mes_num}-01", '%Y-%m-%d').date()
+                                    else:
+                                        data_venda = date(2024, 1, 1)
                                 else:
-                                    data_venda = datetime(2024, 1, 1).date()
+                                    data_venda = date(2024, 1, 1)
                             except (ValueError, TypeError):
-                                data_venda = datetime(2024, 1, 1).date()
+                                data_venda = date(2024, 1, 1)
                             
                             numero_nf = str(int(float(row['NF']))) if pd.notna(row['NF']) and row['NF'] != '' else ''
-                            vendedor_nf = str(row.get('CLIVEN', '')).strip() if 'CLIVEN' in row else ''
+                            vendedor_nf = str(row.get('CLIVEN', '')).strip() if 'CLIVEN' in row else codigo_vendedor
                             uf = str(row.get('UF', 'SP')).strip()
                             
                             venda = Vendas.objects.create(
@@ -269,7 +363,6 @@ def importar_vendas(request):
                                 grupo_produto=grupo,
                                 fabricante=fabricante,
                                 loja=loja,
-                                vendedor=vendedor,
                                 quantidade=quantidade,
                                 valor_total=valor_total,
                                 numero_nf=numero_nf,

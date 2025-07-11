@@ -420,56 +420,77 @@ class ProdutoForm(forms.ModelForm):
             raise forms.ValidationError("O código do produto deve ter exatamente 6 dígitos numéricos.")
         return codigo
 
+
+# Adicione este formulário SUBSTITUINDO o ImportarVendasForm existente no seu forms.py
+
 class ImportarVendasForm(forms.Form):
     arquivo_csv = forms.FileField(
-        label="Arquivo CSV de Vendas",
-        help_text="Selecione o arquivo CSV com os dados de vendas para importação",
-        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv'})
-    )
-
-# Formulário para processo de sincronização com o BI
-class SincronizarBIForm(forms.Form):
-    MESES_CHOICES = [
-        ('01', 'Janeiro'),
-        ('02', 'Fevereiro'),
-        ('03', 'Março'),
-        ('04', 'Abril'),
-        ('05', 'Maio'),
-        ('06', 'Junho'),
-        ('07', 'Julho'),
-        ('08', 'Agosto'),
-        ('09', 'Setembro'),
-        ('10', 'Outubro'),
-        ('11', 'Novembro'),
-        ('12', 'Dezembro'),
-    ]
-    
-    # Gerar anos dinamicamente, mostrando apenas os últimos 5 anos
-    ano_atual = datetime.now().year - 2000  # No formato YY como no Clipper
-    ANOS_CHOICES = [(str(ano).zfill(2), str(2000 + ano)) for ano in range(ano_atual - 4, ano_atual + 1)]
-    
-    mes = forms.ChoiceField(
-        label="Mês de Referência",
-        choices=MESES_CHOICES,
-        initial=str(datetime.now().month).zfill(2),
-        widget=forms.Select(attrs={'class': 'form-select'})
+        label="Arquivo CSV/Excel do BI",
+        help_text="Selecione o arquivo CSV ou Excel com os dados de vendas para importação",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.csv,.xlsx,.xls'})
     )
     
-    ano = forms.ChoiceField(
-        label="Ano de Referência",
-        choices=ANOS_CHOICES,
-        initial=str(datetime.now().year - 2000).zfill(2),
-        widget=forms.Select(attrs={'class': 'form-select'})
+    # ===== FILTROS DE DATA =====
+    data_inicio = forms.DateField(
+        label="Data de Início",
+        required=False,
+        help_text="Se preenchida, importará apenas vendas a partir desta data",
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date'
+        })
     )
     
-    limpar_registros_anteriores = forms.BooleanField(
-        label="Limpar registros anteriores",
+    data_fim = forms.DateField(
+        label="Data de Fim",
+        required=False,
+        help_text="Se preenchida, importará apenas vendas até esta data",
+        widget=forms.DateInput(attrs={
+            'class': 'form-control',
+            'type': 'date'
+        })
+    )
+    
+    # ===== OPÇÕES DE LIMPEZA =====
+    limpar_registros_periodo = forms.BooleanField(
+        label="Limpar registros do período selecionado",
         required=False,
         initial=True,
-        help_text="Se marcado, os registros existentes para o mês/ano selecionado serão removidos antes da importação",
+        help_text="Se marcado, remove os registros existentes apenas no período de datas selecionado antes da importação",
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
     
+    limpar_toda_base = forms.BooleanField(
+        label="Limpar TODA a base de vendas",
+        required=False,
+        initial=False,
+        help_text="⚠️ ATENÇÃO: Remove TODAS as vendas existentes, independente da data",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+    
+    # ===== ARQUIVOS AUXILIARES (OPCIONAIS) =====
+    arquivo_produtos = forms.FileField(
+        label="Planilha de Produtos (Opcional)",
+        required=False,
+        help_text="Planilha Excel com códigos e descrições dos produtos",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.xlsx,.xls'})
+    )
+    
+    arquivo_classes = forms.FileField(
+        label="Planilha de Classes (Opcional)",
+        required=False,
+        help_text="Planilha Excel com códigos e descrições das classes de produto",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.xlsx,.xls'})
+    )
+    
+    arquivo_fabricantes = forms.FileField(
+        label="Planilha de Fabricantes (Opcional)",
+        required=False,
+        help_text="Planilha Excel com códigos e descrições dos fabricantes",
+        widget=forms.FileInput(attrs={'class': 'form-control', 'accept': '.xlsx,.xls'})
+    )
+    
+    # ===== CONFIGURAÇÃO ADICIONAL =====
     verificar_dependencias = forms.BooleanField(
         label="Verificar dependências (clientes, produtos, etc.)",
         required=False,
@@ -478,85 +499,25 @@ class SincronizarBIForm(forms.Form):
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
     )
     
-    cache_local = forms.BooleanField(
-        label="Armazenar cópia local dos dados",
-        required=False,
-        initial=False,
-        help_text="Mantém uma cópia local dos dados para acesso offline (útil para relatórios)",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    notificar_conclusao = forms.BooleanField(
-        label="Notificar quando concluir",
-        required=False,
-        initial=False,
-        help_text="Enviar notificação por e-mail quando a sincronização for concluída",
-        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
-    )
-    
-    periodo_completo = forms.BooleanField(
-        label="Período completo (considerar todo o mês)",
-        required=False,
-        initial=True,
-        help_text="Se desmarcado, você pode especificar um intervalo de dias específico",
-        widget=forms.CheckboxInput(attrs={
-            'class': 'form-check-input',
-            'data-bs-toggle': 'collapse',
-            'data-bs-target': '#collapsePeriodo',
-            'aria-expanded': 'true',
-            'aria-controls': 'collapsePeriodo'
-        })
-    )
-    
-    dia_inicial = forms.IntegerField(
-        label="Dia inicial",
-        required=False,
-        min_value=1,
-        max_value=31,
-        initial=1,
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
-    )
-    
-    dia_final = forms.IntegerField(
-        label="Dia final",
-        required=False,
-        min_value=1,
-        max_value=31,
-        initial=lambda: calendar.monthrange(datetime.now().year, datetime.now().month)[1],
-        widget=forms.NumberInput(attrs={'class': 'form-control'})
-    )
-    
     def clean(self):
         cleaned_data = super().clean()
+        data_inicio = cleaned_data.get('data_inicio')
+        data_fim = cleaned_data.get('data_fim')
+        limpar_periodo = cleaned_data.get('limpar_registros_periodo')
+        limpar_toda_base = cleaned_data.get('limpar_toda_base')
         
-        # Validação apenas se período completo não estiver marcado
-        if not cleaned_data.get('periodo_completo'):
-            dia_inicial = cleaned_data.get('dia_inicial')
-            dia_final = cleaned_data.get('dia_final')
-            
-            # Validar se os dias foram informados
-            if dia_inicial is None:
-                self.add_error('dia_inicial', "Dia inicial é obrigatório quando período completo não está selecionado")
-            
-            if dia_final is None:
-                self.add_error('dia_final', "Dia final é obrigatório quando período completo não está selecionado")
-            
-            # Validar se dia final é maior ou igual ao dia inicial
-            if dia_inicial and dia_final and dia_inicial > dia_final:
-                self.add_error('dia_final', "Dia final deve ser maior ou igual ao dia inicial")
-            
-            # Validar se os dias são válidos para o mês/ano selecionado
-            if dia_inicial and dia_final and 'mes' in cleaned_data and 'ano' in cleaned_data:
-                mes = int(cleaned_data.get('mes'))
-                ano = int(cleaned_data.get('ano')) + 2000  # Converter de YY para YYYY
-                
-                _, ultimo_dia = calendar.monthrange(ano, mes)
-                
-                if dia_inicial > ultimo_dia:
-                    self.add_error('dia_inicial', f"O mês {mes}/{ano} tem apenas {ultimo_dia} dias")
-                
-                if dia_final > ultimo_dia:
-                    self.add_error('dia_final', f"O mês {mes}/{ano} tem apenas {ultimo_dia} dias")
+        # Validar datas
+        if data_inicio and data_fim and data_inicio > data_fim:
+            self.add_error('data_fim', "Data de fim deve ser maior ou igual à data de início")
+        
+        # Não permitir ambas as opções de limpeza
+        if limpar_periodo and limpar_toda_base:
+            self.add_error('limpar_toda_base', "Escolha apenas uma opção de limpeza")
+        
+        # Se escolheu limpar período, deve informar pelo menos uma data
+        if limpar_periodo and not (data_inicio or data_fim):
+            self.add_error('limpar_registros_periodo', 
+                          "Para limpar por período, informe pelo menos uma data (início ou fim)")
         
         return cleaned_data
 
