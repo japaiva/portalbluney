@@ -6699,3 +6699,428 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-11 09:30:55,573 "GET /gestor/clientes/?status=rascunho&tipo=principal&loja=&vendedor=&q= HTTP/1.1" 200 40424
 [INFO] 2025-07-11 09:31:00,141 "GET /gestor/clientes/?page=2&status=rascunho HTTP/1.1" 200 18438
 [INFO] 2025-07-11 09:31:03,167 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 09:58:11,877 Watching for file changes with StatReloader
+[INFO] 2025-07-11 09:59:58,289 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 10:00:00,087 Watching for file changes with StatReloader
+[INFO] 2025-07-11 10:01:24,633 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 10:01:25,246 Watching for file changes with StatReloader
+[INFO] 2025-07-11 10:01:36,004 "GET /gestor/vendas/ HTTP/1.1" 200 59161
+[INFO] 2025-07-11 10:01:38,914 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 56823
+[WARNING] 2025-07-11 10:01:38,962 "GET /static/css/produto-search-tags.css HTTP/1.1" 404 1895
+[WARNING] 2025-07-11 10:01:38,963 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 10:31:38,898 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58981
+[WARNING] 2025-07-11 10:31:38,945 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[WARNING] 2025-07-11 10:31:38,945 "GET /static/css/produto-search-tags.css HTTP/1.1" 404 1895
+[INFO] 2025-07-11 10:32:25,931 "GET /gestor/clientes/ HTTP/1.1" 200 41996
+[INFO] 2025-07-11 10:32:27,597 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58981
+[WARNING] 2025-07-11 10:32:27,638 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[WARNING] 2025-07-11 10:32:27,638 "GET /static/css/produto-search-tags.css HTTP/1.1" 404 1895
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 10:32:37,027 Watching for file changes with StatReloader
+[ERROR] 2025-07-11 10:32:43,394 Internal Server Error: /logout/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 110, in logout_view
+    return redirect('gestor:login')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+[ERROR] 2025-07-11 10:32:43,398 "GET /logout/ HTTP/1.1" 500 91080
+[INFO] 2025-07-11 10:32:48,184 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 10:32:48,263 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 10:33:00,441 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 10:33:00,605 "GET /gestor/ HTTP/1.1" 200 7201
+[INFO] 2025-07-11 10:33:03,700 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58981
+[WARNING] 2025-07-11 10:33:03,746 "GET /static/css/produto-search-tags.css HTTP/1.1" 404 1895
+[WARNING] 2025-07-11 10:33:03,746 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 10:33:10,733 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&apenas_com_vendas=on HTTP/1.1" 200 58981
+[WARNING] 2025-07-11 10:33:10,775 "GET /static/css/produto-search-tags.css HTTP/1.1" 404 1895
+[WARNING] 2025-07-11 10:33:10,775 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 10:33:10,988 - Broken pipe from ('127.0.0.1', 62507)
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 11:27:55,681 Watching for file changes with StatReloader
+[INFO] 2025-07-11 11:28:02,896 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&apenas_com_vendas=on HTTP/1.1" 200 58227
+[WARNING] 2025-07-11 11:28:02,947 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[WARNING] 2025-07-11 11:28:07,466 "GET /static/css/produto-search-tags.css HTTP/1.1" 404 1895
+[INFO] 2025-07-11 11:28:12,769 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[WARNING] 2025-07-11 11:28:12,810 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 11:28:12,811 "GET /static/css/style.css HTTP/1.1" 200 9872
+[INFO] 2025-07-11 11:28:12,812 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-07-11 11:28:12,877 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-07-11 11:28:12,879 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-07-11 11:28:12,880 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-07-11 11:28:12,886 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 200 1609
+[INFO] 2025-07-11 11:28:12,887 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 200 36056
+[WARNING] 2025-07-11 11:28:13,276 Not Found: /favicon.ico
+[WARNING] 2025-07-11 11:28:13,277 "GET /favicon.ico HTTP/1.1" 404 3484
+[INFO] 2025-07-11 11:28:17,294 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 11:28:19,913 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[WARNING] 2025-07-11 11:28:19,962 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 11:30:01,008 Watching for file changes with StatReloader
+[INFO] 2025-07-11 11:30:06,576 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[WARNING] 2025-07-11 11:30:06,629 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 14:53:16,856 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[WARNING] 2025-07-11 14:53:16,909 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 15:10:08,260 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:10:08,295 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 15:10:10,812 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:10:10,848 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:10:17,552 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:10:24,822 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:10:24,872 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 15:10:29,280 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:10:29,315 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 15:10:40,543 "GET /gestor/vendedores/ HTTP/1.1" 200 23953
+[INFO] 2025-07-11 15:10:44,060 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:10:44,087 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 15:11:25,686 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:11:25,725 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[WARNING] 2025-07-11 15:11:25,976 Not Found: /favicon.ico
+[WARNING] 2025-07-11 15:11:25,977 "GET /favicon.ico HTTP/1.1" 404 3484
+[WARNING] 2025-07-11 15:11:44,144 Not Found: /apple-touch-icon-precomposed.png
+[WARNING] 2025-07-11 15:11:44,149 Not Found: /favicon.ico
+[WARNING] 2025-07-11 15:11:44,152 Not Found: /apple-touch-icon.png
+[WARNING] 2025-07-11 15:11:44,153 "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3547
+[WARNING] 2025-07-11 15:11:44,153 "GET /favicon.ico HTTP/1.1" 404 3484
+[WARNING] 2025-07-11 15:11:44,153 "GET /apple-touch-icon.png HTTP/1.1" 404 3511
+[WARNING] 2025-07-11 15:11:44,358 Not Found: /simulador/
+[WARNING] 2025-07-11 15:11:44,359 "GET /simulador/ HTTP/1.1" 404 3481
+[INFO] 2025-07-11 15:11:45,549 "GET /gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:11:45,575 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:11:45,610 "GET /static/css/style.css HTTP/1.1" 200 9872
+[INFO] 2025-07-11 15:11:45,611 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-07-11 15:11:46,055 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-07-11 15:11:46,055 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-07-11 15:11:46,057 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-07-11 15:11:46,064 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 200 1614
+[INFO] 2025-07-11 15:11:46,098 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 200 1609
+[INFO] 2025-07-11 15:11:46,099 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 200 36056
+[INFO] 2025-07-11 15:11:46,101 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 200 1613
+[WARNING] 2025-07-11 15:11:47,144 Not Found: /apple-touch-icon-precomposed.png
+[WARNING] 2025-07-11 15:11:47,144 Not Found: /favicon.ico
+[WARNING] 2025-07-11 15:11:47,145 "GET /favicon.ico HTTP/1.1" 404 3484
+[WARNING] 2025-07-11 15:11:47,146 "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 3547
+[WARNING] 2025-07-11 15:11:47,505 Not Found: /apple-touch-icon.png
+[WARNING] 2025-07-11 15:11:47,507 "GET /apple-touch-icon.png HTTP/1.1" 404 3511
+[INFO] 2025-07-11 15:11:57,503 "POST /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:11:57,635 "GET /gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:11:57,650 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:12:09,684 "POST /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:09,829 "GET /gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:09,848 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:12:17,820 "POST /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5328
+[INFO] 2025-07-11 15:12:26,137 "POST /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:26,276 "GET /gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:26,292 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:12:32,521 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:12:37,857 "POST /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:38,002 "GET /gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:38,021 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:12:49,898 "POST /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:50,041 "GET /gestor/relatorio-clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:12:50,060 "GET /login/?next=/gestor/relatorio-clientes/ HTTP/1.1" 200 5146
+[ERROR] 2025-07-11 15:12:58,300 Internal Server Error: /logout/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 110, in logout_view
+    return redirect('gestor:login')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+[ERROR] 2025-07-11 15:12:58,307 "GET /logout/ HTTP/1.1" 500 91080
+[WARNING] 2025-07-11 15:13:05,417 Not Found: /cliente/dashboard/
+[WARNING] 2025-07-11 15:13:05,420 "GET /cliente/dashboard/ HTTP/1.1" 404 3505
+[INFO] 2025-07-11 15:13:11,257 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:13:11,317 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:13:19,614 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:13:19,772 "GET /gestor/ HTTP/1.1" 200 7201
+[INFO] 2025-07-11 15:13:22,448 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 15:13:41,217 "GET / HTTP/1.1" 200 5782
+[INFO] 2025-07-11 15:13:44,477 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:13:44,495 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:14:09,393 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:09,710 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:09,728 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:14:15,535 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:15,672 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:15,690 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:14:17,955 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:14:18,591 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:14:40,499 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:40,639 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:40,660 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:14:59,035 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:59,172 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:14:59,187 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:15:20,752 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:15:20,904 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 15:15:20,923 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:15:25,490 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 15:15:41,243 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[WARNING] 2025-07-11 15:15:41,303 "GET /static/js/produto-search-tags.js HTTP/1.1" 404 1889
+[INFO] 2025-07-11 15:16:51,712 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[INFO] 2025-07-11 15:16:51,755 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 24532
+[ERROR] 2025-07-11 15:16:59,754 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:16:59,755 "GET /gestor/api/produtos/buscar/?q=film&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:17:02,112 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:17:02,113 "GET /gestor/api/produtos/buscar/?q=filme&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:17:23,904 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:17:23,905 "GET /gestor/api/produtos/buscar/?q=filmef&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:17:25,098 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:17:25,098 "GET /gestor/api/produtos/buscar/?q=ffi&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:17:27,506 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:17:27,507 "GET /gestor/api/produtos/buscar/?q=filem&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:17:28,411 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:17:28,412 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 500 73
+[INFO] 2025-07-11 15:19:01,925 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:19:03,491 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:19:10,606 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:19:11,089 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:19:13,816 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:19:14,195 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:19:35,343 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:19:35,834 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:19:39,567 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[INFO] 2025-07-11 15:19:39,612 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[ERROR] 2025-07-11 15:19:42,528 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:19:42,529 "GET /gestor/api/produtos/buscar/?q=fi&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:19:45,851 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:19:45,853 "GET /gestor/api/produtos/buscar/?q=fi%3B&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:19:46,692 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:19:46,692 "GET /gestor/api/produtos/buscar/?q=fi&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:19:47,317 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:19:47,318 "GET /gestor/api/produtos/buscar/?q=film%2Ce&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:19:48,043 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:19:48,044 "GET /gestor/api/produtos/buscar/?q=film%2C&exclude=&limit=10 HTTP/1.1" 500 73
+[INFO] 2025-07-11 15:19:52,844 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[ERROR] 2025-07-11 15:19:55,257 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:19:55,257 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 500 73
+[INFO] 2025-07-11 15:21:10,691 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:21:11,273 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:21:19,092 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:21:19,579 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:21:36,667 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:21:37,144 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:21:39,779 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:21:40,172 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:22:33,201 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:22:33,733 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:27:01,448 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:27:02,883 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:27:09,559 "GET /gestor/clientes/ HTTP/1.1" 200 41996
+[INFO] 2025-07-11 15:27:12,820 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59619
+[INFO] 2025-07-11 15:27:12,853 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[ERROR] 2025-07-11 15:27:15,881 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:27:15,882 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 500 73
+[INFO] 2025-07-11 15:30:33,802 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 15:30:33,852 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 18148
+[INFO] 2025-07-11 15:30:37,141 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 15:30:39,636 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 15:30:39,661 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[ERROR] 2025-07-11 15:30:42,249 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:30:42,250 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:30:47,933 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:30:47,935 "GET /gestor/api/produtos/buscar/?q=fi&exclude=&limit=10 HTTP/1.1" 500 73
+[ERROR] 2025-07-11 15:30:49,429 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:30:49,430 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 500 73
+[INFO] 2025-07-11 15:31:21,260 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:31:22,829 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:31:25,699 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:31:26,052 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:31:27,627 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:31:28,010 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:31:47,337 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:31:52,253 "GET /gestor/clientes/ HTTP/1.1" 200 41996
+[INFO] 2025-07-11 15:31:54,526 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 15:31:54,555 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[ERROR] 2025-07-11 15:31:57,298 Internal Server Error: /gestor/api/produtos/buscar/
+[ERROR] 2025-07-11 15:31:57,299 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 500 73
+[INFO] 2025-07-11 15:38:01,279 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&grupo=0109&apenas_com_vendas=on HTTP/1.1" 200 222091
+[INFO] 2025-07-11 15:38:01,344 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 15:38:04,612 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&grupo=0001&grupo=0109&apenas_com_vendas=on HTTP/1.1" 200 222106
+[INFO] 2025-07-11 15:38:08,171 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&grupo=0001&grupo=0109&grupo=0200&apenas_com_vendas=on HTTP/1.1" 200 222121
+[INFO] 2025-07-11 15:39:44,879 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/api_produtos.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:39:45,621 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:40:11,257 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:40:11,772 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:41:59,654 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:42:00,184 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:42:03,978 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:42:04,413 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:43:11,670 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:43:12,277 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:43:34,129 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:43:57,376 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 15:43:57,925 Watching for file changes with StatReloader
+[INFO] 2025-07-11 15:44:00,806 "GET /gestor/clientes/ HTTP/1.1" 200 41997
+[INFO] 2025-07-11 15:44:10,186 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 15:44:10,233 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 24080
+[INFO] 2025-07-11 15:44:10,428 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:44:12,261 "GET /gestor/api/produtos/buscar/?q=fi&exclude=&limit=10 HTTP/1.1" 200 2350
+[INFO] 2025-07-11 15:44:12,570 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 15:44:14,605 "GET /gestor/api/produtos/buscar/?q=filme&exclude=&limit=10 HTTP/1.1" 200 1836
+[INFO] 2025-07-11 15:44:19,265 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 72172
+[INFO] 2025-07-11 15:44:19,543 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:44:21,851 "GET /gestor/api/produtos/buscar/?q=fio&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 15:44:23,048 "GET /gestor/api/produtos/buscar/?q=filme&exclude=&limit=10 HTTP/1.1" 200 1836
+[INFO] 2025-07-11 15:44:24,725 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 72172
+[INFO] 2025-07-11 15:44:24,946 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:44:31,486 "GET /gestor/api/produtos/buscar/?q=filme&exclude=&limit=10 HTTP/1.1" 200 1836
+[INFO] 2025-07-11 15:44:36,561 "GET /gestor/api/produtos/buscar/?q=porra&exclude=&limit=10 HTTP/1.1" 200 63
+[INFO] 2025-07-11 15:44:37,726 "GET /gestor/api/produtos/buscar/?q=por&exclude=&limit=10 HTTP/1.1" 200 2298
+[INFO] 2025-07-11 15:44:40,308 "GET /gestor/api/produtos/buscar/?q=po&exclude=&limit=10 HTTP/1.1" 200 2297
+[INFO] 2025-07-11 15:44:43,203 "GET /gestor/api/produtos/buscar/?q=ani&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 15:44:45,971 "GET /gestor/api/produtos/buscar/?q=mar&exclude=&limit=10 HTTP/1.1" 200 2298
+[INFO] 2025-07-11 15:44:54,946 "GET /gestor/api/produtos/buscar/?q=marcel&exclude=&limit=10 HTTP/1.1" 200 64
+[INFO] 2025-07-11 15:44:55,529 "GET /gestor/api/produtos/buscar/?q=marce&exclude=&limit=10 HTTP/1.1" 200 63
+[INFO] 2025-07-11 15:44:57,935 "GET /gestor/api/produtos/buscar/?q=po&exclude=&limit=10 HTTP/1.1" 200 2297
+[INFO] 2025-07-11 15:45:02,005 "GET /gestor/api/produtos/buscar/?q=xux&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 15:45:03,181 "GET /gestor/api/produtos/buscar/?q=xu&exclude=&limit=10 HTTP/1.1" 200 60
+[INFO] 2025-07-11 15:45:08,801 "GET /gestor/api/produtos/buscar/?q=az&exclude=&limit=10 HTTP/1.1" 200 1214
+[INFO] 2025-07-11 15:45:15,890 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=013834&apenas_com_vendas=on HTTP/1.1" 200 58702
+[INFO] 2025-07-11 15:45:15,936 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 15:45:16,129 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:47:41,827 "GET /gestor/api/produtos/buscar/?q=film&exclude=&limit=10 HTTP/1.1" 200 1835
+[INFO] 2025-07-11 15:47:48,137 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=013840&apenas_com_vendas=on HTTP/1.1" 200 75171
+[INFO] 2025-07-11 15:47:48,185 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 15:47:48,398 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:48:17,979 "GET /gestor/clientes/ HTTP/1.1" 200 41997
+[INFO] 2025-07-11 15:48:19,773 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 15:48:19,975 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:48:22,585 "GET /gestor/api/produtos/buscar/?q=por&exclude=&limit=10 HTTP/1.1" 200 2298
+[INFO] 2025-07-11 15:48:24,389 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010400&apenas_com_vendas=on HTTP/1.1" 200 58702
+[INFO] 2025-07-11 15:48:24,606 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 15:48:33,662 "GET /gestor/api/produtos/buscar/?q=port&exclude=&limit=10 HTTP/1.1" 200 2299
+[INFO] 2025-07-11 15:48:35,362 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010400&apenas_com_vendas=on HTTP/1.1" 200 58702
+[INFO] 2025-07-11 15:48:35,386 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 24453
+[INFO] 2025-07-11 16:07:01,324 "GET /gestor/clientes/ HTTP/1.1" 200 41997
+[INFO] 2025-07-11 16:07:03,087 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58606
+[INFO] 2025-07-11 16:07:03,117 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 29024
+[INFO] 2025-07-11 16:08:24,317 "GET /gestor/clientes/ HTTP/1.1" 200 41997
+[INFO] 2025-07-11 16:08:25,932 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 16:08:25,960 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 24080
+[INFO] 2025-07-11 16:08:26,155 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:08:29,200 "GET /gestor/api/produtos/buscar/?q=rena&exclude=&limit=10 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:08:32,284 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:08:35,145 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 72172
+[INFO] 2025-07-11 16:08:35,177 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:08:35,374 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:08:37,847 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:08:38,192 "GET /gestor/api/produtos/buscar/?q=film&exclude=&limit=10 HTTP/1.1" 200 1835
+[INFO] 2025-07-11 16:08:42,425 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010804&apenas_com_vendas=on HTTP/1.1" 200 118194
+[INFO] 2025-07-11 16:08:42,458 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:08:42,667 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:09:05,667 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:09:05,997 "GET /gestor/api/produtos/buscar/?q=film&exclude=&limit=10 HTTP/1.1" 200 1835
+[INFO] 2025-07-11 16:09:09,519 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=013840&apenas_com_vendas=on HTTP/1.1" 200 75171
+[INFO] 2025-07-11 16:09:09,567 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:09:09,794 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:18:32,772 "GET /gestor/api/produtos/buscar/?q=cuc&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 16:18:33,847 "GET /gestor/api/produtos/buscar/?q=cu&exclude=&limit=10 HTTP/1.1" 200 60
+[INFO] 2025-07-11 16:18:34,418 "GET /gestor/api/produtos/buscar/?q=cuc&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 16:18:35,194 "GET /gestor/api/produtos/buscar/?q=cu&exclude=&limit=10 HTTP/1.1" 200 60
+[INFO] 2025-07-11 16:18:37,248 "GET /gestor/api/produtos/buscar/?q=bu&exclude=&limit=10 HTTP/1.1" 200 2383
+[INFO] 2025-07-11 16:18:45,392 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=011896&apenas_com_vendas=on HTTP/1.1" 200 58702
+[INFO] 2025-07-11 16:18:45,432 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:18:45,676 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:18:52,343 "GET /gestor/api/produtos/buscar/?q=cucu&exclude=&limit=10 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:22:19,280 "GET /gestor/clientes/ HTTP/1.1" 200 41997
+[INFO] 2025-07-11 16:22:21,061 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 56955
+[INFO] 2025-07-11 16:22:21,096 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 13440
+[INFO] 2025-07-11 16:22:25,302 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:22:27,710 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 70900
+[INFO] 2025-07-11 16:22:42,570 "GET /gestor/api/produtos/buscar/?q=fo&exclude=&limit=10 HTTP/1.1" 200 2386
+[INFO] 2025-07-11 16:22:43,813 "GET /gestor/api/produtos/buscar/?q=fo&exclude=&limit=10 HTTP/1.1" 200 2386
+[INFO] 2025-07-11 16:22:44,911 "GET /gestor/api/produtos/buscar/?q=fon&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-11 16:22:46,062 "GET /gestor/api/produtos/buscar/?q=fo&exclude=&limit=10 HTTP/1.1" 200 2386
+[INFO] 2025-07-11 16:22:46,415 "GET /gestor/api/produtos/buscar/?q=fol&exclude=&limit=10 HTTP/1.1" 200 1894
+[INFO] 2025-07-11 16:22:47,863 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=003000&apenas_com_vendas=on HTTP/1.1" 200 57430
+[INFO] 2025-07-11 16:22:47,904 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:22:51,838 "GET /gestor/api/produtos/buscar/?q=fol&exclude=&limit=10 HTTP/1.1" 200 1894
+[INFO] 2025-07-11 16:22:53,400 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=003000&apenas_com_vendas=on HTTP/1.1" 200 57430
+[INFO] 2025-07-11 16:22:57,157 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:22:58,749 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 70900
+[INFO] 2025-07-11 16:23:14,086 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&fabricante=001&apenas_com_vendas=on HTTP/1.1" 200 1835144
+[INFO] 2025-07-11 16:23:14,299 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:23:36,186 - Broken pipe from ('127.0.0.1', 64379)
+[INFO] 2025-07-11 16:23:36,967 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&fabricante=001&fabricante=011&fabricante=024&apenas_com_vendas=on HTTP/1.1" 200 1835173
+[INFO] 2025-07-11 16:24:00,136 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&fabricante=001&fabricante=011&fabricante=024&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 1835183
+[INFO] 2025-07-11 16:24:00,429 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:32:22,149 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&fabricante=011&fabricante=024&apenas_com_vendas=on HTTP/1.1" 200 60366
+[INFO] 2025-07-11 16:32:29,509 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&fabricante=024&apenas_com_vendas=on HTTP/1.1" 200 60352
+[INFO] 2025-07-11 16:32:32,804 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&fabricante=024&apenas_com_vendas=on HTTP/1.1" 200 60352
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 16:42:36,736 Watching for file changes with StatReloader
+[INFO] 2025-07-11 16:42:47,957 "GET / HTTP/1.1" 200 6702
+[INFO] 2025-07-11 16:42:51,333 "GET /gestor/ HTTP/1.1" 200 7201
+[INFO] 2025-07-11 16:42:54,442 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59873
+[INFO] 2025-07-11 16:43:00,308 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59873
+[INFO] 2025-07-11 16:43:24,116 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 16:43:26,274 "GET /gestor/lojas/ HTTP/1.1" 200 12756
+[INFO] 2025-07-11 16:43:30,200 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 59873
+[INFO] 2025-07-11 16:44:24,576 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 16:44:24,643 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 24079
+[INFO] 2025-07-11 16:45:33,212 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 58227
+[INFO] 2025-07-11 16:45:33,281 "GET /static/js/produto-search-tags.js HTTP/1.1" 200 24080
+[INFO] 2025-07-11 16:45:33,534 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62
+[INFO] 2025-07-11 16:45:39,291 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 16:45:41,660 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on HTTP/1.1" 200 72172
+[INFO] 2025-07-11 16:45:41,699 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 16:45:41,914 "GET /gestor/api/produtos/buscar/?q=test&limit=1 HTTP/1.1" 200 62

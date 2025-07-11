@@ -46,9 +46,16 @@ from .usuario import (
 from .api import (
     vendedor_por_codigo, cliente_por_codigo, consultar_receita, consultar_bi
 )
-# ===== NOVO IMPORT PARA RELATÓRIOS =====
+
+# ===== RELATÓRIOS =====
 from .relatorio_clientes import (
-    relatorio_clientes  # ← NOVA VIEW ADICIONADA
+    relatorio_clientes  
+)
+
+# ===== NOVAS APIs DE PRODUTOS =====
+from .api_produtos import (
+    buscar_produtos_api, produto_detail_api, produtos_lista_api,
+    grupos_produtos_api, fabricantes_api, debug_produtos_api
 )
 
 __all__ = [
@@ -99,11 +106,15 @@ __all__ = [
     'usuario_update', 'usuario_delete',
     
     # ===== RELATÓRIOS =====
-    'relatorio_clientes',  # ← NOVA VIEW ADICIONADA
+    'relatorio_clientes',
     
-    # APIs (Cliente)
+    # ===== APIs (Cliente) =====
     'api_vendedor_por_codigo', 'api_cliente_por_codigo', 'api_consultar_receita',
     
-    # APIs (Gerais)
+    # ===== APIs (Gerais) =====
     'vendedor_por_codigo', 'cliente_por_codigo', 'consultar_receita', 'consultar_bi',
+    
+    # ===== APIs (Produtos) - NOVAS =====
+    'buscar_produtos_api', 'produto_detail_api', 'produtos_lista_api',
+    'grupos_produtos_api', 'fabricantes_api', 'debug_produtos_api',
 ]

@@ -23,7 +23,6 @@ except locale.Error:
     except locale.Error:
         logging.warning("Não foi possível configurar o locale para pt_BR. Os nomes dos meses podem não estar em português.")
 
-
 from core.models import Cliente, Vendas, Loja, Vendedor, GrupoProduto, Fabricante, Produto
 
 logger = logging.getLogger(__name__)
