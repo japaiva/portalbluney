@@ -1,0 +1,420 @@
+/* static/css/produto-search-tags.css */
+/* Sistema de Busca de Produtos com Tags - VERSÃO COMPLETA CORRIGIDA */
+
+/* ===== FIX: INTEGRAÇÃO COM DROPDOWN EXISTENTE ===== */
+.dropdown-checkbox.produto-search-enabled {
+    position: relative;
+    width: 100%;
+}
+
+/* Esconder elementos padrão do dropdown quando for produto search */
+.dropdown-checkbox.produto-search-enabled .dropdown-checkbox-button {
+    display: none !important;
+}
+
+.dropdown-checkbox.produto-search-enabled .dropdown-checkbox-menu {
+    position: static !important;
+    display: block !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+}
+
+/* ===== CONTAINER DE BUSCA ===== */
+.produto-search-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.produto-search-input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    transition: all 0.15s ease-in-out;
+    background: white;
+}
+
+.produto-search-input:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    outline: 0;
+}
+
+.produto-search-input::placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* ===== DROPDOWN DE RESULTADOS ===== */
+.produto-search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 0.375rem 0.375rem;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    display: none;
+}
+
+.produto-search-dropdown.show {
+    display: block;
+}
+
+.produto-search-item {
+    padding: 0.75rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.produto-search-item:hover,
+.produto-search-item.selected {
+    background-color: #f8f9fa;
+}
+
+.produto-search-item:last-child {
+    border-bottom: none;
+}
+
+.produto-search-item.no-results {
+    padding: 1rem;
+    text-align: center;
+    color: #6c757d;
+    cursor: default;
+    font-style: italic;
+}
+
+.produto-search-item.no-results:hover {
+    background-color: white;
+}
+
+.produto-codigo {
+    font-weight: 600;
+    color: #0d6efd;
+    font-size: 0.875rem;
+}
+
+.produto-nome {
+    color: #212529;
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.produto-info {
+    margin-top: 0.375rem;
+}
+
+.produto-info small {
+    font-size: 0.75rem;
+    color: #6c757d;
+}
+
+.loading-spinner {
+    padding: 1rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+/* ===== CONTAINER DE TAGS ===== */
+.produtos-selecionados {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
+    background-color: #f8f9fa;
+    border-radius: 0.375rem;
+    border: 1px solid #e9ecef;
+    min-height: 3rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.produtos-selecionados.empty {
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== TAGS DE PRODUTOS ===== */
+.produto-tag {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+    color: white;
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    max-width: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.produto-tag:hover {
+    background: linear-gradient(135deg, #0b5ed7, #0a58ca);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+}
+
+.produto-tag-codigo {
+    font-weight: 600;
+    margin-right: 0.375rem;
+    flex-shrink: 0;
+}
+
+.produto-tag-nome {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    margin-right: 0.375rem;
+    flex: 1;
+}
+
+.produto-tag-remove {
+    margin-left: 0.25rem;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+    flex-shrink: 0;
+}
+
+.produto-tag-remove:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+.produto-tag-remove i {
+    font-size: 0.625rem;
+}
+
+/* ===== ESTADO VAZIO ===== */
+.empty-state {
+    color: #6c757d;
+    font-style: italic;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* ===== CONTADOR ===== */
+.produtos-counter {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 0.5rem;
+    text-align: right;
+}
+
+/* ===== VARIAÇÕES DE CORES PARA TAGS (OPCIONAL) ===== */
+.produto-tag.grupo-parafusos {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+.produto-tag.grupo-porcas {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+}
+
+.produto-tag.grupo-cabos {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #212529;
+}
+
+.produto-tag.grupo-motores {
+    background: linear-gradient(135deg, #6f42c1, #59359a);
+}
+
+.produto-tag.grupo-eletricos {
+    background: linear-gradient(135deg, #fd7e14, #e55a00);
+}
+
+/* ===== ESTADOS DE CARREGAMENTO E ERRO ===== */
+.produto-search-loading {
+    padding: 1rem;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.produto-search-error {
+    padding: 1rem;
+    text-align: center;
+    color: #dc3545;
+    background-color: #f8d7da;
+    border-radius: 0.375rem;
+    margin-top: 0.5rem;
+}
+
+.produto-search-no-results {
+    padding: 1rem;
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.produto-tag.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.produto-tag.fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+.produto-search-dropdown.show {
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+    .produto-search-dropdown {
+        max-height: 250px;
+    }
+    
+    .produto-search-item {
+        padding: 0.625rem;
+    }
+    
+    .produto-tag {
+        font-size: 0.7rem;
+        padding: 0.25rem 0.5rem;
+        max-width: 220px;
+    }
+    
+    .produto-tag-nome {
+        max-width: 120px;
+    }
+    
+    .produto-tag-remove {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .produtos-selecionados {
+        gap: 0.375rem;
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .produto-tag {
+        max-width: 180px;
+        font-size: 0.65rem;
+    }
+    
+    .produto-tag-nome {
+        max-width: 100px;
+    }
+    
+    .produto-search-input {
+        font-size: 0.8rem;
+    }
+}
+
+/* ===== ACESSIBILIDADE ===== */
+.produto-search-input:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: 2px;
+}
+
+.produto-tag:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.produto-search-item:focus-visible {
+    outline: 2px solid #0d6efd;
+    outline-offset: -2px;
+}
+
+/* ===== MODO ESCURO (OPCIONAL) ===== */
+@media (prefers-color-scheme: dark) {
+    .produto-search-input {
+        background-color: #2d3748;
+        border-color: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .produto-search-dropdown {
+        background-color: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .produto-search-item {
+        color: #e2e8f0;
+        border-bottom-color: #4a5568;
+    }
+    
+    .produto-search-item:hover,
+    .produto-search-item.selected {
+        background-color: #4a5568;
+    }
+    
+    .produtos-selecionados {
+        background-color: #2d3748;
+        border-color: #4a5568;
+    }
+    
+    .empty-state {
+        color: #a0aec0;
+    }
+}
+
+/* ===== PERFORMANCE ===== */
+.produto-search-dropdown {
+    will-change: transform, opacity;
+}
+
+.produto-tag {
+    will-change: transform, box-shadow;
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .produto-search-dropdown {
+        display: none !important;
+    }
+    
+    .produto-tag-remove {
+        display: none !important;
+    }
+}

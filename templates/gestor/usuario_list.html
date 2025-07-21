@@ -1,0 +1,140 @@
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Usuários | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-users me-2"></i> Usuários
+    </h5>
+    <div>
+      <a href="{% url 'gestor:usuario_create' %}" class="btn btn-primary btn-sm">
+        <i class="fas fa-plus me-1"></i> Novo Usuário
+      </a>
+      <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar
+      </a>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 150px;">Usuário</th>
+            <th style="width: 180px;">Nome</th>
+            <th style="width: 100px;" class="text-center">Nível</th>
+            <th style="width: 70px;" class="text-center">Loja</th>
+            <th style="width: 70px;" class="text-center">Vend</th>
+            <th style="width: 100px;" class="text-center">Vendedores</th>
+            <th style="width: 80px;" class="text-center">Status</th>
+            <th style="width: 100px;" class="text-end">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for usuario in usuarios %}
+            <tr>
+              <td>
+                <div class="fw-semibold">{{ usuario.username }}</div>
+              </td>
+              <td>
+                <div>{{ usuario.first_name }} {{ usuario.last_name|default:'' }}</div>
+                {% if usuario.telefone %}
+                  <small class="text-muted">{{ usuario.telefone }}</small>
+                {% endif %}
+              </td>
+              <td class="text-center">
+                <span class="badge bg-{% if usuario.nivel == 'admin' %}danger{% elif usuario.nivel == 'gestor' %}warning{% else %}info{% endif %}">
+                  {{ usuario.get_nivel_display }}
+                </span>
+              </td>
+              
+              <!-- ✅ NOVA COLUNA: LOJA/VENDEDOR -->
+              <td class="text-center">
+                {% if usuario.codigo_loja %}
+                  <div>
+                    <span class="badge bg-info text-dark" title="Loja">
+                      {{ usuario.codigo_loja }}
+                    </span>
+                  </div>
+                {% endif %}
+              </td>
+
+              <td class="text-center">
+                {% if usuario.codigo_vendedor %}
+                  <div class="mt-1">
+                    <span class="badge bg-success" title="Vendedor">
+                    {{ usuario.codigo_vendedor }}
+                    </span>
+                  </div>
+                {% endif %}
+                {% if not usuario.codigo_loja and not usuario.codigo_vendedor %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              
+              <td class="text-center">
+                {% if usuario.nivel == 'admin' or usuario.nivel == 'gestor' %}
+                  <span class="badge bg-success" title="Acesso total">
+                    Todos
+                  </span>
+                {% else %}
+                  {% if usuario.count_vendedores > 0 %}
+                    <span class="badge bg-primary" title="{{ usuario.count_vendedores }} vendedores permitidos">
+                      {{ usuario.count_vendedores }}
+                    </span>
+                  {% else %}
+                    <span class="badge bg-secondary" title="Nenhum vendedor permitido">
+                      0
+                    </span>
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td class="text-center">
+                <span class="badge {% if usuario.is_active %}bg-success{% else %}bg-danger{% endif %}">
+                  {% if usuario.is_active %}Ativo{% else %}Inativo{% endif %}
+                </span>
+              </td>
+              <td class="text-end">
+                <div class="btn-group" role="group">
+                  
+                  <a href="{% url 'gestor:usuario_update' usuario.pk %}" 
+                     class="btn btn-sm btn-outline-primary" 
+                     title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  
+                  <a href="{% url 'gestor:usuario_delete' usuario.pk %}" 
+                     class="btn btn-sm btn-outline-danger" 
+                     title="Excluir">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="7" class="text-center py-4 text-muted">
+                Nenhum usuário cadastrado.
+                <br><a href="{% url 'gestor:usuario_create' %}" class="btn btn-sm btn-primary mt-2">
+                  <i class="fas fa-plus me-1"></i> Cadastrar primeiro usuário
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <small class="text-muted">
+          Total: {{ usuarios|length }} usuário{{ usuarios|length|pluralize:"s" }}
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

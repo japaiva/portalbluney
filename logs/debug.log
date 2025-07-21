@@ -7211,3 +7211,341 @@ Traceback (most recent call last):
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
 [ERROR] 2025-07-11 16:58:45,369 "GET /logout/ HTTP/1.1" 500 91343
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 17:11:17,461 Watching for file changes with StatReloader
+[INFO] 2025-07-11 17:11:31,718 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 17:11:31,785 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-11 17:11:40,687 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-11 17:11:40,855 "GET /gestor/ HTTP/1.1" 200 7201
+[INFO] 2025-07-11 17:11:43,069 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-11 17:11:44,793 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57426
+[INFO] 2025-07-11 17:11:44,828 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-11 17:11:47,655 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+[INFO] 2025-07-11 17:11:51,389 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-11&produto=010429&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 71371
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-11 17:48:54,858 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 15:17:41,169 Watching for file changes with StatReloader
+[INFO] 2025-07-21 15:18:05,192 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 15:18:05,280 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-21 15:18:05,354 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-07-21 15:18:05,377 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-07-21 15:18:15,373 "POST /login/?next=/gestor/ HTTP/1.1" 200 5328
+[INFO] 2025-07-21 15:18:19,969 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 15:18:20,140 "GET /gestor/ HTTP/1.1" 200 7201
+[INFO] 2025-07-21 15:18:22,415 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:18:40,671 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57426
+[INFO] 2025-07-21 15:18:40,709 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-21 15:19:12,313 "GET /gestor/vendedores/ HTTP/1.1" 200 23954
+[INFO] 2025-07-21 15:19:17,988 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:19:27,249 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57426
+[INFO] 2025-07-21 15:19:34,845 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:19:55,915 "GET /gestor/produtos/ HTTP/1.1" 200 38479
+[INFO] 2025-07-21 15:19:59,130 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:20:08,730 "GET /gestor/clientes/ HTTP/1.1" 200 42022
+[INFO] 2025-07-21 15:20:29,598 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:20:32,974 "GET /gestor/clientes/ HTTP/1.1" 200 42022
+[INFO] 2025-07-21 15:20:35,142 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:20:39,054 "GET /gestor/vendas/ HTTP/1.1" 200 59156
+[INFO] 2025-07-21 15:21:11,569 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:21:14,834 "GET /gestor/clientes/ HTTP/1.1" 200 42022
+[INFO] 2025-07-21 15:21:58,081 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:22:01,762 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57426
+[INFO] 2025-07-21 15:22:08,365 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-21&vendedor=554&apenas_com_vendas=on HTTP/1.1" 200 402805
+[INFO] 2025-07-21 15:22:09,253 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-21&vendedor=554&apenas_com_vendas=on&exportar_excel=1 HTTP/1.1" 200 17858
+[INFO] 2025-07-21 15:22:16,188 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:24:46,316 "GET /gestor/clientes/ HTTP/1.1" 200 42022
+[INFO] 2025-07-21 15:25:27,191 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 15:25:30,716 "GET /gestor/vendedores/ HTTP/1.1" 200 23954
+[INFO] 2025-07-21 15:25:33,509 "GET /gestor/lojas/ HTTP/1.1" 200 12756
+[INFO] 2025-07-21 15:25:37,552 "GET /gestor/dashboard/ HTTP/1.1" 200 6961
+[INFO] 2025-07-21 16:02:56,681 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:02:58,545 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:03:32,756 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:03:34,224 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:03:43,314 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:03:43,827 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:09:55,185 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:09:56,698 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:10:44,157 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/usuario.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:10:45,568 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:15:06,874 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:15:07,552 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:15:10,593 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:15:11,164 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:15:13,853 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:15:14,239 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:17:16,163 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:17:22,311 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[ERROR] 2025-07-21 16:17:24,237 Internal Server Error: /gestor/usuarios/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/usuario.py", line 17, in usuario_list
+    usuario.count_vendedores = usuario.total_vendedores_permitidos
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Usuario' object has no attribute 'total_vendedores_permitidos'. Did you mean: 'vendedores_permitidos'?
+[ERROR] 2025-07-21 16:17:24,241 "GET /gestor/usuarios/ HTTP/1.1" 500 77300
+[INFO] 2025-07-21 16:19:55,860 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:19:57,384 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:20:07,769 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:20:08,412 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:20:25,935 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:20:26,494 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:20:39,582 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:20:40,161 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:20:45,001 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:20:45,520 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:20:57,465 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/models.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:20:58,019 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:21:44,472 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:21:49,722 "GET /gestor/usuarios/ HTTP/1.1" 200 9912
+[INFO] 2025-07-21 16:21:55,998 "GET /gestor/usuarios/1/editar/ HTTP/1.1" 200 20991
+[INFO] 2025-07-21 16:22:20,924 "POST /gestor/usuarios/1/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:22:21,136 "GET /gestor/usuarios/ HTTP/1.1" 200 10433
+[INFO] 2025-07-21 16:22:28,584 "GET /gestor/usuarios/1/editar/ HTTP/1.1" 200 21063
+[INFO] 2025-07-21 16:22:40,346 "POST /gestor/usuarios/1/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:22:40,560 "GET /gestor/usuarios/ HTTP/1.1" 200 10434
+[INFO] 2025-07-21 16:22:53,608 "GET /gestor/usuarios/1/ HTTP/1.1" 200 10595
+[INFO] 2025-07-21 16:22:59,424 "GET /gestor/usuarios/ HTTP/1.1" 200 9898
+[INFO] 2025-07-21 16:23:01,795 "GET /gestor/usuarios/criar/ HTTP/1.1" 200 20949
+[INFO] 2025-07-21 16:23:34,022 "POST /gestor/usuarios/criar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:23:34,259 "GET /gestor/usuarios/ HTTP/1.1" 200 12086
+[INFO] 2025-07-21 16:23:42,942 "GET /gestor/usuarios/criar/ HTTP/1.1" 200 20949
+[INFO] 2025-07-21 16:24:25,149 "POST /gestor/usuarios/criar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:24:25,425 "GET /gestor/usuarios/ HTTP/1.1" 200 13737
+[INFO] 2025-07-21 16:24:33,381 "GET /gestor/usuarios/criar/ HTTP/1.1" 200 20949
+[INFO] 2025-07-21 16:25:01,471 "POST /gestor/usuarios/criar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:25:01,777 "GET /gestor/usuarios/ HTTP/1.1" 200 15409
+[INFO] 2025-07-21 16:25:13,021 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20981
+[INFO] 2025-07-21 16:25:28,383 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:25:28,687 "GET /gestor/usuarios/ HTTP/1.1" 200 15413
+[INFO] 2025-07-21 16:25:30,723 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20981
+[INFO] 2025-07-21 16:25:34,649 "GET /gestor/usuarios/ HTTP/1.1" 200 14876
+[INFO] 2025-07-21 16:26:45,315 "GET /gestor/usuarios/ HTTP/1.1" 200 14634
+[INFO] 2025-07-21 16:27:00,780 "GET /gestor/usuarios/1/editar/ HTTP/1.1" 200 21073
+[INFO] 2025-07-21 16:27:10,301 "POST /gestor/usuarios/1/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:27:10,598 "GET /gestor/usuarios/ HTTP/1.1" 200 15174
+[INFO] 2025-07-21 16:27:36,126 "GET /gestor/usuarios/ HTTP/1.1" 200 14390
+[INFO] 2025-07-21 16:27:42,120 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20983
+[INFO] 2025-07-21 16:28:00,577 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:28:00,880 "GET /gestor/usuarios/ HTTP/1.1" 200 14931
+[INFO] 2025-07-21 16:28:03,741 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20995
+[INFO] 2025-07-21 16:28:10,263 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:28:10,563 "GET /gestor/usuarios/ HTTP/1.1" 200 14927
+[INFO] 2025-07-21 16:28:14,539 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20995
+[INFO] 2025-07-21 16:28:23,019 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:28:23,327 "GET /gestor/usuarios/ HTTP/1.1" 200 14931
+[INFO] 2025-07-21 16:28:25,860 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21007
+[INFO] 2025-07-21 16:28:30,484 "GET /gestor/usuarios/ HTTP/1.1" 200 14394
+[INFO] 2025-07-21 16:28:32,999 "GET /gestor/usuarios/4/ HTTP/1.1" 200 11285
+[INFO] 2025-07-21 16:28:44,554 "GET /gestor/usuarios/ HTTP/1.1" 200 14394
+[INFO] 2025-07-21 16:29:14,430 "GET /gestor/usuarios/ HTTP/1.1" 200 13510
+[INFO] 2025-07-21 16:29:17,916 "GET /gestor/usuarios/1/editar/ HTTP/1.1" 200 21077
+[INFO] 2025-07-21 16:29:19,468 "GET /gestor/usuarios/ HTTP/1.1" 200 13510
+[INFO] 2025-07-21 16:29:21,482 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21007
+[INFO] 2025-07-21 16:29:24,247 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:29:24,537 "GET /gestor/usuarios/ HTTP/1.1" 200 14047
+[INFO] 2025-07-21 16:29:29,892 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21007
+[INFO] 2025-07-21 16:29:35,336 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:29:35,617 "GET /gestor/usuarios/ HTTP/1.1" 200 14043
+[INFO] 2025-07-21 16:29:42,515 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21007
+[INFO] 2025-07-21 16:34:06,071 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:07,648 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:13,763 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:15,253 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:19,198 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:19,574 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:23,198 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:23,563 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:26,173 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:26,574 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:46,673 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:47,195 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:50,973 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:51,340 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:34:57,021 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:34:57,404 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:35:06,257 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:35:06,799 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:35:07,942 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:35:08,252 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:36:04,748 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 16:36:05,828 Watching for file changes with StatReloader
+[INFO] 2025-07-21 16:36:39,293 "GET /gestor/lojas/ HTTP/1.1" 200 12862
+[INFO] 2025-07-21 16:36:41,340 "GET /gestor/usuarios/ HTTP/1.1" 200 16403
+[INFO] 2025-07-21 16:37:06,260 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21015
+[INFO] 2025-07-21 16:37:10,447 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:37:10,758 "GET /gestor/usuarios/ HTTP/1.1" 200 16940
+[INFO] 2025-07-21 16:37:18,059 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21015
+[INFO] 2025-07-21 16:37:24,877 "GET /gestor/usuarios/ HTTP/1.1" 200 16403
+[INFO] 2025-07-21 16:38:32,018 "GET /gestor/usuarios/ HTTP/1.1" 200 15293
+[INFO] 2025-07-21 16:40:36,218 "GET /gestor/usuarios/ HTTP/1.1" 200 15590
+[INFO] 2025-07-21 16:40:42,897 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21015
+[INFO] 2025-07-21 16:40:47,522 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:40:47,827 "GET /gestor/usuarios/ HTTP/1.1" 200 16127
+[INFO] 2025-07-21 16:40:53,480 "GET /gestor/usuarios/3/editar/ HTTP/1.1" 200 20979
+[INFO] 2025-07-21 16:41:09,797 "GET /gestor/usuarios/ HTTP/1.1" 200 15590
+[INFO] 2025-07-21 16:41:29,217 "GET /gestor/usuarios/ HTTP/1.1" 200 15191
+[INFO] 2025-07-21 16:41:51,328 "GET /gestor/usuarios/ HTTP/1.1" 200 15341
+[INFO] 2025-07-21 16:42:12,914 "GET /gestor/usuarios/ HTTP/1.1" 200 15242
+[INFO] 2025-07-21 16:42:19,055 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21015
+[INFO] 2025-07-21 16:42:24,644 "GET /gestor/usuarios/ HTTP/1.1" 200 15242
+[INFO] 2025-07-21 16:42:37,770 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21015
+[INFO] 2025-07-21 16:42:50,287 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:42:50,616 "GET /gestor/usuarios/ HTTP/1.1" 200 15779
+[INFO] 2025-07-21 16:42:53,705 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21015
+[INFO] 2025-07-21 16:43:35,703 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20766
+[INFO] 2025-07-21 16:43:51,730 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:43:52,035 "GET /gestor/usuarios/ HTTP/1.1" 200 15779
+[INFO] 2025-07-21 16:43:57,606 "GET /gestor/usuarios/3/editar/ HTTP/1.1" 200 20730
+[INFO] 2025-07-21 16:44:02,172 "POST /gestor/usuarios/3/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:44:02,468 "GET /gestor/usuarios/ HTTP/1.1" 200 15778
+[INFO] 2025-07-21 16:47:37,280 "GET /gestor/usuarios/3/editar/ HTTP/1.1" 200 20730
+[INFO] 2025-07-21 16:47:46,960 "POST /gestor/usuarios/3/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 16:47:47,255 "GET /gestor/usuarios/ HTTP/1.1" 200 15778
+[ERROR] 2025-07-21 16:48:04,641 Internal Server Error: /logout/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py", line 110, in logout_view
+    return redirect('gestor:login')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 49, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+                          ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 180, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+[ERROR] 2025-07-21 16:48:04,650 "GET /logout/ HTTP/1.1" 500 91202
+[INFO] 2025-07-21 17:00:47,968 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:00:49,650 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:00:59,896 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:01:00,399 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:01:09,325 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:01:09,915 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:01:11,609 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:01:12,031 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:02:35,320 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:02:37,337 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:02:39,340 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:02:39,711 Watching for file changes with StatReloader
+[WARNING] 2025-07-21 17:02:50,130 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:02:50,405 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:02:50,407 "GET /logout/ HTTP/1.1" 405 0
+[WARNING] 2025-07-21 17:03:02,868 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:03:02,879 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:03:02,880 "GET /logout/ HTTP/1.1" 405 0
+[INFO] 2025-07-21 17:05:11,215 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:05:12,852 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:05:19,616 "GET /gestor/usuarios/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:05:19,707 "GET /login/?next=/gestor/usuarios/ HTTP/1.1" 200 5146
+[INFO] 2025-07-21 17:05:19,890 "GET /gestor/usuarios/3/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:05:19,947 "GET /login/?next=/gestor/usuarios/3/editar/ HTTP/1.1" 200 5146
+[INFO] 2025-07-21 17:05:28,504 "POST /login/?next=/gestor/usuarios/3/editar/ HTTP/1.1" 200 5328
+[INFO] 2025-07-21 17:05:32,948 "POST /login/?next=/gestor/usuarios/3/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:05:33,285 "GET /gestor/usuarios/3/editar/ HTTP/1.1" 200 20730
+[WARNING] 2025-07-21 17:05:36,742 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:05:36,818 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:05:36,819 "GET /logout/ HTTP/1.1" 405 0
+[INFO] 2025-07-21 17:06:32,517 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:06:34,088 Watching for file changes with StatReloader
+[WARNING] 2025-07-21 17:06:38,988 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:06:39,259 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:06:39,259 "GET /logout/ HTTP/1.1" 405 0
+[INFO] 2025-07-21 17:08:07,173 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:08:08,939 Watching for file changes with StatReloader
+[WARNING] 2025-07-21 17:08:17,201 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:08:17,496 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:08:17,498 "GET /logout/ HTTP/1.1" 405 0
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:08:24,957 Watching for file changes with StatReloader
+[WARNING] 2025-07-21 17:08:34,907 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:08:35,140 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:08:35,140 "GET /logout/ HTTP/1.1" 405 0
+[INFO] 2025-07-21 17:12:41,425 "GET /gestor/usuarios/ HTTP/1.1" 200 15242
+[INFO] 2025-07-21 17:12:41,428 - Broken pipe from ('127.0.0.1', 64580)
+[INFO] 2025-07-21 17:12:41,611 "GET /gestor/usuarios/ HTTP/1.1" 200 15242
+[INFO] 2025-07-21 17:12:43,880 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20766
+[INFO] 2025-07-21 17:12:47,395 "GET /gestor/usuarios/ HTTP/1.1" 200 15242
+[INFO] 2025-07-21 17:12:53,933 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[WARNING] 2025-07-21 17:13:34,485 Method Not Allowed (GET): /logout/
+[WARNING] 2025-07-21 17:13:34,716 Method Not Allowed: /logout/
+[WARNING] 2025-07-21 17:13:34,718 "GET /logout/ HTTP/1.1" 405 0
+[INFO] 2025-07-21 17:16:51,746 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:16:53,233 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:17:19,921 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 17:17:20,726 Watching for file changes with StatReloader
+[INFO] 2025-07-21 17:18:02,010 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:18:02,152 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-21 17:18:13,428 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:18:13,591 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-21 17:18:18,938 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:18:19,078 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-21 17:18:27,831 "POST /login/ HTTP/1.1" 200 5329
+[INFO] 2025-07-21 17:18:33,114 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:18:33,293 "GET /gestor/ HTTP/1.1" 200 7308
+[INFO] 2025-07-21 17:18:44,341 "GET /gestor/usuarios/ HTTP/1.1" 200 15243
+[INFO] 2025-07-21 17:18:56,878 "GET /gestor/usuarios/3/editar/ HTTP/1.1" 200 20731
+[INFO] 2025-07-21 17:19:06,000 "POST /gestor/usuarios/3/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 17:19:06,291 "GET /gestor/usuarios/ HTTP/1.1" 200 15829
+[INFO] 2025-07-21 17:23:01,862 "GET /gestor/dashboard/ HTTP/1.1" 200 7068

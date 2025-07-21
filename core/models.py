@@ -40,6 +40,74 @@ class Usuario(AbstractUser):
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
 
+
+    def get_vendedores_permitidos(self):
+        """
+        Retorna queryset dos vendedores que este usuário pode visualizar
+        """
+        # Admin e Gestor veem todos
+        if self.nivel in ['admin', 'gestor']:
+            return Vendedor.objects.filter(ativo=True).order_by('codigo')
+        
+        # Outros usuários veem apenas os permitidos
+        try:
+            return Vendedor.objects.filter(
+                usuarios_com_acesso__usuario=self,
+                usuarios_com_acesso__ativo=True,
+                ativo=True
+            ).distinct().order_by('codigo')
+        except:
+            # Se ainda não existe a tabela UsuarioVendedores
+            return Vendedor.objects.none()
+
+    def pode_visualizar_vendedor(self, vendedor_codigo):
+        """
+        Verifica se o usuário pode visualizar um vendedor específico
+        """
+        # Admins e gestores podem ver todos
+        if self.nivel in ['admin', 'gestor']:
+            return True
+        
+        # Verificar se tem permissão específica
+        try:
+            return self.vendedores_permitidos.filter(
+                vendedor__codigo=vendedor_codigo,
+                ativo=True
+            ).exists()
+        except:
+            return False
+
+    def get_codigos_vendedores_permitidos(self):
+        """
+        Retorna lista de códigos dos vendedores permitidos (para filtros)
+        """
+        if self.nivel in ['admin', 'gestor']:
+            return list(Vendedor.objects.filter(ativo=True).values_list('codigo', flat=True))
+        
+        try:
+            return list(self.vendedores_permitidos.filter(
+                ativo=True,
+                vendedor__ativo=True
+            ).values_list('vendedor__codigo', flat=True))
+        except:
+            return []
+
+    @property
+    def total_vendedores_permitidos(self):
+        """
+        Conta total de vendedores que o usuário pode visualizar
+        """
+        if self.nivel in ['admin', 'gestor']:
+            return Vendedor.objects.filter(ativo=True).count()
+        
+        try:
+            return self.vendedores_permitidos.filter(
+                ativo=True,
+                vendedor__ativo=True
+            ).count()
+        except:
+            return 0
+
 class Parametro(models.Model):
     parametro = models.CharField(max_length=50)
     valor = models.FloatField()
@@ -791,3 +859,13 @@ class Vendas(models.Model):
             models.Index(fields=['anomes']),
             models.Index(fields=['ano', 'mes']),
         ]
+
+class UsuarioVendedores(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='vendedores_permitidos')
+    vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
+    ativo = models.BooleanField(default=True)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        db_table = 'usuario_vendedores'
+        unique_together = ['usuario', 'vendedor']

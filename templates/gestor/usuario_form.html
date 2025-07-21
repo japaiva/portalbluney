@@ -1,0 +1,280 @@
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}{{ title }} | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-user-plus me-2"></i> {{ title }}
+    </h5>
+    <a href="{% url 'gestor:usuario_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {% for error in form.non_field_errors %}
+            <p class="mb-0">{{ error }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- DADOS BÁSICOS -->
+      <div class="card mb-4">
+        <div class="card-header bg-light">
+          <h6 class="card-title mb-0">
+            <i class="fas fa-user me-2"></i>Dados Básicos
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="{{ form.username.id_for_label }}" class="form-label">Usuário*</label>
+              {{ form.username }}
+              {% if form.username.errors %}
+                <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.first_name.id_for_label }}" class="form-label">Nome</label>
+              {{ form.first_name }}
+              {% if form.first_name.errors %}
+                <div class="text-danger small mt-1">{{ form.first_name.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.last_name.id_for_label }}" class="form-label">Sobrenome</label>
+              {{ form.last_name }}
+              {% if form.last_name.errors %}
+                <div class="text-danger small mt-1">{{ form.last_name.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+              {{ form.email }}
+              {% if form.email.errors %}
+                <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.telefone.id_for_label }}" class="form-label">Telefone</label>
+              {{ form.telefone }}
+              {% if form.telefone.errors %}
+                <div class="text-danger small mt-1">{{ form.telefone.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.password.id_for_label }}" class="form-label">
+                Senha{% if not form.instance.pk %}*{% endif %}
+              </label>
+              {{ form.password }}
+              {% if form.password.errors %}
+                <div class="text-danger small mt-1">{{ form.password.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.confirm_password.id_for_label }}" class="form-label">
+                Confirmar Senha{% if not form.instance.pk %}*{% endif %}
+              </label>
+              {{ form.confirm_password }}
+              {% if form.confirm_password.errors %}
+                <div class="text-danger small mt-1">{{ form.confirm_password.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERFIL E PERMISSÕES -->
+      <div class="card mb-4">
+        <div class="card-header bg-light">
+          <h6 class="card-title mb-0">
+            <i class="fas fa-shield-alt me-2"></i>Perfil e Permissões
+          </h6>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="{{ form.nivel.id_for_label }}" class="form-label">Nível*</label>
+              {{ form.nivel }}
+              {% if form.nivel.errors %}
+                <div class="text-danger small mt-1">{{ form.nivel.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.codigo_loja.id_for_label }}" class="form-label">Código da Loja</label>
+              {{ form.codigo_loja }}
+              {% if form.codigo_loja.errors %}
+                <div class="text-danger small mt-1">{{ form.codigo_loja.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-4">
+              <label for="{{ form.codigo_vendedor.id_for_label }}" class="form-label">Código do Vendedor</label>
+              {{ form.codigo_vendedor }}
+              {% if form.codigo_vendedor.errors %}
+                <div class="text-danger small mt-1">{{ form.codigo_vendedor.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-12">
+              <div class="form-check form-switch">
+                {{ form.is_active }}
+                <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                  Usuário Ativo
+                </label>
+              </div>
+              {% if form.is_active.errors %}
+                <div class="text-danger small mt-1">{{ form.is_active.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- VENDEDORES PERMITIDOS -->
+      <div class="card mb-4" id="vendedores-section">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <h6 class="card-title mb-0">
+            <i class="fas fa-users me-2"></i>Vendedores Permitidos
+          </h6>
+          <div>
+            <button type="button" class="btn btn-sm btn-success" id="selecionar-todos">
+              <i class="fas fa-check-double me-1"></i> Todos
+            </button>
+            <button type="button" class="btn btn-sm btn-warning" id="limpar-todos">
+              <i class="fas fa-times me-1"></i> Nenhum
+            </button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="nivel-admin-message" class="alert alert-info" style="display: none;">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Administradores e Gestores</strong> têm acesso automático a todos os vendedores.
+          </div>
+          
+          <div class="row" id="vendedores-container">
+            <div class="col-md-8">
+              <div style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 15px; border-radius: 5px;">
+                {{ form.vendedores_permitidos }}
+                {% if form.vendedores_permitidos.errors %}
+                  <div class="text-danger small mt-1">{{ form.vendedores_permitidos.errors.0 }}</div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div id="contador-vendedores" class="alert alert-light">
+                <i class="fas fa-chart-pie me-2"></i>
+                <strong id="count-selecionados">0</strong> de <strong id="count-total">0</strong> selecionados
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTÕES -->
+      <div class="d-flex justify-content-end mt-4">
+        <a href="{% url 'gestor:usuario_list' %}" class="btn btn-outline-secondary me-2">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-save me-1"></i> Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nivelSelect = document.getElementById('id_nivel');
+    const vendedoresSection = document.getElementById('vendedores-section');
+    const vendedoresContainer = document.getElementById('vendedores-container');
+    const adminMessage = document.getElementById('nivel-admin-message');
+    const btnSelecionarTodos = document.getElementById('selecionar-todos');
+    const btnLimparTodos = document.getElementById('limpar-todos');
+
+    // CONTROLE DE VISIBILIDADE POR NÍVEL
+    function toggleVendedoresSection() {
+        const nivel = nivelSelect.value;
+        const isAdminOuGestor = ['admin', 'gestor'].includes(nivel);
+        
+        if (isAdminOuGestor) {
+            adminMessage.style.display = 'block';
+            vendedoresContainer.style.opacity = '0.5';
+            vendedoresContainer.style.pointerEvents = 'none';
+        } else {
+            adminMessage.style.display = 'none';
+            vendedoresContainer.style.opacity = '1';
+            vendedoresContainer.style.pointerEvents = 'auto';
+        }
+    }
+
+    if (nivelSelect) {
+        toggleVendedoresSection();
+        nivelSelect.addEventListener('change', toggleVendedoresSection);
+    }
+
+    // BOTÕES SELECIONAR/LIMPAR
+    if (btnSelecionarTodos) {
+        btnSelecionarTodos.addEventListener('click', function() {
+            const checkboxes = vendedoresContainer.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = true);
+            atualizarContador();
+        });
+    }
+
+    if (btnLimparTodos) {
+        btnLimparTodos.addEventListener('click', function() {
+            const checkboxes = vendedoresContainer.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            atualizarContador();
+        });
+    }
+
+    // CONTADOR DE SELECIONADOS
+    function atualizarContador() {
+        const checkboxes = vendedoresContainer.querySelectorAll('input[type="checkbox"]');
+        const selecionados = vendedoresContainer.querySelectorAll('input[type="checkbox"]:checked');
+        
+        document.getElementById('count-selecionados').textContent = selecionados.length;
+        document.getElementById('count-total').textContent = checkboxes.length;
+        
+        const contador = document.getElementById('contador-vendedores');
+        if (selecionados.length === 0) {
+            contador.className = 'alert alert-light';
+        } else if (selecionados.length === checkboxes.length) {
+            contador.className = 'alert alert-success';
+        } else {
+            contador.className = 'alert alert-info';
+        }
+    }
+
+    // ATUALIZAR CONTADOR AO MUDAR CHECKBOXES
+    const allCheckboxes = vendedoresContainer.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach(cb => {
+        cb.addEventListener('change', atualizarContador);
+    });
+
+    // CONTADOR INICIAL
+    setTimeout(atualizarContador, 100);
+
+    console.log('🚀 Formulário de usuário carregado!');
+});
+</script>
+{% endblock %}
+{% endblock %}

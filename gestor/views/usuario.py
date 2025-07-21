@@ -12,6 +12,10 @@ def usuario_list(request):
     """Lista de usuários"""
     usuarios = Usuario.objects.all().order_by('username')
     
+    # Adicionar contagem de vendedores para cada usuário
+    for usuario in usuarios:
+        usuario.count_vendedores = usuario.total_vendedores_permitidos
+    
     context = {
         'usuarios': usuarios
     }
@@ -24,7 +28,11 @@ def usuario_create(request):
         form = UsuarioForm(request.POST)
         if form.is_valid():
             usuario = form.save()
-            messages.success(request, f'Usuário "{usuario.username}" criado com sucesso!')
+            messages.success(
+                request, 
+                f'Usuário "{usuario.username}" criado com sucesso! '
+                f'Acesso a {usuario.total_vendedores_permitidos} vendedores.'
+            )
             return redirect('gestor:usuario_list')
     else:
         form = UsuarioForm()
@@ -40,8 +48,18 @@ def usuario_detail(request, pk):
     """Detalhes do usuário"""
     usuario = get_object_or_404(Usuario, pk=pk)
     
+    # Buscar vendedores permitidos
+    vendedores_permitidos = usuario.get_vendedores_permitidos()[:10]  # Primeiros 10
+    
+    # Estatísticas
+    total_vendedores_sistema = Usuario.objects.first().get_vendedores_permitidos().count() if Usuario.objects.exists() else 0
+    vendedores_com_acesso = usuario.total_vendedores_permitidos
+    
     context = {
-        'usuario': usuario
+        'usuario': usuario,
+        'vendedores_permitidos': vendedores_permitidos,
+        'total_vendedores_sistema': total_vendedores_sistema,
+        'vendedores_com_acesso': vendedores_com_acesso,
     }
     return render(request, 'gestor/usuario_detail.html', context)
 
@@ -54,7 +72,11 @@ def usuario_update(request, pk):
         form = UsuarioForm(request.POST, instance=usuario)
         if form.is_valid():
             usuario = form.save()
-            messages.success(request, f'Usuário "{usuario.username}" atualizado com sucesso!')
+            messages.success(
+                request, 
+                f'Usuário "{usuario.username}" atualizado com sucesso! '
+                f'Acesso a {usuario.total_vendedores_permitidos} vendedores.'
+            )
             return redirect('gestor:usuario_list')
     else:
         form = UsuarioForm(instance=usuario)

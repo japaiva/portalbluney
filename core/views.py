@@ -92,28 +92,13 @@ def home_view(request):
         # Usuário não autenticado, mostra a página inicial padrão
         return render(request, 'home.html')
     
+
 def logout_view(request):
-    """
-    View para realizar o logout do usuário.
-    """
-    # Obter o contexto antes de fazer logout
-    app_context = request.session.get('app_context', 'home')
-    
-    # Realizar o logout
-    logout(request)
-    
-    # Mensagem de sucesso
-    messages.success(request, 'Você foi desconectado com sucesso.')
-    
-    # Redirecionar com base no contexto
-    if app_context == 'gestor':
-        return redirect('gestor:login')
-    elif app_context == 'cliente':
-        return redirect('cliente:login')
-    elif app_context == 'projetista':
-        return redirect('projetista:login')
-    else:
-        return redirect('home')
+    """View personalizada para logout que aceita GET e POST"""
+    if request.user.is_authenticated:
+        logout(request)
+        messages.success(request, 'Você foi desconectado com sucesso.')
+    return redirect('login')
 
 class GestorLoginView(LoginView):
     template_name = 'gestor/login.html'

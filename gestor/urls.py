@@ -105,6 +105,14 @@ urlpatterns = [
     path('api/consultar-receita-geral/', views.consultar_receita, name='consultar_receita_geral'),
     path('api/consultar-bi/', views.consultar_bi, name='consultar_bi'),
     
+    # USUÁRIOS
+    path('usuarios/', views.usuario_list, name='usuario_list'),
+    path('usuarios/criar/', views.usuario_create, name='usuario_create'), 
+    path('usuarios/<int:pk>/', views.usuario_detail, name='usuario_detail'),
+    path('usuarios/<int:pk>/editar/', views.usuario_update, name='usuario_update'),
+    path('usuarios/<int:pk>/deletar/', views.usuario_delete, name='usuario_delete'),
+
+
     # ===== APIs (Produtos) - NOVAS =====
     path('api/produtos/buscar/', views.buscar_produtos_api, name='api_buscar_produtos'),
     path('api/produtos/<str:codigo>/', views.produto_detail_api, name='api_produto_detail'),

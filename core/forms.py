@@ -9,45 +9,77 @@ from core.utils.view_utils import CustomDateInput, CustomDateTimeInput
 from datetime import datetime
 import calendar
 
-# ===== FORMS =====
+# SUBSTITUIR o UsuarioForm em core/forms.py
+
+from core.models import Usuario, UsuarioVendedores, Vendedor
+from django.contrib.auth.hashers import make_password
 
 class UsuarioForm(forms.ModelForm):
-    confirm_password = forms.CharField(widget=forms.PasswordInput(), required=False)
-    password = forms.CharField(widget=forms.PasswordInput(), required=False)
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}), 
+        required=False,
+        label="Confirmar Senha"
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}), 
+        required=False,
+        label="Senha"
+    )
+    
+    # CAMPO DE VENDEDORES
+    vendedores_permitidos = forms.ModelMultipleChoiceField(
+        queryset=Vendedor.objects.filter(ativo=True).order_by('codigo'),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Vendedores Permitidos",
+        help_text="Selecione os vendedores que este usuário poderá visualizar. Admin/Gestor têm acesso automático a todos."
+    )
     
     class Meta:
         model = Usuario
-        fields = ['username', 'first_name', 'last_name', 'email', 'nivel', 'telefone', 
-                  'codigo_loja', 'codigo_vendedor', 'is_active']
+        fields = [
+            'username', 'first_name', 'last_name', 'email', 'nivel', 'telefone', 
+            'codigo_loja', 'codigo_vendedor', 'is_active'
+        ]
         widgets = {
-            'telefone': forms.TextInput(attrs={'class': 'form-control'}),
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'nivel': forms.Select(attrs={'class': 'form-select'}),
+            'telefone': forms.TextInput(attrs={'class': 'form-control'}),
             'codigo_loja': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
             'codigo_vendedor': forms.TextInput(attrs={'class': 'form-control', 'maxlength': '3'}),
+            'is_active': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
     
     def __init__(self, *args, **kwargs):
-        super(UsuarioForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         
         # Se estiver editando um usuário existente, não exigir senha
         if self.instance.pk:
             self.fields['password'].required = False
             self.fields['confirm_password'].required = False
+            
+            # ✅ CARREGAR VENDEDORES ATUAIS CORRETAMENTE
+            try:
+                vendedores_atuais = self.instance.get_vendedores_permitidos()
+                # Se não é admin/gestor, carregar só os permitidos
+                if self.instance.nivel not in ['admin', 'gestor']:
+                    vendedores_ids = list(UsuarioVendedores.objects.filter(
+                        usuario=self.instance,
+                        ativo=True
+                    ).values_list('vendedor_id', flat=True))
+                    self.fields['vendedores_permitidos'].initial = vendedores_ids
+                else:
+                    # Admin/Gestor não tem vendedores específicos
+                    self.fields['vendedores_permitidos'].initial = []
+            except Exception as e:
+                print(f"Erro ao carregar vendedores: {e}")
+                self.fields['vendedores_permitidos'].initial = []
         else:
             self.fields['password'].required = True
             self.fields['confirm_password'].required = True
-        
-        # Adicionar atributos de classe para os widgets que não foram especificados
-        for field_name, field in self.fields.items():
-            if not hasattr(field.widget, 'attrs') or 'class' not in field.widget.attrs:
-                if isinstance(field.widget, forms.CheckboxInput):
-                    field.widget.attrs['class'] = 'form-check-input'
-                else:
-                    field.widget.attrs['class'] = 'form-control'
     
     def clean(self):
         cleaned_data = super().clean()
@@ -69,18 +101,40 @@ class UsuarioForm(forms.ModelForm):
         return cleaned_data
     
     def save(self, commit=True):
-        user = super().save(commit=False)
+        usuario = super().save(commit=False)
         
         # Se uma senha foi fornecida, codificá-la
         password = self.cleaned_data.get('password')
         if password:
-            user.password = make_password(password)
+            usuario.password = make_password(password)
         
         if commit:
-            user.save()
+            usuario.save()
+            
+            # ✅ GERENCIAR VENDEDORES PERMITIDOS CORRETAMENTE
+            vendedores_selecionados = self.cleaned_data.get('vendedores_permitidos', [])
+            
+            # Se é admin ou gestor, não criar associações
+            if usuario.nivel in ['admin', 'gestor']:
+                # Limpar associações se existirem
+                UsuarioVendedores.objects.filter(usuario=usuario).delete()
+                print(f"✅ Admin/Gestor {usuario.username}: associações removidas")
+            else:
+                # Limpar associações antigas
+                UsuarioVendedores.objects.filter(usuario=usuario).delete()
+                
+                # Criar novas associações
+                for vendedor in vendedores_selecionados:
+                    UsuarioVendedores.objects.create(
+                        usuario=usuario,
+                        vendedor=vendedor,
+                        ativo=True
+                    )
+                    print(f"✅ Vendedor {vendedor.codigo} associado ao usuário {usuario.username}")
+                
+                print(f"✅ Total de {len(vendedores_selecionados)} vendedores associados")
         
-        return user
-
+        return usuario
 class ClienteForm(forms.ModelForm):
     # *** CAMPO VIRTUAL PARA EXIBIR O NOME DO VENDEDOR ***
     nome_vendedor_display = forms.CharField(

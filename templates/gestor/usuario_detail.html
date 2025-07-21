@@ -1,0 +1,208 @@
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}{{ usuario.username }} | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-user me-2"></i> {{ usuario.username }}
+      <small class="badge bg-{{ usuario.nivel|default:'secondary' }} ms-2">
+        {{ usuario.get_nivel_display }}
+      </small>
+    </h5>
+    <div>
+      <a href="{% url 'gestor:usuario_update' usuario.id %}" class="btn btn-outline-primary btn-sm me-1">
+        <i class="fas fa-edit me-1"></i> Editar
+      </a>
+      <a href="{% url 'gestor:usuario_delete' usuario.id %}" class="btn btn-sm btn-outline-danger me-1">
+        <i class="fas fa-trash-alt me-1"></i> Excluir
+      </a>
+      <a href="{% url 'gestor:usuario_list' %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar
+      </a>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <!-- INFORMAÇÕES BÁSICAS -->
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">
+              <i class="fas fa-info-circle me-2"></i>Informações Básicas
+            </h6>
+          </div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <strong>Usuário:</strong> {{ usuario.username }}
+              </li>
+              <li class="list-group-item">
+                <strong>Nome Completo:</strong> 
+                {{ usuario.first_name }} {{ usuario.last_name|default:'' }}
+                {% if not usuario.first_name and not usuario.last_name %}
+                  <span class="text-muted">Não informado</span>
+                {% endif %}
+              </li>
+              <li class="list-group-item">
+                <strong>Email:</strong> 
+                {% if usuario.email %}
+                  {{ usuario.email }}
+                {% else %}
+                  <span class="text-muted">Não informado</span>
+                {% endif %}
+              </li>
+              <li class="list-group-item">
+                <strong>Telefone:</strong> 
+                {% if usuario.telefone %}
+                  {{ usuario.telefone }}
+                {% else %}
+                  <span class="text-muted">Não informado</span>
+                {% endif %}
+              </li>
+              <li class="list-group-item">
+                <strong>Nível:</strong> 
+                <span class="badge bg-{{ usuario.nivel|default:'secondary' }}">
+                  {{ usuario.get_nivel_display }}
+                </span>
+              </li>
+              <li class="list-group-item">
+                <strong>Status:</strong> 
+                {% if usuario.is_active %}
+                  <span class="badge bg-success">Ativo</span>
+                {% else %}
+                  <span class="badge bg-danger">Inativo</span>
+                {% endif %}
+              </li>
+              <li class="list-group-item">
+                <strong>Data de Cadastro:</strong> 
+                {{ usuario.date_joined|date:"d/m/Y H:i" }}
+              </li>
+              {% if usuario.last_login %}
+              <li class="list-group-item">
+                <strong>Último Acesso:</strong> 
+                {{ usuario.last_login|date:"d/m/Y H:i" }}
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+
+        <!-- DADOS COMERCIAIS -->
+        {% if usuario.codigo_loja or usuario.codigo_vendedor %}
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">
+              <i class="fas fa-building me-2"></i>Dados Comerciais
+            </h6>
+          </div>
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush">
+              {% if usuario.codigo_loja %}
+              <li class="list-group-item">
+                <strong>Código da Loja:</strong> 
+                <span class="badge bg-info text-dark">{{ usuario.codigo_loja }}</span>
+              </li>
+              {% endif %}
+              {% if usuario.codigo_vendedor %}
+              <li class="list-group-item">
+                <strong>Código do Vendedor:</strong> 
+                <span class="badge bg-success">{{ usuario.codigo_vendedor }}</span>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- VENDEDORES PERMITIDOS -->
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header bg-light">
+            <h6 class="card-title mb-0">
+              <i class="fas fa-users me-2"></i>Acesso a Vendedores
+            </h6>
+          </div>
+          <div class="card-body">
+            <!-- ESTATÍSTICAS -->
+            <div class="row text-center mb-3">
+              <div class="col-6">
+                <div class="border rounded p-2">
+                  <h5 class="mb-1 text-primary">{{ vendedores_com_acesso }}</h5>
+                  <small class="text-muted">Permitidos</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="border rounded p-2">
+                  <h5 class="mb-1 text-info">{{ total_vendedores_sistema }}</h5>
+                  <small class="text-muted">Total no Sistema</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- STATUS BASEADO NO NÍVEL -->
+            {% if usuario.nivel == 'admin' or usuario.nivel == 'gestor' %}
+              <div class="alert alert-info">
+                <i class="fas fa-crown me-2"></i>
+                <strong>Acesso Total:</strong> Como {{ usuario.get_nivel_display }}, 
+                este usuário tem acesso automático a todos os vendedores.
+              </div>
+            {% else %}
+              {% if vendedores_com_acesso == 0 %}
+                <div class="alert alert-warning">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  <strong>Sem Acesso:</strong> Este usuário não possui acesso a nenhum vendedor.
+                </div>
+              {% elif vendedores_com_acesso == total_vendedores_sistema %}
+                <div class="alert alert-success">
+                  <i class="fas fa-check-circle me-2"></i>
+                  <strong>Acesso Completo:</strong> Este usuário tem acesso a todos os vendedores.
+                </div>
+              {% else %}
+                <div class="alert alert-light">
+                  <i class="fas fa-info-circle me-2"></i>
+                  <strong>Acesso Parcial:</strong> Este usuário tem acesso a vendedores específicos.
+                </div>
+              {% endif %}
+            {% endif %}
+
+            <!-- LISTA DE VENDEDORES (primeiros 10) -->
+            {% if vendedores_permitidos and usuario.nivel not in 'admin,gestor' %}
+            <div class="border rounded p-2 bg-light">
+              <small class="text-muted fw-bold">Vendedores Permitidos:</small>
+              <div class="mt-2" style="max-height: 200px; overflow-y: auto;">
+                {% for vendedor in vendedores_permitidos %}
+                  <div class="d-flex justify-content-between align-items-center py-1">
+                    <span>
+                      <span class="badge bg-success me-1">{{ vendedor.codigo }}</span>
+                      {{ vendedor.nome|truncatechars:25 }}
+                    </span>
+                    {% if vendedor.loja %}
+                      <small class="text-muted">{{ vendedor.loja.nome|truncatechars:15 }}</small>
+                    {% endif %}
+                  </div>
+                  {% if not forloop.last %}
+                    <hr class="my-1">
+                  {% endif %}
+                {% endfor %}
+                
+                {% if vendedores_com_acesso > 10 %}
+                  <div class="text-center mt-2">
+                    <small class="text-muted">
+                      ... e mais {{ vendedores_com_acesso|add:"-10" }} vendedores
+                    </small>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

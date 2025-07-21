@@ -12,7 +12,7 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     #path('logout/', auth_views.LogoutView.as_view(next_page='gestor:home'), name='logout'),
     path('perfil/', perfil, name='perfil'),
-    path('logout/', logout_view, name='logout'),  # Alterado para usar sua própria view
+    path('logout/', logout_view, name='logout'),
 
     # Página inicial do site
     path('', home_view, name='home'),

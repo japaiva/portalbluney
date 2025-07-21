@@ -1,0 +1,57 @@
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Excluir Usuário | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-trash-alt me-2"></i> Excluir Usuário
+    </h5>
+    <a href="{% url 'gestor:usuario_list' %}" class="btn btn-outline-secondary btn-sm">
+      <i class="fas fa-arrow-left me-1"></i> Voltar
+    </a>
+  </div>
+  
+  <div class="card-body">
+    <div class="alert alert-danger">
+      <h5><i class="fas fa-exclamation-triangle me-2"></i> Confirmação de Exclusão</h5>
+      <p>Você tem certeza que deseja excluir o usuário <strong>{{ usuario.username }}</strong>?</p>
+      
+      <div class="row mt-3">
+        <div class="col-md-6">
+          <strong>Dados do usuário:</strong>
+          <ul class="mt-2">
+            <li>Nome: {{ usuario.first_name }} {{ usuario.last_name|default:'' }}</li>
+            <li>Email: {{ usuario.email|default:'Não informado' }}</li>
+            <li>Nível: {{ usuario.get_nivel_display }}</li>
+            <li>Status: {% if usuario.is_active %}Ativo{% else %}Inativo{% endif %}</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <strong>Impacto da exclusão:</strong>
+          <ul class="mt-2">
+            <li>O usuário não poderá mais acessar o sistema</li>
+            <li>Todas as permissões de vendedores serão removidas</li>
+            <li>Esta ação é irreversível</li>
+          </ul>
+        </div>
+      </div>
+      
+      <p class="mb-0 mt-3"><strong>Atenção:</strong> Esta ação é irreversível.</p>
+    </div>
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="d-flex justify-content-end mt-3">
+        <a href="{% url 'gestor:usuario_list' %}" class="btn btn-outline-secondary me-2">
+          <i class="fas fa-times me-1"></i> Cancelar
+        </a>
+        <button type="submit" class="btn btn-danger">
+          <i class="fas fa-trash-alt me-1"></i> Excluir Usuário
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
