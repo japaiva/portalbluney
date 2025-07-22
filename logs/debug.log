@@ -10031,3 +10031,95 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-22 17:49:58,485 "GET /vendedor/api/buscar-produtos/?q=as&exclude=&limit=10 HTTP/1.1" 200 2167
 [INFO] 2025-07-22 17:49:59,121 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
 [INFO] 2025-07-22 17:50:03,966 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026047&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 208483
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 18:30:28,581 Watching for file changes with StatReloader
+[INFO] 2025-07-22 18:30:37,019 "GET /vendedor/clientes/ HTTP/1.1" 200 32112
+[INFO] 2025-07-22 18:30:44,104 "GET /vendedor/clientes/?page=2 HTTP/1.1" 200 32236
+[INFO] 2025-07-22 18:30:55,044 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 18:30:56,692 "GET /vendedor/clientes/ HTTP/1.1" 200 32112
+[INFO] 2025-07-22 18:31:01,459 "GET /vendedor/clientes/?page=2 HTTP/1.1" 200 32236
+[INFO] 2025-07-22 18:31:04,801 "GET /vendedor/clientes/?page=3 HTTP/1.1" 200 32682
+[INFO] 2025-07-22 18:31:08,164 "GET /vendedor/clientes/?page=4 HTTP/1.1" 200 32389
+[INFO] 2025-07-22 18:31:13,809 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 56695
+[INFO] 2025-07-22 18:31:39,522 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 18:31:41,833 "GET /vendedor/clientes/ HTTP/1.1" 200 32112
+[INFO] 2025-07-22 18:31:46,096 "GET /vendedor/clientes/?page=2 HTTP/1.1" 200 32236
+[INFO] 2025-07-22 18:31:49,696 "GET /vendedor/clientes/?page=3 HTTP/1.1" 200 32682
+[INFO] 2025-07-22 18:31:55,802 "GET /vendedor/clientes/ HTTP/1.1" 200 32112
+[INFO] 2025-07-22 18:32:00,311 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 18:32:02,043 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:32:02,159 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 18:32:09,021 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:32:09,121 "GET /vendedor/ HTTP/1.1" 200 6469
+[INFO] 2025-07-22 18:32:12,035 "GET /vendedor/vendas/ HTTP/1.1" 200 48871
+[INFO] 2025-07-22 18:32:25,263 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:32:28,363 "GET /vendedor/vendas/ HTTP/1.1" 200 48871
+[INFO] 2025-07-22 18:32:37,511 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:32:39,772 "GET /vendedor/clientes/ HTTP/1.1" 200 33245
+[INFO] 2025-07-22 18:32:53,085 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:32:55,519 "GET /vendedor/vendas/ HTTP/1.1" 200 48871
+[INFO] 2025-07-22 18:33:01,741 "GET /vendedor/clientes/ HTTP/1.1" 200 33245
+[INFO] 2025-07-22 18:33:13,628 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:33:15,555 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 56694
+[INFO] 2025-07-22 18:33:19,261 "GET /vendedor/api/buscar-produtos/?q=pl&exclude=&limit=10 HTTP/1.1" 200 1961
+[INFO] 2025-07-22 18:33:19,611 "GET /vendedor/api/buscar-produtos/?q=pla&exclude=&limit=10 HTTP/1.1" 200 2100
+[INFO] 2025-07-22 18:33:24,214 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 18:33:27,381 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=012067&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 57681
+[INFO] 2025-07-22 18:33:31,576 "GET /vendedor/api/buscar-produtos/?q=as&exclude=&limit=10 HTTP/1.1" 200 2167
+[INFO] 2025-07-22 18:33:31,748 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 18:33:35,339 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 667532
+[INFO] 2025-07-22 18:33:55,764 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:33:58,268 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:33:58,366 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 18:34:05,627 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:34:05,730 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 18:34:08,115 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 56695
+[INFO] 2025-07-22 18:34:10,634 "GET /vendedor/api/buscar-produtos/?q=asm&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-22 18:34:11,553 "GET /vendedor/api/buscar-produtos/?q=as&exclude=&limit=10 HTTP/1.1" 200 2167
+[INFO] 2025-07-22 18:34:12,134 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 18:34:15,746 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 667533
+[INFO] 2025-07-22 18:35:49,108 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 18:35:50,710 Watching for file changes with StatReloader
+[INFO] 2025-07-22 18:35:58,793 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 18:36:00,292 Watching for file changes with StatReloader
+[INFO] 2025-07-22 18:36:08,496 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 18:36:09,831 Watching for file changes with StatReloader
+[INFO] 2025-07-22 18:36:24,014 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 18:36:24,552 Watching for file changes with StatReloader
+[INFO] 2025-07-22 18:36:33,159 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-22 18:36:41,850 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 18:36:43,423 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:36:43,539 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 18:36:49,969 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:36:50,073 "GET /vendedor/ HTTP/1.1" 200 6469
+[INFO] 2025-07-22 18:36:52,288 "GET /vendedor/clientes/ HTTP/1.1" 200 33475
+[INFO] 2025-07-22 18:38:30,307 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 18:38:31,899 Watching for file changes with StatReloader
+[INFO] 2025-07-22 18:38:35,825 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:38:38,216 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 53477
+[INFO] 2025-07-22 18:38:40,088 "GET /vendedor/api/buscar-produtos/?q=as&exclude=&limit=10 HTTP/1.1" 200 2167
+[INFO] 2025-07-22 18:38:40,438 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 18:38:44,251 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 658261
+[INFO] 2025-07-22 18:38:52,579 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 18:38:55,634 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:38:55,726 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 18:39:02,045 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:39:02,152 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 18:39:05,085 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 52752
+[INFO] 2025-07-22 18:39:07,880 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 18:39:10,848 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 127985
+[INFO] 2025-07-22 18:39:22,545 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 18:39:27,331 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:39:27,449 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 18:39:36,827 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 18:39:36,918 "GET /vendedor/ HTTP/1.1" 200 6469
+[INFO] 2025-07-22 18:39:39,482 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 53477
+[INFO] 2025-07-22 18:39:46,318 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 18:39:49,638 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 658261
+[INFO] 2025-07-22 18:40:00,996 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225

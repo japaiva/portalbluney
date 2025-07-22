@@ -1,4 +1,4 @@
-# vendedor/views/cliente.py - VERSÃO COMPLETA COM TODAS AS APIS
+# vendedor/views/cliente.py - VERSÃO COM CONTROLE DE ACESSO
 
 import logging
 from datetime import timedelta, datetime
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 @login_required
 def cliente_list(request):
-    """Lista de clientes com filtros - SOMENTE LEITURA"""
+    """Lista de clientes com filtros - SOMENTE LEITURA COM CONTROLE DE ACESSO"""
     # Filtro por tipo de cliente
     tipo_cliente = request.GET.get('tipo', 'principal')
     if tipo_cliente == 'principal':
@@ -42,13 +42,29 @@ def cliente_list(request):
         clientes_list = clientes_list.filter(status='outros')
     
     # *** CONTROLE DE ACESSO: Vendedor vê apenas seus clientes ***
-    if request.user.nivel == 'vendedor' and request.user.codigo_vendedor:
-        clientes_list = clientes_list.filter(codigo_vendedor=request.user.codigo_vendedor)
+    if request.user.nivel == 'vendedor':
+        # Para vendedores, filtrar pelos códigos permitidos
+        codigos_permitidos = request.user.get_codigos_vendedores_permitidos()
+        if codigos_permitidos:
+            clientes_list = clientes_list.filter(codigo_vendedor__in=codigos_permitidos)
+        else:
+            # Se não tem vendedores permitidos, não mostra nenhum cliente
+            clientes_list = Cliente.objects.none()
     
-    # Filtro manual por vendedor (para gestores/admins)
+    # Filtro manual por vendedor (para gestores/admins e vendedores autorizados)
     vendedor_codigo = request.GET.get('vendedor', '')
-    if vendedor_codigo and request.user.nivel in ['admin', 'gestor']:
-        clientes_list = clientes_list.filter(codigo_vendedor=vendedor_codigo)
+    if vendedor_codigo:
+        # *** VERIFICAR SE O USUÁRIO PODE VER ESTE VENDEDOR ***
+        if request.user.nivel == 'vendedor':
+            # Vendedores só podem filtrar por vendedores que eles têm acesso
+            if not request.user.pode_visualizar_vendedor(vendedor_codigo):
+                messages.warning(request, f'Você não tem permissão para visualizar dados do vendedor {vendedor_codigo}.')
+                vendedor_codigo = ''  # Ignora o filtro
+            else:
+                clientes_list = clientes_list.filter(codigo_vendedor=vendedor_codigo)
+        else:
+            # Gestores/admins podem filtrar por qualquer vendedor
+            clientes_list = clientes_list.filter(codigo_vendedor=vendedor_codigo)
     
     # Filtro por loja
     loja_codigo = request.GET.get('loja', '')
@@ -78,13 +94,15 @@ def cliente_list(request):
     except EmptyPage:
         clientes = paginator.page(paginator.num_pages)
     
-    # Buscar dados para os selects (apenas se for gestor/admin)
+    # *** BUSCAR DADOS PARA OS SELECTS COM CONTROLE DE ACESSO ***
+    lojas = Loja.objects.filter(ativo=True).order_by('codigo')
+    
+    # Vendedores: apenas os que o usuário pode visualizar
     if request.user.nivel in ['admin', 'gestor']:
-        lojas = Loja.objects.filter(ativo=True).order_by('codigo')
         vendedores = Vendedor.objects.filter(ativo=True).order_by('codigo')
     else:
-        lojas = []
-        vendedores = []
+        # Para vendedores, mostrar apenas os vendedores permitidos
+        vendedores = request.user.get_vendedores_permitidos()
     
     context = {
         'clientes': clientes, 
@@ -96,19 +114,20 @@ def cliente_list(request):
         'lojas': lojas,
         'vendedores': vendedores,
         'is_readonly': True,  # Indica que é somente leitura
+        'total_vendedores_permitidos': request.user.total_vendedores_permitidos,
     }
     
     return render(request, 'vendedor/cliente_list.html', context)
 
 @login_required
 def cliente_detail(request, pk):
-    """Detalhe do cliente - SOMENTE VISUALIZAÇÃO"""
+    """Detalhe do cliente - SOMENTE VISUALIZAÇÃO COM CONTROLE DE ACESSO"""
     cliente = get_object_or_404(Cliente, pk=pk)
     
     # *** CONTROLE DE ACESSO: Verificar se vendedor pode ver este cliente ***
-    if request.user.nivel == 'vendedor' and request.user.codigo_vendedor:
-        if cliente.codigo_vendedor != request.user.codigo_vendedor:
-            messages.error(request, 'Você só pode visualizar clientes do seu código de vendedor.')
+    if request.user.nivel == 'vendedor':
+        if not request.user.pode_visualizar_vendedor(cliente.codigo_vendedor):
+            messages.error(request, 'Você não tem permissão para visualizar este cliente.')
             return redirect('vendedor:cliente_list')
     
     contatos = cliente.contatos.all()
@@ -120,6 +139,14 @@ def cliente_detail(request, pk):
     
     # Buscar clientes associados (sub-clientes)
     clientes_associados = Cliente.objects.filter(codigo_master=cliente.codigo).order_by('nome')
+    
+    # *** FILTRAR CLIENTES ASSOCIADOS PELO CONTROLE DE ACESSO ***
+    if request.user.nivel == 'vendedor':
+        codigos_permitidos = request.user.get_codigos_vendedores_permitidos()
+        if codigos_permitidos:
+            clientes_associados = clientes_associados.filter(codigo_vendedor__in=codigos_permitidos)
+        else:
+            clientes_associados = Cliente.objects.none()
     
     # Buscar contatos de sub-clientes
     contatos_sub_clientes = []

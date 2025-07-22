@@ -1,9 +1,10 @@
-# vendedor/views/relatorio_clientes.py
+# vendedor/views/relatorio_clientes.py - VERSÃO COM CONTROLE DE ACESSO
 
 import logging
 from datetime import datetime, date
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Sum, Q
 from django.http import HttpResponse
 from django.utils import timezone
@@ -27,10 +28,9 @@ from core.models import Cliente, Vendas, Loja, Vendedor, GrupoProduto, Fabricant
 
 logger = logging.getLogger(__name__)
 
-
 @login_required
 def relatorio_clientes(request):
-    """Relatório de clientes com faturamento mensal"""
+    """Relatório de clientes com faturamento mensal - COM CONTROLE DE ACESSO"""
     
     # ===== OBTER FILTROS (MÚLTIPLA ESCOLHA) =====
     data_inicio = request.GET.get('data_inicio', '')
@@ -48,6 +48,28 @@ def relatorio_clientes(request):
     # Força 'apenas_com_vendas' a ser True, independentemente do input do usuário
     apenas_com_vendas = True 
     
+    # *** CONTROLE DE ACESSO: FILTRAR VENDEDORES PERMITIDOS ***
+    if request.user.nivel == 'vendedor':
+        # Para vendedores, filtrar por vendedores permitidos
+        codigos_permitidos = request.user.get_codigos_vendedores_permitidos()
+        
+        if not codigos_permitidos:
+            # Se não tem vendedores permitidos, mostrar mensagem e não gerar relatório
+            messages.warning(request, 'Você não tem vendedores configurados para visualização. Entre em contato com o administrador.')
+            vendedor_codigos = []
+        else:
+            # Se vendedor_codigos foi especificado, verificar se está nos permitidos
+            if vendedor_codigos:
+                vendedores_nao_permitidos = [v for v in vendedor_codigos if v not in codigos_permitidos]
+                if vendedores_nao_permitidos:
+                    messages.warning(request, f'Vendedor(es) {", ".join(vendedores_nao_permitidos)} não estão em sua lista de vendedores permitidos.')
+                    # Filtrar apenas os vendedores permitidos
+                    vendedor_codigos = [v for v in vendedor_codigos if v in codigos_permitidos]
+            
+            # Se não especificou vendedores, usar todos os permitidos
+            if not vendedor_codigos:
+                vendedor_codigos = codigos_permitidos
+    
     # ===== DATAS PADRÃO (ÚLTIMOS 12 MESES) =====
     if not data_inicio or not data_fim:
         hoje = date.today()
@@ -55,25 +77,46 @@ def relatorio_clientes(request):
         data_inicio = primeiro_dia_ano.strftime('%Y-%m-%d')
         data_fim = hoje.strftime('%Y-%m-%d')
     
-    # ===== BUSCAR DADOS PARA OS SELECTS =====
+    # *** BUSCAR DADOS PARA OS SELECTS COM CONTROLE DE ACESSO ***
     lojas = Loja.objects.filter(ativo=True).order_by('codigo')
-    vendedores = Vendedor.objects.filter(ativo=True).order_by('codigo')
     grupos = GrupoProduto.objects.filter(ativo=True).order_by('codigo')
     fabricantes = Fabricante.objects.filter(ativo=True).order_by('codigo')
     produtos = Produto.objects.filter(ativo=True).order_by('codigo')
     
-    # Estados únicos do cadastro de clientes
-    estados_disponiveis = Cliente.objects.filter(estado__isnull=False).values_list('estado', flat=True).distinct().order_by('estado')
+    # *** VENDEDORES: APENAS OS PERMITIDOS ***
+    if request.user.nivel in ['admin', 'gestor']:
+        vendedores = Vendedor.objects.filter(ativo=True).order_by('codigo')
+    else:
+        # Para vendedores, mostrar apenas os vendedores permitidos
+        vendedores = request.user.get_vendedores_permitidos()
+    
+    # Estados únicos do cadastro de clientes (pode ser filtrado por vendedores permitidos)
+    if request.user.nivel == 'vendedor':
+        codigos_permitidos = request.user.get_codigos_vendedores_permitidos()
+        if codigos_permitidos:
+            estados_disponiveis = Cliente.objects.filter(
+                estado__isnull=False,
+                codigo_vendedor__in=codigos_permitidos
+            ).values_list('estado', flat=True).distinct().order_by('estado')
+        else:
+            estados_disponiveis = []
+    else:
+        estados_disponiveis = Cliente.objects.filter(
+            estado__isnull=False
+        ).values_list('estado', flat=True).distinct().order_by('estado')
     
     # ===== APLICAR FILTROS E GERAR RELATÓRIO =====
     dados_relatorio = []
     meses_periodo = []
     
     # O relatório será gerado se 'gerar_relatorio' for acionado ou se houver qualquer filtro aplicado
-    # removido o "apenas_com_vendas" da condição, pois agora é sempre True
-    if request.GET.get('gerar_relatorio') or any(request.GET.getlist(key) for key in ['loja', 'vendedor', 'estado', 'grupo', 'fabricante', 'produto']) or incluir_coligados:
+    if (request.GET.get('gerar_relatorio') or 
+        any(request.GET.getlist(key) for key in ['loja', 'vendedor', 'estado', 'grupo', 'fabricante', 'produto']) or 
+        incluir_coligados):
+        
         try:
-            dados_relatorio, meses_periodo = gerar_dados_relatorio(
+            dados_relatorio, meses_periodo = gerar_dados_relatorio_com_acesso(
+                user=request.user,  # *** PASSAR O USUÁRIO PARA CONTROLE DE ACESSO ***
                 data_inicio=data_inicio,
                 data_fim=data_fim,
                 loja_codigos=loja_codigos,
@@ -83,7 +126,7 @@ def relatorio_clientes(request):
                 fabricante_codigos=fabricante_codigos,
                 produto_codigos=produto_codigos,
                 incluir_coligados=incluir_coligados,
-                apenas_com_vendas=apenas_com_vendas # agora é sempre True
+                apenas_com_vendas=apenas_com_vendas
             )
         except Exception as e:
             logger.error(f"Erro ao gerar relatório: {str(e)}")
@@ -102,7 +145,9 @@ def relatorio_clientes(request):
             'fabricante': ', '.join(fabricante_codigos) if fabricante_codigos else 'Todos',
             'produto': ', '.join(produto_codigos) if produto_codigos else 'Todos',
             'incluir_coligados': incluir_coligados,
-            'apenas_com_vendas': apenas_com_vendas
+            'apenas_com_vendas': apenas_com_vendas,
+            'usuario_nivel': request.user.nivel,
+            'vendedores_permitidos': request.user.total_vendedores_permitidos if request.user.nivel == 'vendedor' else 'Todos'
         })
     
     context = {
@@ -110,7 +155,7 @@ def relatorio_clientes(request):
         'dados_relatorio': dados_relatorio,
         'meses_periodo': meses_periodo,
         
-        # Dados para os selects
+        # Dados para os selects (com controle de acesso)
         'lojas': lojas,
         'vendedores': vendedores,
         'grupos': grupos,
@@ -129,7 +174,7 @@ def relatorio_clientes(request):
             'fabricante_list': fabricante_codigos,
             'produto_list': produto_codigos,
             'incluir_coligados': incluir_coligados,
-            'apenas_com_vendas': apenas_com_vendas, # agora é sempre True
+            'apenas_com_vendas': apenas_com_vendas,
         },
         
         # Estatísticas
@@ -139,14 +184,18 @@ def relatorio_clientes(request):
         # JSON para JavaScript (serialização segura)
         'dados_relatorio_json': json.dumps(dados_relatorio) if dados_relatorio else '[]',
         'meses_periodo_json': json.dumps(meses_periodo) if meses_periodo else '[]',
+        
+        # Informações de controle de acesso
+        'total_vendedores_permitidos': request.user.total_vendedores_permitidos,
+        'is_vendedor_restrito': request.user.nivel == 'vendedor',
     }
     
     return render(request, 'vendedor/relatorio_clientes.html', context)
 
 
-def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos, estados, 
-                         grupo_codigos, fabricante_codigos, produto_codigos, incluir_coligados, apenas_com_vendas):
-    """Gera os dados do relatório de clientes com faturamento mensal - MÚLTIPLA ESCOLHA"""
+def gerar_dados_relatorio_com_acesso(user, data_inicio, data_fim, loja_codigos, vendedor_codigos, estados, 
+                                    grupo_codigos, fabricante_codigos, produto_codigos, incluir_coligados, apenas_com_vendas):
+    """Gera os dados do relatório com controle de acesso - VERSÃO COM CONTROLE DE ACESSO"""
     
     # ===== QUERY BASE DE VENDAS =====
     vendas_query = Vendas.objects.filter(
@@ -156,12 +205,21 @@ def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos,
         cliente__status='outros'
     )
     
+    # *** APLICAR CONTROLE DE ACESSO PRIMEIRO ***
+    if user.nivel == 'vendedor':
+        codigos_permitidos = user.get_codigos_vendedores_permitidos()
+        if codigos_permitidos:
+            vendas_query = vendas_query.filter(cliente__codigo_vendedor__in=codigos_permitidos)
+        else:
+            # Se não tem vendedores permitidos, retorna vazio
+            return [], []
+    
     # ===== APLICAR FILTROS NAS VENDAS (MÚLTIPLA ESCOLHA) =====
     if loja_codigos:
         vendas_query = vendas_query.filter(loja__codigo__in=loja_codigos)
     
     if vendedor_codigos:
-        vendas_query = vendas_query.filter(vendedor_nf__in=vendedor_codigos)
+        vendas_query = vendas_query.filter(cliente__codigo_vendedor__in=vendedor_codigos)
     
     if grupo_codigos:
         vendas_query = vendas_query.filter(grupo_produto__codigo__in=grupo_codigos)
@@ -184,8 +242,6 @@ def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos,
     ano_mes_atual = data_inicio_obj.replace(day=1)
     
     while ano_mes_atual <= data_fim_obj:
-        # Usar %b para o nome do mês abreviado em português (depende do locale)
-        # Fallback para nome completo caso o locale não funcione como esperado
         try:
             nome_mes_abreviado = ano_mes_atual.strftime('%b').capitalize()
         except Exception:
@@ -193,7 +249,7 @@ def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos,
         
         meses_periodo.append({
             'ano_mes': ano_mes_atual.strftime('%Y-%m'),
-            'nome': f"{nome_mes_abreviado}/{ano_mes_atual.year}", # Formatado como "Jan/2023"
+            'nome': f"{nome_mes_abreviado}/{ano_mes_atual.year}",
             'ano': ano_mes_atual.year,
             'mes': ano_mes_atual.month
         })
@@ -230,46 +286,6 @@ def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos,
                 'status': venda.cliente.get_status_display(),
                 'tipo': 'Coligado' if venda.cliente.codigo_master else 'Principal',
             }
-    
-    # ===== INCLUIR CLIENTES SEM VENDAS (SE SOLICITADO) =====
-    # Apenas com vendas agora é sempre True no contexto, então o bloco abaixo só é executado
-    # se apenas_com_vendas for False, o que nunca acontecerá.
-    # No entanto, mantemos a estrutura caso a regra de negócio mude no futuro.
-    if not apenas_com_vendas:
-        clientes_sem_vendas = Cliente.objects.exclude(status='outros')
-        
-        # Aplicar filtros de cliente (MÚLTIPLA ESCOLHA)
-        if estados:
-            clientes_sem_vendas = clientes_sem_vendas.filter(estado__in=estados)
-        
-        if vendedor_codigos:
-            clientes_sem_vendas = clientes_sem_vendas.filter(codigo_vendedor__in=vendedor_codigos)
-        
-        if loja_codigos:
-            clientes_sem_vendas = clientes_sem_vendas.filter(codigo_loja__in=loja_codigos)
-        
-        # Filtro de coligados
-        if not incluir_coligados:
-            clientes_sem_vendas = clientes_sem_vendas.filter(
-                Q(codigo_master__isnull=True) | Q(codigo_master='')
-            )
-        
-        # Adicionar clientes sem vendas
-        for cliente in clientes_sem_vendas:
-            if cliente.codigo not in clientes_info:
-                clientes_info[cliente.codigo] = {
-                    'cliente': cliente,
-                    'nome': cliente.nome,
-                    'codigo': cliente.codigo,
-                    'cpf_cnpj': cliente.cpf_cnpj or '-',
-                    'cidade': cliente.cidade or '-',
-                    'estado': cliente.estado or '-',
-                    'vendedor_codigo': cliente.codigo_vendedor or '-',
-                    'vendedor_nome': cliente.nome_vendedor or '-',
-                    'loja_codigo': cliente.codigo_loja or '-',
-                    'status': cliente.get_status_display(),
-                    'tipo': 'Coligado' if cliente.codigo_master else 'Principal',
-                }
     
     # ===== APLICAR FILTRO DE COLIGADOS =====
     if not incluir_coligados:
@@ -316,6 +332,7 @@ def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos,
     return dados_relatorio, meses_periodo
 
 
+# ===== FUNÇÃO DE EXPORTAR EXCEL PERMANECE IGUAL =====
 def exportar_relatorio_excel(dados_relatorio, meses_periodo, filtros):
     """Exporta o relatório para Excel"""
     
@@ -356,32 +373,37 @@ def exportar_relatorio_excel(dados_relatorio, meses_periodo, filtros):
     ws[f'B{linha_atual}'] = f"{filtros['data_inicio']} a {filtros['data_fim']}"
     linha_atual += 1
     
-    if filtros['loja'] and filtros['loja'] != 'Todas': # Verificando se é diferente de 'Todas'
+    if filtros.get('usuario_nivel') == 'vendedor':
+        ws[f'A{linha_atual}'] = "Vendedores Permitidos:"
+        ws[f'B{linha_atual}'] = filtros.get('vendedores_permitidos', 'N/A')
+        linha_atual += 1
+    
+    if filtros['loja'] and filtros['loja'] != 'Todas':
         ws[f'A{linha_atual}'] = "Loja:"
         ws[f'B{linha_atual}'] = filtros['loja']
         linha_atual += 1
     
-    if filtros['vendedor'] and filtros['vendedor'] != 'Todos': # Verificando se é diferente de 'Todos'
+    if filtros['vendedor'] and filtros['vendedor'] != 'Todos':
         ws[f'A{linha_atual}'] = "Vendedor:"
         ws[f'B{linha_atual}'] = filtros['vendedor']
         linha_atual += 1
     
-    if filtros['estado'] and filtros['estado'] != 'Todos': # Verificando se é diferente de 'Todos'
+    if filtros['estado'] and filtros['estado'] != 'Todos':
         ws[f'A{linha_atual}'] = "Estado:"
         ws[f'B{linha_atual}'] = filtros['estado']
         linha_atual += 1
     
-    if filtros['grupo'] and filtros['grupo'] != 'Todos': # Verificando se é diferente de 'Todos'
+    if filtros['grupo'] and filtros['grupo'] != 'Todos':
         ws[f'A{linha_atual}'] = "Grupo:"
         ws[f'B{linha_atual}'] = filtros['grupo']
         linha_atual += 1
 
-    if filtros['fabricante'] and filtros['fabricante'] != 'Todos': # Verificando se é diferente de 'Todos'
+    if filtros['fabricante'] and filtros['fabricante'] != 'Todos':
         ws[f'A{linha_atual}'] = "Fabricante:"
         ws[f'B{linha_atual}'] = filtros['fabricante']
         linha_atual += 1
 
-    if filtros['produto'] and filtros['produto'] != 'Todos': # Verificando se é diferente de 'Todos'
+    if filtros['produto'] and filtros['produto'] != 'Todos':
         ws[f'A{linha_atual}'] = "Produto:"
         ws[f'B{linha_atual}'] = filtros['produto']
         linha_atual += 1
