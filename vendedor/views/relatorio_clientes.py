@@ -141,7 +141,7 @@ def relatorio_clientes(request):
         'meses_periodo_json': json.dumps(meses_periodo) if meses_periodo else '[]',
     }
     
-    return render(request, 'gestor/relatorio_clientes.html', context)
+    return render(request, 'vendedor/relatorio_clientes.html', context)
 
 
 def gerar_dados_relatorio(data_inicio, data_fim, loja_codigos, vendedor_codigos, estados, 

@@ -453,18 +453,7 @@
                                 <span class="badge bg-warning"><i class="fas fa-star"></i></span>
                               {% endif %}
                             </td>
-                            <td class="text-end">
-                              {% if perms.core.change_clientecontato %}
-                                <div class="btn-group" role="group">
-                                  <a href="{% url 'vendedor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
-                                    <i class="fas fa-edit"></i>
-                                  </a>
-                                  <a href="{% url 'vendedor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
-                                    <i class="fas fa-trash"></i>
-                                  </a>
-                                </div>
-                              {% endif %}
-                            </td>
+
                           </tr>
                         {% endfor %}
                       </tbody>
