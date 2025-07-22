@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Portal do Vendedor{% endblock %}
+
+{% block navbar_title %}
+<span class="app-title-text">Portal do Vendedor</span>
+{% endblock %}
+
+{% block nav_items %}
+
+<!-- Divisor vertical -->
+<li class="nav-item">
+  <span class="nav-link" style="border-left: 2px solid #60a5fa; height: 24px; margin: 8px 15px;"></span>
+</li>
+
+
+<!-- Menu de Clientes -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Clientes
+  </a>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    <li><a class="dropdown-item" href="{% url 'gestor:cliente_list' %}">
+        Clientes
+    </a></li>
+    <li><a class="dropdown-item" href="{% url 'gestor:vendas_list' %}">
+        Vendas
+    </a></li>
+    <li><a class="dropdown-item" href="{% url 'gestor:relatorio_clientes' %}">
+        Relatório Clientes
+    </a></li>
+</li>
+  </ul>
+</li>
+
+{% endblock %}

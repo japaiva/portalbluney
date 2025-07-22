@@ -10,7 +10,6 @@ urlpatterns = [
     
     # Views de autenticação compartilhadas
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    #path('logout/', auth_views.LogoutView.as_view(next_page='gestor:home'), name='logout'),
     path('perfil/', perfil, name='perfil'),
     path('logout/', logout_view, name='logout'),
 

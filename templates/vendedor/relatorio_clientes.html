@@ -1,0 +1,895 @@
+{% extends 'vendedor/base_vendedor.html' %}
+{% load static %}
+
+{% block title %}Relatório de Clientes | Portal Comercial{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ===== ESTILOS SIMPLIFICADOS PARA BUSCA DE PRODUTOS ===== */
+.produto-search-wrapper {
+    position: relative;
+}
+
+.produto-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 2px;
+    display: none;
+}
+
+.produto-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.produto-item:hover {
+    background-color: #f8f9fa;
+}
+
+.produto-item:last-child {
+    border-bottom: none;
+}
+
+.produto-tag {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0d6efd, #0b5ed7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.produto-tag:hover {
+    background: linear-gradient(135deg, #0b5ed7, #0a58ca);
+    transform: translateY(-1px);
+}
+
+.produto-tag-remove {
+    margin-left: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.produto-tag-remove:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.produtos-tags-area {
+    min-height: 40px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 8px;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: center;
+}
+
+.produtos-tags-area .empty-message {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.875rem;
+}
+
+/* ===== ESTILOS PARA DROPDOWNS COM CHECKBOXES ===== */
+.dropdown-checkbox {
+    position: relative;
+}
+
+.dropdown-checkbox-button {
+    width: 100%;
+    text-align: left;
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-checkbox-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+}
+
+.dropdown-checkbox-menu.show {
+    display: block;
+}
+
+.checkbox-item {
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-item:hover {
+    background-color: #f8f9fa;
+}
+
+.clear-filters-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    color: #6c757d;
+    cursor: pointer;
+}
+
+/* ===== ESTILOS PARA TABELA DE RELATÓRIO ===== */
+.table-relatorio {
+    font-size: 0.875rem;
+}
+
+.table-relatorio th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+    padding: 8px 6px;
+}
+
+.table-relatorio td {
+    border: 1px solid #dee2e6;
+    padding: 6px;
+    vertical-align: middle;
+}
+
+.valor-mes {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+}
+
+.total-cliente {
+    background-color: #f1f3f4;
+    font-weight: 600;
+}
+
+.total-geral {
+    background-color: #e3f2fd;
+    font-weight: bold;
+    color: #1976d2;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: #f8f9fa;
+}
+
+.scroll-horizontal {
+    overflow-x: auto;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 9999;
+    display: none;
+}
+
+.loading-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  
+  <div class="card shadow-sm mb-3">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h5 class="card-title mb-0">
+        <i class="fas fa-chart-line me-2 text-primary"></i>
+        Relatório de Clientes - Faturamento Mensal
+      </h5>
+      <div>
+        <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+          <i class="fas fa-arrow-left me-1"></i> Voltar
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <form method="get" id="formFiltros" onsubmit="showLoading()">
+        
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <label for="data_inicio" class="form-label small fw-bold">Data Início</label>
+            <input type="date" name="data_inicio" id="data_inicio" 
+                   class="form-control form-control-sm" 
+                   value="{{ filtros.data_inicio }}" required>
+          </div>
+          
+          <div class="col-md-4">
+            <label for="data_fim" class="form-label small fw-bold">Data Fim</label>
+            <input type="date" name="data_fim" id="data_fim" 
+                   class="form-control form-control-sm" 
+                   value="{{ filtros.data_fim }}" required>
+          </div>
+          
+          <div class="col-md-4">
+            <label class="form-label small fw-bold">Loja</label>
+            <div class="dropdown-checkbox" data-name="loja">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todas</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('loja')">Limpar seleção</div>
+                {% for loja in lojas %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="loja-{{ loja.codigo }}" name="loja" value="{{ loja.codigo }}" 
+                           {% if loja.codigo in filtros.loja_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="loja-{{ loja.codigo }}">{{ loja.codigo }} - {{ loja.nome|truncatechars:20 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <label class="form-label small fw-bold">Vendedor</label>
+            <div class="dropdown-checkbox" data-name="vendedor">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('vendedor')">Limpar seleção</div>
+                {% for vendedor in vendedores %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="vendedor-{{ vendedor.codigo }}" name="vendedor" value="{{ vendedor.codigo }}" 
+                           {% if vendedor.codigo in filtros.vendedor_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="vendedor-{{ vendedor.codigo }}">{{ vendedor.codigo }} - {{ vendedor.nome|truncatechars:15 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label class="form-label small fw-bold">Estado</label>
+            <div class="dropdown-checkbox" data-name="estado">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('estado')">Limpar seleção</div>
+                {% for est in estados %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="estado-{{ est }}" name="estado" value="{{ est }}" 
+                           {% if est in filtros.estado_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="estado-{{ est }}">{{ est }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small fw-bold">Grupo Produto</label>
+            <div class="dropdown-checkbox" data-name="grupo">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('grupo')">Limpar seleção</div>
+                {% for grupo in grupos %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="grupo-{{ grupo.codigo }}" name="grupo" value="{{ grupo.codigo }}" 
+                           {% if grupo.codigo in filtros.grupo_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="grupo-{{ grupo.codigo }}">{{ grupo.codigo }} - {{ grupo.descricao|truncatechars:15 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <label class="form-label small fw-bold">Fabricante</label>
+            <div class="dropdown-checkbox" data-name="fabricante">
+              <button type="button" class="dropdown-checkbox-button" onclick="toggleDropdown(this)">
+                <span class="selected-text">Todos</span>
+                <i class="fas fa-chevron-down dropdown-toggle-icon"></i>
+              </button>
+              <div class="dropdown-checkbox-menu">
+                <div class="clear-filters-btn" onclick="clearFilter('fabricante')">Limpar seleção</div>
+                {% for fabricante in fabricantes %}
+                  <div class="checkbox-item">
+                    <input type="checkbox" id="fabricante-{{ fabricante.codigo }}" name="fabricante" value="{{ fabricante.codigo }}" 
+                           {% if fabricante.codigo in filtros.fabricante_list %}checked{% endif %}
+                           onchange="updateSelectedText(this); submitFilters()">
+                    <label for="fabricante-{{ fabricante.codigo }}">{{ fabricante.codigo }} - {{ fabricante.descricao|truncatechars:15 }}</label>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4">
+            <label class="form-label small fw-bold">
+              <i class="fas fa-boxes me-1"></i>
+              Produto
+            </label>
+            <div id="produto-search-container" data-name="produto">
+              <div class="text-center p-3 text-muted">
+                <i class="fas fa-spinner fa-spin me-2"></i>
+                Carregando sistema de busca...
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 d-flex align-items-end gap-2">
+            <div class="form-check form-switch flex-grow-1">
+              <input class="form-check-input" type="checkbox" name="incluir_coligados" 
+                     id="incluir_coligados" {% if filtros.incluir_coligados %}checked{% endif %}
+                     onchange="submitFilters()">
+              <label class="form-check-label small" for="incluir_coligados">
+                Incluir Coligados
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-12 d-flex justify-content-end gap-2">
+            <input type="hidden" name="apenas_com_vendas" value="on">
+
+            <button type="submit" name="gerar_relatorio" value="1" class="btn btn-primary btn-sm">
+              <i class="fas fa-search me-1"></i> Gerar Relatório
+            </button>
+            
+            {% if dados_relatorio %}
+            <button type="submit" name="exportar_excel" value="1" class="btn btn-success btn-sm" onclick="showLoadingForExport()">
+              <i class="fas fa-file-excel me-1"></i> Excel
+            </button>
+            {% endif %}
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  {% if dados_relatorio %}
+  <div class="card shadow-sm">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h6 class="card-title mb-0">
+        <i class="fas fa-table me-2"></i>
+        Resultado do Relatório - {{ total_clientes }} cliente{{ total_clientes|pluralize }}
+      </h6>
+      
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="toggleFullscreen()">
+          <i class="fas fa-expand" id="fullscreen-icon"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="card-body p-0">
+      <div class="scroll-horizontal" id="tableContainer">
+        <table class="table table-relatorio table-striped table-hover mb-0">
+          <thead class="sticky-header">
+            <tr>
+              <th rowspan="2" style="width: 80px;">Código</th>
+              <th rowspan="2" style="width: 200px;">Nome do Cliente</th>
+              <th rowspan="2" style="width: 120px;">CPF/CNPJ</th>
+              <th rowspan="2" style="width: 120px;">Cidade</th>
+              <th rowspan="2" style="width: 40px;">UF</th>
+              <th rowspan="2" style="width: 60px;">Loja</th>
+              <th rowspan="2" style="width: 150px;">Vendedor</th>
+              <th rowspan="2" style="width: 80px;">Status</th>
+              <th rowspan="2" style="width: 70px;">Tipo</th>
+              <th colspan="{{ meses_periodo|length }}" class="text-center">Faturamento por Mês</th>
+              <th rowspan="2" style="width: 100px;">TOTAL</th>
+            </tr>
+            <tr>
+              {% for mes in meses_periodo %}
+                <th style="width: 90px;">{{ mes.nome }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          
+          <tbody>
+            {% for cliente in dados_relatorio %}
+              <tr>
+                <td><code>{{ cliente.codigo }}</code></td>
+                <td class="cliente-nome">{{ cliente.nome|truncatechars:25 }}</td>
+                <td>
+                  {% if cliente.cpf_cnpj != '-' %}
+                    <span class="badge bg-light text-dark">{{ cliente.cpf_cnpj }}</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td>{{ cliente.cidade|truncatechars:15 }}</td>
+                <td class="text-center">
+                  {% if cliente.estado != '-' %}
+                    <span class="badge bg-info">{{ cliente.estado }}</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if cliente.loja_codigo != '-' %}
+                    <span class="badge bg-secondary">{{ cliente.loja_codigo }}</span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td>
+                  {% if cliente.vendedor_codigo != '-' %}
+                    <small>{{ cliente.vendedor_codigo }} - {{ cliente.vendedor_nome|truncatechars:12 }}</small>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if cliente.status == 'Ativo' %}
+                    <span class="badge bg-success">{{ cliente.status }}</span>
+                  {% elif cliente.status == 'Inativo' %}
+                    <span class="badge bg-danger">{{ cliente.status }}</span>
+                  {% else %}
+                    <span class="badge bg-secondary">{{ cliente.status }}</span>
+                  {% endif %}
+                </td>
+                <td class="text-center">
+                  {% if cliente.tipo == 'Principal' %}
+                    <span class="badge bg-primary">{{ cliente.tipo }}</span>
+                  {% else %}
+                    <span class="badge bg-secondary">{{ cliente.tipo }}</span>
+                  {% endif %}
+                </td>
+                
+                {% for mes in meses_periodo %}
+                  <td class="valor-mes" data-cliente-codigo="{{ cliente.codigo }}" data-mes-ano="{{ mes.ano_mes }}">
+                    <span class="text-muted">-</span>
+                  </td>
+                {% endfor %}
+                
+                <td class="valor-mes total-cliente">
+                  {% if cliente.total > 0 %}
+                    R$ {{ cliente.total|floatformat:2 }}
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            
+            <tr class="total-geral">
+              <td colspan="9" class="text-end fw-bold">TOTAL GERAL:</td>
+              
+              {% for mes in meses_periodo %}
+                <td class="valor-mes" id="total-mes-{{ mes.ano_mes }}">
+                  <span class="fw-bold">R$ 0,00</span>
+                </td>
+              {% endfor %}
+              
+              <td class="valor-mes">
+                <strong>R$ {{ total_geral|floatformat:2 }}</strong>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="card-footer bg-light">
+      <div class="row">
+        <div class="col-md-8">
+          <small class="text-muted">
+            <i class="fas fa-info-circle me-1"></i>
+            Período: {{ filtros.data_inicio }} a {{ filtros.data_fim }} | 
+            Gerado em: {% now "d/m/Y H:i" %}
+          </small>
+        </div>
+        <div class="col-md-4 text-end">
+          <small class="text-muted">
+            <i class="fas fa-users me-1"></i>{{ total_clientes }} cliente{{ total_clientes|pluralize }} | 
+            <i class="fas fa-calendar me-1"></i>{{ meses_periodo|length }} meses
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% elif request.GET.gerar_relatorio %}
+  <div class="card shadow-sm">
+    <div class="card-body text-center py-5">
+      <i class="fas fa-search fa-3x text-muted mb-3"></i>
+      <h5 class="text-muted">Nenhum resultado encontrado</h5>
+      <p class="text-muted">
+        Tente ajustar os filtros ou verificar se existem dados para o período selecionado.
+      </p>
+      <button type="button" class="btn btn-outline-primary" onclick="limparFiltros()">
+        <i class="fas fa-eraser me-1"></i> Limpar Filtros
+      </button>
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-content">
+    <div class="spinner-border text-primary mb-3" role="status">
+      <span class="visually-hidden">Carregando...</span>
+    </div>
+    <h6>Gerando relatório...</h6>
+    <p class="text-muted">Por favor, aguarde.</p>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+console.log('🚀 Inicializando relatório de clientes...');
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // ===== INICIALIZAR SISTEMA DE BUSCA DE PRODUTOS =====
+  if (typeof window.ProdutoSearchTags !== 'undefined') {
+    console.log('✅ ProdutoSearchTags encontrado! Inicializando...');
+    
+    try {
+      var produtoSearch = new ProdutoSearchTags('produto-search-container', {
+        placeholder: '🔍 Digite para buscar produtos...',
+        apiUrl: '{% url "gestor:api_buscar_produtos" %}',
+        minChars: 2,
+        debounceTime: 300,
+        maxResults: 10,
+        autoSubmit: false
+      });
+      
+      console.log('✅ Sistema de busca inicializado!');
+      
+    } catch (error) {
+      console.error('❌ Erro ao inicializar busca:', error);
+      document.getElementById('produto-search-container').innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i> Erro: ' + error.message + '</div>';
+    }
+    
+  } else {
+    console.error('❌ ProdutoSearchTags não encontrado!');
+    document.getElementById('produto-search-container').innerHTML = '<div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> Sistema de busca não disponível.</div>';
+  }
+  
+  // ===== RESTO DO CÓDIGO EXISTENTE =====
+  
+  // JSON data from Django context
+  var dadosRelatorio = {{ dados_relatorio_json|safe }};
+  var mesesPeriodo = {{ meses_periodo_json|safe }};
+  var filtrosIniciais = {
+    loja: {{ filtros.loja_list|safe }},
+    vendedor: {{ filtros.vendedor_list|safe }},
+    estado: {{ filtros.estado_list|safe }},
+    grupo: {{ filtros.grupo_list|safe }},
+    fabricante: {{ filtros.fabricante_list|safe }},
+    produto: {{ filtros.produto_list|safe }}
+  };
+
+  // ===== INICIALIZAR DROPDOWNS COM CHECKBOXES =====
+  initializeDropdowns(filtrosIniciais);
+    
+  // ===== PREENCHER VALORES DOS MESES VIA JAVASCRIPT =====
+  if (dadosRelatorio && dadosRelatorio.length > 0) {
+    for (var i = 0; i < dadosRelatorio.length; i++) {
+      var cliente = dadosRelatorio[i];
+      for (var j = 0; j < mesesPeriodo.length; j++) {
+        var mes = mesesPeriodo[j];
+        var valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
+        var celula = document.querySelector('td[data-cliente-codigo="' + cliente.codigo + '"][data-mes-ano="' + mes.ano_mes + '"]');
+        
+        if (celula) {
+          if (valor > 0) {
+            celula.innerHTML = 'R$ ' + valor.toFixed(2).replace('.', ',');
+          } else {
+            celula.innerHTML = '<span class="text-muted">-</span>';
+          }
+        }
+      }
+    }
+    
+    // Calcular e preencher totais por mês
+    for (var k = 0; k < mesesPeriodo.length; k++) {
+      var mes = mesesPeriodo[k];
+      var totalMes = 0;
+      for (var l = 0; l < dadosRelatorio.length; l++) {
+        var cliente = dadosRelatorio[l];
+        var valor = cliente.vendas_por_mes[mes.ano_mes] || 0;
+        totalMes += valor;
+      }
+      
+      var celulaTotalMes = document.getElementById('total-mes-' + mes.ano_mes);
+      if (celulaTotalMes) {
+        if (totalMes > 0) {
+          celulaTotalMes.innerHTML = '<span class="fw-bold">R$ ' + totalMes.toFixed(2).replace('.', ',') + '</span>';
+        } else {
+          celulaTotalMes.innerHTML = '<span class="text-muted fw-bold">-</span>';
+        }
+      }
+    }
+  }
+  
+  // ===== VALIDAÇÃO DE DATAS =====
+  var dataInicio = document.getElementById('data_inicio');
+  var dataFim = document.getElementById('data_fim');
+  
+  dataInicio.addEventListener('change', function() {
+    if (dataFim.value && this.value > dataFim.value) {
+      alert('Data de início não pode ser maior que data de fim');
+      this.value = '';
+      this.focus();
+    }
+  });
+  
+  dataFim.addEventListener('change', function() {
+    if (dataInicio.value && this.value < dataInicio.value) {
+      alert('Data de fim não pode ser menor que data de início');
+      this.value = '';
+      this.focus();
+    }
+  });
+  
+  // ===== FECHAR DROPDOWNS AO CLICAR FORA =====
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown-checkbox')) {
+      var menus = document.querySelectorAll('.dropdown-checkbox-menu.show');
+      for (var m = 0; m < menus.length; m++) {
+        var menu = menus[m];
+        menu.classList.remove('show');
+        var icon = menu.parentElement.querySelector('.dropdown-toggle-icon');
+        if (icon) icon.classList.remove('rotated');
+      }
+    }
+  });
+  
+});
+
+// ===== FUNÇÕES PARA DROPDOWNS COM CHECKBOXES =====
+function initializeDropdowns(filtrosIniciais) {
+  var dropdowns = document.querySelectorAll('.dropdown-checkbox');
+  for (var i = 0; i < dropdowns.length; i++) {
+    var dropdown = dropdowns[i];
+    var filterName = dropdown.dataset.name;
+    
+    // Pular o dropdown de produtos
+    if (filterName === 'produto') continue;
+    
+    var checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+    
+    // Mark checkboxes based on initial filters
+    for (var j = 0; j < checkboxes.length; j++) {
+      var checkbox = checkboxes[j];
+      if (filtrosIniciais[filterName] && filtrosIniciais[filterName].indexOf(checkbox.value) !== -1) {
+        checkbox.checked = true;
+      }
+    }
+    
+    // Initial text update
+    updateSelectedText(dropdown);
+  }
+}
+
+function toggleDropdown(button) {
+  var dropdown = button.parentElement;
+  var menu = dropdown.querySelector('.dropdown-checkbox-menu');
+  var icon = button.querySelector('.dropdown-toggle-icon');
+  
+  // Close other dropdowns
+  var otherMenus = document.querySelectorAll('.dropdown-checkbox-menu.show');
+  for (var i = 0; i < otherMenus.length; i++) {
+    var otherMenu = otherMenus[i];
+    if (otherMenu !== menu) {
+      otherMenu.classList.remove('show');
+      var otherIcon = otherMenu.parentElement.querySelector('.dropdown-toggle-icon');
+      if (otherIcon) otherIcon.classList.remove('rotated');
+    }
+  }
+  
+  // Toggle current dropdown
+  menu.classList.toggle('show');
+  icon.classList.toggle('rotated');
+}
+
+function updateSelectedText(dropdownOrCheckbox) {
+  var dropdown = dropdownOrCheckbox.closest ? dropdownOrCheckbox.closest('.dropdown-checkbox') : dropdownOrCheckbox;
+  var filterName = dropdown.dataset.name;
+  
+  // Pular o dropdown de produtos
+  if (filterName === 'produto') return;
+  
+  var selectedText = dropdown.querySelector('.selected-text');
+  var checkedBoxes = dropdown.querySelectorAll('input[type="checkbox"]:checked');
+  
+  if (checkedBoxes.length === 0) {
+    selectedText.innerHTML = getDefaultText(filterName);
+  } else if (checkedBoxes.length === 1) {
+    var label = checkedBoxes[0].nextElementSibling.textContent.trim();
+    selectedText.innerHTML = label.length > 15 ? label.substring(0, 15) + '...' : label;
+  } else {
+    selectedText.innerHTML = checkedBoxes.length + ' selecionado' + (checkedBoxes.length > 1 ? 's' : '');
+  }
+}
+
+function clearFilter(filterName) {
+  if (filterName === 'produto') return;
+  
+  var dropdown = document.querySelector('.dropdown-checkbox[data-name="' + filterName + '"]');
+  if (!dropdown) return;
+  
+  var checkboxes = dropdown.querySelectorAll('input[type="checkbox"]');
+  
+  for (var i = 0; i < checkboxes.length; i++) {
+    checkboxes[i].checked = false;
+  }
+  
+  updateSelectedText(dropdown);
+  
+  // Close dropdown
+  var menu = dropdown.querySelector('.dropdown-checkbox-menu');
+  var icon = dropdown.querySelector('.dropdown-toggle-icon');
+  menu.classList.remove('show');
+  icon.classList.remove('rotated');
+  
+  submitFilters();
+}
+
+function getDefaultText(filterName) {
+  var defaults = {
+    'loja': 'Todas',
+    'vendedor': 'Todos',
+    'estado': 'Todos',
+    'grupo': 'Todos',
+    'fabricante': 'Todos'
+  };
+  return defaults[filterName] || 'Todos';
+}
+
+// ===== FUNÇÃO submitFilters MODIFICADA =====
+var submitTimer;
+function submitFilters() {
+  console.log('🔄 Submit dos filtros tradicionais (não produtos)');
+  clearTimeout(submitTimer);
+  submitTimer = setTimeout(function() {
+    document.getElementById('formFiltros').submit();
+  }, 300);
+}
+
+// ===== OUTRAS FUNÇÕES =====
+function showLoading() {
+  document.getElementById('loadingOverlay').style.display = 'block';
+}
+
+function showLoadingForExport() {
+  var loadingOverlay = document.getElementById('loadingOverlay');
+  var loadingContent = loadingOverlay.querySelector('h6');
+  loadingContent.textContent = "Gerando e baixando arquivo Excel...";
+  loadingOverlay.style.display = 'block';
+
+  setTimeout(function() {
+    hideLoading();
+  }, 3000);
+}
+
+function hideLoading() {
+  document.getElementById('loadingOverlay').style.display = 'none';
+}
+
+function limparFiltros() {
+  var form = document.getElementById('formFiltros');
+  
+  // Limpar dropdowns tradicionais
+  var dropdowns = form.querySelectorAll('.dropdown-checkbox');
+  for (var i = 0; i < dropdowns.length; i++) {
+    var dropdown = dropdowns[i];
+    var filterName = dropdown.dataset.name;
+    if (filterName !== 'produto') {
+      clearFilter(filterName); 
+    }
+  }
+
+  // Limpar busca de produtos
+  try {
+    var produtoContainer = document.getElementById('produto-search-container');
+    if (produtoContainer && produtoContainer.produtoSearchInstance) {
+      produtoContainer.produtoSearchInstance.limparTodos();
+    }
+  } catch (error) {
+    console.log('Erro ao limpar produtos:', error);
+  }
+
+  document.getElementById('incluir_coligados').checked = false;
+  
+  form.submit();
+}
+
+function toggleFullscreen() {
+  var container = document.getElementById('tableContainer');
+  var icon = document.getElementById('fullscreen-icon');
+  
+  if (container.style.height === '80vh') {
+    container.style.height = 'auto';
+    container.style.maxHeight = 'none';
+    icon.className = 'fas fa-expand';
+  } else {
+    container.style.height = '80vh';
+    container.style.maxHeight = '80vh';
+    icon.className = 'fas fa-compress';
+  }
+}
+
+console.log('🚀 Relatório de Clientes carregado!');
+</script>
+
+<!-- CARREGAMENTO DO SCRIPT DE BUSCA DE PRODUTOS -->
+<script src="{% static 'js/produto-search-tags.js' %}"></script>
+{% endblock %}

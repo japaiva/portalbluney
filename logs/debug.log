@@ -7549,3 +7549,583 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-21 17:19:06,000 "POST /gestor/usuarios/3/editar/ HTTP/1.1" 302 0
 [INFO] 2025-07-21 17:19:06,291 "GET /gestor/usuarios/ HTTP/1.1" 200 15829
 [INFO] 2025-07-21 17:23:01,862 "GET /gestor/dashboard/ HTTP/1.1" 200 7068
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:27:58,868 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:28:13,192 "GET /gestor/ HTTP/1.1" 200 7308
+[WARNING] 2025-07-21 21:28:13,482 Not Found: /favicon.ico
+[WARNING] 2025-07-21 21:28:13,483 "GET /favicon.ico HTTP/1.1" 404 3484
+[INFO] 2025-07-21 21:28:15,657 "GET /gestor/dashboard/ HTTP/1.1" 200 7068
+[INFO] 2025-07-21 21:28:20,414 "GET /gestor/usuarios/ HTTP/1.1" 200 15293
+[INFO] 2025-07-21 21:28:24,296 "GET /gestor/usuarios/1/editar/ HTTP/1.1" 200 20757
+[INFO] 2025-07-21 21:28:31,324 "GET /gestor/usuarios/ HTTP/1.1" 200 15293
+[INFO] 2025-07-21 21:28:33,414 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 20767
+[INFO] 2025-07-21 21:28:37,069 "GET /gestor/usuarios/ HTTP/1.1" 200 15293
+[INFO] 2025-07-21 21:31:59,718 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/middleware.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:32:01,493 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:32:07,544 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/middleware.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:32:08,080 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:32:55,189 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:32:56,708 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:33:52,858 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 21:33:53,027 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-21 21:34:05,583 "POST /login/ HTTP/1.1" 200 5329
+[INFO] 2025-07-21 21:34:15,461 "POST /login/ HTTP/1.1" 200 5329
+[INFO] 2025-07-21 21:34:20,470 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 21:34:20,664 "GET /gestor/ HTTP/1.1" 302 0
+[WARNING] 2025-07-21 21:34:20,843 Not Found: /vendedor/
+[WARNING] 2025-07-21 21:34:20,843 "GET /vendedor/ HTTP/1.1" 404 3326
+[INFO] 2025-07-21 21:34:34,266 "GET /gestor/ HTTP/1.1" 302 0
+[WARNING] 2025-07-21 21:34:34,439 Not Found: /vendedor/
+[WARNING] 2025-07-21 21:34:34,440 "GET /vendedor/ HTTP/1.1" 404 3326
+[INFO] 2025-07-21 21:34:53,079 "GET / HTTP/1.1" 200 7763
+[INFO] 2025-07-21 21:35:00,038 "GET /gestor/ HTTP/1.1" 302 0
+[WARNING] 2025-07-21 21:35:00,203 Not Found: /vendedor/
+[WARNING] 2025-07-21 21:35:00,204 "GET /vendedor/ HTTP/1.1" 404 3326
+[INFO] 2025-07-21 21:35:04,197 "GET /gestor/ HTTP/1.1" 302 0
+[WARNING] 2025-07-21 21:35:04,357 Not Found: /vendedor/
+[WARNING] 2025-07-21 21:35:04,358 "GET /vendedor/ HTTP/1.1" 404 3326
+[INFO] 2025-07-21 21:41:19,275 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 21:41:19,418 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-21 21:41:29,869 "POST /login/ HTTP/1.1" 200 5328
+[INFO] 2025-07-21 21:41:35,306 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-21 21:41:35,480 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-21 21:41:37,137 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-21 21:41:40,620 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[INFO] 2025-07-21 21:47:29,305 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:47:30,790 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:56:55,378 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:57:43,682 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:57:45,086 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:58:49,867 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:58:50,429 Watching for file changes with StatReloader
+[INFO] 2025-07-21 21:58:54,159 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 21:58:54,513 Watching for file changes with StatReloader
+[INFO] 2025-07-21 22:01:05,632 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 22:01:07,322 Watching for file changes with StatReloader
+[INFO] 2025-07-21 22:01:48,529 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 22:01:49,270 Watching for file changes with StatReloader
+[INFO] 2025-07-21 22:06:01,688 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-21 22:06:03,149 Watching for file changes with StatReloader
+[INFO] 2025-07-21 22:06:16,780 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[INFO] 2025-07-21 22:06:19,280 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-21 22:06:31,661 "GET /vendedor HTTP/1.1" 301 0
+[ERROR] 2025-07-21 22:06:32,087 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-21 22:06:32,093 "GET /vendedor/ HTTP/1.1" 500 133000
+[ERROR] 2025-07-21 22:11:07,709 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-21 22:11:07,718 "GET /vendedor/ HTTP/1.1" 500 133000
+[WARNING] 2025-07-22 05:43:17,972 Not Found: /vendedor/pedidos/
+[WARNING] 2025-07-22 05:43:17,976 "GET /vendedor/pedidos/ HTTP/1.1" 404 5709
+[ERROR] 2025-07-22 05:43:22,340 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:43:22,347 "GET /vendedor/ HTTP/1.1" 500 133000
+[ERROR] 2025-07-22 05:43:34,502 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:43:34,507 "GET /vendedor/ HTTP/1.1" 500 133274
+[ERROR] 2025-07-22 05:43:36,845 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:43:36,848 "GET /vendedor/ HTTP/1.1" 500 133000
+[ERROR] 2025-07-22 05:45:11,453 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:45:11,460 "GET /vendedor/ HTTP/1.1" 500 133274
+[ERROR] 2025-07-22 05:45:11,766 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:45:11,769 "GET /vendedor/ HTTP/1.1" 500 133000
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 05:45:25,402 Watching for file changes with StatReloader
+[ERROR] 2025-07-22 05:45:31,712 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:45:31,716 "GET /vendedor/ HTTP/1.1" 500 133274
+[INFO] 2025-07-22 05:45:33,183 "GET / HTTP/1.1" 302 0
+[INFO] 2025-07-22 05:45:33,826 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[ERROR] 2025-07-22 05:45:48,060 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:45:48,065 "GET /vendedor/ HTTP/1.1" 500 133274
+[ERROR] 2025-07-22 05:45:48,557 Internal Server Error: /vendedor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py", line 37, in dashboard
+    clientes_vendedor = Cliente.objects.filter(ativo=True)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1609, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1641, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ~~~~~~~~~~~~~~~~~^
+        child,
+        ^^^^^^
+    ...<7 lines>...
+        update_join_types=update_join_types,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)
+                                        ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1303, in solve_lookup_type
+    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())
+                                ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/db/models/sql/query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'ativo' into field. Choices are: bairro, capital_social, cep, cidade, cnae_descricao, cnae_principal, cnaes_secundarios, codigo, codigo_loja, codigo_master, codigo_natureza_juridica, codigo_vendedor, complemento, contatos, cpf_cnpj, data_abertura, data_cadastro, data_exclusao_do_simples, data_inicio_atividade, data_opcao_pelo_simples, data_situacao_cadastral, data_ultima_compra, data_ultima_verificacao, ddd_fax, ddd_telefone_1, ddd_telefone_2, email, email_receita, endereco, estado, id, inscricao_estadual, inscricao_municipal, motivo_situacao_cadastral, natureza_juridica, nome, nome_fantasia, nome_razao_social, numero, observacoes, opcao_pelo_mei, opcao_pelo_simples, porte_empresa, situacao_cadastral, status, telefone, tipo_documento, tipo_logradouro, uf, vendas
+[ERROR] 2025-07-22 05:45:48,560 "GET /vendedor/ HTTP/1.1" 500 133000
+[INFO] 2025-07-22 05:52:38,365 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 05:52:39,944 Watching for file changes with StatReloader
+[INFO] 2025-07-22 05:52:51,144 "GET /vendedor/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 05:53:57,383 "GET /vendedor/ HTTP/1.1" 200 6216
+[INFO] 2025-07-22 05:54:13,053 "GET /vendedor/ HTTP/1.1" 200 6218
+[INFO] 2025-07-22 05:54:18,797 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[INFO] 2025-07-22 05:54:31,605 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 05:54:31,606 - Broken pipe from ('127.0.0.1', 51905)
+[INFO] 2025-07-22 05:54:31,949 "GET /gestor/dashboard/ HTTP/1.1" 200 7067

@@ -101,6 +101,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'portalcomercial.middleware.MensagensNotificacaoMiddleware',
     'portalcomercial.middleware.AppContextMiddleware',  
+    'portalcomercial.middleware.PermissaoPortalMiddleware', 
 ]
 
 ROOT_URLCONF = 'portalcomercial.urls'

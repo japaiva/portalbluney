@@ -44,3 +44,63 @@ class AppContextMiddleware:
         
         response = self.get_response(request)
         return response
+    
+class PermissaoPortalMiddleware:
+    """
+    Middleware para verificar permissões de acesso aos portais
+    """
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # Verificar permissões apenas para usuários autenticados
+        if request.user.is_authenticated:
+            path = request.path
+            
+            # Se é superuser, permitir tudo
+            if request.user.is_superuser:
+                response = self.get_response(request)
+                return response
+            
+            # Se não tem atributo nivel, permitir acesso (compatibilidade)
+            if not hasattr(request.user, 'nivel'):
+                response = self.get_response(request)
+                return response
+            
+            user_nivel = request.user.nivel
+            
+            # Definir permissões por portal - AQUI ESTÁ A RESTRIÇÃO!
+            portal_permissions = {
+                '/gestor/': ['admin', 'gestor'],          # SÓ admin e gestor podem acessar
+                '/vendedor/': ['admin', 'gestor', 'vendedor'],  # Vendedores podem acessar seu próprio módulo
+                # Adicione outros portais conforme necessário
+            }
+            
+            # Verificar se o usuário tem permissão para acessar o portal
+            for portal_path, allowed_levels in portal_permissions.items():
+                if path.startswith(portal_path):
+                    if user_nivel not in allowed_levels:
+                        from django.http import HttpResponseForbidden
+                        from django.contrib import messages
+                        from django.shortcuts import redirect
+                        
+                        # Opção 1: Retornar erro 403
+                        # return HttpResponseForbidden(
+                        #     f"Acesso negado. Seu nível ({user_nivel}) não tem permissão para acessar este portal."
+                        # )
+                        
+                        # Opção 2: Redirecionar com mensagem (mais elegante)
+                        messages.error(
+                            request, 
+                            f'Acesso negado ao módulo gestor! Seu nível ({request.user.get_nivel_display()}) não tem permissão.'
+                        )
+                        
+                        # Redirecionar baseado no nível do usuário
+                        if user_nivel == 'vendedor':
+                            return redirect('/vendedor/')  # ou use reverse('vendedor:dashboard')
+                        else:
+                            return redirect('/')  # home
+                    break
+        
+        response = self.get_response(request)
+        return response
