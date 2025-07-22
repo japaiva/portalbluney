@@ -8129,3 +8129,1458 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-22 05:54:31,605 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
 [INFO] 2025-07-22 05:54:31,606 - Broken pipe from ('127.0.0.1', 51905)
 [INFO] 2025-07-22 05:54:31,949 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 06:51:49,324 Watching for file changes with StatReloader
+[ERROR] 2025-07-22 06:51:57,558 Internal Server Error: /gestor/clientes/1671/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 333, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'consultar_bi' with arguments '('1159',)' not found. 1 pattern(s) tried: ['gestor/api/consultar\\-bi/\\Z']
+[ERROR] 2025-07-22 06:51:57,566 "GET /gestor/clientes/1671/ HTTP/1.1" 500 223287
+[ERROR] 2025-07-22 06:52:04,914 Internal Server Error: /gestor/clientes/1671/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 333, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'consultar_bi' with arguments '('1159',)' not found. 1 pattern(s) tried: ['gestor/api/consultar\\-bi/\\Z']
+[ERROR] 2025-07-22 06:52:04,918 "GET /gestor/clientes/1671/ HTTP/1.1" 500 223454
+[ERROR] 2025-07-22 06:52:16,112 Internal Server Error: /gestor/clientes/1689/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 333, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'consultar_bi' with arguments '('1175',)' not found. 1 pattern(s) tried: ['gestor/api/consultar\\-bi/\\Z']
+[ERROR] 2025-07-22 06:52:16,117 "GET /gestor/clientes/1689/ HTTP/1.1" 500 221978
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 06:56:31,822 Watching for file changes with StatReloader
+[INFO] 2025-07-22 06:58:34,680 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/dashboard.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 06:58:36,140 Watching for file changes with StatReloader
+[INFO] 2025-07-22 06:58:49,217 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 06:58:51,524 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 06:58:55,102 "GET /gestor/vendas/ HTTP/1.1" 200 59262
+[INFO] 2025-07-22 06:58:58,396 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57532
+[INFO] 2025-07-22 06:59:04,260 "GET /gestor/api/produtos/buscar/?q=cja&exclude=&limit=10 HTTP/1.1" 200 61
+[INFO] 2025-07-22 06:59:05,695 "GET /gestor/api/produtos/buscar/?q=chja&exclude=&limit=10 HTTP/1.1" 200 62
+[INFO] 2025-07-22 06:59:06,500 "GET /gestor/api/produtos/buscar/?q=cha&exclude=&limit=10 HTTP/1.1" 200 1452
+[INFO] 2025-07-22 06:59:09,914 "GET /gestor/relatorio-clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=012461&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 89882
+[INFO] 2025-07-22 06:59:17,694 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 06:59:20,193 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 06:59:20,336 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 06:59:32,568 "POST /login/ HTTP/1.1" 200 5329
+[INFO] 2025-07-22 06:59:38,515 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 06:59:38,679 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 06:59:38,856 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:03:00,183 "GET /login/ HTTP/1.1" 200 6067
+[INFO] 2025-07-22 07:03:11,544 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:03:11,698 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:03:11,864 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:13:20,155 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 07:13:26,306 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:13:26,447 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 07:13:47,647 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:13:47,809 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:13:47,977 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:13:56,128 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 07:14:01,469 "GET /gestor/clientes/1671/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:14:01,632 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:14:06,902 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 07:14:09,561 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 57533
+[INFO] 2025-07-22 07:14:13,019 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 1856347
+[INFO] 2025-07-22 07:14:18,192 "GET /gestor/dashboard/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:14:18,353 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:14:22,621 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 07:14:25,822 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 07:14:27,396 "GET /gestor/dashboard/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:14:27,553 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:14:45,531 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 07:14:48,251 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:14:48,387 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 07:14:51,478 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-07-22 07:14:53,671 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-07-22 07:15:10,622 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:15:10,777 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:15:10,948 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 07:15:18,359 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 07:15:22,822 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 07:15:24,490 "GET /gestor/dashboard/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 07:15:24,653 "GET /vendedor/ HTTP/1.1" 200 7004
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 13:54:04,036 Watching for file changes with StatReloader
+[INFO] 2025-07-22 13:54:36,410 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 13:54:39,406 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 13:54:41,669 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 13:54:46,443 "GET /gestor/dashboard/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 13:54:46,584 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 13:54:50,688 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-22 13:54:52,322 "GET /vendedor/clientes/ HTTP/1.1" 200 42129
+[INFO] 2025-07-22 13:54:56,449 "GET /gestor/dashboard/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 13:54:56,556 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:00:25,799 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:00:26,561 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:03:27,578 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:03:29,313 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:05:32,907 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:05:34,394 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:05:37,299 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:05:37,672 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:06:32,739 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:06:34,228 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:07:01,023 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:07:02,397 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:07:11,432 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:07:12,037 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:07:31,348 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:07:31,863 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:07:51,068 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:07:51,593 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:07:53,308 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:07:53,660 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:08:09,535 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:08:10,072 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:08:15,818 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:08:16,258 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:08:18,949 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:08:19,296 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:08:56,921 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:08:58,408 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:09:15,752 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:09:16,343 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:15:38,837 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:15:39,508 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:16:24,812 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/__init__.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:16:25,460 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:16:40,803 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:16:41,405 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:17:27,308 "GET /gestor/clientes/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:17:27,418 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:17:30,383 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[ERROR] 2025-07-22 14:17:46,763 Internal Server Error: /vendedor/vendas/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/vendas.py", line 104, in vendas_list
+    return render(request, 'vendedor/vendas_list.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'vendas_create' not found. 'vendas_create' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 14:17:46,774 "GET /vendedor/vendas/ HTTP/1.1" 500 200401
+[INFO] 2025-07-22 14:17:54,437 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 57533
+[INFO] 2025-07-22 14:17:58,151 "GET /gestor/api/produtos/buscar/?q=dh&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:17:58,249 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:17:59,382 "GET /gestor/api/produtos/buscar/?q=de&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:17:59,473 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:17:59,762 "GET /gestor/api/produtos/buscar/?q=dee&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:17:59,864 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:18:00,613 "GET /gestor/api/produtos/buscar/?q=der&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:18:00,720 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:18:02,870 "GET /gestor/api/produtos/buscar/?q=lo&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:18:02,966 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:18:11,830 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 57533
+[INFO] 2025-07-22 14:20:13,156 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:20:13,267 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 14:20:20,806 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:20:20,945 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 14:20:22,539 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:20:25,853 "GET /gestor/vendas/ HTTP/1.1" 200 59262
+[INFO] 2025-07-22 14:20:27,630 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:20:29,495 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[ERROR] 2025-07-22 14:20:34,075 Internal Server Error: /gestor/clientes/1671/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 333, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'consultar_bi' with arguments '('1159',)' not found. 1 pattern(s) tried: ['gestor/api/consultar\\-bi/\\Z']
+[ERROR] 2025-07-22 14:20:34,086 "GET /gestor/clientes/1671/ HTTP/1.1" 500 223428
+[INFO] 2025-07-22 14:25:40,146 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/vendas.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:25:41,582 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:25:47,820 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:25:50,432 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[ERROR] 2025-07-22 14:25:53,624 Internal Server Error: /gestor/clientes/1671/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/cliente.py", line 333, in cliente_detail
+    return render(request, 'gestor/cliente_detail.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'consultar_bi' with arguments '('1159',)' not found. 1 pattern(s) tried: ['gestor/api/consultar\\-bi/\\Z']
+[ERROR] 2025-07-22 14:25:53,632 "GET /gestor/clientes/1671/ HTTP/1.1" 500 223428
+[INFO] 2025-07-22 14:29:49,575 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:29:50,291 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:29:58,394 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:29:58,856 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:30:06,897 "GET /gestor/clientes/1671/ HTTP/1.1" 200 16557
+[INFO] 2025-07-22 14:30:12,931 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[INFO] 2025-07-22 14:30:14,586 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:30:19,334 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:30:19,432 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 14:30:37,929 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:30:38,033 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:30:38,141 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:33:51,350 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:33:52,801 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:34:01,995 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:34:02,453 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:34:10,872 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[ERROR] 2025-07-22 14:34:13,802 Internal Server Error: /vendedor/clientes/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py", line 101, in cliente_list
+    return render(request, 'vendedor/cliente_list.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'cliente_create' not found. 'cliente_create' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 14:34:13,808 "GET /vendedor/clientes/ HTTP/1.1" 500 197438
+[ERROR] 2025-07-22 14:34:18,864 Internal Server Error: /vendedor/vendas/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/vendas.py", line 104, in vendas_list
+    return render(request, 'vendedor/vendas_list.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'vendas_create' not found. 'vendas_create' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 14:34:18,868 "GET /vendedor/vendas/ HTTP/1.1" 500 200401
+[INFO] 2025-07-22 14:34:23,107 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 57533
+[INFO] 2025-07-22 14:34:27,796 "GET /gestor/api/produtos/buscar/?q=jes&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:34:27,894 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:34:29,405 "GET /gestor/api/produtos/buscar/?q=je&exclude=&limit=10 HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:34:29,533 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:34:30,793 "GET /gestor/dashboard/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:34:30,907 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:34:36,966 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:34:37,071 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 14:34:46,854 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:34:46,981 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 14:34:48,674 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:34:50,162 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57532
+[INFO] 2025-07-22 14:34:52,502 "GET /gestor/api/produtos/buscar/?q=dei&exclude=&limit=10 HTTP/1.1" 200 2242
+[INFO] 2025-07-22 14:34:56,106 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:35:04,886 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:35:04,980 "GET /login/ HTTP/1.1" 200 5644
+[INFO] 2025-07-22 14:36:15,961 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:36:16,059 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:36:16,163 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 14:45:59,745 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:46:00,797 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:46:18,236 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:46:18,723 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:46:20,452 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:46:20,823 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:46:57,496 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:46:58,100 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:46:59,298 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:46:59,605 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:47:18,154 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:47:18,600 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:47:20,791 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:47:21,104 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:47:48,946 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:47:49,396 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:47:54,679 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:47:54,980 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:07,443 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:07,885 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:14,206 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:14,684 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:22,047 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:22,454 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:31,858 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:32,258 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:35,483 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:35,798 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:41,020 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:41,354 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:43,559 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:43,863 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:47,134 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:47,459 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:51,669 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:51,985 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:48:59,279 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:48:59,615 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:06,918 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:07,240 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:11,462 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:11,780 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:15,992 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:16,328 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:21,562 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:21,919 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:23,099 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:23,436 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:30,721 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:31,065 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:34,278 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:34,587 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:49:37,772 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:49:38,142 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:50:00,843 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:50:01,292 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:50:04,517 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:50:04,890 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:50:21,462 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:50:21,947 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:50:23,127 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:50:23,435 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:50:35,855 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views/base.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:50:36,271 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 14:52:45,965 Watching for file changes with StatReloader
+[INFO] 2025-07-22 14:53:40,937 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 14:53:43,941 "GET /vendedor HTTP/1.1" 301 0
+[INFO] 2025-07-22 14:53:44,142 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 14:53:45,716 "GET / HTTP/1.1" 200 6703
+[INFO] 2025-07-22 14:53:47,429 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:53:47,532 "GET /vendedor/ HTTP/1.1" 200 7004
+[ERROR] 2025-07-22 14:53:56,961 Internal Server Error: /vendedor/clientes/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/cliente.py", line 101, in cliente_list
+    return render(request, 'vendedor/cliente_list.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'cliente_create' not found. 'cliente_create' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 14:53:56,970 "GET /vendedor/clientes/ HTTP/1.1" 500 197428
+[INFO] 2025-07-22 14:54:01,502 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 14:54:07,584 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:54:07,692 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 14:54:17,596 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:54:17,715 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 14:54:19,475 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:54:20,902 "GET /gestor/clientes/ HTTP/1.1" 200 42128
+[INFO] 2025-07-22 14:54:23,676 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:54:25,363 "GET /gestor/lojas/ HTTP/1.1" 200 12862
+[INFO] 2025-07-22 14:54:26,747 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:54:28,177 "GET /gestor/vendedores/ HTTP/1.1" 200 24060
+[INFO] 2025-07-22 14:54:32,292 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 14:54:34,420 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:54:34,505 "GET /login/ HTTP/1.1" 200 5639
+[INFO] 2025-07-22 14:55:39,082 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-07-22 14:55:48,345 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:55:48,454 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 14:55:48,560 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 15:25:57,314 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 15:25:57,400 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 15:26:09,744 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 15:26:09,843 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 15:26:11,729 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 15:26:13,462 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57532
+[INFO] 2025-07-22 15:26:13,480 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-22 15:26:18,849 "GET /gestor/api/produtos/buscar/?q=fi&exclude=&limit=10 HTTP/1.1" 200 2350
+[INFO] 2025-07-22 15:26:19,077 "GET /gestor/api/produtos/buscar/?q=fil&exclude=&limit=10 HTTP/1.1" 200 1834
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:39:23,728 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:40:03,659 "GET / HTTP/1.1" 200 6702
+[INFO] 2025-07-22 15:40:08,266 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 15:40:12,246 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 15:40:15,615 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 15:40:15,717 "GET /login/ HTTP/1.1" 200 5639
+[INFO] 2025-07-22 15:40:39,808 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 15:40:39,906 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 15:40:40,014 "GET /vendedor/ HTTP/1.1" 200 7004
+[INFO] 2025-07-22 15:46:43,376 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/settings.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:46:45,118 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:47:18,226 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:47:18,770 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:47:55,616 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:47:56,257 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:48:03,192 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:48:03,800 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:48:10,902 "GET /logout/ HTTP/1.1" 302 0
+[ERROR] 2025-07-22 15:48:10,969 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registration/login.html
+[ERROR] 2025-07-22 15:48:10,972 "GET /login/ HTTP/1.1" 500 86568
+[INFO] 2025-07-22 15:50:32,230 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:50:33,086 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:50:39,170 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:50:39,690 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:50:41,412 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/views.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:50:41,849 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:50:44,569 "GET /vendedor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 15:50:44,670 "GET /login/?next=/vendedor/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 15:51:16,620 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:51:17,170 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:51:30,392 "POST /login/?next=/vendedor/ HTTP/1.1" 302 0
+[ERROR] 2025-07-22 15:51:30,479 Internal Server Error: /gestor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/dashboard.py", line 12, in home
+    return render(request, 'gestor/home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil' not found. 'perfil' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 15:51:30,483 "GET /gestor/ HTTP/1.1" 500 182219
+[ERROR] 2025-07-22 15:57:12,640 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil' not found. 'perfil' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 15:57:12,651 "GET /login/?next=/vendedor/ HTTP/1.1" 500 157112
+[ERROR] 2025-07-22 15:57:15,354 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil' not found. 'perfil' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 15:57:15,357 "GET /login/ HTTP/1.1" 500 156569
+[ERROR] 2025-07-22 15:57:16,283 Internal Server Error: /gestor/dashboard/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/dashboard.py", line 23, in dashboard
+    return render(request, 'gestor/dashboard.html', context)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil' not found. 'perfil' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 15:57:16,287 "GET /gestor/dashboard/ HTTP/1.1" 500 183328
+[INFO] 2025-07-22 15:57:20,968 "GET /gestor HTTP/1.1" 301 0
+[ERROR] 2025-07-22 15:57:21,156 Internal Server Error: /gestor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/dashboard.py", line 12, in home
+    return render(request, 'gestor/home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil' not found. 'perfil' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 15:57:21,159 "GET /gestor/ HTTP/1.1" 500 181909
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:57:38,434 Watching for file changes with StatReloader
+[ERROR] 2025-07-22 15:57:44,826 Internal Server Error: /gestor/
+Traceback (most recent call last):
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/dashboard.py", line 12, in home
+    return render(request, 'gestor/home.html')
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+           ~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/joseantoniopaiva/pythonprojects/bluney_projetos/.venv/lib/python3.13/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'perfil' not found. 'perfil' is not a valid view function or pattern name.
+[ERROR] 2025-07-22 15:57:44,830 "GET /gestor/ HTTP/1.1" 500 181909
+[INFO] 2025-07-22 15:59:12,386 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/portalcomercial/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 15:59:13,850 Watching for file changes with StatReloader
+[INFO] 2025-07-22 15:59:21,109 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 15:59:57,088 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 16:00:00,656 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 16:00:00,776 "GET /login/ HTTP/1.1" 200 5639
+[INFO] 2025-07-22 16:00:33,583 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 16:00:35,055 Watching for file changes with StatReloader
+[INFO] 2025-07-22 16:00:45,231 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 16:00:45,769 Watching for file changes with StatReloader
+[INFO] 2025-07-22 16:00:47,266 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/urls.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 16:00:47,587 Watching for file changes with StatReloader
+[INFO] 2025-07-22 16:01:00,679 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 16:01:00,798 "GET /gestor/ HTTP/1.1" 200 7307
+[INFO] 2025-07-22 16:01:02,160 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 16:01:03,456 "GET /gestor/lojas/ HTTP/1.1" 200 12862
+[INFO] 2025-07-22 16:01:04,965 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 16:01:06,681 "GET /gestor/relatorio-clientes/ HTTP/1.1" 200 57532
+[INFO] 2025-07-22 16:01:09,737 "GET /gestor/api/produtos/buscar/?q=ass&exclude=&limit=10 HTTP/1.1" 200 1866
+[INFO] 2025-07-22 16:01:12,423 "GET /gestor/dashboard/ HTTP/1.1" 200 7067
+[INFO] 2025-07-22 16:01:14,514 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 16:01:14,606 "GET /login/ HTTP/1.1" 200 5639
+[INFO] 2025-07-22 16:01:25,458 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 16:01:25,558 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-22 16:01:27,809 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226

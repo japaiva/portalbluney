@@ -1,4 +1,4 @@
-# gestor/urls.py
+# gestor/urls.py - CORREÇÃO DA URL consultar_bi
 
 from django.urls import path
 from . import views
@@ -97,22 +97,16 @@ urlpatterns = [
     # ===== APIs (Cliente) =====
     path('api/vendedor/<str:codigo>/', views.api_vendedor_por_codigo, name='api_vendedor_por_codigo'),
     path('api/cliente/<str:codigo>/', views.api_cliente_por_codigo, name='api_cliente_por_codigo'),
-    path('api/consultar-receita/', views.api_consultar_receita, name='api_consultar_receita'),
+    path('api/consultar-receita/<str:cpf_cnpj>/', views.api_consultar_receita, name='api_consultar_receita'),
     
     # ===== APIs (Gerais) =====
-    path('api/vendedor-por-codigo/', views.vendedor_por_codigo, name='vendedor_por_codigo'),
-    path('api/cliente-por-codigo/', views.cliente_por_codigo, name='cliente_por_codigo'),
-    path('api/consultar-receita-geral/', views.consultar_receita, name='consultar_receita_geral'),
-    path('api/consultar-bi/', views.consultar_bi, name='consultar_bi'),
+    path('api/vendedor-por-codigo/<str:codigo>/', views.vendedor_por_codigo, name='vendedor_por_codigo'),
+    path('api/cliente-por-codigo/<str:codigo>/', views.cliente_por_codigo, name='cliente_por_codigo'),
+    path('api/consultar-receita-geral/<str:cpf_cnpj>/', views.consultar_receita, name='consultar_receita_geral'),
     
-    # USUÁRIOS
-    path('usuarios/', views.usuario_list, name='usuario_list'),
-    path('usuarios/criar/', views.usuario_create, name='usuario_create'), 
-    path('usuarios/<int:pk>/', views.usuario_detail, name='usuario_detail'),
-    path('usuarios/<int:pk>/editar/', views.usuario_update, name='usuario_update'),
-    path('usuarios/<int:pk>/deletar/', views.usuario_delete, name='usuario_delete'),
-
-
+    # *** 🔥 CORREÇÃO AQUI: ADICIONAR PARÂMETRO À URL ***
+    path('api/consultar-bi/<str:codigo>/', views.consultar_bi, name='consultar_bi'),
+    
     # ===== APIs (Produtos) - NOVAS =====
     path('api/produtos/buscar/', views.buscar_produtos_api, name='api_buscar_produtos'),
     path('api/produtos/<str:codigo>/', views.produto_detail_api, name='api_produto_detail'),

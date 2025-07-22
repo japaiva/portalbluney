@@ -1,4 +1,4 @@
-# vendedor/urls.py
+# vendedor/urls.py - VERSÃO FINAL COMPLETA
 
 from django.urls import path
 from . import views
@@ -6,21 +6,28 @@ from . import views
 app_name = 'vendedor'
 
 urlpatterns = [
-    # ===== DASHBOARD =====
-    path('', views.dashboard, name='dashboard'),
+    # ===== HOME E DASHBOARD =====
+    path('', views.home, name='home'),
+    path('dashboard/', views.dashboard, name='dashboard'),
     
-    # ===== CLIENTES =====
-    path('clientes/', views.listar_clientes, name='listar_clientes'),
-    path('clientes/<str:codigo>/', views.detalhar_cliente, name='detalhar_cliente'),
-    path('clientes/<str:codigo>/editar/', views.editar_cliente, name='editar_cliente'),
+    # ===== CLIENTES (SOMENTE VISUALIZAÇÃO) =====
+    path('clientes/', views.cliente_list, name='cliente_list'),
+    path('clientes/<int:pk>/', views.cliente_detail, name='cliente_detail'),
+    path('clientes/codigo/<str:codigo>/', views.cliente_detail_by_codigo, name='cliente_detail_by_codigo'),
     
-    # ===== CONTATOS =====
-    path('clientes/<str:codigo_cliente>/contatos/', views.listar_contatos, name='listar_contatos'),
-    path('clientes/<str:codigo_cliente>/contatos/adicionar/', views.adicionar_contato, name='adicionar_contato'),
+    # ===== VENDAS (SOMENTE VISUALIZAÇÃO) =====
+    path('vendas/', views.vendas_list, name='vendas_list'),
+    path('vendas/<int:pk>/', views.vendas_detail, name='vendas_detail'),
     
-    # ===== HISTÓRICO DE VENDAS =====
-    path('clientes/<str:codigo_cliente>/vendas/', views.historico_vendas, name='historico_vendas'),
+
+    path('api/consultar-bi/<str:codigo>/', views.consultar_bi, name='consultar_bi'),
+    
+    # ===== APIs PARA AJAX (SOMENTE CONSULTA) =====
+    path('api/vendedor-por-codigo/<str:codigo>/', views.api_vendedor_por_codigo, name='api_vendedor_por_codigo'),
+    path('api/cliente-por-codigo/<str:codigo>/', views.api_cliente_por_codigo, name='api_cliente_por_codigo'),
+    path('api/consultar-receita/<str:cpf_cnpj>/', views.api_consultar_receita, name='api_consultar_receita'),
+    path('api/buscar-produtos/', views.api_buscar_produtos, name='api_buscar_produtos'),
     
     # ===== RELATÓRIOS =====
-    path('relatorios/vendas/', views.relatorio_vendas, name='relatorio_vendas'),
+    path('relatorios/clientes/', views.relatorio_clientes, name='relatorio_clientes'),
 ]

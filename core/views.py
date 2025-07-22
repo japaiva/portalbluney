@@ -1,121 +1,129 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
+# core/views.py - Login View com nome mais apropriado
+
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.contrib import messages
-from django.contrib.auth.hashers import make_password
-from .models import PerfilUsuario, Usuario
-from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import get_object_or_404
-from .forms import UsuarioForm
 
+from core.models import PerfilUsuario, Usuario
+from core.forms import UsuarioForm
 
+# Em core/views.py, SUBSTITUA a PortalLoginView existente por esta versão:
+
+class PortalLoginView(LoginView):
+    """
+    View de login inteligente que redireciona baseado no nível do usuário
+    """
+    template_name = 'login.html'  # ✅ Usa o template existente
+    
+    def form_valid(self, form):
+        user = form.get_user()
+        print(f"✅ Login bem-sucedido para: {user.username} (nível: {getattr(user, 'nivel', 'N/A')})")
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        """Determina URL de redirecionamento baseado no nível do usuário"""
+        user = self.request.user
+        
+        print(f"🔍 Determinando redirecionamento para usuário: {user.username}")
+        
+        # Se é superuser, vai para gestor
+        if user.is_superuser:
+            print("🔧 Superuser - redirecionando para /gestor/")
+            return '/gestor/'
+        
+        # Se não tem nível definido, vai para vendedor (fallback seguro)
+        if not hasattr(user, 'nivel') or not user.nivel:
+            print("⚠️ Usuário sem nível - redirecionando para /vendedor/")
+            return '/vendedor/'
+        
+        # Redirecionamento baseado no nível
+        if user.nivel == 'admin':
+            print("👨‍💼 Admin - redirecionando para /gestor/")
+            return '/gestor/'
+        elif user.nivel == 'gestor':
+            print("👨‍💼 Gestor - redirecionando para /gestor/")  
+            return '/gestor/'
+        elif user.nivel == 'vendedor':
+            print("🛍️ Vendedor - redirecionando para /vendedor/")
+            return '/vendedor/'
+        else:
+            print(f"❓ Nível desconhecido ({user.nivel}) - redirecionando para /vendedor/")
+            return '/vendedor/'
+ 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['app_name'] = 'Portal Comercial'
+        return context
+
+def home_view(request):
+    """View da página inicial"""
+    return render(request, 'home.html')
 
 @login_required
 def perfil(request):
-    usuario = request.user
-    
-    # Obter ou criar perfil ao carregar a página
-    perfil, created = PerfilUsuario.objects.get_or_create(usuario=usuario)
-    
-    # Obter o contexto atual do usuário
-    app_context = request.session.get('app_context', 'home')
-    
-    # Determinar para onde voltar com base no contexto
-    if app_context == 'gestor':
-        back_url = 'gestor:dashboard'
-    elif app_context == 'cliente':
-        back_url = 'cliente:dashboard'
-    elif app_context == 'projetista':
-        back_url = 'projetista:dashboard'
+    """View do perfil do usuário"""
+    # Determinar URL de volta baseada no nível do usuário
+    if hasattr(request.user, 'nivel'):
+        if request.user.nivel in ['admin', 'gestor']:
+            back_url = 'gestor:home'
+        elif request.user.nivel == 'vendedor':
+            back_url = 'vendedor:home'
+        else:
+            back_url = 'home'
     else:
         back_url = 'home'
     
     if request.method == 'POST':
-        # Atualizar informações básicas
+        # Processar alterações do perfil
+        usuario = request.user
+        
+        # Atualizar campos básicos
         usuario.first_name = request.POST.get('first_name', '')
         usuario.last_name = request.POST.get('last_name', '')
         usuario.email = request.POST.get('email', '')
+        usuario.telefone = request.POST.get('telefone', '')
         
-        # Atualizar telefone no usuário e no perfil
-        telefone = request.POST.get('telefone', '')
-        usuario.telefone = telefone
-        perfil.telefone = telefone
-        
-        # Processar foto
-        if 'foto' in request.FILES:
-            # Código de debug para verificar o upload
-            arquivo = request.FILES['foto']
-            print(f"Iniciando upload do arquivo: {arquivo.name}")
-            
-            # Salvar a foto no perfil (que usará o MinioStorage)
-            perfil.foto = arquivo
-            
-            # Debug: verificar a URL gerada após salvar
-            print(f"URL do arquivo após salvar: {perfil.foto.url if perfil.foto else 'Nenhuma URL'}")
-        
-        # Processar senha
-        nova_senha = request.POST.get('nova_senha')
+        # Processar nova senha se fornecida
+        nova_senha = request.POST.get('nova_senha', '')
         if nova_senha:
             usuario.set_password(nova_senha)
         
-        # Salvar alterações
+        # Processar upload de foto se fornecida
+        foto = request.FILES.get('foto')
+        if foto:
+            # Aqui você implementaria o upload da foto
+            # usuario.foto_perfil = foto
+            pass
+        
         usuario.save()
-        perfil.save()
-        
         messages.success(request, 'Perfil atualizado com sucesso!')
-        
-        # Após salvar, redirecionar para a URL de retorno
-        return redirect(back_url)
+        return redirect('perfil')
     
-    return render(request, 'perfil.html', {'usuario': usuario, 'back_url': back_url})
-
-def home_view(request):
-    """
-    View para a página inicial do site.
-    Redireciona para o dashboard apropriado se o usuário estiver autenticado,
-    caso contrário, mostra a página inicial genérica.
-    """
-    if request.user.is_authenticated:
-        # Redireciona para o portal adequado com base no nível do usuário
-        if request.user.nivel in ['admin', 'gestor']:
-            return redirect('gestor:dashboard')
-        elif request.user.nivel == 'cliente':
-            return redirect('cliente:dashboard')
-        elif request.user.nivel == 'projetista':
-            return redirect('projetista:dashboard')
-        else:
-            # Nível de usuário não reconhecido, redireciona para a página inicial padrão
-            return render(request, 'home.html')
-    else:
-        # Usuário não autenticado, mostra a página inicial padrão
-        return render(request, 'home.html')
+    context = {
+        'usuario': request.user,
+        'back_url': back_url,
+    }
     
+    return render(request, 'perfil.html', context)
 
 def logout_view(request):
-    """View personalizada para logout que aceita GET e POST"""
-    if request.user.is_authenticated:
-        logout(request)
-        messages.success(request, 'Você foi desconectado com sucesso.')
+    """View de logout personalizada"""
+    user_nivel = getattr(request.user, 'nivel', None) if request.user.is_authenticated else None
+    logout(request)
+    
+    # Mensagem personalizada baseada no nível
+    if user_nivel == 'vendedor':
+        messages.success(request, 'Logout realizado com sucesso! Volte sempre.')
+    elif user_nivel in ['admin', 'gestor']:
+        messages.success(request, 'Sessão encerrada com sucesso!')
+    else:
+        messages.success(request, 'Até logo!')
+    
     return redirect('login')
-
-class GestorLoginView(LoginView):
-    template_name = 'gestor/login.html'
-    
-    def form_valid(self, form):
-        print("Login bem-sucedido para:", form.get_user())
-        return super().form_valid(form)
-    
-    def get_success_url(self):
-        print("Redirecionando para:", reverse_lazy('gestor:dashboard'))
-        return reverse_lazy('gestor:dashboard')
- 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['app_name'] = 'Portal do Gestor'
-        return context
-
 
 # CRUD USUÁRIO
 

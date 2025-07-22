@@ -9,14 +9,14 @@
     <div class="modern-content-box" style="max-width: 1000px;">
       <div class="logo-container">
         <img src="{% static 'img/bluney.png' %}" alt="Bluney" class="img-fluid mb-4" style="max-height: 100px;">
-        <h1 class="app-title">Portal do Gestor</h1>
+        <h1 class="app-title">Portal do Vendedor</h1>
       </div>
       {% if user.is_authenticated %}
-        <a href="{% url 'gestor:dashboard' %}" class="modern-button">
+        <a href="{% url 'vendedor:dashboard' %}" class="modern-button">
           Acessar Dashboard
         </a>
       {% else %}
-        <a href="{% url 'gestor:login' %}" class="modern-button">
+        <a href="{% url 'vendedor:login' %}" class="modern-button">
           <i class="fas fa-sign-in-alt me-2"></i> Login
         </a>
       {% endif %}

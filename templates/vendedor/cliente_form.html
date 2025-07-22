@@ -11,7 +11,7 @@
     </h5>
     <div>
 
-      <a href="{% url 'gestor:cliente_list' %}" class="btn btn-outline-secondary btn-sm">
+      <a href="{% url 'vendedor:cliente_list' %}" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-arrow-left me-1"></i> Voltar
       </a>
     </div>
@@ -587,7 +587,7 @@
 
       <!-- Botões de ação -->
       <div class="d-flex justify-content-end mt-4">
-        <a href="{% url 'gestor:cliente_list' %}" class="btn btn-secondary me-2">
+        <a href="{% url 'vendedor:cliente_list' %}" class="btn btn-secondary me-2">
           <i class="fas fa-times me-1"></i> Cancelar
         </a>
         <button type="submit" class="btn btn-primary">
@@ -642,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function() {
       nomeVendedorInput.value = 'Buscando...';
       nomeVendedorInput.classList.remove('is-valid', 'is-invalid');
       
-      fetch(`/gestor/api/vendedor-por-codigo/${codigo}/`)
+      fetch(`/vendedor/api/vendedor-por-codigo/${codigo}/`)
         .then(response => response.json())
         .then(data => {
           if (data.success) {
@@ -733,7 +733,7 @@ document.addEventListener('DOMContentLoaded', function() {
        btnConsultarReceita.disabled = true;
        btnConsultarReceita.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
        
-       fetch(`/gestor/api/consultar-receita/${cpfCnpj}/`)
+       fetch(`/vendedor/api/consultar-receita/${cpfCnpj}/`)
          .then(response => response.json())
          .then(data => {
            if (data.success) {
@@ -853,7 +853,7 @@ document.addEventListener('DOMContentLoaded', function() {
        return;
      }
      
-     fetch(`/gestor/api/cliente-por-codigo/${codigoMaster}/`)
+     fetch(`/vendedor/api/cliente-por-codigo/${codigoMaster}/`)
        .then(response => response.json())
        .then(data => {
          if (data.success) {

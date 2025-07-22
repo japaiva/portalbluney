@@ -14,9 +14,20 @@
         <h4 class="mb-0">Meu Perfil</h4>
       </div>
       <div>
-        <a href="{% url back_url %}" class="btn btn-outline-secondary">
-          <i class="fas fa-arrow-left me-1"></i> Voltar
-       </a>
+        <!-- ✅ CORRIGIDO: Usar a URL diretamente baseada no nível do usuário -->
+        {% if user.nivel == 'vendedor' %}
+          <a href="{% url 'vendedor:home' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Voltar
+          </a>
+        {% elif user.nivel == 'gestor' or user.nivel == 'admin' %}
+          <a href="{% url 'gestor:home' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Voltar
+          </a>
+        {% else %}
+          <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Voltar
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -32,13 +43,16 @@
         </div>
         <div class="card-body text-center">
           <div class="mb-4">
+            {% comment %} 
+            <!-- Foto de perfil - implementar quando necessário -->
             {% if usuario.perfil.foto %}
               <img src="{{ usuario.perfil.foto.url }}" alt="{{ usuario.username }}" class="rounded-circle img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;">
             {% else %}
+            {% endcomment %}
               <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center" style="width: 150px; height: 150px; border: 1px solid #dee2e6;">
                 <i class="fas fa-user-circle text-secondary" style="font-size: 80px;"></i>
               </div>
-            {% endif %}
+            {% comment %}{% endif %}{% endcomment %}
           </div>
           
           <h4>{{ usuario.get_full_name|default:usuario.username }}</h4>
@@ -110,6 +124,7 @@
               <div class="col-12">
                 <label for="foto" class="form-label">Alterar Foto de Perfil</label>
                 <input type="file" class="form-control" id="foto" name="foto" accept="image/*">
+                <div class="form-text small">Formatos aceitos: JPG, PNG, GIF (máximo 5MB)</div>
               </div>
             </div>
             
@@ -124,4 +139,24 @@
     </div>
   </div>
 </div>
+
+<!-- Script para máscaras de input -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Máscara para telefone
+    const telefoneInput = document.getElementById('telefone');
+    if (telefoneInput) {
+        telefoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length <= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                if (value.length < 15) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                }
+            }
+            e.target.value = value;
+        });
+    }
+});
+</script>
 {% endblock %}

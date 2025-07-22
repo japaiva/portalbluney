@@ -237,7 +237,7 @@
         Relatório de Clientes - Faturamento Mensal
       </h5>
       <div>
-        <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+        <a href="{% url 'vendedor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
           <i class="fas fa-arrow-left me-1"></i> Voltar
         </a>
       </div>
@@ -603,7 +603,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       var produtoSearch = new ProdutoSearchTags('produto-search-container', {
         placeholder: '🔍 Digite para buscar produtos...',
-        apiUrl: '{% url "gestor:api_buscar_produtos" %}',
+        apiUrl: '{% url "vendedor:api_buscar_produtos" %}',
         minChars: 2,
         debounceTime: 300,
         maxResults: 10,

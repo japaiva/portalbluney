@@ -150,7 +150,6 @@ USE_TZ = True
 
 # Auth settings
 AUTH_USER_MODEL = 'core.Usuario'
-LOGIN_REDIRECT_URL = '/gestor/'
 LOGIN_URL = '/login/'
 LOGOUT_REDIRECT_URL = '/login/'
 

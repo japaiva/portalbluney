@@ -1,4 +1,4 @@
-<!-- ===== PRODUTO LIST - gestor/templates/gestor/produto_list.html ===== -->
+
 {% extends 'vendedor/base_vendedor.html' %}
 
 {% block title %}Produtos | Portal Comercial{% endblock %}
@@ -10,10 +10,10 @@
       <i class="fas fa-box me-2"></i> Produtos
     </h5>
     <div>
-      <a href="{% url 'gestor:produto_create' %}" class="btn btn-primary btn-sm">
+      <a href="{% url 'vendedor:produto_create' %}" class="btn btn-primary btn-sm">
         <i class="fas fa-plus me-1"></i> Novo Produto
       </a>
-      <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+      <a href="{% url 'vendedor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-arrow-left me-1"></i> Voltar
       </a>
     </div>
@@ -34,7 +34,7 @@
       </div>
       
       <div class="col-md-3">
-        <a href="{% url 'gestor:produto_list' %}" class="btn btn-sm btn-outline-secondary w-100">
+        <a href="{% url 'vendedor:produto_list' %}" class="btn btn-sm btn-outline-secondary w-100">
           <i class="fas fa-eraser me-1"></i> Limpar
         </a>
       </div>
@@ -85,12 +85,12 @@
               </td>
               <td class="text-end">
                 <div class="btn-group" role="group">
-                  <a href="{% url 'gestor:produto_edit' produto.codigo %}" 
+                  <a href="{% url 'vendedor:produto_edit' produto.codigo %}" 
                      class="btn btn-sm btn-outline-primary" 
                      title="Editar">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="{% url 'gestor:produto_delete' produto.codigo %}" 
+                  <a href="{% url 'vendedor:produto_delete' produto.codigo %}" 
                      class="btn btn-sm btn-outline-danger" 
                      title="Excluir">
                     <i class="fas fa-trash-alt"></i>
@@ -103,12 +103,12 @@
               <td colspan="6" class="text-center py-4 text-muted">
                 {% if search %}
                   Nenhum produto encontrado com os critérios de busca.
-                  <br><a href="{% url 'gestor:produto_list' %}" class="btn btn-sm btn-outline-primary mt-2">
+                  <br><a href="{% url 'vendedor:produto_list' %}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="fas fa-eraser me-1"></i> Limpar busca
                   </a>
                 {% else %}
                   Nenhum produto cadastrado.
-                  <br><a href="{% url 'gestor:produto_create' %}" class="btn btn-sm btn-primary mt-2">
+                  <br><a href="{% url 'vendedor:produto_create' %}" class="btn btn-sm btn-primary mt-2">
                     <i class="fas fa-plus me-1"></i> Cadastrar primeiro produto
                   </a>
                 {% endif %}

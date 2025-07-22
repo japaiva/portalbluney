@@ -20,18 +20,18 @@
     </h5>
     <div>
       {% if perms.core.change_cliente %}
-      <a href="{% url 'gestor:cliente_update' cliente.id %}" class="btn btn-outline-primary btn-sm me-1">
+      <a href="{% url 'vendedor:cliente_update' cliente.id %}" class="btn btn-outline-primary btn-sm me-1">
         <i class="fas fa-edit me-1"></i> Editar
       </a>
       {% endif %}
       
       {% if perms.core.delete_cliente %}
-      <a href="{% url 'gestor:cliente_delete' cliente.id %}" class="btn btn-sm btn-outline-danger me-1">
+      <a href="{% url 'vendedor:cliente_delete' cliente.id %}" class="btn btn-sm btn-outline-danger me-1">
         <i class="fas fa-trash-alt me-1"></i> Excluir
       </a>
       {% endif %}
       
-      <a href="{% url 'gestor:cliente_list' %}" class="btn btn-outline-secondary btn-sm me-2">
+      <a href="{% url 'vendedor:cliente_list' %}" class="btn btn-outline-secondary btn-sm me-2">
         <i class="fas fa-arrow-left me-1"></i> Voltar
       </a>
     </div>
@@ -56,7 +56,7 @@
               {% if cliente.codigo_master %}
               <li class="list-group-item">
                 <strong>Cliente Master:</strong> 
-                <a href="{% url 'gestor:cliente_detail_by_codigo' cliente.codigo_master %}" class="text-decoration-none">
+                <a href="{% url 'vendedor:cliente_detail_by_codigo' cliente.codigo_master %}" class="text-decoration-none">
                   <code>{{ cliente.codigo_master }}</code> {% if cliente_master %}- {{ cliente_master.nome }}{% endif %}
                 </a>
               </li>
@@ -262,7 +262,7 @@
               <i class="fas fa-sitemap me-2"></i>Clientes Associados
             </h6>
             {% if perms.core.add_cliente %}
-            <a href="{% url 'gestor:cliente_create' %}?codigo_master={{ cliente.codigo }}" class="btn btn-primary btn-sm">
+            <a href="{% url 'vendedor:cliente_create' %}?codigo_master={{ cliente.codigo }}" class="btn btn-primary btn-sm">
               <i class="fas fa-plus me-1"></i> Novo Sub-Cliente
             </a>
             {% endif %}
@@ -299,15 +299,15 @@
                         </td>
                         <td class="text-end">
                           <div class="btn-group" role="group">
-                            <a href="{% url 'gestor:cliente_detail' cliente_associado.id %}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{% url 'vendedor:cliente_detail' cliente_associado.id %}" class="btn btn-sm btn-outline-secondary">
                               <i class="fas fa-eye"></i>
                             </a>
                             {% if perms.core.change_cliente %}
-                            <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary">
+                            <a href="{% url 'vendedor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary">
                               <i class="fas fa-edit"></i>
                             </a>
                             {% if perms.core.delete_cliente %}
-                            <a href="{% url 'gestor:cliente_delete' cliente_associado.id %}" class="btn btn-sm btn-outline-danger">
+                            <a href="{% url 'vendedor:cliente_delete' cliente_associado.id %}" class="btn btn-sm btn-outline-danger">
                               <i class="fas fa-trash-alt"></i>
                             </a>
                             {% endif %}
@@ -333,7 +333,7 @@
               <i class="fas fa-address-book me-2"></i>Contatos
             </h6>
             {% if perms.core.add_clientecontato %}
-            <a href="{% url 'gestor:cliente_contato_create' cliente.id %}" class="btn btn-primary btn-sm">
+            <a href="{% url 'vendedor:cliente_contato_create' cliente.id %}" class="btn btn-primary btn-sm">
               <i class="fas fa-plus me-1"></i> Novo Contato
             </a>
             {% endif %}
@@ -389,7 +389,7 @@
                             </td>
                             <td>
                               {% if contato.cliente.id != cliente.id %}
-                                <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="text-decoration-none">
+                                <a href="{% url 'vendedor:cliente_detail' contato.cliente.id %}" class="text-decoration-none">
                                   <code>{{ contato.cliente.codigo }}</code> - {{ contato.cliente.nome|truncatechars:20 }}
                                 </a>
                               {% else %}
@@ -404,10 +404,10 @@
                             <td class="text-end">
                               {% if contato.cliente.id == cliente.id and perms.core.change_clientecontato %}
                                 <div class="btn-group" role="group">
-                                  <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
+                                  <a href="{% url 'vendedor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
                                     <i class="fas fa-edit"></i>
                                   </a>
-                                  <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
+                                  <a href="{% url 'vendedor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
                                     <i class="fas fa-trash"></i>
                                   </a>
                                 </div>
@@ -456,10 +456,10 @@
                             <td class="text-end">
                               {% if perms.core.change_clientecontato %}
                                 <div class="btn-group" role="group">
-                                  <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
+                                  <a href="{% url 'vendedor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
                                     <i class="fas fa-edit"></i>
                                   </a>
-                                  <a href="{% url 'gestor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
+                                  <a href="{% url 'vendedor:cliente_contato_delete' contato.id %}" class="btn btn-sm btn-outline-danger">
                                     <i class="fas fa-trash"></i>
                                   </a>
                                 </div>
@@ -500,7 +500,7 @@
                             </span>
                           </td>
                           <td>
-                            <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="text-decoration-none">
+                            <a href="{% url 'vendedor:cliente_detail' contato.cliente.id %}" class="text-decoration-none">
                               <code>{{ contato.cliente.codigo }}</code> - {{ contato.cliente.nome|truncatechars:15 }}
                             </a>
                           </td>
@@ -510,7 +510,7 @@
                             {% endif %}
                           </td>
                           <td class="text-end">
-                            <a href="{% url 'gestor:cliente_detail' contato.cliente.id %}" class="btn btn-sm btn-outline-secondary">
+                            <a href="{% url 'vendedor:cliente_detail' contato.cliente.id %}" class="btn btn-sm btn-outline-secondary">
                               <i class="fas fa-eye"></i>
                             </a>
                           </td>
@@ -530,7 +530,7 @@
             <h6 class="card-title mb-0">
               <i class="fas fa-chart-line me-2"></i>Histórico de Vendas
             </h6>
-            <a href="{% url 'gestor:consultar_bi' cliente.codigo %}" class="btn btn-outline-info btn-sm">
+            <a href="{% url 'vendedor:consultar_bi' cliente.codigo %}" class="btn btn-outline-info btn-sm">
               <i class="fas fa-chart-bar me-1"></i> Ver Completo
             </a>
           </div>

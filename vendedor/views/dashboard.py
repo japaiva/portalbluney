@@ -22,6 +22,13 @@ def vendedor_required(view_func):
     return _wrapped_view
 
 @login_required
+def home(request):
+    """
+    Página inicial do Portal do Vendedor
+    """
+    return render(request, 'vendedor/home.html')
+
+@login_required
 @vendedor_required
 def dashboard(request):
     """Dashboard do vendedor - versão simplificada"""

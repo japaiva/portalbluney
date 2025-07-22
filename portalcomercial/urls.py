@@ -1,30 +1,59 @@
+# portalcomercial/urls.py - URLs PRINCIPAIS ATUALIZADAS
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth import views as auth_views
-from core.views import home_view, perfil,logout_view
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from core.views import PortalLoginView, home_view, logout_view, perfil
+
+def redirect_after_login(request):
+    """View para redirecionar usuários baseado no nível - FALLBACK"""
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    user = request.user
+    
+    if user.is_superuser:
+        return redirect('/gestor/')
+    elif hasattr(user, 'nivel'):
+        if user.nivel == 'admin':
+            return redirect('/gestor/')
+        elif user.nivel == 'gestor':
+            return redirect('/gestor/')
+        elif user.nivel == 'vendedor':
+            return redirect('/vendedor/')
+        else:
+            return redirect('/vendedor/')
+    else:
+        # Fallback se não tem nível
+        return redirect('/vendedor/')
 
 urlpatterns = [
+    # ===== ADMIN =====
     path('admin/', admin.site.urls),
     
-    # Views de autenticação compartilhadas
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('perfil/', perfil, name='perfil'),
+    # ===== AUTHENTICATION =====
+    path('login/', PortalLoginView.as_view(), name='login'),
     path('logout/', logout_view, name='logout'),
-
-    # Página inicial do site
-    path('', home_view, name='home'),
-
     
-    # Portais específicos
+    # ===== PERFIL (GLOBAL) =====
+    path('perfil/', perfil, name='perfil'),
+    
+    # ===== HOME E REDIRECIONAMENTO =====
+    path('', home_view, name='home'),
+    path('dashboard/', login_required(redirect_after_login), name='dashboard'),
+    
+    # ===== MÓDULOS =====
     path('gestor/', include('gestor.urls')),
     path('vendedor/', include('vendedor.urls')),
     
-    # APIs e outros apps
-    path('api/', include('api.urls', namespace='api')),
+    # ===== API =====
+    path('api/', include('api.urls')),
 ]
 
-# Adicionar URLs para servir mídia durante o desenvolvimento
+# Servir arquivos de mídia durante desenvolvimento
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -9,10 +9,10 @@
       <i class="fas fa-users me-2"></i> Clientes
     </h5>
     <div>
-      <a href="{% url 'gestor:cliente_create' %}" class="btn btn-primary btn-sm">
+      <a href="{% url 'vendedor:cliente_create' %}" class="btn btn-primary btn-sm">
         <i class="fas fa-plus me-1"></i> Novo Cliente
       </a>
-      <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm me-2">
+      <a href="{% url 'vendedor:dashboard' %}" class="btn btn-outline-secondary btn-sm me-2">
         <i class="fas fa-arrow-left me-1"></i> Voltar
       </a>
     </div>
@@ -77,7 +77,7 @@
       </div>
       
       <div class="col-md-1">
-        <a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-secondary w-100" title="Limpar filtros">
+        <a href="{% url 'vendedor:cliente_list' %}" class="btn btn-sm btn-outline-secondary w-100" title="Limpar filtros">
           <i class="fas fa-eraser me-1"></i>
         </a>
       </div>
@@ -156,17 +156,17 @@
               </td>
               <td class="text-end">
                 <div class="btn-group" role="group">
-                  <a href="{% url 'gestor:cliente_detail' cliente.id %}" 
+                  <a href="{% url 'vendedor:cliente_detail' cliente.id %}" 
                      class="btn btn-sm btn-outline-secondary" 
                      title="Detalhes">
                     <i class="fas fa-eye"></i>
                   </a>
-                  <a href="{% url 'gestor:cliente_update' cliente.id %}" 
+                  <a href="{% url 'vendedor:cliente_update' cliente.id %}" 
                      class="btn btn-sm btn-outline-primary" 
                      title="Editar">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="{% url 'gestor:cliente_delete' cliente.id %}" 
+                  <a href="{% url 'vendedor:cliente_delete' cliente.id %}" 
                      class="btn btn-sm btn-outline-danger" 
                      title="Excluir">
                     <i class="fas fa-trash-alt"></i>
@@ -179,12 +179,12 @@
               <td colspan="8" class="text-center py-4 text-muted">
                 {% if query or status_filtro != 'ativo' or tipo_filtro != 'principal' or vendedor_filtro or loja_filtro %}
                   Nenhum cliente encontrado com os filtros aplicados.
-                  <br><a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-primary mt-2">
+                  <br><a href="{% url 'vendedor:cliente_list' %}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="fas fa-eraser me-1"></i> Limpar filtros
                   </a>
                 {% else %}
                   Nenhum cliente cadastrado.
-                  <br><a href="{% url 'gestor:cliente_create' %}" class="btn btn-sm btn-primary mt-2">
+                  <br><a href="{% url 'vendedor:cliente_create' %}" class="btn btn-sm btn-primary mt-2">
                     <i class="fas fa-plus me-1"></i> Cadastrar primeiro cliente
                   </a>
                 {% endif %}
