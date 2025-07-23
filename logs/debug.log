@@ -10123,3 +10123,34 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-22 18:39:46,318 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
 [INFO] 2025-07-22 18:39:49,638 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 658261
 [INFO] 2025-07-22 18:40:00,996 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-22 21:53:13,856 Watching for file changes with StatReloader
+[INFO] 2025-07-22 21:53:32,022 "GET / HTTP/1.1" 200 6702
+[INFO] 2025-07-22 21:53:34,638 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 21:53:34,830 "GET /vendedor/ HTTP/1.1" 200 7003
+[INFO] 2025-07-22 21:53:43,692 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 21:53:47,005 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 21:53:47,162 "GET /login/ HTTP/1.1" 200 5652
+[INFO] 2025-07-22 21:53:59,535 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-22 21:53:59,704 "GET /vendedor/ HTTP/1.1" 200 6469
+[INFO] 2025-07-22 21:54:01,288 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 21:54:04,122 "GET /vendedor/clientes/ HTTP/1.1" 200 33475
+[INFO] 2025-07-22 21:54:06,218 "GET /vendedor/clientes/1671/ HTTP/1.1" 200 15005
+[INFO] 2025-07-22 21:54:10,774 "GET /vendedor/api/consultar-bi/1159/ HTTP/1.1" 200 21011
+[WARNING] 2025-07-22 21:54:10,822 "GET /static/vendor/chart.js/Chart.min.css HTTP/1.1" 404 2014
+[WARNING] 2025-07-22 21:54:10,822 "GET /static/vendor/chart.js/Chart.min.js HTTP/1.1" 404 2011
+[INFO] 2025-07-22 21:54:12,910 "GET /vendedor/clientes/1671/ HTTP/1.1" 200 15005
+[INFO] 2025-07-22 21:54:15,953 "GET /vendedor/clientes/ HTTP/1.1" 200 33475
+[INFO] 2025-07-22 21:54:17,687 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+[INFO] 2025-07-22 21:54:21,649 "GET /vendedor/vendas/ HTTP/1.1" 200 48871
+[INFO] 2025-07-22 21:54:23,652 "GET /vendedor/vendas/63128/ HTTP/1.1" 200 13117
+[INFO] 2025-07-22 21:54:25,357 "GET /vendedor/vendas/60469/ HTTP/1.1" 200 13117
+[INFO] 2025-07-22 21:54:27,121 "GET /vendedor/vendas/60781/ HTTP/1.1" 200 13117
+[INFO] 2025-07-22 21:54:29,032 "GET /vendedor/vendas/61166/ HTTP/1.1" 200 13116
+[INFO] 2025-07-22 21:54:31,120 "GET /vendedor/vendas/?search=96808 HTTP/1.1" 200 49284
+[INFO] 2025-07-22 21:54:36,873 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 53477
+[INFO] 2025-07-22 21:54:39,676 "GET /vendedor/api/buscar-produtos/?q=as&exclude=&limit=10 HTTP/1.1" 200 2167
+[INFO] 2025-07-22 21:54:40,054 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
+[INFO] 2025-07-22 21:54:44,182 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 658261
+[INFO] 2025-07-22 21:54:49,301 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
