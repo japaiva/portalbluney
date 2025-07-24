@@ -1,6 +1,7 @@
-# gestor/urls.py - CORREÇÃO DA URL consultar_bi
+# gestor/urls.py - URLs LIMPAS (removendo sincronizar_bi redundante)
 
 from django.urls import path
+from gestor.views import bi
 from . import views
 
 app_name = 'gestor'
@@ -75,12 +76,15 @@ urlpatterns = [
     path('vendas/<int:pk>/deletar/', views.vendas_delete, name='vendas_delete'),
     path('vendas/<int:pk>/atualizar/', views.vendas_update, name='vendas_update'),
     
-    # ===== IMPORTAÇÃO =====
-    path('importar-vendas/', views.importar_vendas, name='importar_vendas'),
+    # ===== BUSINESS INTELLIGENCE =====
+    path('importar-vendas/', views.importar_vendas, name='importar_vendas'),  # Excel/CSV
+    path('atualizar-bi/', bi.atualizar_bi_form, name='atualizar_bi'),         # DBF Clipper  
+    path('atualizar-bi/ajax/', bi.atualizar_bi_ajax, name='atualizar_bi_ajax'),
+    path('bi/status/', bi.verificar_bi_status, name='bi_status'),
     
-    # ===== SINCRONIZAÇÃO =====
-    path('sincronizacao/', views.sincronizacao_dashboard, name='sincronizacao_dashboard'),
-    path('sincronizacao/bi/', views.sincronizar_bi, name='sincronizar_bi'),
+    # ===== SINCRONIZAÇÃO (REMOVIDAS URLs REDUNDANTES) =====
+    # path('sincronizacao/', views.sincronizacao_dashboard, name='sincronizacao_dashboard'),  # ← REMOVIDO
+    # path('sincronizacao/bi/', views.sincronizar_bi, name='sincronizar_bi'),                # ← REMOVIDO
     path('sincronizacao/receita/', views.sincronizar_receita, name='sincronizar_receita'),
     path('sincronizacao/completa/', views.sincronizacao_completa, name='sincronizacao_completa'),
     
@@ -103,11 +107,9 @@ urlpatterns = [
     path('api/vendedor-por-codigo/<str:codigo>/', views.vendedor_por_codigo, name='vendedor_por_codigo'),
     path('api/cliente-por-codigo/<str:codigo>/', views.cliente_por_codigo, name='cliente_por_codigo'),
     path('api/consultar-receita-geral/<str:cpf_cnpj>/', views.consultar_receita, name='consultar_receita_geral'),
-    
-    # *** 🔥 CORREÇÃO AQUI: ADICIONAR PARÂMETRO À URL ***
     path('api/consultar-bi/<str:codigo>/', views.consultar_bi, name='consultar_bi'),
     
-    # ===== APIs (Produtos) - NOVAS =====
+    # ===== APIs (Produtos) =====
     path('api/produtos/buscar/', views.buscar_produtos_api, name='api_buscar_produtos'),
     path('api/produtos/<str:codigo>/', views.produto_detail_api, name='api_produto_detail'),
     path('api/produtos/lista/', views.produtos_lista_api, name='api_produtos_lista'),

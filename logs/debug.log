@@ -10154,3 +10154,50 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-22 21:54:40,054 "GET /vendedor/api/buscar-produtos/?q=ask&exclude=&limit=10 HTTP/1.1" 200 2161
 [INFO] 2025-07-22 21:54:44,182 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-22&produto=026046&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 658261
 [INFO] 2025-07-22 21:54:49,301 "GET /vendedor/dashboard/ HTTP/1.1" 200 6225
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-24 06:31:22,615 Watching for file changes with StatReloader
+[INFO] 2025-07-24 06:35:53,875 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-24 06:35:55,451 Watching for file changes with StatReloader
+[INFO] 2025-07-24 06:36:06,640 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-24 06:36:07,139 Watching for file changes with StatReloader
+[INFO] 2025-07-24 06:36:52,143 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/bi.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-24 06:36:52,946 Watching for file changes with StatReloader
+[INFO] 2025-07-24 06:37:19,418 "GET / HTTP/1.1" 200 5782
+[INFO] 2025-07-24 06:37:22,795 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-24 06:37:22,865 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-24 06:37:31,671 "POST /login/?next=/gestor/ HTTP/1.1" 200 5328
+[INFO] 2025-07-24 06:37:37,044 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-07-24 06:37:37,217 "GET /gestor/ HTTP/1.1" 200 8209
+[INFO] 2025-07-24 06:37:39,337 "GET /gestor/dashboard/ HTTP/1.1" 200 7969
+[INFO] 2025-07-24 06:38:26,021 "GET /gestor/dashboard/ HTTP/1.1" 200 8281
+[INFO] 2025-07-24 06:38:41,458 "GET /gestor/importar-vendas/ HTTP/1.1" 200 20650
+[INFO] 2025-07-24 06:38:57,142 "GET /gestor/vendas/ HTTP/1.1" 200 60569
+[INFO] 2025-07-24 06:39:00,641 "GET /gestor/dashboard/ HTTP/1.1" 200 8281
+[INFO] 2025-07-24 06:39:06,952 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 27059
+[INFO] 2025-07-24 06:40:25,182 "GET /gestor/dashboard/ HTTP/1.1" 200 8281
+[INFO] 2025-07-24 06:40:27,756 "GET /gestor/bi/status/ HTTP/1.1" 200 8890
+[INFO] 2025-07-24 06:44:04,742 "GET /gestor/bi/status/ HTTP/1.1" 200 8316
+[INFO] 2025-07-24 06:44:08,423 "GET /gestor/bi/status/ HTTP/1.1" 200 8316
+[INFO] 2025-07-24 06:44:23,725 "GET /gestor/importar-vendas/ HTTP/1.1" 200 20076
+[INFO] 2025-07-24 06:44:34,424 "GET /gestor HTTP/1.1" 301 0
+[INFO] 2025-07-24 06:44:34,788 "GET /gestor/ HTTP/1.1" 200 7947
+[INFO] 2025-07-24 06:44:36,577 "GET /gestor/dashboard/ HTTP/1.1" 200 7707
+[INFO] 2025-07-24 06:44:38,795 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 26485
+[INFO] 2025-07-24 06:52:30,405 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/bi.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-24 06:52:31,229 Watching for file changes with StatReloader
+[INFO] 2025-07-24 06:52:36,882 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 13457
+[INFO] 2025-07-24 06:52:58,075 "POST /gestor/atualizar-bi/ HTTP/1.1" 200 17555
+[INFO] 2025-07-24 06:54:56,489 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 11688
+[INFO] 2025-07-24 06:55:42,432 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 13055
+[INFO] 2025-07-24 06:57:42,703 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12611
+[INFO] 2025-07-24 07:00:42,163 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12617
+[INFO] 2025-07-24 07:02:28,846 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12533
+[INFO] 2025-07-24 07:02:35,012 "POST /gestor/atualizar-bi/ HTTP/1.1" 200 16655
+[INFO] 2025-07-24 07:03:02,664 "GET /gestor/importar-vendas/ HTTP/1.1" 200 20038
+[INFO] 2025-07-24 07:03:47,042 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12473
+[INFO] 2025-07-24 07:04:08,640 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12487

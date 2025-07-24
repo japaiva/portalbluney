@@ -26,7 +26,7 @@
         Vendedores
     </a></li>
     <li><a class="dropdown-item" href="{% url 'gestor:usuario_list' %}">
-        Usuários  <!-- NOVO -->
+        Usuários
     </a></li>
 
     <li><hr class="dropdown-divider"></li>
@@ -57,7 +57,26 @@
     <li><a class="dropdown-item" href="{% url 'gestor:relatorio_clientes' %}">
         Relatório Clientes
     </a></li>
+  </ul>
 </li>
+
+<!-- Menu de BI -->
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sincronização Sysfat
+  </a>
+  <ul class="dropdown-menu dropdown-menu-dark">
+    <!-- Importação Excel/CSV (JÁ EXISTENTE E FUNCIONAL) -->
+    <li><a class="dropdown-item" href="{% url 'gestor:importar_vendas' %}">
+        Importar Vendas
+    </a></li>
+    
+    
+    <!-- ✨ NOVA FUNCIONALIDADE - Atualizar BI do Clipper -->
+    <li><a class="dropdown-item text-warning fw-bold" href="{% url 'gestor:atualizar_bi' %}">
+        Atualizar BI
+    </a></li>
+    
   </ul>
 </li>
 

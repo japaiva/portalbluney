@@ -1,0 +1,157 @@
+<!-- gestor/templates/gestor/atualizar_bi.html -->
+{% extends 'gestor/base_gestor.html' %}
+{% load static %}
+
+{% block title %}{{ title }} | Portal Comercial{% endblock %}
+
+{% block extra_css %}
+<style>
+  .clipper-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  
+  .form-clipper {
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+  }
+  
+  .btn-clipper {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+  }
+  
+  .btn-clipper:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <!-- Cabeçalho estilo Clipper -->
+      <div class="card-header clipper-header text-center py-3">
+        <h4 class="mb-0">
+          ATUALIZAR BI
+        </h4>
+      </div>
+      
+      <div class="card-body p-4">
+        
+        <!-- Formulário -->
+        <form method="post" id="formAtualizarBI" class="form-clipper p-4">
+          {% csrf_token %}
+          
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+              {% for error in form.non_field_errors %}
+                <p class="mb-0">{{ error }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+          
+          <!-- Seleção de Período -->
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <label for="{{ form.mes.id_for_label }}" class="form-label fw-bold">
+                Mês
+              </label>
+              {{ form.mes }}
+              {% if form.mes.errors %}
+                <div class="text-danger small mt-1">{{ form.mes.errors.0 }}</div>
+              {% endif %}
+            </div>
+            
+            <div class="col-md-6">
+              <label for="{{ form.ano.id_for_label }}" class="form-label fw-bold">
+                Ano
+              </label>
+              {{ form.ano }}
+              {% if form.ano.errors %}
+                <div class="text-danger small mt-1">{{ form.ano.errors.0 }}</div>
+              {% endif %}
+            </div>
+          </div>
+        
+          
+          <!-- Opções -->
+          <div class="mb-4">
+            <h6 class="fw-bold mb-3">
+              Opções de Processamento
+            </h6>
+            
+            <div class="form-check mb-3">
+              {{ form.limpar_registros_anteriores }}
+              <label class="form-check-label fw-bold" for="{{ form.limpar_registros_anteriores.id_for_label }}">
+                {{ form.limpar_registros_anteriores.label }}
+              </label>
+            </div>
+            
+            <div class="form-check mb-3">
+              {{ form.verificar_dependencias }}
+              <label class="form-check-label fw-bold" for="{{ form.verificar_dependencias.id_for_label }}">
+                {{ form.verificar_dependencias.label }}
+              </label>
+            </div>
+          </div>
+          
+          <!-- Botões de Ação -->
+          <div class="text-center">
+            <button type="submit" id="btnProcessar" class="btn btn-clipper  px-3 me-3">
+              <i class="fas fa-play me-2"></i>
+              Processar BI
+            </button>
+            
+            <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary">
+              <i class="fas fa-arrow-left me-1"></i> Voltar
+            </a>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  // ===== ATUALIZAR PREVIEW DO PERÍODO =====
+  function atualizarPreview() {
+    const mes = document.getElementById('id_mes').value || '01';
+    const ano = document.getElementById('id_ano').value || '25';
+    
+    document.getElementById('preview-periodo').textContent = mes + '/20' + ano;
+    document.getElementById('preview-arquivo').textContent = ano + mes;
+  }
+  
+  // Listeners para atualizar preview
+  document.getElementById('id_mes').addEventListener('change', atualizarPreview);
+  document.getElementById('id_ano').addEventListener('change', atualizarPreview);
+  
+  // Atualizar preview inicial
+  atualizarPreview();
+  
+  // ===== PROCESSAR FORMULÁRIO =====
+  document.getElementById('formAtualizarBI').addEventListener('submit', function(e) {
+    const btnProcessar = document.getElementById('btnProcessar');
+    
+    // Loading no botão
+    btnProcessar.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processando...';
+    btnProcessar.disabled = true;
+  });
+});
+</script>
+{% endblock %}

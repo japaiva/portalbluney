@@ -816,3 +816,93 @@ class VendasForm(forms.ModelForm):
                 self.add_error('fabricante', 'Fabricante não corresponde ao produto selecionado.')
         
         return cleaned_data
+
+# ===== FORMULÁRIO PARA ATUALIZAR BI.DBF (CLIPPER) =====
+class AtualizarBIForm(forms.Form):
+    """
+    Formulário para atualizar BI.DBF diretamente do Clipper
+    Replica a interface do programa ATBI.PRG
+    """
+    
+    # Choices para meses
+    MESES_CHOICES = [
+        ('01', 'Janeiro'),
+        ('02', 'Fevereiro'), 
+        ('03', 'Março'),
+        ('04', 'Abril'),
+        ('05', 'Maio'),
+        ('06', 'Junho'),
+        ('07', 'Julho'),
+        ('08', 'Agosto'),
+        ('09', 'Setembro'),
+        ('10', 'Outubro'),
+        ('11', 'Novembro'),
+        ('12', 'Dezembro'),
+    ]
+    
+    # Gerar anos dinamicamente (últimos 5 anos em formato YY)
+    ano_atual = datetime.now().year - 2000  # Formato YY como no Clipper
+    ANOS_CHOICES = [
+        (str(ano).zfill(2), str(2000 + ano)) 
+        for ano in range(ano_atual - 4, ano_atual + 1)
+    ]
+    
+    mes = forms.ChoiceField(
+        label="Mês de Referência",
+        choices=MESES_CHOICES,
+        initial=str(datetime.now().month).zfill(2),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    ano = forms.ChoiceField(
+        label="Ano de Referência", 
+        choices=ANOS_CHOICES,
+        initial=str(datetime.now().year - 2000).zfill(2),
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+    
+    limpar_registros_anteriores = forms.BooleanField(
+        label="Limpar registros anteriores",
+        required=False,
+        initial=True,
+        help_text="Se marcado, os registros existentes para o mês/ano selecionado serão removidos antes da importação",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+    
+    verificar_dependencias = forms.BooleanField(
+        label="Verificar dependências (clientes, produtos, etc.)",
+        required=False,
+        initial=True,
+        help_text="Verifica e atualiza automaticamente dados de clientes, produtos e vendedores necessários",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+    
+    notificar_conclusao = forms.BooleanField(
+        label="Notificar quando concluir",
+        required=False,
+        initial=False,
+        help_text="Enviar notificação por e-mail quando a sincronização for concluída",
+        widget=forms.CheckboxInput(attrs={'class': 'form-check-input'})
+    )
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        mes = cleaned_data.get('mes')
+        ano = cleaned_data.get('ano')
+        
+        # Validar se mês e ano são válidos
+        if mes and ano:
+            try:
+                mes_int = int(mes)
+                ano_int = int(ano) + 2000  # Converter YY para YYYY
+                
+                if mes_int < 1 or mes_int > 12:
+                    self.add_error('mes', "Mês deve estar entre 01 e 12")
+                
+                if ano_int < 2020 or ano_int > 2030:
+                    self.add_error('ano', "Ano deve estar entre 2020 e 2030")
+                    
+            except ValueError:
+                self.add_error('mes', "Valores de mês/ano inválidos")
+        
+        return cleaned_data

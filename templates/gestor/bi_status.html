@@ -1,0 +1,138 @@
+<!-- gestor/templates/gestor/bi_status.html -->
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Status do BI | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-chart-bar me-2"></i> Status do BI.DBF
+    </h5>
+    <div>
+      <button onclick="location.reload()" class="btn btn-outline-light btn-sm me-2">
+        <i class="fas fa-sync me-1"></i> Atualizar
+      </button>
+      <a href="{% url 'gestor:atualizar_bi' %}" class="btn btn-warning btn-sm">
+        <i class="fas fa-cogs me-1"></i> Processar BI
+      </a>
+    </div>
+  </div>
+  
+  <div class="card-body">
+    {% if status == 'ok' %}
+      <!-- Status OK -->
+      <div class="row g-4 mb-4">
+        <div class="col-md-3">
+          <div class="card border-success h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-database fa-2x text-success mb-2"></i>
+              <h4 class="text-success">{{ total_registros|floatformat:0 }}</h4>
+              <small class="text-muted">Total de Registros</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card border-info h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-calendar fa-2x text-info mb-2"></i>
+              <h6 class="text-info">{{ ultima_modificacao|date:"d/m/Y H:i" }}</h6>
+              <small class="text-muted">Última Modificação</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card border-warning h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-folder fa-2x text-warning mb-2"></i>
+              <h6 class="text-warning">{{ por_periodo|length }}</h6>
+              <small class="text-muted">Períodos Distintos</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-3">
+          <div class="card border-primary h-100">
+            <div class="card-body text-center">
+              <i class="fas fa-file fa-2x text-primary mb-2"></i>
+              <h6 class="text-primary text-break">BI.DBF</h6>
+              <small class="text-muted">Arquivo Ativo</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Localização do Arquivo -->
+      <div class="alert alert-info">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>Localização:</strong> <code>{{ arquivo_path }}</code>
+      </div>
+      
+      <!-- Tabela de Períodos -->
+      <div class="card">
+        <div class="card-header bg-light">
+          <h6 class="mb-0">Registros por Período</h6>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th>Período</th>
+                  <th>Mês/Ano</th>
+                  <th class="text-end">Registros</th>
+                  <th class="text-center">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for periodo, quantidade in por_periodo %}
+                  <tr>
+                    <td><code>{{ periodo }}</code></td>
+                    <td>
+                      {% if periodo|length == 4 %}
+                        {{ periodo|slice:"2:" }}/20{{ periodo|slice:":2" }}
+                      {% else %}
+                        {{ periodo }}
+                      {% endif %}
+                    </td>
+                    <td class="text-end">
+                      <span class="badge bg-primary">{{ quantidade|floatformat:0 }}</span>
+                    </td>
+                    <td class="text-center">
+                      <i class="fas fa-check-circle text-success" title="OK"></i>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    {% elif status == 'nao_encontrado' %}
+      <!-- Arquivo não encontrado -->
+      <div class="text-center py-5">
+        <i class="fas fa-exclamation-triangle fa-4x text-warning mb-3"></i>
+        <h4 class="text-warning">Arquivo BI.DBF não encontrado</h4>
+        <p class="text-muted mb-4">{{ message }}</p>
+        <a href="{% url 'gestor:atualizar_bi' %}" class="btn btn-primary">
+          <i class="fas fa-plus me-1"></i> Criar BI pela primeira vez
+        </a>
+      </div>
+      
+    {% else %}
+      <!-- Erro -->
+      <div class="text-center py-5">
+        <i class="fas fa-times-circle fa-4x text-danger mb-3"></i>
+        <h4 class="text-danger">Erro ao acessar BI.DBF</h4>
+        <p class="text-muted mb-4">{{ message }}</p>
+        <button onclick="location.reload()" class="btn btn-outline-secondary">
+          <i class="fas fa-sync me-1"></i> Tentar Novamente
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
