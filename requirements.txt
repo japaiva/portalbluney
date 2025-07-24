@@ -1,3 +1,4 @@
+aenum==3.1.16
 amqp==5.3.1
 annotated-types==0.7.0
 anthropic==0.49.0
@@ -18,6 +19,7 @@ click==8.1.8
 click-didyoumean==0.3.1
 click-plugins==1.1.1
 click-repl==0.3.0
+dbf==0.99.10
 distro==1.9.0
 dj-database-url==2.3.0
 Django==5.1.7
