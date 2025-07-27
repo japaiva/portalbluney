@@ -15,20 +15,24 @@ from core.forms import AtualizarBIForm
 
 logger = logging.getLogger(__name__)
 
-# CAMINHOS DOS ARQUIVOS DBF NO G: (baseado no seu código Clipper)
+# CAMINHOS PARA SERVIDOR WINDOWS (VPS Windows acessando rede local)
 def get_caminhos_arquivos(ano_mes):
     """
-    Caminhos exatos baseados no seu programa Clipper ATBI.PRG
+    Caminhos para arquivos DBF via UNC (Universal Naming Convention)
+    Rodando numa VPS Windows que acessa o servidor local
     """
+    # Caminho UNC para o servidor Windows
+    base_server = r"\\server_2008_mtz"
+    
     return {
-        'bi': "G:/bln/bi/bi.dbf",
-        'nf': f"G:/bln/lab/dat/fat/n4{ano_mes}.dbf",
-        'itens': f"G:/bln/lab/dat/fat/n5{ano_mes}.dbf", 
-        'produtos': "G:/lab/dat/cad/produtos.dbf",
-        'classes': "G:/lab/dat/cad/classe.dbf",
-        'clientes': "G:/lab/dat/cli/cliente.dbf",
-        'cfo': "G:/lab/dat/cad/cfo.dbf",
-        'vendedores': "G:/bln/sys/mtsys/dados/vend.dbf"
+        'bi': rf"{base_server}\bln\bi\bi.dbf",
+        'nf': rf"{base_server}\bln\lab\dat\fat\n4{ano_mes}.dbf",
+        'itens': rf"{base_server}\bln\lab\dat\fat\n5{ano_mes}.dbf", 
+        'produtos': rf"{base_server}\lab\dat\cad\produtos.dbf",
+        'classes': rf"{base_server}\lab\dat\cad\classe.dbf",
+        'clientes': rf"{base_server}\lab\dat\cli\cliente.dbf",
+        'cfo': rf"{base_server}\lab\dat\cad\cfo.dbf",
+        'vendedores': rf"{base_server}\bln\sys\mtsys\dados\vend.dbf"
     }
 
 @login_required
@@ -285,8 +289,8 @@ def verificar_bi_status(request):
     View REAL para verificar status do arquivo BI.DBF
     """
     try:
-        # Tentar encontrar arquivo BI no G:
-        arquivo_bi = "G:/bln/bi/bi.dbf"
+        # Arquivo BI no servidor Windows (UNC)
+        arquivo_bi = r"\\server_2008_mtz\bln\bi\bi.dbf"
         
         if not os.path.exists(arquivo_bi):
             context = {

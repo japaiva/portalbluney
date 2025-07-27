@@ -10201,3 +10201,21 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-24 07:03:02,664 "GET /gestor/importar-vendas/ HTTP/1.1" 200 20038
 [INFO] 2025-07-24 07:03:47,042 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12473
 [INFO] 2025-07-24 07:04:08,640 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12487
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-27 12:18:09,894 Watching for file changes with StatReloader
+[INFO] 2025-07-27 12:18:28,182 "GET /gestor/ HTTP/1.1" 200 7909
+[INFO] 2025-07-27 12:18:28,228 "GET /static/css/style.css HTTP/1.1" 304 0
+[INFO] 2025-07-27 12:18:28,305 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 304 0
+[INFO] 2025-07-27 12:18:28,305 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-07-27 12:18:28,313 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 304 0
+[INFO] 2025-07-27 12:18:28,313 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 304 0
+[WARNING] 2025-07-27 12:18:28,673 Not Found: /favicon.ico
+[WARNING] 2025-07-27 12:18:28,674 "GET /favicon.ico HTTP/1.1" 404 3825
+[INFO] 2025-07-27 12:18:30,917 "GET /gestor/dashboard/ HTTP/1.1" 200 7669
+[INFO] 2025-07-27 12:18:32,962 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12487
+[INFO] 2025-07-27 12:18:34,566 "POST /gestor/atualizar-bi/ HTTP/1.1" 200 16609
+[INFO] 2025-07-27 12:18:35,595 "POST /gestor/atualizar-bi/ HTTP/1.1" 200 16609
+[INFO] 2025-07-27 12:22:54,638 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/bi.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-27 12:22:56,210 Watching for file changes with StatReloader
