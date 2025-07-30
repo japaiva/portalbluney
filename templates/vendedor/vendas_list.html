@@ -48,17 +48,44 @@
         </select>
       </div>
       
-      <!-- *** FILTRO POR VENDEDOR ATUAL DO CLIENTE *** -->
+      <!-- *** CONTROLE DE ACESSO PARA FILTRO DE VENDEDOR *** -->
       <div class="col-md-2">
-        <label for="vendedor" class="form-label small">Vendedor</label>
-        <select name="vendedor" id="vendedor" class="form-select form-select-sm">
-          <option value="">Todos</option>
-          {% for vendedor in vendedores_disponiveis %}
-            <option value="{{ vendedor.codigo }}" {% if vendedor_filtro == vendedor.codigo %}selected{% endif %}>
-              {{ vendedor.codigo }} - {{ vendedor.nome|truncatechars:15 }}
-            </option>
-          {% endfor %}
-        </select>
+        <label for="vendedor" class="form-label small">
+          Vendedor
+        </label>
+        
+        {% if vendedor_filtro_desabilitado %}
+          <!-- *** VENDEDORES: DROPDOWN DESABILITADO COM INFO *** -->
+          <select name="vendedor" id="vendedor" class="form-select form-select-sm" disabled title="Você só pode ver seus próprios vendedores">
+            {% if vendedores_disponiveis.count == 1 %}
+              {% for vendedor in vendedores_disponiveis %}
+                <option value="{{ vendedor.codigo }}" selected>
+                  {{ vendedor.codigo }} - {{ vendedor.nome|truncatechars:15 }}
+                </option>
+              {% endfor %}
+            {% else %}
+              <option value="" selected>
+                Todos
+              </option>
+            {% endif %}
+          </select>
+          
+          <!-- Campo hidden para manter o valor se necessário -->
+          {% if vendedor_filtro %}
+            <input type="hidden" name="vendedor" value="{{ vendedor_filtro }}">
+          {% endif %}
+          
+        {% else %}
+          <!-- *** GESTORES/ADMINS: DROPDOWN NORMAL *** -->
+          <select name="vendedor" id="vendedor" class="form-select form-select-sm">
+            <option value="">Todos</option>
+            {% for vendedor in vendedores_disponiveis %}
+              <option value="{{ vendedor.codigo }}" {% if vendedor_filtro == vendedor.codigo %}selected{% endif %}>
+                {{ vendedor.codigo }} - {{ vendedor.nome|truncatechars:15 }}
+              </option>
+            {% endfor %}
+          </select>
+        {% endif %}
       </div>
       
       <div class="col-md-1">
@@ -78,19 +105,49 @@
         
         <!-- *** BADGES DOS FILTROS ATIVOS *** -->
         <div class="mt-2">
-          {% if vendedor_filtro %}
+          
+          {% if vendedor_filtro and not vendedor_filtro_desabilitado %}
             <span class="badge bg-primary me-1">
               <i class="fas fa-user-tie"></i> Vendedor: {{ vendedor_filtro }}
             </span>
           {% endif %}
+          
           {% if loja_filtro %}
             <span class="badge bg-secondary me-1">
               <i class="fas fa-store"></i> Loja: {{ loja_filtro }}
             </span>
           {% endif %}
+          
+          {% if search %}
+            <span class="badge bg-warning text-dark me-1">
+              <i class="fas fa-search"></i> Busca: "{{ search|truncatechars:20 }}"
+            </span>
+          {% endif %}
+          
+          {% if data_inicio or data_fim %}
+            <span class="badge bg-success me-1">
+              <i class="fas fa-calendar"></i> 
+              {% if data_inicio and data_fim %}
+                {{ data_inicio }} a {{ data_fim }}
+              {% elif data_inicio %}
+                A partir de {{ data_inicio }}
+              {% elif data_fim %}
+                Até {{ data_fim }}
+              {% endif %}
+            </span>
+          {% endif %}
         </div>
       </div>
     </div>
+    {% endif %}
+    
+    <!-- *** ALERTA PARA VENDEDORES SEM ACESSO *** -->
+    {% if is_vendedor_sem_acesso %}
+      <div class="alert alert-warning mt-3 mb-0">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <strong>Acesso Restrito:</strong> Você não tem vendedores configurados para visualização. 
+        Entre em contato com o administrador para configurar suas permissões.
+      </div>
     {% endif %}
   </div>
   
@@ -135,19 +192,13 @@
                 <span class="badge bg-primary">{{ venda.loja.codigo }}</span>
               </td>
               
-              <!-- *** COLUNA DE VENDEDORES *** -->
-              <td>
-                  <!-- Vendedor Atual do Cliente -->
-                  <div class="d-flex align-items-center">
-                    <small>
-                      {% if venda.cliente.codigo_vendedor %}
-                        <span class="badge bg-primary">{{ venda.cliente.codigo_vendedor }}</span>
-                      {% else %}
-                        <span class="text-muted">-</span>
-                      {% endif %}
-                    </small>
-                  </div>
-                </div>
+              <!-- *** COLUNA DE VENDEDOR ATUAL DO CLIENTE *** -->
+              <td class="text-center">
+                {% if venda.cliente.codigo_vendedor %}
+                  <span class="badge bg-success" title="Vendedor atual do cliente">{{ venda.cliente.codigo_vendedor }}</span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
               </td>
               
               <td class="text-center">
@@ -164,26 +215,37 @@
                      title="Ver detalhes">
                     <i class="fas fa-eye"></i>
                   </a>
+                  
+                  {% if not is_vendedor_restrito or pode_editar %}
+                    <a href="{% url 'vendedor:vendas_edit' venda.pk %}" 
+                       class="btn btn-sm btn-outline-primary" 
+                       title="Editar">
+                      <i class="fas fa-edit"></i>
+                    </a>
+                  {% endif %}
                 </div>
               </td>
             </tr>
           {% empty %}
             <tr>
               <td colspan="9" class="text-center py-4 text-muted">
-                {% if search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
+                {% if is_vendedor_sem_acesso %}
+                  Configuração de acesso necessária.
+                {% elif search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
                   Nenhuma venda encontrada com os filtros aplicados.
                   <br><a href="{% url 'vendedor:vendas_list' %}" class="btn btn-sm btn-outline-primary mt-2">
                     <i class="fas fa-eraser me-1"></i> Limpar filtros
                   </a>
                 {% else %}
-                  Nenhuma venda cadastrada.
-                  <br>
-                  <a href="{% url 'vendedor:vendas_create' %}" class="btn btn-sm btn-primary mt-2 me-2">
-                    <i class="fas fa-plus me-1"></i> Nova venda
-                  </a>
-                  <a href="{% url 'vendedor:importar_vendas' %}" class="btn btn-sm btn-success mt-2">
-                    <i class="fas fa-upload me-1"></i> Importar do BI
-                  </a>
+                  {% if is_vendedor_restrito %}
+                    Nenhuma venda encontrada para seus vendedores permitidos.
+                  {% else %}
+                    Nenhuma venda cadastrada.
+                    <br>
+                    <a href="{% url 'vendedor:vendas_create' %}" class="btn btn-sm btn-primary mt-2 me-2">
+                      <i class="fas fa-plus me-1"></i> Nova venda
+                    </a>
+                  {% endif %}
                 {% endif %}
               </td>
             </tr>
@@ -196,9 +258,14 @@
     <div class="row mt-3">
       <div class="col-md-6">
         <small class="text-muted">
-          Mostrando {{ vendas.start_index }} a {{ vendas.end_index }} de {{ vendas.paginator.count }} venda{{ vendas.paginator.count|pluralize }}
-          {% if search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
-            (filtrada{{ vendas.paginator.count|pluralize }})
+          {% if vendas.paginator.count > 0 %}
+            Mostrando {{ vendas.start_index }} a {{ vendas.end_index }} de {{ vendas.paginator.count }} venda{{ vendas.paginator.count|pluralize }}
+            {% if search or data_inicio or data_fim or loja_filtro or vendedor_filtro %}
+              (filtrada{{ vendas.paginator.count|pluralize }})
+            {% endif %}
+            {% if is_vendedor_restrito %}
+              <span class="text-info">- restrito aos seus vendedores</span>
+            {% endif %}
           {% endif %}
         </small>
       </div>
@@ -258,10 +325,31 @@
 {% block extra_js %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Auto-submit ao mudar filtros de select
-    const filtros = document.querySelectorAll('#loja, #vendedor');
+    // *** CONTROLE DE ACESSO: Desabilitar mudanças se é vendedor restrito ***
+    const isVendedorRestrito = {{ is_vendedor_restrito|yesno:"true,false" }};
+    const vendedorFiltroDesabilitado = {{ vendedor_filtro_desabilitado|yesno:"true,false" }};
+    
+    // Auto-submit ao mudar filtros (exceto vendedor se desabilitado)
+    const filtros = document.querySelectorAll('#loja');
+    
+    // Adicionar vendedor apenas se não estiver desabilitado
+    if (!vendedorFiltroDesabilitado) {
+        const vendedorSelect = document.getElementById('vendedor');
+        if (vendedorSelect) {
+            filtros.forEach = function(callback) {
+                Array.prototype.forEach.call(this, callback);
+            };
+            Array.prototype.push.call(filtros, vendedorSelect);
+        }
+    }
+    
     filtros.forEach(filtro => {
         filtro.addEventListener('change', function() {
+            // Se é vendedor restrito e está tentando mudar vendedor, ignorar
+            if (isVendedorRestrito && this.id === 'vendedor' && vendedorFiltroDesabilitado) {
+                console.log('🚫 Mudança de vendedor bloqueada para usuário restrito');
+                return;
+            }
             this.form.submit();
         });
     });
@@ -272,6 +360,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.form.submit();
         }
     });
+    
+    // *** LOG DE CONTROLE DE ACESSO ***
+    if (isVendedorRestrito) {
+        console.log('🛡️ Modo vendedor restrito ativo');
+        console.log('📊 Vendedores permitidos:', {{ vendedores_permitidos_info.total|default:0 }});
+    }
 });
 </script>
 {% endblock %}

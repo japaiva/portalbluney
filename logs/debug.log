@@ -10219,3 +10219,121 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-27 12:22:54,638 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/gestor/views/bi.py changed, reloading.
 Teste de inicialização de log - debug.log
 [INFO] 2025-07-27 12:22:56,210 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-27 12:24:40,020 Watching for file changes with StatReloader
+[INFO] 2025-07-27 12:26:07,494 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12487
+[INFO] 2025-07-27 12:26:11,641 "POST /gestor/atualizar-bi/ HTTP/1.1" 200 16729
+[INFO] 2025-07-27 12:26:18,458 "GET /gestor/dashboard/ HTTP/1.1" 200 7669
+[INFO] 2025-07-27 12:37:48,322 "GET /gestor/dashboard/ HTTP/1.1" 200 7669
+[INFO] 2025-07-27 12:37:50,773 "GET /gestor/atualizar-bi/ HTTP/1.1" 200 12487
+[INFO] 2025-07-27 12:37:52,503 "POST /gestor/atualizar-bi/ HTTP/1.1" 200 16729
+[INFO] 2025-07-27 12:37:58,812 "GET /gestor/dashboard/ HTTP/1.1" 200 7669
+[INFO] 2025-07-27 12:47:35,950 "GET /gestor/produtos/ HTTP/1.1" 200 39187
+[INFO] 2025-07-27 12:47:36,062 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 304 0
+[INFO] 2025-07-27 12:47:36,094 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 304 0
+[INFO] 2025-07-27 12:47:37,848 "GET /gestor/produtos/ HTTP/1.1" 200 39187
+[INFO] 2025-07-27 12:47:46,682 "GET /gestor/produtos/?search=10430 HTTP/1.1" 200 10941
+[INFO] 2025-07-27 12:50:00,990 "GET /gestor/produtos/?search=56109 HTTP/1.1" 200 9825
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 06:28:41,828 Watching for file changes with StatReloader
+[INFO] 2025-07-30 06:29:01,615 "GET /vendedor/ HTTP/1.1" 302 0
+[INFO] 2025-07-30 06:29:01,688 "GET /login/?next=/vendedor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-30 06:29:01,723 "GET /static/img/bluney.png HTTP/1.1" 304 0
+[INFO] 2025-07-30 06:29:01,735 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-07-30 06:29:41,264 "POST /login/?next=/vendedor/ HTTP/1.1" 200 5329
+[INFO] 2025-07-30 06:29:42,882 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-07-30 06:29:48,792 "POST /login/ HTTP/1.1" 200 5326
+[INFO] 2025-07-30 06:29:56,108 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-07-30 06:29:56,273 "GET /gestor/ HTTP/1.1" 200 7909
+[INFO] 2025-07-30 06:30:00,522 "GET /gestor/usuarios/ HTTP/1.1" 200 22457
+[INFO] 2025-07-30 06:30:04,094 "GET /gestor/usuarios/4/editar/ HTTP/1.1" 200 21543
+[INFO] 2025-07-30 06:30:17,680 "POST /gestor/usuarios/4/editar/ HTTP/1.1" 302 0
+[INFO] 2025-07-30 06:30:18,052 "GET /gestor/usuarios/ HTTP/1.1" 200 22994
+[INFO] 2025-07-30 06:30:25,375 "GET /logout/ HTTP/1.1" 302 0
+[INFO] 2025-07-30 06:30:25,503 "GET /login/ HTTP/1.1" 200 5639
+[INFO] 2025-07-30 06:30:31,967 "GET /vendedor/ HTTP/1.1" 302 0
+[INFO] 2025-07-30 06:30:32,029 "GET /login/?next=/vendedor/ HTTP/1.1" 200 5146
+[INFO] 2025-07-30 06:30:38,968 "POST /login/?next=/vendedor/ HTTP/1.1" 302 0
+[INFO] 2025-07-30 06:30:39,141 "GET /vendedor/ HTTP/1.1" 200 6470
+[INFO] 2025-07-30 06:30:42,494 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 06:30:45,330 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:30:52,539 "GET /vendedor/vendas/ HTTP/1.1" 200 48965
+[INFO] 2025-07-30 06:31:00,373 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 52752
+[INFO] 2025-07-30 06:31:00,407 "GET /static/js/produto-search-tags.js HTTP/1.1" 304 0
+[INFO] 2025-07-30 06:32:16,811 "GET /vendedor/vendas/ HTTP/1.1" 200 48965
+[INFO] 2025-07-30 06:39:17,204 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/vendas.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 06:39:19,093 Watching for file changes with StatReloader
+[INFO] 2025-07-30 06:40:31,132 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:40:34,105 "GET /vendedor/vendas/ HTTP/1.1" 200 48253
+[INFO] 2025-07-30 06:40:53,756 "GET /vendedor/vendas/?page=2 HTTP/1.1" 200 48712
+[INFO] 2025-07-30 06:40:57,544 "GET /vendedor/vendas/63019/ HTTP/1.1" 200 13099
+[INFO] 2025-07-30 06:41:11,925 "GET /vendedor/vendas/63024/ HTTP/1.1" 200 13100
+[INFO] 2025-07-30 06:41:13,822 "GET /vendedor/vendas/63020/ HTTP/1.1" 200 13099
+[INFO] 2025-07-30 06:41:16,060 "GET /vendedor/vendas/63019/ HTTP/1.1" 200 13099
+[INFO] 2025-07-30 06:41:19,209 "GET /vendedor/vendas/61932/ HTTP/1.1" 200 13105
+[INFO] 2025-07-30 06:41:22,248 "GET /vendedor/vendas/?search=210031 HTTP/1.1" 200 49003
+[INFO] 2025-07-30 06:43:23,097 "GET /vendedor/vendas/?search=210031 HTTP/1.1" 200 48867
+[INFO] 2025-07-30 06:43:59,459 "GET /vendedor/vendas/?search=210031 HTTP/1.1" 200 48695
+[INFO] 2025-07-30 06:45:26,926 "GET /vendedor/vendas/?search=210031 HTTP/1.1" 200 48616
+[INFO] 2025-07-30 06:45:33,457 "GET /vendedor/vendas/ HTTP/1.1" 200 48038
+[INFO] 2025-07-30 06:45:39,695 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 06:46:02,285 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:46:14,815 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=145 HTTP/1.1" 200 17010
+[INFO] 2025-07-30 06:46:18,537 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=145 HTTP/1.1" 200 17010
+[INFO] 2025-07-30 06:46:19,941 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=145 HTTP/1.1" 200 17010
+[INFO] 2025-07-30 06:46:25,762 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=alexa HTTP/1.1" 200 13060
+[INFO] 2025-07-30 06:46:34,224 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=10238 HTTP/1.1" 200 11611
+[INFO] 2025-07-30 06:46:44,153 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=96519 HTTP/1.1" 200 11611
+[INFO] 2025-07-30 06:46:48,606 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:46:58,867 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=96484 HTTP/1.1" 200 11508
+[INFO] 2025-07-30 06:47:01,644 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:47:09,983 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=3947 HTTP/1.1" 200 11507
+[INFO] 2025-07-30 06:47:12,425 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:47:19,307 "GET /vendedor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=junior HTTP/1.1" 200 12962
+[INFO] 2025-07-30 06:47:23,584 "GET /vendedor/clientes/ HTTP/1.1" 200 32365
+[INFO] 2025-07-30 06:47:25,210 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 06:47:29,026 "GET /vendedor/vendas/ HTTP/1.1" 200 48038
+[INFO] 2025-07-30 06:47:32,226 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 06:47:36,238 "GET /vendedor/vendas/ HTTP/1.1" 200 48038
+[INFO] 2025-07-30 06:47:45,353 "GET /vendedor/vendas/?search=print&data_inicio=&data_fim=&loja= HTTP/1.1" 200 48718
+[INFO] 2025-07-30 06:47:49,743 "GET /vendedor/vendas/ HTTP/1.1" 200 48038
+[INFO] 2025-07-30 06:48:19,824 "GET /vendedor/vendas/?search=13845&data_inicio=&data_fim=&loja= HTTP/1.1" 200 48763
+[INFO] 2025-07-30 06:48:22,641 "GET /vendedor/vendas/63120/ HTTP/1.1" 200 13108
+[INFO] 2025-07-30 06:48:26,834 "GET /vendedor/vendas/ HTTP/1.1" 200 48038
+[INFO] 2025-07-30 06:48:30,007 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 06:48:32,519 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 52752
+[INFO] 2025-07-30 06:52:55,501 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-30&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 392035
+[INFO] 2025-07-30 07:11:47,732 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:11:49,333 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:11:51,256 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:11:51,623 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:11:59,414 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:11:59,783 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:13:17,788 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:13:18,343 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:13:27,403 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:13:27,866 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:13:31,657 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:13:32,030 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:14:28,338 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/vendedor/views/relatorio_clientes.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-07-30 07:14:28,886 Watching for file changes with StatReloader
+[INFO] 2025-07-30 07:16:52,274 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-30&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 376559
+[INFO] 2025-07-30 07:16:56,891 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 07:16:59,822 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 37501
+[INFO] 2025-07-30 07:21:01,655 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 53043
+[INFO] 2025-07-30 07:21:12,796 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-30&q=sergio&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 54028
+[INFO] 2025-07-30 07:21:21,980 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-30&q=&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 392326
+[INFO] 2025-07-30 07:21:30,881 "GET /vendedor/relatorios/clientes/?data_inicio=2025-01-01&data_fim=2025-07-30&q=JOAO+PAULO&apenas_com_vendas=on&gerar_relatorio=1 HTTP/1.1" 200 60918
+[INFO] 2025-07-30 07:21:39,072 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+[INFO] 2025-07-30 07:21:42,072 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 53043
+[INFO] 2025-07-30 07:21:51,720 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
