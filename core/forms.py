@@ -378,7 +378,7 @@ class ClienteContatoForm(forms.ModelForm):
             'codigo': forms.TextInput(attrs={'class': 'form-control'}),
             'codigo_master': forms.TextInput(attrs={'class': 'form-control'}),
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'whatsapp': forms.TextInput(attrs={'class': 'form-control', 'data-mask': '(00) 00000-0000'}),
+            'whatsapp': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '(11) 98765-4321'}),
             'cargo': forms.TextInput(attrs={'class': 'form-control'}),
             'principal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),

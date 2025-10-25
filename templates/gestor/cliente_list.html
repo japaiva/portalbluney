@@ -6,7 +6,7 @@
 <div class="card shadow">
   <div class="card-header bg-light d-flex justify-content-between align-items-center">
     <h5 class="card-title mb-0">
-      <i class="fas fa-users me-2"></i> Clientes
+      Clientes
     </h5>
     <div>
       <a href="{% url 'gestor:cliente_create' %}" class="btn btn-primary btn-sm">
@@ -95,7 +95,6 @@
             <th style="width: 60px;">Loja</th>
             <th style="width: 60px;">Vend</th>
             <th style="width: 80px;" class="text-center">Status</th>
-            <th style="width: 80px;" class="text-center">Tipo</th>
             <th style="width: 120px;" class="text-end">Ações</th>
           </tr>
         </thead>
@@ -143,17 +142,6 @@
                   <span class="badge bg-secondary">{{ cliente.status|title }}</span>
                 {% endif %}
               </td>
-              <td class="text-center">
-                {% if cliente.codigo_master %}
-                  <span class="badge bg-secondary" title="Sub-cliente de {{ cliente.codigo_master }}">
-                    Coligado
-                  </span>
-                {% else %}
-                  <span class="badge bg-primary">
-                    Principal
-                  </span>
-                {% endif %}
-              </td>
               <td class="text-end">
                 <div class="btn-group" role="group">
                   <a href="{% url 'gestor:cliente_detail' cliente.id %}" 
@@ -176,7 +164,7 @@
             </tr>
           {% empty %}
             <tr>
-              <td colspan="8" class="text-center py-4 text-muted">
+              <td colspan="7" class="text-center py-4 text-muted">
                 {% if query or status_filtro != 'ativo' or tipo_filtro != 'principal' or vendedor_filtro or loja_filtro %}
                   Nenhum cliente encontrado com os filtros aplicados.
                   <br><a href="{% url 'gestor:cliente_list' %}" class="btn btn-sm btn-outline-primary mt-2">

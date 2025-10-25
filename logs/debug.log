@@ -10337,3 +10337,105 @@ Teste de inicialização de log - debug.log
 [INFO] 2025-07-30 07:21:39,072 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
 [INFO] 2025-07-30 07:21:42,072 "GET /vendedor/relatorios/clientes/ HTTP/1.1" 200 53043
 [INFO] 2025-07-30 07:21:51,720 "GET /vendedor/dashboard/ HTTP/1.1" 200 6226
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-09-12 08:11:35,269 Watching for file changes with StatReloader
+[INFO] 2025-09-12 08:13:13,324 "GET /login/ HTTP/1.1" 200 5146
+[INFO] 2025-09-12 08:13:13,348 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-09-12 08:13:13,375 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[WARNING] 2025-09-12 08:13:13,867 Not Found: /favicon.ico
+[WARNING] 2025-09-12 08:13:13,868 "GET /favicon.ico HTTP/1.1" 404 3825
+[INFO] 2025-09-12 08:13:20,802 "POST /login/ HTTP/1.1" 200 5326
+[INFO] 2025-09-12 08:13:27,574 "POST /login/ HTTP/1.1" 200 5326
+[INFO] 2025-09-12 08:13:37,493 "POST /login/ HTTP/1.1" 200 5328
+[INFO] 2025-09-12 08:13:42,053 "POST /login/ HTTP/1.1" 302 0
+[INFO] 2025-09-12 08:13:42,216 "GET /gestor/ HTTP/1.1" 200 7909
+[INFO] 2025-09-12 08:13:44,032 "GET /gestor/dashboard/ HTTP/1.1" 200 7669
+[INFO] 2025-09-12 08:25:47,924 "GET /gestor/clientes/ HTTP/1.1" 200 43090
+[INFO] 2025-09-12 08:25:53,904 "GET /gestor/clientes/?page=3 HTTP/1.1" 200 43983
+[INFO] 2025-09-12 08:25:58,974 "GET /gestor/clientes/?page=5 HTTP/1.1" 200 43522
+[INFO] 2025-09-12 08:26:06,925 "GET /gestor/clientes/?status=ativo&tipo=principal&loja=&vendedor=&q=higa HTTP/1.1" 200 14648
+[INFO] 2025-09-12 08:26:13,655 "GET /gestor/clientes/1069/editar/ HTTP/1.1" 200 36957
+[INFO] 2025-09-12 08:26:20,494 "GET /gestor/clientes/ HTTP/1.1" 200 43090
+[INFO] 2025-09-12 08:26:24,503 "GET /gestor/clientes/criar/ HTTP/1.1" 200 36673
+[INFO] 2025-09-12 08:26:36,574 "POST /gestor/clientes/criar/ HTTP/1.1" 302 0
+[INFO] 2025-09-12 08:26:37,151 "GET /gestor/clientes/1723/ HTTP/1.1" 200 15832
+[INFO] 2025-09-12 08:26:42,822 "GET /gestor/clientes/1723/deletar/ HTTP/1.1" 200 8476
+[INFO] 2025-09-12 08:26:45,004 "POST /gestor/clientes/1723/deletar/ HTTP/1.1" 302 0
+[INFO] 2025-09-12 08:26:45,435 "GET /gestor/clientes/ HTTP/1.1" 200 43601
+[INFO] 2025-09-12 08:29:57,042 "GET /gestor/clientes/ HTTP/1.1" 200 43056
+[INFO] 2025-09-12 08:32:17,136 "GET /gestor/vendas/ HTTP/1.1" 200 60212
+[INFO] 2025-09-12 08:32:23,833 "GET /gestor/vendas/?search=chermes&data_inicio=&data_fim=&loja=&vendedor= HTTP/1.1" 200 60684
+[INFO] 2025-09-12 08:32:32,301 "GET /gestor/vendas/73634/editar/ HTTP/1.1" 200 145385
+[INFO] 2025-09-12 08:32:41,087 "GET /gestor/vendas/ HTTP/1.1" 200 60212
+[INFO] 2025-09-12 08:33:53,671 "GET /gestor/vendas/?search=96847&data_inicio=&data_fim=&loja=&vendedor= HTTP/1.1" 200 60671
+[INFO] 2025-09-12 08:34:10,410 "GET /gestor/vendas/?search=ask&data_inicio=&data_fim=&loja=&vendedor= HTTP/1.1" 200 60655
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-10-25 14:14:35,923 Watching for file changes with StatReloader
+Teste de inicialização de log - debug.log
+Teste de inicialização de log - debug.log
+[INFO] 2025-10-25 14:17:21,533 Watching for file changes with StatReloader
+[INFO] 2025-10-25 14:17:35,663 "GET /gestor/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:17:35,737 "GET /login/?next=/gestor/ HTTP/1.1" 200 5146
+[INFO] 2025-10-25 14:17:35,770 "GET /static/css/style.css HTTP/1.1" 200 9872
+[INFO] 2025-10-25 14:17:35,771 "GET /static/img/bluney.png HTTP/1.1" 200 33343
+[INFO] 2025-10-25 14:17:35,902 "GET /static/img/background.jpg HTTP/1.1" 200 82695
+[INFO] 2025-10-25 14:17:35,947 "GET /static/fonts/montserrat/Montserrat-Bold.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-10-25 14:17:35,949 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff2 HTTP/1.1" 200 1614
+[INFO] 2025-10-25 14:17:35,949 "GET /static/fonts/montserrat/Montserrat-Regular.woff2 HTTP/1.1" 200 1610
+[INFO] 2025-10-25 14:17:35,996 "GET /static/fonts/montserrat/Montserrat-SemiBold.woff HTTP/1.1" 200 1613
+[INFO] 2025-10-25 14:17:35,997 "GET /static/fonts/montserrat/Montserrat-Regular.woff HTTP/1.1" 200 1609
+[INFO] 2025-10-25 14:17:35,999 "GET /static/fonts/montserrat/Montserrat-Bold.woff HTTP/1.1" 200 36056
+[WARNING] 2025-10-25 14:17:36,294 Not Found: /favicon.ico
+[WARNING] 2025-10-25 14:17:36,295 "GET /favicon.ico HTTP/1.1" 404 3825
+[INFO] 2025-10-25 14:17:43,317 "POST /login/?next=/gestor/ HTTP/1.1" 200 5326
+[INFO] 2025-10-25 14:17:50,703 "POST /login/?next=/gestor/ HTTP/1.1" 200 5328
+[INFO] 2025-10-25 14:17:58,783 "POST /login/?next=/gestor/ HTTP/1.1" 200 5326
+[INFO] 2025-10-25 14:18:03,448 "POST /login/?next=/gestor/ HTTP/1.1" 200 5326
+[INFO] 2025-10-25 14:18:10,393 "POST /login/?next=/gestor/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:18:10,602 "GET /gestor/ HTTP/1.1" 200 7909
+[INFO] 2025-10-25 14:18:12,896 "GET /gestor/dashboard/ HTTP/1.1" 200 7669
+[INFO] 2025-10-25 14:18:14,652 "GET /gestor/clientes/ HTTP/1.1" 200 40147
+[INFO] 2025-10-25 14:18:16,831 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19301
+[INFO] 2025-10-25 14:18:48,853 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9770
+[INFO] 2025-10-25 14:18:53,639 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19301
+[INFO] 2025-10-25 14:20:03,185 /Users/joseantoniopaiva/pythonprojects/bluney_projetos/portalcomercial/core/forms.py changed, reloading.
+Teste de inicialização de log - debug.log
+[INFO] 2025-10-25 14:20:04,710 Watching for file changes with StatReloader
+[INFO] 2025-10-25 14:20:24,035 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9772
+[INFO] 2025-10-25 14:20:29,664 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:20:30,043 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19795
+[INFO] 2025-10-25 14:20:38,542 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9772
+[INFO] 2025-10-25 14:20:42,850 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:20:43,163 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19795
+[INFO] 2025-10-25 14:20:45,776 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9764
+[INFO] 2025-10-25 14:20:48,585 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:20:48,903 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19795
+[INFO] 2025-10-25 14:20:54,136 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9764
+[INFO] 2025-10-25 14:21:41,739 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19301
+[INFO] 2025-10-25 14:22:37,794 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19667
+[INFO] 2025-10-25 14:22:41,181 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9764
+[INFO] 2025-10-25 14:22:44,826 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:22:45,137 "GET /gestor/clientes/1680/ HTTP/1.1" 200 20419
+[INFO] 2025-10-25 14:23:55,316 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19673
+[INFO] 2025-10-25 14:23:58,332 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9772
+[INFO] 2025-10-25 14:24:02,944 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:24:03,273 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19909
+[INFO] 2025-10-25 14:24:06,019 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9764
+[INFO] 2025-10-25 14:24:08,400 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:24:08,731 "GET /gestor/clientes/1680/ HTTP/1.1" 200 19909
+[INFO] 2025-10-25 14:25:46,011 "GET /gestor/clientes/1680/ HTTP/1.1" 200 16117
+[INFO] 2025-10-25 14:25:54,686 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9764
+[INFO] 2025-10-25 14:25:58,603 "GET /gestor/clientes/1680/ HTTP/1.1" 200 16117
+[INFO] 2025-10-25 14:26:34,713 "GET /gestor/clientes/1680/ HTTP/1.1" 200 16045
+[INFO] 2025-10-25 14:26:37,737 "GET /gestor/contatos/1413/editar/ HTTP/1.1" 200 9764
+[INFO] 2025-10-25 14:26:42,802 "POST /gestor/contatos/1413/editar/ HTTP/1.1" 302 0
+[INFO] 2025-10-25 14:26:43,125 "GET /gestor/clientes/1680/ HTTP/1.1" 200 16660
