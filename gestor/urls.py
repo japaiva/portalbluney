@@ -97,7 +97,11 @@ urlpatterns = [
     
     # ===== RELATÓRIOS =====
     path('relatorio-clientes/', views.relatorio_clientes, name='relatorio_clientes'),
-    
+
+    # ===== AUDITORIA =====
+    path('auditoria-contatos/', views.auditoria_contatos_list, name='auditoria_contatos_list'),
+    path('auditoria-contatos/exportar/', views.auditoria_contatos_export, name='auditoria_contatos_export'),
+
     # ===== APIs (Cliente) =====
     path('api/vendedor/<str:codigo>/', views.api_vendedor_por_codigo, name='api_vendedor_por_codigo'),
     path('api/cliente/<str:codigo>/', views.api_cliente_por_codigo, name='api_cliente_por_codigo'),

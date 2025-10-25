@@ -49,7 +49,12 @@ from .api import (
 
 # ===== RELATÓRIOS =====
 from .relatorio_clientes import (
-    relatorio_clientes  
+    relatorio_clientes
+)
+
+# ===== AUDITORIA =====
+from .auditoria_contatos import (
+    auditoria_contatos_list, auditoria_contatos_export
 )
 
 # ===== NOVAS APIs DE PRODUTOS =====
@@ -107,7 +112,10 @@ __all__ = [
     
     # ===== RELATÓRIOS =====
     'relatorio_clientes',
-    
+
+    # ===== AUDITORIA =====
+    'auditoria_contatos_list', 'auditoria_contatos_export',
+
     # ===== APIs (Cliente) =====
     'api_vendedor_por_codigo', 'api_cliente_por_codigo', 'api_consultar_receita',
     

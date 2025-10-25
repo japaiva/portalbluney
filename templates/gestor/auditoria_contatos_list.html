@@ -1,0 +1,249 @@
+{% extends 'gestor/base_gestor.html' %}
+
+{% block title %}Auditoria Contatos | Portal Comercial{% endblock %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header bg-light d-flex justify-content-between align-items-center">
+    <h5 class="card-title mb-0">
+      <i class="fas fa-clipboard-check me-2"></i>Auditoria de Contatos Chatwoot
+    </h5>
+    <div>
+      <button onclick="exportarExcel()" id="btnExportar" class="btn btn-success btn-sm me-2">
+        <i class="fas fa-file-excel me-1"></i> <span id="btnExportarTexto">Exportar Excel</span>
+      </button>
+      <a href="{% url 'gestor:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+        <i class="fas fa-arrow-left me-1"></i> Voltar
+      </a>
+    </div>
+  </div>
+
+  <div class="card-header bg-white">
+    <form method="get" class="row g-2 align-items-end">
+      <div class="col-md-10">
+        <label for="q" class="form-label small">Buscar</label>
+        <input type="text" name="q" id="q" class="form-control form-control-sm"
+               placeholder="Nome, email, telefone, código, tipo..." value="{{ busca|default:'' }}">
+      </div>
+
+      <div class="col-md-1">
+        <button type="submit" class="btn btn-sm btn-primary w-100" title="Filtrar">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <div class="col-md-1">
+        <a href="{% url 'gestor:auditoria_contatos_list' %}" class="btn btn-sm btn-outline-secondary w-100" title="Limpar filtros">
+          <i class="fas fa-eraser"></i>
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <div class="card-body">
+    <div class="mb-3">
+      <small class="text-muted">
+        <i class="fas fa-info-circle me-1"></i>
+        Total de conversas: <strong>{{ total_conversas }}</strong>
+        {% if page_obj %}
+          | Mostrando {{ page_obj.start_index }} a {{ page_obj.end_index }}
+        {% endif %}
+      </small>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle table-sm">
+        <thead class="table-light">
+          <tr>
+            <th style="width: 80px;">ID</th>
+            <th style="width: 180px;">Nome</th>
+            <th style="width: 130px;">Telefone</th>
+            <th style="width: 100px;">Código</th>
+            <th style="width: 220px;">Nome Cliente</th>
+            <th style="width: 80px;">Vend</th>
+            <th style="width: 100px;">Tipo</th>
+            <th style="width: 140px;">Última Atividade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in page_obj %}
+            <tr>
+              <td><code>{{ item.conversa.contact_id }}</code></td>
+              <td>
+                <div class="fw-semibold">{{ item.conversa.name|default:"Não informado"|truncatechars:25 }}</div>
+                {% if item.conversa.email %}
+                  <small class="text-muted">{{ item.conversa.email|truncatechars:25 }}</small>
+                {% endif %}
+              </td>
+              <td>
+                {% if item.conversa.phone %}
+                  <span class="badge bg-success">
+                    <i class="fab fa-whatsapp me-1"></i>{{ item.conversa.phone }}
+                  </span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if item.conversa.codigo %}
+                  <code>{{ item.conversa.codigo }}</code>
+                {% else %}
+                  <span class="badge bg-warning text-dark">
+                    <i class="fas fa-exclamation-triangle me-1"></i>Sem
+                  </span>
+                {% endif %}
+              </td>
+              <td>
+                {% if item.cliente %}
+                  <a href="{% url 'gestor:cliente_detail' item.cliente.id %}" class="text-decoration-none">
+                    {{ item.cliente.nome|truncatechars:30 }}
+                  </a>
+                {% else %}
+                  {% if item.conversa.codigo %}
+                    <span class="text-danger">
+                      <i class="fas fa-times-circle me-1"></i>Não encontrado
+                    </span>
+                  {% else %}
+                    <span class="text-muted">-</span>
+                  {% endif %}
+                {% endif %}
+              </td>
+              <td>
+                {% if item.codigo_vendedor %}
+                  <span class="badge bg-info">{{ item.codigo_vendedor }}</span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if item.conversa.tipo %}
+                  <span class="badge bg-secondary">{{ item.conversa.tipo }}</span>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if item.conversa.last_activity %}
+                  <small>{{ item.conversa.last_activity|date:"d/m/Y H:i" }}</small>
+                {% else %}
+                  <span class="text-muted">-</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="8" class="text-center py-4 text-muted">
+                {% if busca %}
+                  Nenhuma conversa encontrada com a busca aplicada.
+                  <br><a href="{% url 'gestor:auditoria_contatos_list' %}" class="btn btn-sm btn-outline-primary mt-2">
+                    <i class="fas fa-eraser me-1"></i> Limpar busca
+                  </a>
+                {% else %}
+                  Nenhuma conversa cadastrada.
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if page_obj.paginator.num_pages > 1 %}
+    <nav aria-label="Navegação de página" class="mt-3">
+      <ul class="pagination pagination-sm justify-content-center mb-0">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1{% if busca %}&q={{ busca }}{% endif %}" aria-label="Primeiro">
+              <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if busca %}&q={{ busca }}{% endif %}" aria-label="Anterior">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&laquo;&laquo;</span>
+          </li>
+          <li class="page-item disabled">
+            <span class="page-link">&laquo;</span>
+          </li>
+        {% endif %}
+
+        {% for i in page_obj.paginator.page_range %}
+          {% if page_obj.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }}</span></li>
+          {% elif i > page_obj.number|add:'-3' and i < page_obj.number|add:'3' %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ i }}{% if busca %}&q={{ busca }}{% endif %}">{{ i }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if busca %}&q={{ busca }}{% endif %}" aria-label="Próximo">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if busca %}&q={{ busca }}{% endif %}" aria-label="Último">
+              <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disabled">
+            <span class="page-link">&raquo;</span>
+          </li>
+          <li class="page-item disabled">
+            <span class="page-link">&raquo;&raquo;</span>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</div>
+
+{% block extra_js %}
+<script>
+function exportarExcel() {
+    const btn = document.getElementById('btnExportar');
+    const btnTexto = document.getElementById('btnExportarTexto');
+
+    // Desabilitar botão e mostrar loading
+    btn.disabled = true;
+    btnTexto.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Gerando...';
+
+    // Obter busca atual
+    const busca = document.getElementById('q').value;
+    let url = '{% url "gestor:auditoria_contatos_export" %}';
+    if (busca) {
+        url += '?q=' + encodeURIComponent(busca);
+    }
+
+    // Redirecionar para download
+    window.location.href = url;
+
+    // Reabilitar botão após 3 segundos
+    setTimeout(function() {
+        btn.disabled = false;
+        btnTexto.innerHTML = 'Exportar Excel';
+    }, 3000);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Enter no campo de busca
+    const busca = document.getElementById('q');
+    if (busca) {
+        busca.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                this.form.submit();
+            }
+        });
+    }
+});
+</script>
+{% endblock %}
+{% endblock %}

@@ -869,3 +869,38 @@ class UsuarioVendedores(models.Model):
     class Meta:
         db_table = 'usuario_vendedores'
         unique_together = ['usuario', 'vendedor']
+class ChatwootLastConversation(models.Model):
+    """Última conversa de cada contato do Chatwoot (sincronizado via n8n)"""
+    
+    contact_id = models.BigIntegerField(primary_key=True, verbose_name="ID Contato")
+    name = models.TextField(blank=True, null=True, verbose_name="Nome")
+    email = models.TextField(blank=True, null=True, verbose_name="Email")
+    phone = models.TextField(blank=True, null=True, verbose_name="Telefone")
+    codigo = models.BigIntegerField(blank=True, null=True, verbose_name="Código Cliente")
+    tipo = models.TextField(blank=True, null=True, verbose_name="Tipo")  # ← NOVO
+    conversation_id = models.BigIntegerField(blank=True, null=True, verbose_name="ID Conversa")
+    inbox_id = models.BigIntegerField(blank=True, null=True, verbose_name="ID Inbox")
+    status = models.TextField(blank=True, null=True, verbose_name="Status")
+    last_message = models.TextField(blank=True, null=True, verbose_name="Última Mensagem")
+    last_activity = models.DateTimeField(blank=True, null=True, verbose_name="Última Atividade")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Atualizado em")
+    
+    @property
+    def cliente(self):
+        """Retorna o Cliente relacionado pelo código"""
+        if not self.codigo:
+            return None
+        try:
+            return Cliente.objects.get(codigo=self.codigo)
+        except Cliente.DoesNotExist:
+            return None
+    
+    def __str__(self):
+        return self.name or f"Contato {self.contact_id}"
+    
+    class Meta:
+        db_table = 'chatwoot_last_conversations'
+        managed = False
+        verbose_name = "Conversa Chatwoot"
+        verbose_name_plural = "Conversas Chatwoot"
+        ordering = ['-last_activity']
