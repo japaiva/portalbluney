@@ -375,15 +375,15 @@ class ClienteContatoForm(forms.ModelForm):
         model = ClienteContato
         fields = ['codigo', 'codigo_master', 'nome', 'whatsapp', 'cargo', 'principal', 'ativo']
         widgets = {
-            'codigo': forms.TextInput(attrs={'class': 'form-control'}),
-            'codigo_master': forms.TextInput(attrs={'class': 'form-control'}),
+            'codigo': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+            'codigo_master': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'whatsapp': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '(11) 98765-4321'}),
+            'whatsapp': forms.TextInput(attrs={'class': 'form-control'}),
             'cargo': forms.TextInput(attrs={'class': 'form-control'}),
             'principal': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
             'ativo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
-    
+
     def clean_whatsapp(self):
         whatsapp = self.cleaned_data['whatsapp']
         # Remove caracteres não numéricos
