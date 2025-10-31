@@ -19,13 +19,13 @@
       {% endif %}
     </h5>
     <div>
-      {% if perms.core.change_cliente %}
+      {% if user.nivel in 'admin,gestor' %}
       <a href="{% url 'gestor:cliente_update' cliente.id %}" class="btn btn-outline-primary btn-sm me-1">
         <i class="fas fa-edit me-1"></i> Editar
       </a>
       {% endif %}
-      
-      {% if perms.core.delete_cliente %}
+
+      {% if user.nivel in 'admin,gestor' %}
       <a href="{% url 'gestor:cliente_delete' cliente.id %}" class="btn btn-sm btn-outline-danger me-1">
         <i class="fas fa-trash-alt me-1"></i> Excluir
       </a>
@@ -261,7 +261,7 @@
             <h6 class="card-title mb-0">
               <i class="fas fa-sitemap me-2"></i>Clientes Associados
             </h6>
-            {% if perms.core.add_cliente %}
+            {% if user.nivel in 'admin,gestor' %}
             <a href="{% url 'gestor:cliente_create' %}?codigo_master={{ cliente.codigo }}" class="btn btn-primary btn-sm">
               <i class="fas fa-plus me-1"></i> Novo Sub-Cliente
             </a>
@@ -302,11 +302,11 @@
                             <a href="{% url 'gestor:cliente_detail' cliente_associado.id %}" class="btn btn-sm btn-outline-secondary">
                               <i class="fas fa-eye"></i>
                             </a>
-                            {% if perms.core.change_cliente %}
+                            {% if user.nivel in 'admin,gestor' %}
                             <a href="{% url 'gestor:cliente_update' cliente_associado.id %}" class="btn btn-sm btn-outline-primary">
                               <i class="fas fa-edit"></i>
                             </a>
-                            {% if perms.core.delete_cliente %}
+                            {% if user.nivel in 'admin,gestor' %}
                             <a href="{% url 'gestor:cliente_delete' cliente_associado.id %}" class="btn btn-sm btn-outline-danger">
                               <i class="fas fa-trash-alt"></i>
                             </a>
@@ -332,7 +332,7 @@
             <h6 class="card-title mb-0">
               <i class="fas fa-address-book me-2"></i>Contatos
             </h6>
-            {% if perms.core.add_clientecontato %}
+            {% if user.nivel in 'admin,gestor' %}
             <a href="{% url 'gestor:cliente_contato_create' cliente.id %}" class="btn btn-primary btn-sm">
               <i class="fas fa-plus me-1"></i> Novo Contato
             </a>
@@ -365,7 +365,7 @@
                           {% endif %}
                         </td>
                         <td class="text-end">
-                          {% if contato.cliente.id == cliente.id and perms.core.change_clientecontato %}
+                          {% if contato.cliente.id == cliente.id and user.nivel in 'admin,gestor' %}
                             <div class="btn-group" role="group">
                               <a href="{% url 'gestor:cliente_contato_update' contato.id %}" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-edit"></i>
